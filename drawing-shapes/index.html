@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Draw stuff</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script type="module">
+    import drawItemGenerators from './index.js'
+
+    var cellSize = 200;
+    for (var i = 0; i < 24; i++) {
+        var canvas = document.createElement('canvas');
+        canvas.width = cellSize;
+        canvas.height = cellSize;
+        document.body.appendChild(canvas);
+
+        fillCell(i, canvas);
+    }
+
+    function fillCell(index, canvas) {
+        var ctx = canvas.getContext('2d');
+        var x = canvas.width / 2;
+        var y = canvas.height / 2;
+        var itemSize = canvas.width * 0.6;
+
+        var drawItem = drawItemGenerators[index]?.draw,
+            hue = Math.floor(Math.random() * 360);
+        if (drawItem) {
+            drawItem(ctx, x, y , itemSize, hue)
+        } else {
+            drawNumber(ctx, index +1, x, y, itemSize);
+        }
+    }
+
+    function drawNumber(ctx, value, x, y, itemSize) {
+        ctx.font = `${itemSize}px Arial`
+        ctx.textBaseline = "middle"
+        ctx.textAlign = "center"
+        ctx.fillText(value, x, y);
+    }
+</script>
+</body>
+</html>

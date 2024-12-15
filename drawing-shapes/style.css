@@ -1,0 +1,13 @@
+body{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap:1em;
+
+}
+
+canvas {
+    background-color: #bbb;
+    border-radius: 5px;
+    width: 100%;
+    aspect-ratio: 1;
+}
