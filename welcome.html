@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Portfolio</title>
+    <link rel="stylesheet" href="base.css">
+    <style>
+        body {
+            font-family: var(--font-family-base);
+            background-color: var(--color-background);
+            color: var(--text-primary);
+            line-height: var(--line-height-normal);
+            padding: var(--space-6);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-4);
+            color: var(--color-primary);
+        }
+        p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-4);
+        }
+        .project-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .project-item {
+            background-color: var(--component-bg);
+            border: 1px solid var(--component-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-4);
+            transition: transform var(--transition-normal);
+        }
+        .project-item:hover {
+            transform: translateY(-3px);
+        }
+        .project-title {
+            font-size: var(--font-size-xl);
+            color: var(--color-secondary);
+            margin-bottom: var(--space-2);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to My Creative Portfolio</h1>
+    <p>Hello! I'm Pery Mimon , a passionate creator and developer. This portfolio showcases some of my favorite projects that demonstrate my skills in web development, design, and creative problem-solving.</p>
+    <p>Feel free to explore my projects using the sidebar navigation. Here's a quick overview of what you'll find:</p>
+
+    <!--<ul class="project-list">
+        <li class="project-item">
+            <h2 class="project-title">Project 1: Interactive Web Application</h2>
+            <p>A dynamic web app that showcases my frontend development skills using modern JavaScript frameworks.</p>
+        </li>
+        <li class="project-item">
+            <h2 class="project-title">Project 2: Responsive Design Showcase</h2>
+            <p>A collection of responsive web designs that adapt seamlessly to various screen sizes and devices.</p>
+        </li>
+        <li class="project-item">
+            <h2 class="project-title">Project 3: Creative Coding Experiment</h2>
+            <p>An artistic project that combines code and creativity, demonstrating my skills in generative art and animation.</p>
+        </li>
+    </ul>-->
+
+    <p>Thank you for visiting my portfolio. I hope you enjoy exploring my work!</p>
+</div>
+
+<script type="module">
+    import {linkPageToParent} from './helpers/link-page.js'
+    linkPageToParent()
+</script>
+</body>
+</html>

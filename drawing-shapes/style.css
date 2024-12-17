@@ -1,23 +1,11 @@
 @import '../base.css';
 
-:root {
-    --color-shade: #222;
-    --color-text: #fff;
-    --color-shade-2: rgb(134, 146, 161);
-    --color-shade-3: rgb(51, 53, 54);
-    --color-shade-warm: #1c1917;
-    --color-bright: rgb(51, 53, 54);
-
-
-}
-
 body, html {
     padding: 0;
     margin: 0;
 }
 
 body {
-
     display: flex;
     flex-direction: row-reverse;
     align-items: center;

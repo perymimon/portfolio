@@ -5,7 +5,6 @@
     <title>Draw stuff</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./libs/highlight/styles/github-dark.css">
-
 </head>
 <body>
 <div id="toc"></div>
@@ -105,5 +104,10 @@
         <canvas name="canvas"></canvas>
     </section>
 </template>
+
+<script type="module">
+    import {linkPageToParent} from './helpers/link-page.js'
+    linkPageToParent()
+</script>
 </body>
 </html>
