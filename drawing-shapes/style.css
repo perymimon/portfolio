@@ -1,3 +1,5 @@
+@import '../base.css';
+
 :root {
     --color-shade: #222;
     --color-text: #fff;
@@ -6,33 +8,48 @@
     --color-shade-warm: #1c1917;
     --color-bright: rgb(51, 53, 54);
 
+
 }
-body,html{
+
+body, html {
     padding: 0;
     margin: 0;
 }
-body{
+
+body {
 
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: center;
     background-color: var(--color-shade-warm);
-    gap : 1em;
+    gap: 1em;
 
-    #codeSnippets{
+    #codeSnippets {
         overflow: auto;
+
         height: 100vh;
         display: flex;
         flex-direction: column;
         row-gap: 1em;
+        width: 90em;
+
+        direction:rtl;
+        &>*{
+            direction:ltr
+        }
     }
 }
-#toc{
+
+#toc {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap:1em;
-    max-width:800px;
+    gap: 1em;
+    max-width: 800px;
 
+}
+
+.active {
+    outline: 0.5em solid var(--color-bright);
 }
 
 canvas {
@@ -42,33 +59,44 @@ canvas {
     aspect-ratio: 1;
 }
 
-.code-section{
+.code-section {
     /* typography */
-    color:#c9d1d9;
-    font-family: font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    color: #c9d1d9;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     font-feature-settings: normal;
     font-variation-settings: normal;
     font-size: 1em;
 
     /* layout */
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap:1em;
-    background-color:hsl(210, 3%, 15%);
+    /*display: grid;*/
+    /*grid-template-columns: repeat(2, 1fr);*/
+    row-gap: 1em;
+    background-color: hsl(210deg 3.11% 23.91% / 71%);
+    anchor-name: --code-section;
+    position: relative;
 
-    border-radius:1em;
+    border-radius: 1em;
     border: .2em solid;
 
-    canvas{
+    /* direction*/
+
+
+    canvas {
         background-color: transparent;
+        position: absolute;
+        width: 100px;
+        top: 0;
+        right: 0;
+        z-index: -10;
     }
 
-    pre{
+    pre {
         padding: 1em;
-        margin:0;
+        margin: 0;
         overflow: auto;
         white-space-collapse: preserve-breaks;
-        code{
+
+        code {
             white-space: pre-wrap;
         }
     }

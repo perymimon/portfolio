@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="toc"></div>
-<div id="codeSnippets"></div>
+<div id="codeSnippets" class="scrollbar-custom"></div>
 <script type="module">
     import drawItemGenerators from './index.js'
     import hljs from './libs/highlight/es/highlight.js'
@@ -19,15 +19,22 @@
 
     var toc = document.getElementById('toc')
     var cellSize = 200;
-    for (let i = 0; i < 24; i++) {
-        var canvas = document.createElement('canvas');
+    var dayes = 24
+    var canvases = Array(dayes).fill(1).map(()=>{
+        let canvas = document.createElement('canvas');
         canvas.width = cellSize;
         canvas.height = cellSize;
+        return canvas;
+    })
+    for (let i = 0; i < dayes; i++) {
+        let canvas = canvases[i];
         toc.appendChild(canvas);
         fillCell(i, canvas);
         await snippetSection(i)
         canvas.addEventListener('click', function (event) {
             event.preventDefault();
+            canvases.forEach((c)=>c.classList.remove('active'));
+            canvas.classList.add('active')
             var item = drawItemGenerators[i]
             if(item) {
                 var snippet = document.getElementById(item.name)
