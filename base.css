@@ -1,5 +1,11 @@
 /* Design System CSS */
 
+/* Reset */
+body, html {
+    padding: 0;
+    margin: 0;
+}
+
 /* Root Theme Variables */
 :root {
     --color-shade: #222;
@@ -31,7 +37,7 @@
     --color-border-hover: light-dark(#cbd5e1, #475569);
 
     /* Component Colors */
-    --component-bg: light-dark(#ffffff, #1e293b);
+    --component-bg: light-dark(#ffffff, var(--color-shade));
     --component-border: light-dark(#e2e8f0, #334155);
     --component-hover: light-dark(#f8fafc, #334155);
 
@@ -201,13 +207,16 @@
 .scrollbar-custom {
     scrollbar-width: thin;
     scrollbar-color: var(--color-muted) transparent;
+
     &::-webkit-scrollbar {
         width: 6px;
         height: 6px;
     }
-    &::-webkit-scrollbar-track{
+
+    &::-webkit-scrollbar-track {
         background: transparent;
     }
+
     &::-webkit-scrollbar-thumb {
         background-color: var(--color-muted);
         border-radius: var(--radius-full);
@@ -217,6 +226,7 @@
 /* Focus Styles */
 .focus-ring {
     outline: none;
+
     &:focus-visible {
         outline: 2px solid var(--color-primary);
         outline-offset: 2px;
