@@ -8,7 +8,7 @@ export function drawBow (ctx, x, y, size, hue) {
 
     ctx.beginPath();
     ctx.moveTo(x, y);
-    ctx.quadraticCurveTo(top, left, left, y);
+    ctx.quadraticCurveTo(left,top, left, y);
     ctx.quadraticCurveTo(left, bottom, x, y);
     // ctx.arcTo(left, top, left, bottom, radius)
     // ctx.arcTo(left, bottom, x, y, radius);

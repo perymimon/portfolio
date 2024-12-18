@@ -14,6 +14,7 @@ import {drawSnowflake} from './items/snowflake.js'
 import {drawSock} from "./items/sock.js";
 import {drawStar} from './items/star.js'
 import {drawTree} from './items/tree.js'
+import {drawPresent} from './items/present.js'
 
 
 var basePath = './items/'
@@ -33,5 +34,6 @@ drawItemGenerators[11] =  {name:'Sledge',draw: drawSledge, filePath: `${basePath
 drawItemGenerators[12] =  {name:'Tree',draw: drawTree, filePath: `${basePath}tree.js`}
 drawItemGenerators[13] =  {name:'Hat',draw: drawHat, filePath: `${basePath}Hat.js`}
 drawItemGenerators[14] =  {name:'Calendar',draw: drawCalendar, filePath: `${basePath}calendar.js`}
+drawItemGenerators[15] =  {name:'Present',draw: drawPresent, filePath: `${basePath}present.js`}
 
 export default drawItemGenerators;
