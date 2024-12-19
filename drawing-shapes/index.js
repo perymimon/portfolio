@@ -15,6 +15,8 @@ import {drawSock} from "./items/sock.js";
 import {drawStar} from './items/star.js'
 import {drawTree} from './items/tree.js'
 import {drawPresent} from './items/present.js'
+import {drawCookie} from './items/cookie.js'
+import {drawGlobe} from './items/globe.js'
 
 
 var basePath = './items/'
@@ -35,5 +37,8 @@ drawItemGenerators[12] =  {name:'Tree',draw: drawTree, filePath: `${basePath}tre
 drawItemGenerators[13] =  {name:'Hat',draw: drawHat, filePath: `${basePath}Hat.js`}
 drawItemGenerators[14] =  {name:'Calendar',draw: drawCalendar, filePath: `${basePath}calendar.js`}
 drawItemGenerators[15] =  {name:'Present',draw: drawPresent, filePath: `${basePath}present.js`}
+drawItemGenerators[16] =  {name:'Cookie',draw: drawCookie, filePath: `${basePath}cookie.js`}
+drawItemGenerators[17] =  {name:'Globe',draw: drawGlobe, filePath: `${basePath}globe.js`}
+drawItemGenerators[18] =  {name:'Present',draw: drawPresent, filePath: `${basePath}present.js`}
 
 export default drawItemGenerators;
