@@ -7,29 +7,43 @@ body {
     background-color: var(--color-shade-warm);
     gap: 1em;
 
+    header {
+        padding-block: var(--space-1);
+        font-size: var(--font-size-sm);
+    }
+
     #codeSnippets {
         overflow: auto;
 
         height: 100vh;
         display: flex;
         flex-direction: column;
-        row-gap: 1em;
+        row-gap: var(--space-2);
         width: 90em;
 
-        direction:rtl;
-        &>*{
-            direction:ltr
+
+        direction: rtl;
+
+        & > * {
+            direction: ltr
         }
+
+        /*code[class*=language-]{*/
+        /*    background-color: unset;*/
+        /*    box-shadow: unset;*/
+        /*    text-shadow: unset;*/
+        /*}*/
+
     }
+
     #toc {
         max-width: 50em;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        gap: 1em;
+        gap: var(--space-2);
         max-width: 800px;
     }
 }
-
 
 
 .active {
@@ -79,6 +93,12 @@ canvas {
         margin: 0;
         overflow: auto;
         white-space-collapse: preserve-breaks;
+
+        .line-number {
+            width: 2em;
+            display: inline-block;
+            border-inline-end: 1px solid;
+        }
 
         code {
             white-space: pre-wrap;

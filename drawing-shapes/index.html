@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="./libs/highlight/styles/github-dark.css">
 </head>
 <body>
-<div id="toc"></div>
+<div id="right-side">
+    <header>
+        <a href="https://www.youtube.com/playlist?list=PLB0Tybl0UNfalh9Ll82j6OKdx1QINOZom">JavaScript Christmas
+            Calendar</a>
+        by
+        <a href="https://www.youtube.com/@Radu">Radu Mariescu-Istodor</a>
+    </header>
+    <div id="toc"></div>
+</div>
 <div id="codeSnippets" class="scrollbar-custom"></div>
 <script type="module">
     import drawItemGenerators from './index.js'
@@ -17,9 +25,9 @@
     hljs.registerLanguage('javascript', javascript);
 
     var toc = document.getElementById('toc')
-    var cellSize = 200;
+    var cellSize = 200
     var dayes = 24
-    var canvases = Array(dayes).fill(1).map(()=>{
+    var canvases = Array(dayes).fill(1).map(() => {
         let canvas = document.createElement('canvas');
         canvas.width = cellSize;
         canvas.height = cellSize;
@@ -32,15 +40,15 @@
         await snippetSection(i)
         canvas.addEventListener('click', function (event) {
             event.preventDefault();
-            canvases.forEach((c)=>c.classList.remove('active'));
+            canvases.forEach((c) => c.classList.remove('active'));
             canvas.classList.add('active')
             var item = drawItemGenerators[i]
-            if(item) {
+            if (item) {
                 var snippet = document.getElementById(item.name)
                 snippet.scrollIntoView({
                     behavior: 'smooth',
-                    block:'center',
-                    inline:'center',
+                    block: 'center',
+                    inline: 'center',
                 })
             }
         })
@@ -79,7 +87,7 @@
 
         var sectionElement = sectionFragment.querySelector('section');
         sectionElement.dataset.index = index;
-        if(item) sectionElement.id = item.name;
+        if (item) sectionElement.id = item.name;
 
         var canvas = sectionFragment.querySelector('canvas')
         canvas.width = cellSize;
@@ -90,7 +98,10 @@
             var path = item.filePath
             var drawCode = await fetch(path).then(res => res.text())
             var codeElement = sectionFragment.querySelector('code')
-            codeElement.innerHTML = hljs.highlight(drawCode.trim(), {language: 'javascript'}).value
+            var coloredCode = hljs.highlight(drawCode.trim(), {language: 'javascript'}).value
+                /* add line number */
+                .split('\n').map((line, i) => `<span class="line-number">${i + 1}</span> ${line}`)
+            codeElement.innerHTML = coloredCode.join('\n')
         }
         codeSnippets.append(sectionFragment)
 
@@ -107,6 +118,7 @@
 
 <script type="module">
     import {linkPageToParent} from '../helpers/link-page.js'
+
     linkPageToParent()
 </script>
 </body>
