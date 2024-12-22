@@ -3,7 +3,7 @@
 body {
     display: flex;
     flex-direction: row-reverse;
-    align-items: center;
+    align-items: stretch;
     background-color: var(--color-shade-warm);
     gap: 1em;
 
@@ -12,16 +12,25 @@ body {
         font-size: var(--font-size-sm);
     }
 
+    #toc {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: var(--space-2);
+    }
+    .right-side{
+        flex:1
+    }
+    .left-side {
+        flex:2;
+    }
     #codeSnippets {
         overflow: auto;
+        min-height: 100vh;
 
-        height: 100vh;
         display: flex;
+
         flex-direction: column;
         row-gap: var(--space-2);
-        width: 90em;
-
-
         direction: rtl;
 
         & > * {
@@ -36,16 +45,14 @@ body {
 
     }
 
-    #toc {
-        max-width: 50em;
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: var(--space-2);
-        max-width: 800px;
-    }
+
 }
 
-
+@media (orientation: portrait) {
+    body {
+        flex-direction: column;
+    }
+}
 .active {
     outline: 0.5em solid var(--color-bright);
 }
