@@ -3,7 +3,7 @@ import {drawSnowflake} from './snowflake.js'
 
 export function drawCookie (ctx, x, y, size, hue) {
     var top = y - size / 2, left = x - size / 2, bottom = top + size;
-    ctx.strokeRect(top, left, size, size);
+    // ctx.strokeRect(top, left, size, size);
 
     const radius  = size / 4
 

@@ -3,7 +3,7 @@ import {drawTree} from './tree.js'
 
 export function drawGlobe (ctx, x, y, size, hue) {
     var top = y - size / 2, left = x - size / 2, bottom = top + size;
-    ctx.strokeRect(top, left, size, size);
+    // ctx.strokeRect(top, left, size, size);
 
 
     var ball = {
