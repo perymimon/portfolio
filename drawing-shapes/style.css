@@ -7,6 +7,8 @@ body {
     background-color: var(--color-shade-warm);
     gap: 1em;
 
+    height:100vh;
+
     header {
         padding-block: var(--space-1);
         font-size: var(--font-size-sm);
@@ -22,11 +24,10 @@ body {
     }
     .left-side {
         flex:2;
+        /*height: 100vh;*/
     }
     #codeSnippets {
         overflow: auto;
-        min-height: 100vh;
-
         display: flex;
 
         flex-direction: column;
@@ -51,6 +52,10 @@ body {
 @media (orientation: portrait) {
     body {
         flex-direction: column;
+    }
+    .right-side {
+        align-self: center;
+        max-width:24em;
     }
 }
 .active {
