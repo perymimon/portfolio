@@ -89,7 +89,7 @@ canvas {
     }
 
     pre {
-        padding: 1em;
+        /*padding: .5em;*/
         margin: 0;
         overflow: auto;
         white-space-collapse: preserve-breaks;
@@ -98,6 +98,8 @@ canvas {
             width: 2em;
             display: inline-block;
             border-inline-end: 1px solid;
+            text-align: right;
+            padding-inline-end: .5em;
         }
 
         code {
