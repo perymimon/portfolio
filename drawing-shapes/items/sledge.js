@@ -56,7 +56,7 @@ export function drawSledge (ctx, x, y, size, hue) {
     var bench = {
         y : legLeft.top,
         left: base.left,
-        right: legRight.x + size *.2
+        right: legRight.x + size *.15
     }
 
     ctx.moveTo(bench.left, bench.y )

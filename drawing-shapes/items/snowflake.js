@@ -1,14 +1,15 @@
 import {color, draw} from '../draw.js'
 
-export function drawSnowflake (ctx, x, y, size, hue) {
+export function drawSnowflake (ctx, x, y, size, hue, pattern = [1,1,1,1,1,1]) {
     var top = y - size / 2, left = x - size / 2;
     // ctx.strokeRect(left, top, size, size)
 
     var lineWidth = size * 0.04
     var lineRadio = 0.47
 
+    var  i = 0
     for (let a = 0; a <= Math.PI * 2; a += Math.PI / 3) {
-        drawBranch(x, y, size, a)
+        if(pattern[i++]) drawBranch(x, y, size, a)
     }
 
     function drawBranch (x, y, size, angle, level = 0) {

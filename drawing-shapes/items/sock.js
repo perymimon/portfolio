@@ -1,12 +1,11 @@
 import {color, draw} from "../draw.js";
 
 export function drawSock(ctx, x, y, size, hue, angle = Math.PI / 4) {
-    var top = x - size / 2, left = y - size / 2;
-    // ctx.strokeRect(top, left, size, size);
+    var top = y - size / 2, left = x - size / 2;
+    // ctx.strokeRect(left, top, size, size);
 
     var footWidth = size * .4,
         ankleY = y + size * .1,
-        sockRadius = size / 2,
         radius = footWidth / 2
     ;
     draw.line(ctx, x, top + radius, x, ankleY, {
@@ -15,7 +14,8 @@ export function drawSock(ctx, x, y, size, hue, angle = Math.PI / 4) {
         lineCap: 'round',
     })
     var footSize = size * .3;
-    var tipX = x + Math.cos(angle) * footSize, tipY = y + Math.sin(angle) * footSize;
+    var tipX = x + Math.cos(angle) * footSize,
+        tipY = ankleY + Math.sin(angle) * footSize;
 
     draw.line(ctx, x, ankleY, tipX, tipY, {
         lineCap: 'round',

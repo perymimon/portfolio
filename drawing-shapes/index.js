@@ -17,6 +17,11 @@ import {drawTree} from './items/tree.js'
 import {drawPresent} from './items/present.js'
 import {drawCookie} from './items/cookie.js'
 import {drawGlobe} from './items/globe.js'
+import {drawBells} from './items/bells.js'
+import {drawSnowMan} from './items/snow-man.js'
+import {drawCrown} from './items/crown.js'
+import {drawSkate} from './items/skate.js'
+import {drawDear} from './items/dear.js'
 
 
 var basePath = './items/'
@@ -39,6 +44,11 @@ drawItemGenerators[14] =  {name:'Calendar',draw: drawCalendar, filePath: `${base
 drawItemGenerators[15] =  {name:'Present',draw: drawPresent, filePath: `${basePath}present.js`}
 drawItemGenerators[16] =  {name:'Cookie',draw: drawCookie, filePath: `${basePath}cookie.js`}
 drawItemGenerators[17] =  {name:'Globe',draw: drawGlobe, filePath: `${basePath}globe.js`}
-drawItemGenerators[18] =  {name:'Present',draw: drawPresent, filePath: `${basePath}present.js`}
+drawItemGenerators[18] =  {name:'Bells',draw: drawBells, filePath: `${basePath}bells.js`}
+drawItemGenerators[19] =  {name:'SnowMan',draw: drawSnowMan, filePath: `${basePath}snow-man.js`}
+drawItemGenerators[20] =  {name:'Crown',draw: drawCrown, filePath: `${basePath}crown.js`}
+drawItemGenerators[21] =  {name:'Skate',draw: drawSkate, filePath: `${basePath}skate.js`}
+drawItemGenerators[22] =  {name:'Dear',draw: drawDear, filePath: `${basePath}dear.js`}
+// drawItemGenerators[22] =  {name:'Present',draw: drawPresent, filePath: `${basePath}present.js`}
 
 export default drawItemGenerators;
