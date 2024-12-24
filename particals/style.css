@@ -9,5 +9,5 @@
     position: absolute;
     top: 0;
     left: 0;
-    filter: blur(7px) contrast(10);
+    filter: blur(10px) contrast(20);
 }
