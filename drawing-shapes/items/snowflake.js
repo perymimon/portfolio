@@ -1,4 +1,4 @@
-import {color, draw} from '../draw.js'
+import {color, draw} from '../../helpers/draw.js'
 
 export function drawSnowflake (ctx, x, y, size, hue, pattern = [1,1,1,1,1,1]) {
     var top = y - size / 2, left = x - size / 2;

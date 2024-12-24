@@ -1,4 +1,4 @@
-import {color} from '../draw.js'
+import {color} from '../../helpers/draw.js'
 
 export function drawSledge (ctx, x, y, size, hue) {
     var top = y - size / 2, left = x - size / 2;
