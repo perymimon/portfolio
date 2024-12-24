@@ -1,3 +1,3 @@
-import * as algebra from './math-algebra.js'
+import * as algebra from './algebra.js'
 
 export { algebra }
