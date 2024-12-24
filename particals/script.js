@@ -1,3 +1,4 @@
+import {drawAlgebra} from '../helpers/draw.js'
 import {distance, getAngle} from '../math/algebra.js'
 import {clamp, exceedsLimits} from '../math/basic.js'
 
@@ -20,11 +21,7 @@ class Particle {
     }
 
     draw (ctx) {
-        // ctx.fillStyle = `hsl(${this.x * .5},100%, 50%)`
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI)
-        ctx.fill()
-        // ctx.stroke()
+        drawAlgebra.circle(ctx, this, this.radius, {drawFill: true})
     }
 
     update () {
@@ -113,10 +110,7 @@ class Effect {
                 if (dis < maxDistance) {
                     ctx.save()
                     ctx.globalAlpha = 1 - dis / maxDistance;
-                    ctx.beginPath();
-                    ctx.moveTo(pb.x, pb.y);
-                    ctx.lineTo(pa.x, pa.y)
-                    ctx.stroke()
+                    drawAlgebra.line(ctx, pa, pb, {drawStroke: true})
                     ctx.restore()
                 }
             }
@@ -155,11 +149,8 @@ function animation () {
     let m = effect.mouse
     if (m.pressed) {
         ctx.save()
-        ctx.beginPath();
-        ctx.arc(m.x, m.y, m.radius, 0, Math.PI * 2, false);
         ctx.globalAlpha = 0.8;
-        ctx.fill()
-        ctx.stroke()
+        drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
         ctx.restore()
     }
     requestAnimationFrame(animation)
