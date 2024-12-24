@@ -124,9 +124,9 @@ class Effect {
         this.canvas.width = width;
         this.canvas.height = height;
         const gradient = ctx.createLinearGradient(0, 0, width, height);
-        gradient.addColorStop(0, 'gold');
-        gradient.addColorStop(0.5, 'orangered');
-        gradient.addColorStop(1, 'black');
+        gradient.addColorStop(0, 'pink');
+        gradient.addColorStop(0.5, 'red');
+        gradient.addColorStop(1, 'magenta');
         ctx.fillStyle = gradient;
         ctx.lineWidth = 1;
         this.particles.forEach((particle) => particle.reset())
