@@ -1,3 +1,4 @@
+import {drawAlgebra} from '../helpers/draw.js'
 import {distance, getAngle} from '../math/algebra.js'
 import {clamp, exceedsLimits} from '../math/basic.js'
 
@@ -9,22 +10,24 @@ canvas.height = window.innerHeight;
 
 
 class Particle {
-    constructor (effect) {
+    constructor (effect, index) {
         this.effect = effect
+        this.index = index
         this.radius = Math.floor(1 + Math.random() * 10);
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
         this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2)
         this.pushX = 0
         this.pushY = 0
-        this.friction = 0.99
+        this.friction = 0.8
     }
 
     draw (ctx) {
-        // ctx.fillStyle = `hsl(${this.x * .5},100%, 50%)`
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI)
-        ctx.fill()
-        // ctx.stroke()
+        if(this.effect.mouse.pressed) {
+            if (this.index % 5) {
+                drawAlgebra.line(ctx, this, this.effect.mouse, {drawStroke: true})
+            }
+        }
+        drawAlgebra.circle(ctx,this, this.radius, {drawFill:true})
     }
 
     update () {
@@ -32,7 +35,7 @@ class Particle {
         if (mouse.pressed) {
             let dis = distance(mouse, this)
             if (dis < mouse.radius) {
-                let force = mouse.radius / dis
+                let force = 4*  mouse.radius / dis
                 let angle = getAngle(mouse, this)
                 this.pushX = Math.cos(angle) * force
                 this.pushY = Math.sin(angle) * force
@@ -74,7 +77,7 @@ class Effect {
             x: 0,
             y: 0,
             pressed: false,
-            radius: 200,
+            radius: 120,
         }
 
         window.addEventListener("resize", e => {
@@ -91,7 +94,7 @@ class Effect {
 
     createParticles () {
         for (let i = 0; i < this.numberOfParticles; i++) {
-            this.particles.push(new Particle(this))
+            this.particles.push(new Particle(this, i))
         }
     }
 
@@ -113,10 +116,7 @@ class Effect {
                 if (dis < maxDistance) {
                     ctx.save()
                     ctx.globalAlpha = 1 - dis / maxDistance;
-                    ctx.beginPath();
-                    ctx.moveTo(pb.x, pb.y);
-                    ctx.lineTo(pa.x, pa.y)
-                    ctx.stroke()
+                    drawAlgebra.line(ctx,pa,pb,{drawStroke:true})
                     ctx.restore()
                 }
             }
@@ -129,10 +129,9 @@ class Effect {
         this.height = height;
         this.canvas.width = width;
         this.canvas.height = height;
-        const gradient = ctx.createLinearGradient(0, 0, width, height);
-        gradient.addColorStop(0, '#ffffff');
-        gradient.addColorStop(0.5, 'magenta');
-        gradient.addColorStop(1, 'blue');
+        const gradient = ctx.createLinearGradient(0,0, 0, height);
+        gradient.addColorStop(0, 'white');
+        gradient.addColorStop(1, 'gold');
         ctx.fillStyle = gradient;
         ctx.strokeStyle = 'white'
         ctx.lineWidth = 1;
