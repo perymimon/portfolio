@@ -1,5 +1,5 @@
-import {drawAlgebra, draw} from '../helpers/draw.js'
-import {distance, getAngle} from '../math/algebra.js'
+import {draw, drawAlgebra} from '../helpers/draw.js'
+import {distance} from '../math/algebra.js'
 import {clamp, exceedsLimits} from '../math/basic.js'
 
 // setup
@@ -16,30 +16,43 @@ gradient.addColorStop(1, 'magenta');
 class Particle {
     constructor (effect) {
         this.effect = effect
-        this.radius = Math.floor(8 + Math.random() * 8);
+        this.radius = Math.floor(2 + Math.random() * 4);
+        this.minRadius = this.radius
+        this.maxRadius = this.radius * 7
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
         this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2)
         this.pushX = 0
         this.pushY = 0
         this.friction = 0.99
+        this.alpha = 0
+
     }
 
     draw (ctx) {
+        ctx.save()
+        ctx.globalAlpha = this.alpha
         ctx.fillStyle = gradient
-        drawAlgebra.circle(ctx, this, this.radius, {drawFill: true, drawStroke:true})
+        drawAlgebra.circle(ctx, this, this.radius, {drawFill: true, drawStroke: true})
 
         ctx.fillStyle = 'white';
         draw.circle(ctx, this.x - this.radius * 0.2, this.y - this.radius * .2, this.radius * .6, {drawFill: true})
+        ctx.restore()
     }
 
     update () {
         let {mouse} = this.effect
-        if (mouse.pressed) {
-            let dis = distance(mouse, this)
-            if (dis < mouse.radius) {
-                this.radius += .2
+
+        let dis = distance(mouse, this)
+        if (mouse.pressed && dis < mouse.radius) {
+            if (this.radius < this.maxRadius) {
+                this.alpha = 1
+                this.radius += 2
             }
+        } else {
+            this.radius = clamp(this.minRadius, this.radius - .025, this.maxRadius)
+            this.alpha = clamp(0, this.alpha * 0.99, 1)
         }
+
         this.x += this.vx + (this.pushX *= this.friction)
         this.y += this.vy + (this.pushY *= this.friction)
         let x = {min: this.radius, max: this.effect.width - this.radius}
@@ -67,7 +80,7 @@ class Effect {
         this.width = canvas.width;
         this.height = canvas.height;
         this.particles = [];
-        this.numberOfParticles = 300;
+        this.numberOfParticles = 1000;
         this.createParticles()
 
         this.resize(this.width, this.height);
@@ -76,7 +89,7 @@ class Effect {
             x: 0,
             y: 0,
             pressed: false,
-            radius: 200,
+            radius: 30,
         }
 
         window.addEventListener("resize", e => {
@@ -98,7 +111,7 @@ class Effect {
     }
 
     handleParticles (ctx) {
-        this.connectParticles(ctx)
+        // this.connectParticles(ctx)
         this.particles.forEach((particle) => {
             particle.update()
             particle.draw(ctx);
@@ -133,7 +146,7 @@ class Effect {
         ctx.lineWidth = 1;
         this.particles.forEach((particle) => particle.reset())
     }
-  }
+}
 
 const effect = new Effect(canvas);
 effect.handleParticles(ctx)
@@ -144,12 +157,12 @@ function animation () {
 
     /* draw circle */
     let m = effect.mouse
-    if (m.pressed) {
-        ctx.save()
-        ctx.globalAlpha = 0.8;
-        drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
-        ctx.restore()
-    }
+    // if (m.pressed) {
+    //     ctx.save()
+    //     ctx.globalAlpha = 0.5;
+    //     drawAlgebra.circle(ctx, m, m.radius, {fillStyle:'white'})
+    //     ctx.restore()
+    // }
     requestAnimationFrame(animation)
 }
 
