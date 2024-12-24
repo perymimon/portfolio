@@ -1,4 +1,4 @@
-import {drawAlgebra} from '../helpers/draw.js'
+import {drawAlgebra, draw} from '../helpers/draw.js'
 import {distance, getAngle} from '../math/algebra.js'
 import {clamp, exceedsLimits} from '../math/basic.js'
 
@@ -8,11 +8,15 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+gradient.addColorStop(0, 'pink');
+gradient.addColorStop(0.5, 'red');
+gradient.addColorStop(1, 'magenta');
 
 class Particle {
     constructor (effect) {
         this.effect = effect
-        this.radius = Math.floor(1 + Math.random() * 10);
+        this.radius = Math.floor(8 + Math.random() * 8);
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
         this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2)
         this.pushX = 0
@@ -21,7 +25,11 @@ class Particle {
     }
 
     draw (ctx) {
+        ctx.fillStyle = gradient
         drawAlgebra.circle(ctx, this, this.radius, {drawFill: true, drawStroke:true})
+
+        ctx.fillStyle = 'white';
+        draw.circle(ctx, this.x - this.radius * 0.2, this.y - this.radius * .2, this.radius * .6, {drawFill: true})
     }
 
     update () {
@@ -29,10 +37,7 @@ class Particle {
         if (mouse.pressed) {
             let dis = distance(mouse, this)
             if (dis < mouse.radius) {
-                let force = mouse.radius / dis
-                let angle = getAngle(mouse, this)
-                this.pushX = Math.cos(angle) * force
-                this.pushY = Math.sin(angle) * force
+                this.radius += .2
             }
         }
         this.x += this.vx + (this.pushX *= this.friction)
@@ -50,8 +55,8 @@ class Particle {
         this.x = clamp(this.radius, this.x, this.effect.width)
         this.y = clamp(this.radius, this.y, this.effect.height)
 
-        this.vx = Math.random() * 1 - .5
-        this.vy = Math.random() * 1 - .5
+        this.vx = Math.random() * .2 - .1
+        this.vy = Math.random() * .2 - .1
     }
 }
 
@@ -123,19 +128,12 @@ class Effect {
         this.height = height;
         this.canvas.width = width;
         this.canvas.height = height;
-        const gradient = ctx.createLinearGradient(0, 0, width, height);
-        gradient.addColorStop(0, 'pink');
-        gradient.addColorStop(0.5, 'red');
-        gradient.addColorStop(1, 'magenta');
+
         ctx.fillStyle = gradient;
         ctx.lineWidth = 1;
         this.particles.forEach((particle) => particle.reset())
     }
-
-    reset () {
-
-    }
-}
+  }
 
 const effect = new Effect(canvas);
 effect.handleParticles(ctx)
