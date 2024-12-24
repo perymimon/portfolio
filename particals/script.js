@@ -4,15 +4,18 @@ import {clamp, exceedsLimits} from '../math/basic.js'
 
 // setup
 const canvas = document.getElementById("canvas1");
+const canvas2 = document.getElementById("canvas2");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
+const ctx2 = canvas2.getContext("2d");
+canvas2.width = canvas.width = window.innerWidth;
+canvas2.height = canvas.height = window.innerHeight;
+ctx2.strokeStyle = 'white'
+ctx2.lineWidth = 2;
 
 class Particle {
     constructor (effect) {
         this.effect = effect
-        this.radius = Math.floor(1 + Math.random() * 10);
+        this.radius = Math.floor(10 + Math.random() * 10);
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
         this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2)
         this.pushX = 0
@@ -92,8 +95,8 @@ class Effect {
         }
     }
 
-    handleParticles (ctx) {
-        this.connectParticles(ctx)
+    handleParticles (ctx, ctx2) {
+        this.connectParticles(ctx2)
         this.particles.forEach((particle) => {
             particle.update()
             particle.draw(ctx);
@@ -101,20 +104,21 @@ class Effect {
     }
 
     connectParticles (ctx) {
-        var maxDistance = 100
+        var maxDistance = 80
+        ctx.save()
         for (let a = 0; a < this.numberOfParticles; a++) {
             for (let b = a; b < this.particles.length; b++) {
                 let pa = this.particles[a]
                 let pb = this.particles[b]
                 let dis = distance(pa, pb)
                 if (dis < maxDistance) {
-                    ctx.save()
                     ctx.globalAlpha = 1 - dis / maxDistance;
                     drawAlgebra.line(ctx, pa, pb, {drawStroke: true})
-                    ctx.restore()
+
                 }
             }
         }
+        ctx.restore()
     }
 
     resize (width, height) {
@@ -139,11 +143,11 @@ class Effect {
 }
 
 const effect = new Effect(canvas);
-effect.handleParticles(ctx)
 
 function animation () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    effect.handleParticles(ctx)
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    effect.handleParticles(ctx, ctx2)
 
     /* draw circle */
     let m = effect.mouse
