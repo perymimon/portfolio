@@ -7,22 +7,44 @@ const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+ctx.strokeStyle = 'white'
 
+const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+gradient.addColorStop(0, 'pink');
+gradient.addColorStop(0.5, 'red');
+gradient.addColorStop(1, 'magenta');
 
 class Particle {
-    constructor (effect) {
+    constructor (effect, index) {
         this.effect = effect
-        this.radius = Math.floor(1 + Math.random() * 10);
+        this.index = index
+        this.radius = Math.floor(5 + Math.random() * 9);
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
         this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2)
         this.pushX = 0
         this.pushY = 0
         this.friction = 0.99
         this.image = document.getElementById("stars_sprite")
+        this.sprite = {
+            width: 50,
+            height: 50,
+        }
     }
 
     draw (ctx) {
-        drawAlgebra.circle(ctx, this, this.radius, {drawFill: true})
+        // drawAlgebra.circle(ctx, this, this.radius, {drawStroke: true})
+        let index = this.index % 9
+        let sx = (index % 3) * this.sprite.width,
+            sy = Math.floor(index / 3) * this.sprite.height,
+            sw = this.sprite.width,
+            sh = this.sprite.height
+        ;
+        let diameter = this.radius * 2
+
+        ctx.drawImage(
+            this.image, sx, sy, sw, sh,
+            this.x - this.radius, this.y - this.radius, diameter, diameter,
+        )
     }
 
     update () {
@@ -63,7 +85,7 @@ class Effect {
         this.width = canvas.width;
         this.height = canvas.height;
         this.particles = [];
-        this.numberOfParticles = 300;
+        this.numberOfParticles = 100;
         this.createParticles()
 
         this.resize(this.width, this.height);
@@ -89,7 +111,7 @@ class Effect {
 
     createParticles () {
         for (let i = 0; i < this.numberOfParticles; i++) {
-            this.particles.push(new Particle(this))
+            this.particles.push(new Particle(this, i))
         }
     }
 
@@ -135,7 +157,7 @@ class Effect {
 }
 
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     const effect = new Effect(canvas);
     effect.handleParticles(ctx)
 
@@ -143,13 +165,13 @@ window.addEventListener("load", function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         effect.handleParticles(ctx)
         /* draw circle */
-        let m = effect.mouse
-        if (m.pressed) {
-            ctx.save()
-            ctx.globalAlpha = 0.8;
-            drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
-            ctx.restore()
-        }
+        // let m = effect.mouse
+        // if (m.pressed) {
+        //     ctx.save()
+        //     ctx.globalAlpha = 0.8;
+        //     drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
+        //     ctx.restore()
+        // }
         requestAnimationFrame(animation)
     }
 
