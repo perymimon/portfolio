@@ -8,6 +8,10 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+gradient.addColorStop(0, 'darkblue');
+gradient.addColorStop(0.5, 'white');
+gradient.addColorStop(1, 'lightblue');
 
 class Particle {
     constructor (effect) {
@@ -51,7 +55,7 @@ class Particle {
         this.y = clamp(this.radius, this.y, this.effect.height)
 
         this.vx = Math.random() * 1 - .5
-        this.vy = Math.random() * 1 - .5
+        this.vy = 0
     }
 }
 
@@ -123,10 +127,7 @@ class Effect {
         this.height = height;
         this.canvas.width = width;
         this.canvas.height = height;
-        const gradient = ctx.createLinearGradient(0, 0, width, height);
-        gradient.addColorStop(0, '#ffffff');
-        gradient.addColorStop(0.5, 'magenta');
-        gradient.addColorStop(1, 'blue');
+
         ctx.fillStyle = gradient;
         ctx.strokeStyle = 'white'
         ctx.lineWidth = 1;
