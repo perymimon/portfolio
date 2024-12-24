@@ -9,7 +9,7 @@ const ctx = canvas.getContext("2d");
 const ctx2 = canvas2.getContext("2d");
 canvas2.width = canvas.width = window.innerWidth;
 canvas2.height = canvas.height = window.innerHeight;
-ctx2.strokeStyle = 'white'
+ctx2.strokeStyle = 'black'
 ctx2.lineWidth = 2;
 
 class Particle {
@@ -32,9 +32,9 @@ class Particle {
         if (mouse.pressed) {
             let dis = distance(mouse, this)
             if (dis < mouse.radius) {
-                let force = mouse.radius / dis
+                let force = (mouse.radius / dis) * 4
                 let angle = getAngle(mouse, this)
-                this.pushX = Math.cos(angle) * force
+                this.pushX -= Math.cos(angle) * force
                 this.pushY = Math.sin(angle) * force
             }
         }
