@@ -10,11 +10,13 @@ canvas.height = window.innerHeight;
 
 class Particle {
     constructor (effect) {
-        this.effect = effect;
-        this.radius = 2 + Math.random() * 5;
-        this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
-        this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2);
-
+        this.effect = effect
+        this.radius = Math.floor(1 + Math.random() * 10);
+        this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
+        this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2)
+        this.pushX = 0
+        this.pushY = 0
+        this.friction = 0.99
     }
 
     draw (ctx) {
@@ -29,19 +31,22 @@ class Particle {
         let {mouse} = this.effect
         if (mouse.pressed) {
             let dis = distance(mouse, this)
-            let force = mouse.radius / dis
             if (dis < mouse.radius) {
+                let force = mouse.radius / dis
                 let angle = getAngle(mouse, this)
-                this.x += Math.cos(angle)
-                this.y += Math.sin(angle)
+                this.pushX = Math.cos(angle) * force
+                this.pushY = Math.sin(angle) * force
             }
         }
+        this.x += this.vx + (this.pushX *= this.friction)
+        this.y += this.vy + (this.pushY *= this.friction)
         let x = {min: this.radius, max: this.effect.width - this.radius}
         let y = {min: this.radius, max: this.effect.height - this.radius}
         if (exceedsLimits(x.min, this.x, x.max)) this.vx *= -1;
         if (exceedsLimits(y.min, this.y, y.max)) this.vy *= -1;
-        this.x = clamp(x.min, this.x + this.vx, x.max)
-        this.y = clamp(y.min, this.y + this.vy, y.max)
+
+        this.x = clamp(x.min, this.x, x.max)
+        this.y = clamp(y.min, this.y, y.max)
     }
 
     reset () {
@@ -69,7 +74,7 @@ class Effect {
             x: 0,
             y: 0,
             pressed: false,
-            radius: 150,
+            radius: 200,
         }
 
         window.addEventListener("resize", e => {
