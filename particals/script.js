@@ -18,6 +18,7 @@ class Particle {
         this.pushX = 0
         this.pushY = 0
         this.friction = 0.99
+        this.image = document.getElementById("stars_sprite")
     }
 
     draw (ctx) {
@@ -123,11 +124,6 @@ class Effect {
         this.height = height;
         this.canvas.width = width;
         this.canvas.height = height;
-        const gradient = ctx.createLinearGradient(0, 0, width, height);
-        gradient.addColorStop(0, '#ffffff');
-        gradient.addColorStop(0.5, 'magenta');
-        gradient.addColorStop(1, 'blue');
-        ctx.fillStyle = gradient;
         ctx.strokeStyle = 'white'
         ctx.lineWidth = 1;
         this.particles.forEach((particle) => particle.reset())
@@ -138,22 +134,25 @@ class Effect {
     }
 }
 
-const effect = new Effect(canvas);
-effect.handleParticles(ctx)
 
-function animation () {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+window.addEventListener("load", function() {
+    const effect = new Effect(canvas);
     effect.handleParticles(ctx)
 
-    /* draw circle */
-    let m = effect.mouse
-    if (m.pressed) {
-        ctx.save()
-        ctx.globalAlpha = 0.8;
-        drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
-        ctx.restore()
+    function animation () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        effect.handleParticles(ctx)
+        /* draw circle */
+        let m = effect.mouse
+        if (m.pressed) {
+            ctx.save()
+            ctx.globalAlpha = 0.8;
+            drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
+            ctx.restore()
+        }
+        requestAnimationFrame(animation)
     }
-    requestAnimationFrame(animation)
-}
 
-requestAnimationFrame(animation)
+    requestAnimationFrame(animation)
+
+})
