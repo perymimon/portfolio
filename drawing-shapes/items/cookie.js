@@ -1,4 +1,4 @@
-import {color, draw} from '../draw.js'
+import {color, draw} from '../../helpers/draw.js'
 import {drawSnowflake} from './snowflake.js'
 
 export function drawCookie (ctx, x, y, size, hue) {
