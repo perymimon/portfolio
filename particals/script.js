@@ -21,7 +21,7 @@ class Particle {
     }
 
     draw (ctx) {
-        drawAlgebra.circle(ctx, this, this.radius, {drawFill: true})
+        drawAlgebra.circle(ctx, this, this.radius, {drawFill: true, drawStroke:true})
     }
 
     update () {
@@ -124,11 +124,10 @@ class Effect {
         this.canvas.width = width;
         this.canvas.height = height;
         const gradient = ctx.createLinearGradient(0, 0, width, height);
-        gradient.addColorStop(0, '#ffffff');
-        gradient.addColorStop(0.5, 'magenta');
-        gradient.addColorStop(1, 'blue');
+        gradient.addColorStop(0, 'gold');
+        gradient.addColorStop(0.5, 'orangered');
+        gradient.addColorStop(1, 'black');
         ctx.fillStyle = gradient;
-        ctx.strokeStyle = 'white'
         ctx.lineWidth = 1;
         this.particles.forEach((particle) => particle.reset())
     }
