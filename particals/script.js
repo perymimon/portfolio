@@ -66,7 +66,10 @@ class Effect {
         this.width = canvas.width;
         this.height = canvas.height;
         this.particles = [];
-        this.numberOfParticles = 300;
+        var medianRadius = 30
+        var canvasArea = Number(this.width) * Number(this.height)
+        this.numberOfParticles = Math.floor(canvasArea / (4 * medianRadius ** 2))
+        console.log('this.numberOfParticles', this.numberOfParticles)
         this.createParticles()
 
         this.resize(this.width, this.height);
