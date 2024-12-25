@@ -133,28 +133,26 @@ class Effect {
         ctx.lineWidth = 1;
         this.particles.forEach((particle) => particle.reset())
     }
-
-    reset () {
-
-    }
 }
 
-const effect = new Effect(canvas);
-effect.handleParticles(ctx)
-
-function animation () {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+window.addEventListener('load', () => {
+    const effect = new Effect(canvas);
     effect.handleParticles(ctx)
 
-    /* draw circle */
-    let m = effect.mouse
-    if (m.pressed) {
-        ctx.save()
-        ctx.globalAlpha = 0.8;
-        drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
-        ctx.restore()
-    }
-    requestAnimationFrame(animation)
-}
+    function animation () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        effect.handleParticles(ctx)
 
-requestAnimationFrame(animation)
+        /* draw circle */
+        let m = effect.mouse
+        if (m.pressed) {
+            ctx.save()
+            ctx.globalAlpha = 0.8;
+            drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
+            ctx.restore()
+        }
+        requestAnimationFrame(animation)
+    }
+
+    requestAnimationFrame(animation)
+})
