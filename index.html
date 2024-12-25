@@ -1,134 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio Landing Page</title>
-  <link rel="stylesheet" href="base.css">
-  <style>
-    body {
-      display: flex;
-      min-height: 100vh;
-      margin: 0;
-    }
-    #sidebar {
-      width: var(--sidebar-width);
-      background-color: var(--component-bg);
-      border-right: 1px solid var(--component-border);
-      padding: var(--space-4);
-      overflow-y: auto;
-    }
-    #main-content {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    #content-frame {
-      flex-grow: 1;
-      border: none;
-      width: 100%;
-      height: 100%;
-    }
-    .sidebar-header {
-      margin-bottom: var(--space-4);
-    }
-    .sidebar-title {
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-bold);
-      color: var(--color-primary);
-      margin-bottom: var(--space-2);
-    }
-    .sidebar-subtitle {
-      font-size: var(--font-size-sm);
-      color: var(--text-secondary);
-      margin-bottom: var(--space-4);
-    }
-    .sidebar-link {
-      display: block;
-      padding: var(--space-2);
-      color: var(--text-primary);
-      text-decoration: none;
-      border-radius: var(--radius-md);
-      transition: background-color var(--transition-normal);
-    }
-    .sidebar-link:hover {
-      background-color: var(--component-hover);
-    }
-    .sidebar-separator {
-      height: 1px;
-      background-color: var(--component-border);
-      margin: var(--space-3) 0;
-    }
-    .sidebar-section-title {
-      font-size: var(--font-size-xs);
-      font-weight: var(--font-weight-normal);
-      color: var(--text-muted);
-      margin: var(--space-3) 0 var(--space-2);
-      text-transform: full-size-kana;
-      letter-spacing: 0.05em;
-    }
-    #theme-toggle {
-      position: fixed;
-      top: var(--space-4);
-      right: var(--space-4);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Landing Page</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <aside id="sidebar">
-  <div class="sidebar-header">
-    <h2 class="sidebar-title">My Projects</h2>
-    <p class="sidebar-subtitle">Web Development show stuff</p>
-  </div>
-  <nav>
-    <div class="sidebar-separator"></div>
-    <div class="sidebar-section-title">Tutorials I follow</div>
-    <a href="drawing-shapes/index.html" class="sidebar-link" target="content-frame">Radu's Christmas Calendar</a>
+    <div class="sidebar-header">
+        <h2 class="sidebar-title">My Projects</h2>
+        <p class="sidebar-subtitle">Web Development show stuff</p>
+    </div>
+    <nav>
+        <div class="sidebar-separator"></div>
+        <div class="sidebar-section-title">Tutorials I follow</div>
+        <a href="drawing-shapes/index.html" class="sidebar-link">Radu's Christmas Calendar</a>
+        <a href="particals/home.html" class="sidebar-link">Particles by Franks laboratory</a>
 
-<!--    <div class="sidebar-separator"></div>-->
+        <!--    <div class="sidebar-separator"></div>-->
 
-<!--    <div class="sidebar-section-title">Design Projects</div>-->
-<!--    <a href="design1.html" class="sidebar-link" target="content-frame">Design 1</a>-->
-<!--    <a href="design2.html" class="sidebar-link" target="content-frame">Design 2</a>-->
+        <!--    <div class="sidebar-section-title">Design Projects</div>-->
+        <!--    <a href="design1.html" class="sidebar-link" target="content-frame">Design 1</a>-->
+        <!--    <a href="design2.html" class="sidebar-link" target="content-frame">Design 2</a>-->
 
-<!--    <div class="sidebar-separator"></div>-->
+        <!--    <div class="sidebar-separator"></div>-->
 
-<!--    <div class="sidebar-section-title">Experiments</div>-->
-<!--    <a href="experiment1.html" class="sidebar-link" target="content-frame">Experiment 1</a>-->
-<!--    <a href="experiment2.html" class="sidebar-link" target="content-frame">Experiment 2</a>-->
-    <!-- Add more links as needed -->
-  </nav>
+        <!--    <div class="sidebar-section-title">Experiments</div>-->
+        <!--    <a href="experiment1.html" class="sidebar-link" target="content-frame">Experiment 1</a>-->
+        <!--    <a href="experiment2.html" class="sidebar-link" target="content-frame">Experiment 2</a>-->
+        <!-- Add more links as needed -->
+    </nav>
 </aside>
 <main id="main-content">
-  <iframe id="content-frame" name="content-frame" src="welcome.html"></iframe>
+    <iframe id="content-frame" name="content-frame" src="welcome.html"></iframe>
 </main>
 <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
-  🌓
+    🌓
 </button>
 
-<script>
-  const themeToggle = document.getElementById('theme-toggle');
+<script type="module">
+    import {linkPageFromParent, toggleTheme} from './helpers/link-page.js'
 
-  function toggleTheme() {
-    document.body.setAttribute('data-theme',
-            document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-    );
-    // Propagate theme change to iframe
-    const iframe = document.getElementById('content-frame');
-    iframe.contentWindow.postMessage({theme: document.body.getAttribute('data-theme')}, '*');
-  }
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const contentFrame = document.getElementById('content-frame');
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', toggleTheme);
+    linkPageFromParent()
 
-  themeToggle.addEventListener('click', toggleTheme);
+    sidebarLinks.forEach(link => {
+        const href = link.getAttribute('href')
+        link.id = href.replace(/\//g, '-').replace('.html', '')
+        link.dataset.href = href
+        link.href = '#' + link.id
+    });
 
-  // Set initial theme based on user preference
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.body.setAttribute('data-theme', 'dark');
-  }
+    function loadContent (hash = window.location.hash) {
+        if (hash) {
+            const decodedHash = hash.slice(1)
+            var link = document.getElementById(decodedHash)
+            if (link) {
+                contentFrame.src = link.dataset.href
+            } else {
+                contentFrame.src = 'welcome.html';
+            }
+        }
+    }
 
-  // Listen for iframe load events to sync theme
-  document.getElementById('content-frame').addEventListener('load', function() {
-    this.contentWindow.postMessage({theme: document.body.getAttribute('data-theme')}, '*');
-  });
+
+    window.addEventListener('hashchange', () => { loadContent(); });
+    window.addEventListener('load', () => { loadContent() });
+
 </script>
 </body>
 </html>

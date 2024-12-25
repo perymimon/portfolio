@@ -116,7 +116,7 @@ body, html {
 
     /* Component Specific */
     --header-height: 4rem;
-    --sidebar-width: 16rem;
+    --sidebar-width: max-content;
     --container-padding: var(--space-4);
 
     /* Color Space*/
