@@ -138,10 +138,6 @@ class Effect {
         ctx.lineWidth = 1;
         this.particles.forEach((particle) => particle.reset())
     }
-
-    reset () {
-
-    }
 }
 
 const effect = new Effect(canvas);
