@@ -1,6 +1,7 @@
 import {drawAlgebra} from '../helpers/draw.js'
-import {distance, getAngle} from '../math/algebra.js'
-import {clamp, exceedsLimits} from '../math/basic.js'
+import {distance} from '../math/algebra.js'
+import {clamp} from '../math/basic.js'
+import {rectCollision} from '../math/collision-detection.js'
 
 // setup
 const canvas = document.getElementById("canvas1");
@@ -10,52 +11,58 @@ canvas.height = window.innerHeight;
 
 const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
 gradient.addColorStop(0, 'darkblue');
-gradient.addColorStop(0.5, 'white');
-gradient.addColorStop(1, 'lightblue');
+gradient.addColorStop(0.5, 'magenta');
+gradient.addColorStop(1, 'pink');
 
 class Particle {
     constructor (effect) {
         this.effect = effect
-        this.radius = Math.floor(1 + Math.random() * 10);
-        this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
-        this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2)
-        this.pushX = 0
-        this.pushY = 0
-        this.friction = 0.99
+        this.radius = Math.floor(Math.random() * 7 + 3);
+        this.gravity = this.radius * 0.001
+        this.maxBounce = 2
+        this.reset()
     }
 
+    reset () {
+        // when particle start it hide himself and the connection is attach to
+        this.y = -this.radius - this.effect.maxDistance - Math.random() * this.effect.height * .2
+        // this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
+        this.x = this.effect.width / 2
+        this.vy = 0
+        this.vx = Math.random() * 2 - 1
+        this.bounced = 0
+        this.friction = 0.99
+    }
+    get top(){ return this.y - this.radius}
+    get height(){ return this.radius * 2}
+    get width(){ return this.radius * 2}
+    get left(){ return this.x - this.radius}
     draw (ctx) {
         drawAlgebra.circle(ctx, this, this.radius, {drawFill: true})
     }
 
     update () {
-        let {mouse} = this.effect
-        if (mouse.pressed) {
-            let dis = distance(mouse, this)
-            if (dis < mouse.radius) {
-                let force = mouse.radius / dis
-                let angle = getAngle(mouse, this)
-                this.pushX = Math.cos(angle) * force
-                this.pushY = Math.sin(angle) * force
-            }
-        }
-        this.x += this.vx + (this.pushX *= this.friction)
-        this.y += this.vy + (this.pushY *= this.friction)
-        let x = {min: this.radius, max: this.effect.width - this.radius}
-        let y = {min: this.radius, max: this.effect.height - this.radius}
-        if (exceedsLimits(x.min, this.x, x.max)) this.vx *= -1;
-        if (exceedsLimits(y.min, this.y, y.max)) this.vy *= -1;
+        this.vy += this.gravity
+        this.x += this.vx
+        this.y += this.vy
 
-        this.x = clamp(x.min, this.x, x.max)
-        this.y = clamp(y.min, this.y, y.max)
+        if (this.y > this.effect.height + this.radius + this.effect.maxDistance) {
+            this.reset()
+        }
+        var {width, height, x, y} = this.effect.element
+        if (rectCollision(
+            {x, y, w: width, h: 5},
+            {x:this.left, y:this.top, w: this.width, h: this.height}
+        ) && this.bounced < this.maxBounce) {
+            this.vy *= -.6
+            this.bounced++
+            this.vx *=1.1
+            this.y = clamp(-Infinity, this.y, y - this.radius)
+        }
     }
 
-    reset () {
+    resize () {
         this.x = clamp(this.radius, this.x, this.effect.width)
-        this.y = clamp(this.radius, this.y, this.effect.height)
-
-        this.vx = Math.random() * 1 - .5
-        this.vy = 0
     }
 }
 
@@ -67,9 +74,13 @@ class Effect {
         this.height = canvas.height;
         this.particles = [];
         this.numberOfParticles = 300;
+        this.maxDistance = 100
         this.createParticles()
-
         this.resize(this.width, this.height);
+
+        this.debug = false
+
+        console.log(this.element)
 
         this.mouse = {
             x: 0,
@@ -88,6 +99,11 @@ class Effect {
         })
         window.addEventListener("mousedown", e => this.mouse.pressed = true);
         window.addEventListener("mouseup", e => this.mouse.pressed = false);
+
+        window.addEventListener("keydown", e => {
+            if (e.key === 'd')
+                this.debug = !this.debug
+        })
     }
 
     createParticles () {
@@ -97,15 +113,20 @@ class Effect {
     }
 
     handleParticles (ctx) {
-        this.connectParticles(ctx)
+        // this.connectParticles(ctx)
         this.particles.forEach((particle) => {
             particle.update()
             particle.draw(ctx);
         })
+
+        if (this.debug) {
+            let {width, height, x, y} = this.element
+            ctx.strokeRect(x, y, width, height)
+        }
     }
 
     connectParticles (ctx) {
-        var maxDistance = 100
+        var maxDistance = this.maxDistance
         for (let a = 0; a < this.numberOfParticles; a++) {
             for (let b = a; b < this.particles.length; b++) {
                 let pa = this.particles[a]
@@ -127,23 +148,24 @@ class Effect {
         this.height = height;
         this.canvas.width = width;
         this.canvas.height = height;
-
+        this.element = document.getElementById("caption").getBoundingClientRect();
         ctx.fillStyle = gradient;
         ctx.strokeStyle = 'white'
         ctx.lineWidth = 1;
-        this.particles.forEach((particle) => particle.reset())
+        this.particles.forEach((particle) => particle.resize())
     }
 
-    reset () {
-
-    }
 }
 
 const effect = new Effect(canvas);
 effect.handleParticles(ctx)
 
 function animation () {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save()
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.restore()
     effect.handleParticles(ctx)
 
     /* draw circle */
