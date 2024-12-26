@@ -1,6 +1,6 @@
 import {drawAlgebra} from '../helpers/draw.js'
 import {distance, getAngle} from '../math/algebra.js'
-import {clamp, exceedsLimits} from '../math/basic.js'
+import {clamp, exceedsLimits, random} from '../math/basic.js'
 
 // setup
 const canvas = document.getElementById("canvas1");
@@ -16,16 +16,23 @@ gradient.addColorStop(1, 'lightblue');
 class Particle {
     constructor (effect) {
         this.effect = effect
-        this.radius = Math.floor(1 + Math.random() * 10);
-        this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
-        this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2)
+        this.radius = random(5, 30)
+        this.x =  random(this.radius, this.effect.width - this.radius * 2)
+        this.y = random(this.radius, this.effect.height - this.radius * 2)
         this.pushX = 0
         this.pushY = 0
         this.friction = 0.99
     }
-
+    reset () {
+        this.vx = random(-1, -.1) * 0.8
+        this.vy = 0
+    }
     draw (ctx) {
         drawAlgebra.circle(ctx, this, this.radius, {drawFill: true})
+    }
+    resize(){
+        this.x = clamp(this.radius, this.x, this.effect.width)
+        this.y = clamp(this.radius, this.y, this.effect.height)
     }
 
     update () {
@@ -50,13 +57,7 @@ class Particle {
         this.y = clamp(y.min, this.y, y.max)
     }
 
-    reset () {
-        this.x = clamp(this.radius, this.x, this.effect.width)
-        this.y = clamp(this.radius, this.y, this.effect.height)
 
-        this.vx = Math.random() * 1 - .5
-        this.vy = 0
-    }
 }
 
 class Effect {
@@ -71,7 +72,7 @@ class Effect {
         this.numberOfParticles = Math.floor(canvasArea / (4 * medianRadius ** 2))
         console.log('this.numberOfParticles', this.numberOfParticles)
         this.createParticles()
-
+        this.maxDistance = 100
         this.resize(this.width, this.height);
 
         this.mouse = {
@@ -108,15 +109,15 @@ class Effect {
     }
 
     connectParticles (ctx) {
-        var maxDistance = 100
+
         for (let a = 0; a < this.numberOfParticles; a++) {
             for (let b = a; b < this.particles.length; b++) {
                 let pa = this.particles[a]
                 let pb = this.particles[b]
                 let dis = distance(pa, pb)
-                if (dis < maxDistance) {
+                if (dis < this.maxDistance) {
                     ctx.save()
-                    ctx.globalAlpha = 1 - dis / maxDistance;
+                    ctx.globalAlpha = 1 - dis / this.maxDistance;
                     drawAlgebra.line(ctx, pa, pb, {drawStroke: true})
                     ctx.restore()
                 }
@@ -134,7 +135,7 @@ class Effect {
         ctx.fillStyle = gradient;
         ctx.strokeStyle = 'white'
         ctx.lineWidth = 1;
-        this.particles.forEach((particle) => particle.reset())
+        this.particles.forEach((particle) => particle.resize())
     }
 }
 
