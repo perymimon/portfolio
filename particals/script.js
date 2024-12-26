@@ -1,6 +1,7 @@
 import {drawAlgebra} from '../helpers/draw.js'
+import {Sprite} from '../helpers/sprite.js'
 import {distance, getAngle} from '../math/algebra.js'
-import {clamp, exceedsLimits, random} from '../math/basic.js'
+import {clamp, exceedsLimits, isBetween, lerp, linearLerp, random} from '../math/basic.js'
 
 // setup
 const canvas = document.getElementById("canvas1");
@@ -13,48 +14,117 @@ gradient.addColorStop(0, 'darkblue');
 gradient.addColorStop(0.5, 'white');
 gradient.addColorStop(1, 'lightblue');
 
+class StarSprite extends Sprite {
+    image = document.getElementById("star")
+    spriteWidth = 50
+    spriteHeight = 50
+    frameCount = 9;
+    framesPerRow = 3;
+}
+
+class WhaleSprite extends Sprite {
+    image = document.getElementById("whale")
+    spriteWidth = 420
+    spriteHeight = 285
+    frameCount = 39
+    framesPerRow = 39
+    width = 200
+    fps = 80
+
+    // height = this.width * (this.spriteHeight / this.spriteWidth)
+
+    constructor (effect, animationIndex = 0) {
+        super(0)
+        this.effect = effect
+        this.x = this.effect.width * .4
+        this.y = this.effect.height / 2
+        this.angle = 0
+        this.va = 0.04
+        /* select animation*/
+        this.rowZero = animationIndex
+        /*push stars*/
+        this.radius = Math.hypot(this.width * this.spriteRatio, this.width) * .5
+        this.curveAmplitude = this.radius
+    }
+
+    draw (ctx, width, height) {
+        ctx.save()
+        ctx.translate(this.x, this.y)
+        ctx.rotate(Math.cos(this.angle) / 2)
+        super.draw(ctx, 0, 0, width, height)
+        ctx.restore()
+    }
+
+    update (deltaTime) {
+        this.angle += this.va
+        this.angle %= Math.PI * 2
+        var effectRadius = this.effect.height / 2
+        this.y = effectRadius + Math.sin(this.angle) * this.curveAmplitude
+
+        super.updateFrame(deltaTime)
+    }
+}
+
 class Particle {
     constructor (effect) {
         this.effect = effect
-        this.radius = random(5, 30)
-        this.x =  random(this.radius, this.effect.width - this.radius * 2)
-        this.y = random(this.radius, this.effect.height - this.radius * 2)
+        this.radius = random(5, 20)
+
+        var padding = this.effect.maxDistance + this.radius
+        this.xValue = {min: 0 - padding, max: padding + this.effect.width}
+        this.x = random(this.xValue.min, this.xValue.max)
+
         this.pushX = 0
         this.pushY = 0
-        this.friction = 0.99
+        this.friction = 0.98
+        this.star = new StarSprite(random(0, 9))
+
+        this.reset()
     }
+
     reset () {
-        this.vx = random(-1, -.1) * 0.8
+        this.vx = random(-1, -.8) * 4
+
         this.vy = 0
+        this.y = random(0, this.effect.height)
+        this.initY = this.y
+        this.initX = this.x
     }
+
     draw (ctx) {
-        drawAlgebra.circle(ctx, this, this.radius, {drawFill: true})
+        // drawAlgebra.circle(ctx, this, this.radius, {drawFill: true})
+        this.star.draw(ctx, this.x, this.y, this.radius * 2)
     }
-    resize(){
-        this.x = clamp(this.radius, this.x, this.effect.width)
+
+    resize () {
+        this.x = clamp(this.xValue.min, this.x, this.xValue.max)
         this.y = clamp(this.radius, this.y, this.effect.height)
     }
 
     update () {
-        let {mouse} = this.effect
-        if (mouse.pressed) {
-            let dis = distance(mouse, this)
-            if (dis < mouse.radius) {
-                let force = mouse.radius / dis
-                let angle = getAngle(mouse, this)
-                this.pushX = Math.cos(angle) * force
-                this.pushY = Math.sin(angle) * force
-            }
+        let {whale} = this.effect
+
+        let dis = distance(whale, this)
+        let angle = getAngle(whale, this)
+        if (dis < whale.radius && isBetween(-Math.PI /2 ,angle, Math.PI /2)) {
+            let force = 3 * (whale.radius / dis)
+
+            this.pushX = Math.cos(angle) * force
+            this.pushY = Math.sin(angle) * force
+        } else {
+            this.y = lerp(this.y, this.initY, .05)
+            this.x = lerp(this.x, this.initX, .01)
         }
         this.x += this.vx + (this.pushX *= this.friction)
         this.y += this.vy + (this.pushY *= this.friction)
-        let x = {min: this.radius, max: this.effect.width - this.radius}
-        let y = {min: this.radius, max: this.effect.height - this.radius}
-        if (exceedsLimits(x.min, this.x, x.max)) this.vx *= -1;
-        if (exceedsLimits(y.min, this.y, y.max)) this.vy *= -1;
+        this.initX +=this.vx
 
-        this.x = clamp(x.min, this.x, x.max)
-        this.y = clamp(y.min, this.y, y.max)
+        if (this)
+            if (exceedsLimits(this.xValue.min, this.x, this.xValue.max)) {
+                this.x = this.effect.width + this.radius + this.effect.maxDistance
+                this.reset()
+            }
+
     }
 
 
@@ -67,10 +137,12 @@ class Effect {
         this.width = canvas.width;
         this.height = canvas.height;
         this.particles = [];
-        this.numberOfParticles = 300;
+        this.densityPerPixel = 0.0005
+        this.maxDistance = 150
+        this.numberOfParticles = this.width * this.height * this.densityPerPixel;
         this.createParticles()
-        this.maxDistance = 100
         this.resize(this.width, this.height);
+        this.whale = new WhaleSprite(this, random(0, 3))
 
         this.mouse = {
             x: 0,
@@ -97,8 +169,10 @@ class Effect {
         }
     }
 
-    handleParticles (ctx) {
+    handleParticles (ctx, deltaTime) {
         this.connectParticles(ctx)
+        this.whale.update(deltaTime)
+        this.whale.draw(ctx)
         this.particles.forEach((particle) => {
             particle.update()
             particle.draw(ctx);
@@ -138,20 +212,17 @@ class Effect {
 
 window.addEventListener('load', () => {
     const effect = new Effect(canvas);
-    effect.handleParticles(ctx)
 
-    function animation () {
+    var lastTimeStamp = null
+
+    // Array(5000).forEach( _=> effect.particles.forEach(p => p.update()))
+
+    function animation (timeStamp) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        effect.handleParticles(ctx)
+        var deltaTime = lastTimeStamp ? timeStamp - lastTimeStamp : 0
+        lastTimeStamp = timeStamp;
+        effect.handleParticles(ctx, deltaTime);
 
-        /* draw circle */
-        let m = effect.mouse
-        if (m.pressed) {
-            ctx.save()
-            ctx.globalAlpha = 0.8;
-            drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
-            ctx.restore()
-        }
         requestAnimationFrame(animation)
     }
 

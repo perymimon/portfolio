@@ -1,25 +1,48 @@
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
-#canvas1{
-    background-color: black;
+
+:root {
+    --rotation-angle: 0deg; /* Initial angle */
+}
+
+@keyframes rotate-animation {
+    0% {
+        --rotation-angle: 0deg; /* Start at 0 degrees */
+    }
+    100% {
+        --rotation-angle: 360deg; /* End at 360 degrees */
+    }
+}
+
+canvas {
+
     position: absolute;
     top: 0;
     left: 0;
 }
 
-h1{
+#canvas1 {
+    background-color: black;
+    background: linear-gradient(var(--rotation-angle), #214, #404);
+    animation: rotate-animation 1s linear infinite alternate;
+}
+
+img {
+    display: none;
+}
+
+h1 {
     color: white;
     font-size: 80px;
-    font-family:Impact, cursive;
+    font-family: Impact, cursive;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-top: 5px solid white;
-
 
 
 }
