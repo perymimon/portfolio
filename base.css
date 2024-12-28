@@ -1,4 +1,11 @@
 /* Design System CSS */
+@font-face {
+    font-family: 'MatrixCode';
+    src: url('assets/matrix-code-nfi.ttf') format('truetype'),
+    url('assets/matrix-code-nfi.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* Reset */
 body, html {
@@ -8,49 +15,48 @@ body, html {
 
 /* Root Theme Variables */
 :root {
-    --color-shade: #222;
-    --color-text: #fff;
     --color-shade-2: rgb(134, 146, 161);
     --color-shade-3: rgb(51, 53, 54);
     --color-shade-warm: #1c1917;
     --color-bright: rgb(51, 53, 54);
     /* Color System */
-    --color-primary: light-dark(#2563eb, #1d4ed8);
-    --color-primary-hover: light-dark(#1d4ed8, #1e40af);
-    --color-secondary: light-dark(#16a34a, #15803d);
-    --color-secondary-hover: light-dark(#15803d, #166534);
-    --color-warning: light-dark(#ca8a04, #a16207);
-    --color-warning-hover: light-dark(#a16207, #854d0e);
-    --color-error: light-dark(#dc2626, #b91c1c);
-    --color-error-hover: light-dark(#b91c1c, #991b1b);
-    --color-success: light-dark(#16a34a, #15803d);
-    --color-success-hover: light-dark(#15803d, #166534);
+    --color-primary: light-dark(hsl(120, 100%, 35%), hsl(120, 50%, 40%)); /* Neon Green */
+    --color-primary-hover: light-dark(hsl(120, 100%, 45%), hsl(120, 50%, 50%));
+    --color-secondary: light-dark(hsl(90, 60%, 30%), hsl(90, 50%, 50%)); /* Darker Green */
+    --color-secondary-hover: light-dark(hsl(90, 70%, 40%), hsl(90, 60%, 60%));
+    --color-warning: light-dark(hsl(50, 80%, 40%), hsl(50, 60%, 60%)); /* Yellow-Green */
+    --color-warning-hover: light-dark(hsl(50, 90%, 50%), hsl(50, 70%, 70%));
+    --color-error: light-dark(hsl(0, 80%, 40%), hsl(0, 60%, 50%)); /* Red */
+    --color-error-hover: light-dark(hsl(0, 90%, 50%), hsl(0, 70%, 60%));
+    --color-success: light-dark(hsl(120, 80%, 35%), hsl(120, 60%, 40%)); /* Bright Green */
+    --color-success-hover: light-dark(hsl(120, 90%, 45%), hsl(120, 70%, 50%));
 
     /* Neutral Colors */
-    --color-background: light-dark(#ffffff, #0f172a);
-    --color-foreground: light-dark(#0f172a, #f8fafc);
-    --color-muted: light-dark(#64748b, #94a3b8);
-    --color-muted-hover: light-dark(#475569, #cbd5e1);
+    --color-background: light-dark(hsl(120, 30%, 95%), hsl(120, 15%, 5%) ); /* Deep Greenish Black vs Light Greenish White */
+    --color-foreground: light-dark(hsl(120, 100%, 90%), hsl(120, 30%, 15%)); /* Light Green vs Dark Green */
+    --color-muted: light-dark(hsl(120, 15%, 70%),hsl(120, 10%, 50%)); /* Subtle Green */
+    --color-muted-hover: light-dark(hsl(120, 20%, 80%),hsl(120, 20%, 60%));
+
 
     /* Border Colors */
-    --color-border: light-dark(#e2e8f0, #334155);
-    --color-border-hover: light-dark(#cbd5e1, #475569);
+    --color-border: light-dark(hsl(120, 20%, 70%), hsl(120, 30%, 20%));
+    --color-border-hover: light-dark(hsl(120, 25%, 80%), hsl(120, 30%, 30%));
 
     /* Component Colors */
-    --component-bg: light-dark(#ffffff, var(--color-shade));
-    --component-border: light-dark(#e2e8f0, #334155);
-    --component-hover: light-dark(#f8fafc, #334155);
+    --component-bg: light-dark(hsl(120, 30%, 95%), hsl(120, 15%, 10%));
+    --component-border: light-dark(hsl(120, 40%, 60%), hsl(120, 10%, 20%));
+    --component-hover: light-dark(hsl(120, 20%, 90%), hsl(120, 20%, 15%));
 
     /* Text Colors */
-    --text-primary: light-dark(#0f172a, #f8fafc);
-    --text-secondary: light-dark(#475569, #cbd5e1);
-    --text-muted: light-dark(#64748b, #94a3b8);
-    --text-inverse: light-dark(#ffffff, #0f172a);
+    --text-primary: light-dark(hsl(120, 100%, 50%), hsl(120, 40%, 30%)); /* Neon Green */
+    --text-secondary: light-dark(hsl(120, 80%, 70%), hsl(120, 20%, 50%));
+    --text-muted: light-dark(hsl(120, 40%, 40%), hsl(120, 10%, 35%));
+    --text-inverse: light-dark(hsl(290, 100%, 50%), hsl(290, 40%, 30%)); /* White vs Deep Green */
 
-    --text-data-numeric: #60a5fa;
-    --text-data-object: #f87171;
-    --text-data-string: #34d399;
-    --text-data-boolean: #818cf8;
+    --text-data-numeric: hsl(200, 80%, 60%); /* Cyan */
+    --text-data-object: hsl(0, 80%, 60%); /* Red */
+    --text-data-string: hsl(140, 70%, 50%); /* Bright Green */
+    --text-data-boolean: hsl(260, 70%, 70%); /* Violet */
 
     /* Spacing System */
     --space-1: 0.25rem; /* 4px */
@@ -64,7 +70,8 @@ body, html {
     --space-12: 3rem; /* 48px */
 
     /* Typography */
-    --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /*--font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;*/
+    --font-family-base: Consolas, Lucida Console, 'Courier New', monospace;
     --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
     --font-size-xs: 0.75rem; /* 12px */
@@ -315,4 +322,21 @@ body, html {
         --text-secondary: #333333;
         --text-muted: #666666;
     }
+}
+/* Elements */
+a{
+    font-family: var(--font-family-mono), monospace;
+}
+h2{
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+    font-family:var(--font-family-mono), monospace;
+    text-transform: uppercase;
+}
+h3{
+    font-family:var(--font-family-mono), monospace;
+    padding: var(--space-2);
+    color: var(--text-secondary);
 }
