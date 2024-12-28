@@ -325,16 +325,28 @@ body, html {
     }
 }
 /* Elements */
+body{
+    background-color: var(--color-background);
+}
 a{
     font-family: var(--font-family-mono), monospace;
 }
-h2{
-    font-size: var(--font-size-xl);
+
+h1,h2{
+
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
-    margin-bottom: var(--space-2);
+
     font-family:var(--font-family-mono), monospace;
     text-transform: uppercase;
+}
+h1{
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-1);
+}
+h2{
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-2);
 }
 h3{
     font-family:var(--font-family-mono), monospace;
@@ -345,4 +357,7 @@ h3{
 code{
     font-family: var(--font-family-mono), monospace;
     font-size: var(--font-size-sm);
+}
+p{
+    color: var(--text-secondary);
 }
