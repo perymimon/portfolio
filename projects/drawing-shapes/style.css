@@ -4,7 +4,7 @@ body {
     display: flex;
     flex-direction: row-reverse;
     align-items: stretch;
-    background-color: var(--color-shade-warm);
+    background-color: var(--color-background);
     gap: 1em;
 
     height:100vh;
@@ -37,16 +37,7 @@ body {
         & > * {
             direction: ltr
         }
-
-        /*code[class*=language-]{*/
-        /*    background-color: unset;*/
-        /*    box-shadow: unset;*/
-        /*    text-shadow: unset;*/
-        /*}*/
-
     }
-
-
 }
 
 @media (orientation: portrait) {
@@ -58,38 +49,27 @@ body {
         max-width:24em;
     }
 }
-.active {
-    outline: 0.5em solid var(--color-bright);
-}
-
-canvas {
-    background-color: rgba(187, 187, 187, 0.71);
-    border-radius: 5px;
-    width: 100%;
-    aspect-ratio: 1;
-}
-
 .code-section {
     /* typography */
-    color: #c9d1d9;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    color: var(--text-inverse);
+    /*font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;*/
+    font-family: var(--font-family-mono);
     font-feature-settings: normal;
     font-variation-settings: normal;
     font-size: 1em;
 
     /* layout */
-    /*display: grid;*/
-    /*grid-template-columns: repeat(2, 1fr);*/
     row-gap: 1em;
-    background-color: hsl(210deg 3.11% 23.91% / 71%);
+    background-color: var(--component-bg);
     anchor-name: --code-section;
     position: relative;
 
-    border-radius: 1em;
-    border: .2em solid;
+    border: 1px solid;
+    border-radius: var(--radius-sm);
+    /*border-radius: 1em;*/
+    border-color: var(--color-border);
 
-    /* direction*/
-
+    padding: 0.2rem;
 
     canvas {
         background-color: transparent;
@@ -118,4 +98,15 @@ canvas {
             white-space: pre-wrap;
         }
     }
+}
+
+.active {
+    outline: 0.5em solid var(--color-bright);
+}
+
+canvas {
+    background-color: var(--color-foreground);
+    border-radius: 5px;
+    width: 100%;
+    aspect-ratio: 1;
 }

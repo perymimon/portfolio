@@ -1,7 +1,12 @@
+@import '../../base.css';
+
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
+}
+body{
+    background-color: var(--color-background)
 }
 #canvas1{
     background-color: black;
@@ -12,7 +17,7 @@
 
 h1{
     color: white;
-    font-size: 80px;
+    font-size: 2vw;
     font-family:Impact, cursive;
     position: absolute;
     top: 50%;

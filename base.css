@@ -15,9 +15,10 @@ body, html {
 
 /* Root Theme Variables */
 :root {
+    --color-shade: #222;
+    --color-text: #fff;
     --color-shade-2: rgb(134, 146, 161);
     --color-shade-3: rgb(51, 53, 54);
-    --color-shade-warm: #1c1917;
     --color-bright: rgb(51, 53, 54);
     /* Color System */
     --color-primary: light-dark(hsl(120, 100%, 35%), hsl(120, 50%, 40%)); /* Neon Green */
@@ -33,17 +34,17 @@ body, html {
 
     /* Neutral Colors */
     --color-background: light-dark(hsl(120, 30%, 95%), hsl(120, 15%, 5%) ); /* Deep Greenish Black vs Light Greenish White */
-    --color-foreground: light-dark(hsl(120, 100%, 90%), hsl(120, 30%, 15%)); /* Light Green vs Dark Green */
+    --color-foreground: light-dark(hsl(120, 100%, 90%), hsl(120deg 100% 30% / 50%)); /* Light Green vs Dark Green */
     --color-muted: light-dark(hsl(120, 15%, 70%),hsl(120, 10%, 50%)); /* Subtle Green */
     --color-muted-hover: light-dark(hsl(120, 20%, 80%),hsl(120, 20%, 60%));
 
 
     /* Border Colors */
-    --color-border: light-dark(hsl(120, 20%, 70%), hsl(120, 30%, 20%));
+    --color-border: light-dark(hsl(120, 20%, 70%), hsl(120 40% 20% / 1));
     --color-border-hover: light-dark(hsl(120, 25%, 80%), hsl(120, 30%, 30%));
 
     /* Component Colors */
-    --component-bg: light-dark(hsl(120, 30%, 95%), hsl(120, 15%, 10%));
+    --component-bg: light-dark(hsl(120, 30%, 95%), hsl(120deg 100% 10% / 15%));
     --component-border: light-dark(hsl(120, 40%, 60%), hsl(120, 10%, 20%));
     --component-hover: light-dark(hsl(120, 20%, 90%), hsl(120, 20%, 15%));
 
@@ -339,4 +340,9 @@ h3{
     font-family:var(--font-family-mono), monospace;
     padding: var(--space-2);
     color: var(--text-secondary);
+}
+
+code{
+    font-family: var(--font-family-mono), monospace;
+    font-size: var(--font-size-sm);
 }
