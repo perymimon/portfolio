@@ -1,0 +1,121 @@
+@import '../../base.css';
+
+body {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: stretch;
+    background-color: var(--color-shade-warm);
+    gap: 1em;
+
+    height:100vh;
+
+    header {
+        padding-block: var(--space-1);
+        font-size: var(--font-size-sm);
+    }
+
+    #toc {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: var(--space-2);
+    }
+    .right-side{
+        flex:1
+    }
+    .left-side {
+        flex:2;
+        /*height: 100vh;*/
+    }
+    #codeSnippets {
+        overflow: auto;
+        display: flex;
+
+        flex-direction: column;
+        row-gap: var(--space-2);
+        direction: rtl;
+
+        & > * {
+            direction: ltr
+        }
+
+        /*code[class*=language-]{*/
+        /*    background-color: unset;*/
+        /*    box-shadow: unset;*/
+        /*    text-shadow: unset;*/
+        /*}*/
+
+    }
+
+
+}
+
+@media (orientation: portrait) {
+    body {
+        flex-direction: column;
+    }
+    .right-side {
+        align-self: center;
+        max-width:24em;
+    }
+}
+.active {
+    outline: 0.5em solid var(--color-bright);
+}
+
+canvas {
+    background-color: rgba(187, 187, 187, 0.71);
+    border-radius: 5px;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.code-section {
+    /* typography */
+    color: #c9d1d9;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    font-size: 1em;
+
+    /* layout */
+    /*display: grid;*/
+    /*grid-template-columns: repeat(2, 1fr);*/
+    row-gap: 1em;
+    background-color: hsl(210deg 3.11% 23.91% / 71%);
+    anchor-name: --code-section;
+    position: relative;
+
+    border-radius: 1em;
+    border: .2em solid;
+
+    /* direction*/
+
+
+    canvas {
+        background-color: transparent;
+        position: absolute;
+        width: 100px;
+        top: 0;
+        right: 0;
+        z-index: -10;
+    }
+
+    pre {
+        /*padding: .5em;*/
+        margin: 0;
+        overflow: auto;
+        white-space-collapse: preserve-breaks;
+
+        .line-number {
+            width: 2em;
+            display: inline-block;
+            border-inline-end: 1px solid;
+            text-align: right;
+            padding-inline-end: .5em;
+        }
+
+        code {
+            white-space: pre-wrap;
+        }
+    }
+}
