@@ -1,3 +1,7 @@
+/*reset*/
+*{
+    box-sizing: border-box;
+}
 /* Design System CSS */
 @font-face {
     font-family: 'MatrixCode';
@@ -34,7 +38,7 @@ body, html {
 
     /* Neutral Colors */
     --color-background: light-dark(hsl(120, 30%, 95%), hsl(120, 15%, 5%) ); /* Deep Greenish Black vs Light Greenish White */
-    --color-foreground: light-dark(hsl(120, 100%, 90%), hsl(120deg 100% 30% / 50%)); /* Light Green vs Dark Green */
+    --color-foreground: light-dark(hsl(120, 100%, 90%), hsl(120deg 100% 30% / 10%)); /* Light Green vs Dark Green */
     --color-muted: light-dark(hsl(120, 15%, 70%),hsl(120, 10%, 50%)); /* Subtle Green */
     --color-muted-hover: light-dark(hsl(120, 20%, 80%),hsl(120, 20%, 60%));
 
