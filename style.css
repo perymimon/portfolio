@@ -33,7 +33,11 @@ body {
     margin-bottom: var(--space-4);
 }
 
-
+.sidebar-title{
+    a{
+        text-decoration: none;
+    }
+}
 .sidebar-subtitle {
     font-size: var(--font-size-sm);
 
