@@ -19,7 +19,7 @@ function parseLightDark(value) {
     const match = value.match(/light-dark\(\s*((?:[^\(\)]|\([^)]*\))+)\s*,\s*((?:[^\(\)]|\([^)]*\))+)\s*\)$/);
     if (!match) return value; // Return as-is if no match
 
-    const [lightValue,darkValue] = match
+    const [,lightValue,darkValue] = match
     // Detect light or dark mode (customize this logic for your environment)
     const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 

@@ -49,7 +49,7 @@ body, html {
     --color-border-hover: light-dark(hsl(120, 25%, 80%), hsl(120, 30%, 30%));
 
     /* Component Colors */
-    --component-bg: light-dark(hsl(120, 30%, 95%), hsl(120deg 100% 10% / 15%));
+    --component-bg: light-dark(hsl(120deg 30% 95% / 15%), hsl(120deg 100% 10% / 15%));
     --component-border: light-dark(hsl(120, 40%, 60%), hsl(120, 10%, 20%));
     --component-hover: light-dark(hsl(120, 20%, 90%), hsl(120, 20%, 15%));
 
@@ -144,6 +144,85 @@ body, html {
 [data-theme="light"] {
     color-scheme: light;
 }
+
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Media Queries */
+@media (max-width: 640px) {
+    :root {
+        --container-padding: var(--space-3);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    :root {
+        --color-background: #ffffff;
+        --color-foreground: #000000;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --text-muted: #666666;
+    }
+}
+/* Elements */
+body{
+    background-color: var(--color-background);
+}
+a{
+    font-family: var(--font-family-mono), monospace;
+}
+
+h1,h2{
+
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+
+    font-family:var(--font-family-mono), monospace;
+    text-transform: uppercase;
+}
+h1{
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-1);
+}
+h2{
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-2);
+}
+h3{
+    font-family:var(--font-family-mono), monospace;
+    padding: var(--space-2);
+    color: var(--text-secondary);
+}
+
+code{
+    font-family: var(--font-family-mono), monospace;
+    font-size: var(--font-size-sm);
+}
+p{
+    color: var(--text-secondary);
+}
+/*---*/
 
 /* Base Component Styles */
 .component-base {
@@ -291,81 +370,4 @@ body, html {
         transform: translateY(0);
         opacity: 1;
     }
-}
-
-/* Accessibility */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* Media Queries */
-@media (max-width: 640px) {
-    :root {
-        --container-padding: var(--space-3);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-
-/* Print Styles */
-@media print {
-    :root {
-        --color-background: #ffffff;
-        --color-foreground: #000000;
-        --text-primary: #000000;
-        --text-secondary: #333333;
-        --text-muted: #666666;
-    }
-}
-/* Elements */
-body{
-    background-color: var(--color-background);
-}
-a{
-    font-family: var(--font-family-mono), monospace;
-}
-
-h1,h2{
-
-    font-weight: var(--font-weight-bold);
-    color: var(--color-primary);
-
-    font-family:var(--font-family-mono), monospace;
-    text-transform: uppercase;
-}
-h1{
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--space-1);
-}
-h2{
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--space-2);
-}
-h3{
-    font-family:var(--font-family-mono), monospace;
-    padding: var(--space-2);
-    color: var(--text-secondary);
-}
-
-code{
-    font-family: var(--font-family-mono), monospace;
-    font-size: var(--font-size-sm);
-}
-p{
-    color: var(--text-secondary);
 }

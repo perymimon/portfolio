@@ -1,17 +1,17 @@
 @import "../../base.css";
-*{
+:root{
     --color-char: var(--text-primary);
+    --color-bg: hsl( from var(--color-background) h s l / 99.9%);
 }
 body{
     background:linear-gradient(to bottom,  var(--color-background), var(--component-bg));
 }
 #canvas1{
-    background-color: black;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    mix-blend-mode: screen;
+    /*mix-blend-mode: screen;*/
 
 }
