@@ -141,6 +141,9 @@ body, html {
 [data-theme="dark"] {
     color-scheme: dark;
 }
+[data-theme="light"] {
+    color-scheme: light;
+}
 
 /* Base Component Styles */
 .component-base {
