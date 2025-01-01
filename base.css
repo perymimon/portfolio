@@ -191,6 +191,7 @@ body{
 }
 a{
     font-family: var(--font-family-mono), monospace;
+    color:inherit;
 }
 
 h1,h2{
