@@ -15,15 +15,16 @@
 body, html {
     padding: 0;
     margin: 0;
+    min-height: 100vh;
 }
 
 /* Root Theme Variables */
 :root {
-    --color-shade: #222;
-    --color-text: #fff;
-    --color-shade-2: rgb(134, 146, 161);
-    --color-shade-3: rgb(51, 53, 54);
-    --color-bright: rgb(51, 53, 54);
+    /*--color-shade: #222;*/
+    /*--color-text: #fff;*/
+    /*--color-shade-2: rgb(134, 146, 161);*/
+    /*--color-shade-3: rgb(51, 53, 54);*/
+    /*--color-bright: rgb(51, 53, 54);*/
     /* Color System */
     --color-primary: light-dark(hsl(120, 100%, 35%), hsl(120, 50%, 40%)); /* Neon Green */
     --color-primary-hover: light-dark(hsl(120, 100%, 45%), hsl(120, 50%, 50%));
