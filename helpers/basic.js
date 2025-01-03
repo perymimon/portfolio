@@ -26,3 +26,15 @@ function parseLightDark(value) {
     // Return the appropriate value
     return isDarkMode ? darkValue : lightValue;
 }
+
+export async function waitFor(eventName, element){
+    return new Promise((resolve,reject)=>{
+        try {
+            element.addEventListener(eventName, resolve, {ones: true});
+        }catch(e){
+            reject(e);
+        }
+
+
+    })
+}
