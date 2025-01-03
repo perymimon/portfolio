@@ -195,7 +195,7 @@ var hljs = (function () {
       return this.buffer;
     }
 
-    // helpers
+    // _helpers
 
     /**
      * Builds a span element

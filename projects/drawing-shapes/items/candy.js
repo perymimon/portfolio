@@ -1,4 +1,4 @@
-import {color, draw} from '../../../helpers/draw.js'
+import {color, draw} from '../../_helpers/draw.js'
 
 export function drawCandy (ctx, x, y, size, hue) {
     var top = y - size / 2, left = x - size / 2;

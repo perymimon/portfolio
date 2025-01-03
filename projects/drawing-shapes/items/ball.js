@@ -1,4 +1,4 @@
-import {color, draw} from '../../../helpers/draw.js';
+import {color, draw} from '../../_helpers/draw.js';
 
 export function drawBall(ctx, x, y, size, hue) {
     var top = y - size / 2

@@ -1,8 +1,8 @@
-import {getProperty, waitFor} from '../../helpers/basic.js'
-import {getBrightnessMap} from '../../helpers/color.js'
-import {draw} from '../../helpers/draw.js'
-import {FrameEngine} from '../../helpers/FrameEngine.js'
-import {random} from '../../math/basic.js'
+import {getProperty, waitFor} from '../_helpers/basic.js'
+import {getBrightnessMap} from '../_helpers/color.js'
+import {draw} from '../_helpers/draw.js'
+import {FrameEngine} from '../_helpers/FrameEngine.js'
+import {random} from '../_math/basic.js'
 
 var image = new Image()
 image.src = './hacker2.webp'

@@ -1,4 +1,4 @@
-import {random} from '../../math/basic.js'
+import {random} from '../_math/basic.js'
 export class SymbolChar {
     constructor (c, r, fontSize, canvasHeight) {
         this.charactes = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$+-*/=%"'#&_(),.;:?\|{}<>[]^~`

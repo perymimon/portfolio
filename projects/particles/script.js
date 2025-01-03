@@ -1,6 +1,6 @@
-import {drawAlgebra} from '../../helpers/draw.js'
-import {distance, getAngle} from '../../math/algebra.js'
-import {clamp, exceedsLimits, random} from '../../math/basic.js'
+import {drawAlgebra} from '../_helpers/draw.js'
+import {distance, getAngle} from '../_math/algebra.js'
+import {clamp, exceedsLimits, random} from '../_math/basic.js'
 
 // setup
 const canvas = document.getElementById("canvas1");

@@ -192,7 +192,7 @@ class HTMLRenderer {
     return this.buffer;
   }
 
-  // helpers
+  // _helpers
 
   /**
    * Builds a span element
