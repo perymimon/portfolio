@@ -16,7 +16,7 @@ export function getImageData (image) {
     throw 'image must be an image object'
 }
 
-export function getBrightnessMap (image) {
+export function getBrightnessImageData (image) {
     var imageData = getImageData(image)
     var pixels = imageData.data
     for (let i = 0; i < pixels.length; i += 4) {
