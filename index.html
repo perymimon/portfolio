@@ -18,15 +18,15 @@
         <div class="sidebar-section-title">
             Side projects by
             <a href="https://github.com/perymimon?tab=repositories" target="_blank">me</a></div>
+
         <div class="sidebar-link">
             <a href="https://client-taki-game.onrender.com/" class="sidebar-link" target="content-frame">
-                3D Taki Game
-
+                3D Taki Game - 2018 (es6, react 17,vite, nodeJS, socket.io)
             </a>
             (<a href="https://taki-game.onrender.com/">spinup</a>)
             (<a href="https://dashboard.render.com/">dashboard</a>)
-
         </div>
+        <a href="https://stackblitz.com/github/perymimon/Promise?embed=1&file=src%2FtinyPromise.js&hideExplorer=1&hideNavigation=1&view=editor" class="sidebar-link">Promise implementation</a>
         <div class="sidebar-separator"></div>
         <div class="sidebar-section-title">Tutorials I follow by <a href="https://www.youtube.com/@Radu"
                                                                     target="_blank">Radu</a></div>
@@ -51,6 +51,11 @@
         <!--    <a href="experiment2.html" class="sidebar-link" target="content-frame">Experiment 2</a>-->
         <!-- Add more links as needed -->
     </nav>
+    <div id="avatar">
+        <canvas id="avatar-canvas"></canvas>
+        <img src="projects/pixel-rain/me.jpg" id="me-photo" alt="Avatar of me"/>
+    </div>
+
 </aside>
 <main id="main-content">
     <iframe id="content-frame" name="content-frame" src="welcome.html"></iframe>
@@ -58,11 +63,33 @@
 <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
     🌓
 </button>
+<script type="module">
+    import {PixelRainEffect} from './projects/_glossary/PixelRain.effect.js'
+    import {FrameEngine} from './projects/_helpers/FrameEngine.js'
 
+    var image = document.getElementById('me-photo');
+    var canvas = document.getElementById('avatar-canvas');
+    canvas.width = image.width;
+    canvas.height = image.height;
+    var ctx = canvas.getContext('2d');
+    var effect = new PixelRainEffect(canvas, image, 2)
+    var framesEngine = new FrameEngine(60)
+    framesEngine.addEventListener('frames', e => {
+        effect.update()
+        effect.draw(ctx)
+    })
+
+    function animation (timeStamp) {
+        framesEngine.updateFrame(timeStamp)
+        requestAnimationFrame(animation)
+    }
+
+    window.requestAnimationFrame(animation);
+</script>
 <script type="module">
     import {linkPageFromParent, toggleTheme} from './projects/_helpers/link-page.js'
 
-    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const sidebarLinks = document.querySelectorAll('a.sidebar-link');
     const contentFrame = document.getElementById('content-frame');
     const themeToggle = document.getElementById('theme-toggle');
     themeToggle.addEventListener('click', toggleTheme);
