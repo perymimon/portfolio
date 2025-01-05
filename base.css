@@ -51,7 +51,7 @@ body, html {
     /* Component Colors */
     --component-bg: light-dark(hsl(120deg 30% 95% / 15%), hsl(120deg 100% 10% / 15%));
     --component-border: light-dark(hsl(120, 40%, 60%), hsl(120, 10%, 20%));
-    --component-hover: light-dark(hsl(120, 20%, 90%), hsl(120, 20%, 15%));
+    --component-hover: light-dark(hsl(120, 50%, 90%), hsl(120deg 50% 15% / 55%));
 
     /* Text Colors */
     --text-primary: light-dark(hsl(120, 100%, 50%), hsl(120, 40%, 60%)); /* Neon Green */

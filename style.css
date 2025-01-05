@@ -56,15 +56,22 @@ body {
     text-decoration: none;
     border-radius: var(--radius-md);
     transition: background-color var(--transition-normal);
-}
-
-.sidebar-link:target {
-    background-color: var(--color-primary);
-    color: var(--color-background);
-}
-
-.sidebar-link:hover {
-    background-color: var(--component-hover);
+    &:hover {
+        background-color: var(--component-hover);
+    }
+    &:target {
+        background-color: var(--color-primary);
+        color: var(--color-background);
+        position:relative;
+        &::before{
+            content: '>';
+            color: var(--text-primary);
+            position: absolute;
+            right: 100%;
+            padding-inline: var(--space-2);
+            z-index: 1;
+        }
+    }
 }
 
 .sidebar-separator {
@@ -81,7 +88,11 @@ body {
     text-transform: full-size-kana;
     letter-spacing: 0.05em;
 }
+.extra-info{
+    display: none;
+    pointer-events: none;
 
+}
 #theme-toggle {
     position: fixed;
     background-color: var(--component-bg);
