@@ -15,6 +15,11 @@ body {
     overflow-y: auto;
     border-image:linear-gradient(to left, var(--color-border) 2px, transparent 2px, transparent 4px,  var(--color-border) 4px, transparent 40px) 6;
 }
+@media (orientation: landscape) {
+    #sidebar {
+        height:100vh;
+    }
+}
 
 #main-content {
     flex-grow: 1;
@@ -79,6 +84,11 @@ body {
 
 #theme-toggle {
     position: fixed;
-    top: var(--space-4);
+    background-color: var(--component-bg);
+    bottom: var(--space-4);
     right: var(--space-4);
+    &:hover{
+        border-color: var(--component-border);
+        background-color: var(--component-hover);
+    }
 }
