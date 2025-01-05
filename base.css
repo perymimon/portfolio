@@ -54,10 +54,10 @@ body, html {
     --component-hover: light-dark(hsl(120, 20%, 90%), hsl(120, 20%, 15%));
 
     /* Text Colors */
-    --text-primary: light-dark(hsl(120, 100%, 50%), hsl(120, 40%, 30%)); /* Neon Green */
+    --text-primary: light-dark(hsl(120, 100%, 50%), hsl(120, 40%, 60%)); /* Neon Green */
     --text-secondary: light-dark(hsl(120, 80%, 70%), hsl(120, 20%, 50%));
     --text-muted: light-dark(hsl(120, 40%, 40%), hsl(120, 10%, 35%));
-    --text-inverse: light-dark(hsl(290, 100%, 50%), hsl(290, 40%, 30%)); /* White vs Deep Green */
+    --text-inverse: light-dark(hsl(290, 100%, 50%), hsl(290, 40%, 60%)); /* White vs Deep Green */
 
     --text-data-numeric: hsl(200, 80%, 60%); /* Cyan */
     --text-data-object: hsl(0, 80%, 60%); /* Red */
