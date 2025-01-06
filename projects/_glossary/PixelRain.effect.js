@@ -1,21 +1,22 @@
+import {getProperty, setCanvas} from '../_helpers/basic.js'
+import {getBrightnessImageData} from '../_helpers/color.js'
+import {FrameEngine} from '../_helpers/FrameEngine.js'
 import {random} from '../_math/basic.js'
 import {Effect} from './Effect.js'
 import {ParticleFall} from './ParticleFall.js'
-import {getProperty} from '../_helpers/basic.js'
-import {getBrightnessImageData} from '../_helpers/color.js'
 
 export class PixelRainEffect extends Effect {
-    constructor (canvas, image, speed = 5, particleSpacing = 80) {
-        super(canvas)
+    constructor (width, height, image, speed = 5, particleSpacing = 80) {
+        super(width, height)
         this.image = image
         this.brightImageData = getBrightnessImageData(image);
         this.speed = speed
-        this.numberOfParticles = this.width * this.height / particleSpacing
-        this.resize(canvas.width, canvas.height)
+        this.particleSpacing = particleSpacing
+        this.init()
     }
-    get width () { return Math.min(this.canvas.width, this.image.width) }
-    get height () { return Math.min(this.canvas.height, this.image.height) }
-
+    get numberOfParticles(){
+        return this.width * this.height / this.particleSpacing
+    }
     init () {
         this.particles = []
         for (let i = 0; i < this.numberOfParticles; i++) {
@@ -25,6 +26,7 @@ export class PixelRainEffect extends Effect {
             this.particles.push(particle)
         }
     }
+
     update () {
         const {floor} = Math
         const {width, height, data} = this.brightImageData
@@ -36,12 +38,37 @@ export class PixelRainEffect extends Effect {
             particle.update()
         })
     }
-    draw(ctx){
+
+    draw (ctx) {
         // ctx.putImageData(this.brightImageData, 0, 0)
         ctx.globalAlpha = .05
         ctx.fillStyle = 'black'
         ctx.fillRect(0, 0, this.width, this.height)
         ctx.fillStyle = getProperty(ctx, '--text-primary')
         super.draw(ctx)
+    }
+}
+
+export class PixelRainEffectRun extends PixelRainEffect {
+    constructor (canvas, image, fps, speed, particleSpacing) {
+        setCanvas(canvas, image)
+        super(canvas.width, canvas.height, image, speed, particleSpacing)
+        this.fps = fps
+        this.canvas = canvas
+        this.ctx = canvas.getContext("2d")
+    }
+
+    start () {
+        this.framesEngine = new FrameEngine(this.fps, e => {
+            this.update()
+            this.draw(this.ctx)
+        })
+        this.framesEngine.start()
+        return this
+    }
+
+    stop () {
+        if (!this.framesEngine) return this
+        this.framesEngine.stop()
     }
 }

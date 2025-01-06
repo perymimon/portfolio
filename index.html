@@ -102,27 +102,13 @@
     🌓
 </button>
 <script type="module">
-    import {PixelRainEffect} from './projects/_glossary/PixelRain.effect.js'
-    import {FrameEngine} from './projects/_helpers/FrameEngine.js'
+    import {PixelRainEffectRun} from './projects/_glossary/PixelRain.effect.js'
+    import {getImageLoaded} from './projects/_helpers/basic.js'
 
-    var image = document.getElementById('me-photo');
-    var canvas = document.getElementById('avatar-canvas');
-    canvas.width = image.width;
-    canvas.height = image.height;
-    var ctx = canvas.getContext('2d');
-    var effect = new PixelRainEffect(canvas, image, 2)
-    var framesEngine = new FrameEngine(60)
-    framesEngine.addEventListener('frames', e => {
-        effect.update()
-        effect.draw(ctx)
-    })
+    var image = await getImageLoaded('#me-photo')
+    var canvas = document.getElementById('avatar-canvas')
+    new PixelRainEffectRun(canvas, image, 60, 4, 150).start()
 
-    function animation (timeStamp) {
-        framesEngine.updateFrame(timeStamp)
-        requestAnimationFrame(animation)
-    }
-
-    window.requestAnimationFrame(animation);
 </script>
 <script type="module">
     import {injectExtraContent} from './home-scripts/project-info.js'

@@ -1,23 +1,27 @@
 export class Effect {
-    constructor(canvas) {
-      this.canvas = canvas;
-      this.particles = []
+    constructor (width, height) {
+        this.particles = []
+        this.width = width
+        this.height = height
+        this.resize(width, height)
     }
-    init(){
+
+    init () {
         throw 'init() must be implemented by derived class'
     }
-    get width () { return this.canvas.width }
-    get height () { return this.canvas.height }
+
     resize () {
         this.init()
     }
-    update(){
-        for( let p of this.particles ) {
+
+    update () {
+        for (let p of this.particles) {
             p.update()
         }
     }
-    draw(ctx){
-        for( let p of this.particles ) {
+
+    draw (ctx) {
+        for (let p of this.particles) {
             p.draw(ctx)
         }
     }

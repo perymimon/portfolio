@@ -7,10 +7,9 @@ export class ParticleBoundary extends Particle {
 
         this.x.offLimitMode = offBoundaryMode
         this.y.offLimitMode = offBoundaryMode
-        var {canvas} = effect
         this.x.min = this.y.min = 0
-        this.x.max = canvas.width
-        this.y.max = canvas.height
+        this.x.max = effect.width
+        this.y.max = effect.height
 
     }
     // setBoundaryPadding(){
