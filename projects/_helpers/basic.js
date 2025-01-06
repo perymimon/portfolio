@@ -35,33 +35,46 @@ export async function waitFor (eventName, element) {
     return promise;
 }
 
-export async function getImage (url) {
-    var image = new Image()
-    image.src = url
-    await waitFor('load', image)
-    return image
-}
-
-export async function getImageLoaded (image) {
+/**
+ * image can be image instance, dom img element, url , css selector
+ * */
+export async function getImage (image) {
     if (typeof image == 'string') {
+        if (isUrl(image)) {
+            var imageInstance = new Image()
+            imageInstance.src = image
+            await waitFor('load', imageInstance)
+            return imageInstance
+        }
+        /*is css selector*/
         image = document.querySelector(image)
     }
+    /* image is instance or dom element or Image instance*/
     if (image.complete) return image
     await waitFor('load', image)
     return image
 }
 
-export function setCanvas(canvas, element){
-    if(element){
-        if(element.width ) {
+export function isUrl (string) {
+    try {
+        const url = new URL(string, window.location.origin); // Supports relative paths
+        return /\.(png|jpe?g|gif|svg|webp)$/.test(url.pathname);
+    } catch {
+        return false; // Not a valid URL
+    }
+}
+
+export function setCanvas (canvas, element) {
+    if (element) {
+        if (element.width) {
             canvas.width = element.width
             canvas.height = element.height
-        }else{
+        } else {
             var rect = element.getBoundingClientRect()
             canvas.width = rect.width
             canvas.height = rect.height
         }
-    }else{
+    } else {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }

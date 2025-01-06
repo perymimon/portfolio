@@ -103,9 +103,9 @@
 </button>
 <script type="module">
     import {PixelRainEffectRun} from './projects/_glossary/PixelRain.effect.js'
-    import {getImageLoaded} from './projects/_helpers/basic.js'
+    import {getImage} from './projects/_helpers/basic.js'
 
-    var image = await getImageLoaded('#me-photo')
+    var image = await getImage('#me-photo')
     var canvas = document.getElementById('avatar-canvas')
     new PixelRainEffectRun(canvas, image, 60, 4, 150).start()
 
