@@ -1,3 +1,5 @@
+@import './info-style.css';
+
 body {
     display: flex;
     min-height: 100vh;
@@ -13,11 +15,12 @@ body {
     border-block: 6px solid var(--component-border);
     padding: var(--space-4);
     overflow-y: auto;
-    border-image:linear-gradient(to left, var(--color-border) 2px, transparent 2px, transparent 4px,  var(--color-border) 4px, transparent 40px) 6;
+    border-image: linear-gradient(to left, var(--color-border) 2px, transparent 2px, transparent 4px, var(--color-border) 4px, transparent 40px) 6;
 }
+
 @media (orientation: landscape) {
     #sidebar {
-        height:100vh;
+        height: 100vh;
     }
 }
 
@@ -38,11 +41,12 @@ body {
     margin-bottom: var(--space-4);
 }
 
-.sidebar-title{
-    a{
+.sidebar-title {
+    a {
         text-decoration: none;
     }
 }
+
 .sidebar-subtitle {
     font-size: var(--font-size-sm);
 
@@ -56,21 +60,37 @@ body {
     text-decoration: none;
     border-radius: var(--radius-md);
     transition: background-color var(--transition-normal);
+
     &:hover {
         background-color: var(--component-hover);
+        position: relative;
+        &:before{
+            content: '>_';
+            left: -0.0em;
+            position: absolute;
+        }
+
     }
+
     &:target {
         background-color: var(--color-primary);
         color: var(--color-background);
-        position:relative;
-        &::before{
-            content: '>';
+        position: relative;
+        &::after {
+            position: relative;
+            content: '↵';
             color: var(--text-primary);
-            position: absolute;
-            right: 100%;
-            padding-inline: var(--space-2);
-            z-index: 1;
+            /*left:-1em;*/
         }
+    }
+
+    &:is(:target,hover)::before {
+        content: '>';
+        color: var(--text-primary);
+        position: absolute;
+        left: -0.5em;
+        padding-inline: var(--space-2);
+        z-index: 1;
     }
 }
 
@@ -88,17 +108,20 @@ body {
     text-transform: full-size-kana;
     letter-spacing: 0.05em;
 }
-.extra-info{
-    display: none;
-    pointer-events: none;
+
+.extra-info {
+    /*display: none;*/
+    /*pointer-events: none;*/
 
 }
+
 #theme-toggle {
     position: fixed;
     background-color: var(--component-bg);
     bottom: var(--space-4);
     right: var(--space-4);
-    &:hover{
+
+    &:hover {
         border-color: var(--component-border);
         background-color: var(--component-hover);
     }

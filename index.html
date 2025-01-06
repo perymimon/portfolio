@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<aside id="sidebar">
+<aside id="sidebar" class="scrollbar-custom">
     <div class="sidebar-header">
-        <h2 class="sidebar-title"><a href="welcome.html" target="content-frame">Hello World</a></h2>
-        <h3 class="sidebar-subtitle">spine up creative Code</h3>
+        <h2 class="sidebar-title"><a href="welcome.html" target="content-frame">Hello Worlds</a></h2>
+        <h3 class="sidebar-subtitle">spine up creative Code from scratch</h3>
     </div>
     <nav>
         <div class="sidebar-separator"></div>
@@ -19,37 +19,74 @@
             Side projects by
             <a href="https://github.com/perymimon?tab=repositories" target="_blank">me</a></div>
 
-        <div class="sidebar-link">
-            <a href="https://client-taki-game.onrender.com/" class="sidebar-link" target="content-frame">
-                3D Taki Game - 2018 (es6, react 17,vite, nodeJS, socket.io)
-            </a>
-            (<a href="https://taki-game.onrender.com/">spinup</a>)
-            (<a href="https://dashboard.render.com/">dashboard</a>)
-        </div>
-        <a href="https://stackblitz.com/github/perymimon/Promise?embed=1&file=src%2FtinyPromise.js&hideExplorer=1&hideNavigation=1&view=editor" class="sidebar-link">Promise implementation</a>
+        <a href="https://client-taki-game.onrender.com/" class="sidebar-link"
+           data-title="3D Taki Game"
+           data-year="2018"
+           data-stack="es6, react 17,vite, nodeJS, socket.io"
+           data-description="Simple socket Taki game and the first app I write with React"
+           data-source="https://github.com/perymimon/Taki-react"
+
+           data-action-0="cold spin up Taki server (50sec) | https://taki-game.onrender.com/"
+           data-action-1="render dashboard | https://dashboard.render.com/"
+        >
+            3D Taki Game
+        </a>
+
+        <a href="https://stackblitz.com/github/perymimon/Promise?embed=1&file=src%2FtinyPromise.js&hideExplorer=1&hideNavigation=1&view=editor&terminalHeight=50"
+           class="sidebar-link"
+           data-title="Tiny Promise"
+           data-year="2016"
+           data-stack="vanilla es5, mocha"
+           data-description="One day I decide  write my own implementation of Promise that will be so simple that easy can used cross browsers"
+           data-source="https://github.com/perymimon/Promise"
+           data-npm="https://www.npmjs.com/package/@perymimon/tiny-promise"
+        >
+            Tiny Promise
+        </a>
         <div class="sidebar-separator"></div>
-        <div class="sidebar-section-title">Tutorials I follow by <a href="https://www.youtube.com/@Radu"
-                                                                    target="_blank">Radu</a></div>
-        <a href="projects/drawing-shapes/index.html" class="sidebar-link">Radu's Christmas Calendar</a>
+        <!--Radu section -->
+        <div class="sidebar-section-title">Tutorials I follow by
+            <a href="https://www.youtube.com/@Radu" target="_blank">Radu</a>
+        </div>
+        <a href="projects/drawing-shapes/index.html"
+           class="sidebar-link"
+           data-title="Drawing Shapes"
+           data-year="2024"
+           data-stack="vanilla es6"
+           data-description="Full of symbols draw by using just simple vanilla JS, teach by "
+           data-teacher="@Radu"
+           data-tutorial="https://www.youtube.com/playlist?list=PLB0Tybl0UNfalh9Ll82j6OKdx1QINOZom"
+        >Radu's Christmas Calendar</a>
 
-        <div class="sidebar-section-title">Tutorials I follow by <a href="https://www.youtube.com/@Frankslaboratory"
-                                                                    target="_blank">Franks</a></div>
-        <a href="projects/particles/home.html" class="sidebar-link">Round Particles</a>
-        <a href="projects/matrix-rain/index.html" class="sidebar-link">Matrix rain</a>
-        <a href="projects/pixel-rain/index.html" class="sidebar-link">Pixels rain</a>
+        <!--Frank section -->
+        <div class="sidebar-section-title">Tutorials I follow by
+            <a href="https://www.youtube.com/@Frankslaboratory" target="_blank">Franks</a>
+        </div>
+        <a href="projects/particles/home.html" class="sidebar-link"
+           data-title="particles"
+           data-year="2024"
+           data-stack="particles, canvas, vanilla es6 "
+           data-description="basic particles effects, responsive to mouse"
+           data-teacher="@Frank"
+           data-tutorial="https://www.youtube.com/watch?v=PoDjjHh931c"
+        >Particles</a>
+        <a href="projects/matrix-rain/index.html" class="sidebar-link"
+           data-title="Matrix rain"
+           data-year="2024"
+           data-stack="particles, canvas, vanilla es6 "
+           data-description="particle rain of chars draw by using just simple vanilla JS"
+           data-teacher="@Frank"
+           data-tutorial="https://www.youtube.com/watch?v=f5ZswIE_SgY"
+        >Matrix rain</a>
+        <a href="projects/pixel-rain/index.html" class="sidebar-link"
+           data-title="Pixels rain"
+           data-year="2024"
+           data-stack="canvas vanilla es6 "
+           data-description="particle rain that change speed by lumination of a photo"
+           data-teacher="@Frank"
+           data-tutorial=""
+        >Pixels rain</a>
 
-        <!--    <div class="sidebar-separator"></div>-->
-
-        <!--    <div class="sidebar-section-title">Design Projects</div>-->
-        <!--    <a href="design1.html" class="sidebar-link" target="content-frame">Design 1</a>-->
-        <!--    <a href="design2.html" class="sidebar-link" target="content-frame">Design 2</a>-->
-
-        <!--    <div class="sidebar-separator"></div>-->
-
-        <!--    <div class="sidebar-section-title">Experiments</div>-->
-        <!--    <a href="experiment1.html" class="sidebar-link" target="content-frame">Experiment 1</a>-->
-        <!--    <a href="experiment2.html" class="sidebar-link" target="content-frame">Experiment 2</a>-->
-        <!-- Add more links as needed -->
     </nav>
     <div id="avatar">
         <canvas id="avatar-canvas"></canvas>
@@ -58,6 +95,7 @@
 
 </aside>
 <main id="main-content">
+    <div id="project-info" class="info-container component-base"></div>
     <iframe id="content-frame" name="content-frame" src="welcome.html"></iframe>
 </main>
 <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
@@ -87,6 +125,7 @@
     window.requestAnimationFrame(animation);
 </script>
 <script type="module">
+    import {injectExtraContent} from './home-scripts/project-info.js'
     import {linkPageFromParent, toggleTheme} from './projects/_helpers/link-page.js'
 
     const sidebarLinks = document.querySelectorAll('a.sidebar-link');
@@ -97,7 +136,9 @@
 
     sidebarLinks.forEach(link => {
         const href = link.getAttribute('href')
-        link.id = href.replace(/\//g, '-').replace('.html', '')
+        link.id = href
+            .replace(/https?:\/\//, '').replace(/\//g, '-')
+            .replace('.html', '').replace(/-$/, '')
         link.dataset.href = href
         link.href = '#' + link.id
     });
@@ -108,6 +149,7 @@
             var link = document.getElementById(decodedHash)
             if (link) {
                 contentFrame.src = link.dataset.href
+                injectExtraContent(link)
             } else {
                 contentFrame.src = 'welcome.html';
             }

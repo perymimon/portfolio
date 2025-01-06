@@ -1,0 +1,48 @@
+/* Info Container */
+.info-container {
+    background-color: var(--component-bg);
+    border: 1px solid var(--component-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2); /* Reduced padding for compactness */
+    box-shadow: var(--shadow-sm);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2); /* Small gap between sections */
+    margin: var(--space-2);
+}
+.info-value{
+    text-transform: capitalize;
+}
+/* Content (Inline Layout) */
+.info-content {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: var(--space-2); /* Space between inline items */
+    font-size: var(--font-size-sm);
+    align-items: baseline;
+}
+
+.info-detail {
+    /*display: inline-flex; !* Align items horizontally *!*/
+    gap: var(--space-1); /* Space between label and value */
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    &[data-value=""], & [data-value=""] {
+        display: none;
+    }
+}
+
+.info-detail strong {
+    color: var(--text-primary); /* Highlight labels */
+}
+
+/* Actions (Buttons) */
+.info-actions {
+    display: flex;
+    gap: var(--space-2); /* Small gap between buttons */
+}
+
+.info-actions .button-base:hover {
+    background-color: var(--color-primary-hover);
+}

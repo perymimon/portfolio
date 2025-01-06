@@ -57,7 +57,7 @@ body, html {
     --text-primary: light-dark(hsl(120, 100%, 50%), hsl(120, 40%, 60%)); /* Neon Green */
     --text-secondary: light-dark(hsl(120, 80%, 70%), hsl(120, 20%, 50%));
     --text-muted: light-dark(hsl(120, 40%, 40%), hsl(120, 10%, 35%));
-    --text-inverse: light-dark(hsl(290, 100%, 50%), hsl(290, 40%, 60%)); /* White vs Deep Green */
+    --text-inverse: light-dark(hsl(290, 100%, 50%), hsl(290, 100%, 60%)); /* White vs Deep Green */
 
     --text-data-numeric: hsl(200, 80%, 60%); /* Cyan */
     --text-data-object: hsl(0, 80%, 60%); /* Red */
@@ -195,12 +195,14 @@ a{
 }
 
 h1,h2{
-
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
 
     font-family:var(--font-family-mono), monospace;
     text-transform: uppercase;
+}
+h1,h2{
+    font-weight: var(--font-weight-bold);
 }
 h1{
     font-size: var(--font-size-2xl);
@@ -212,8 +214,10 @@ h2{
 }
 h3{
     font-family:var(--font-family-mono), monospace;
+    font-weight: var(--font-weight-bold);
     padding: var(--space-2);
     color: var(--text-secondary);
+    margin: 0 ;
 }
 
 code{
@@ -243,14 +247,16 @@ p{
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-md);
-    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     line-height: var(--line-height-normal);
-    transition: all var(--transition-normal);
-    cursor: pointer;
     border: 1px solid transparent;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-size-xs);
+    background-color: var(--color-primary);
+    /*border: none;*/
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition-normal);
 }
 
 /* Input Base */
