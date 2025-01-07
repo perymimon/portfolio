@@ -9,30 +9,42 @@ const teachers = {
     }
 }
 
-export function injectExtraContent (link) {
+export function injectProjectInfo (link) {
     // var template = document.querySelector('#template-info').content.cloneNode(true);
+    var mainLink = document.getElementById(link.dataset.mainLink) || link
+    var {dataset} = mainLink
+    var data = mainLink !== link ?{...mainLink.dataset, ...link.dataset}: link.dataset
+
     var infoPanel = document.getElementById('project-info')
-    var {dataset} = link
+
+    var tabList = mainLink.parentElement.querySelector('[role="tablist"]')
+
     var template = `
           <h3 class="info-title">⬡
-                <span id="info-title" data-value="${dataset.title}">${dataset.title}</span> |
-                <span id="info-year" data-value="${dataset.year}">${dataset.year}</span> |
-                <a href="${dataset.source}" data-value="${dataset.source}" class="info-detail" target="_blanck"><strong>⎇Github</strong></a>
-                    <a href="${dataset.npm}"  data-value="${dataset.npm}" class="info-detail" target="_blanck"><strong>⚙ NPM</strong></a>
+                <span id="info-title" data-value="${data.title}">${data.title}</span> |
+                <span id="info-year" data-value="${data.year}">${data.year}</span> |
+                <a href="${data.source}" data-value="${data.source}" class="info-detail" target="_blanck"><strong>⎇Github</strong></a>
+                    <a href="${data.npm}"  data-value="${data.npm}" class="info-detail" target="_blanck"><strong>⚙ NPM</strong></a>
+                 
                 <div class="info-content">
-                    <span class="info-detail" data-value="${dataset.stack}">
+                    <span class="info-detail" data-value="${data.stack}">
                         <strong>Stack▯</strong>
-                        <span class="info-value info-stack">${dataset.stack}</span>
+                        <span class="info-value info-stack">${data.stack}</span>
                     </span>
-                    
+                    <span data-value="${data.teacher || ''}">
+                   , seed <a href="${teachers[data.teacher]?.url}">${teachers[data.teacher]?.name}</a>
+                    </span>
                 </div>
-        </h3>
-        <span class="info-description info-detail">
-            ${dataset.description.trim() || 'No description available'}
-            <span data-value="${dataset.teacher || ''}">
-               , teach by <a href="${teachers[dataset.teacher]?.url}">${teachers[dataset.teacher]?.name}</a>
+          </h3>
+          <div class="bottom-bar">
+            <span class="info-description info-content info-detail">
+                ${data.description.trim() || 'No description available'}
+                
             </span>
-        </span>
+            ${tabList?.outerHTML || ''}
+          </div>
+            
+        
             <!--        <div class="info-actions">-->
             <!--            <button class="button-base" id="live-demo-btn">Live</button>-->
             <!--            <button class="button-base" id="source-code-btn">Code</button>-->

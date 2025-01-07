@@ -334,7 +334,37 @@ p{
         outline-offset: 2px;
     }
 }
+/* tabs sections */
+[role="tablist"] {
+    display: flex;
+    gap: var(--space-2);
+    .tabs-header {
+        /* empty for now */
+    }
+    [role="tab"] {
+        flex: 1;
+        padding: var(--space-2);
+        font-size: var(--font-size-sm);
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none; /* Remove underline */
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        color: var(--text-primary);
+        transition: color var(--transition-normal), border-color var(--transition-normal);
 
+        &[aria-selected="true"] {
+            font-weight: bold;
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        &:hover {
+            color: var(--color-primary-hover);
+        }
+    }
+}
 /* Animation Classes */
 .animate-fade {
     animation: fade var(--transition-normal);

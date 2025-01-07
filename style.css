@@ -54,7 +54,7 @@ body {
     margin-bottom: var(--space-4);
 }
 
-.sidebar-link {
+a.sidebar-link, .sidebar-link > a {
     display: block;
     padding: var(--space-2);
     color: var(--text-primary);
@@ -65,7 +65,8 @@ body {
     &:hover {
         background-color: var(--component-hover);
         position: relative;
-        &:before{
+
+        &:before {
             content: '>_';
             left: -0.0em;
             position: absolute;
@@ -77,6 +78,7 @@ body {
         background-color: var(--color-primary);
         color: var(--color-background);
         position: relative;
+
         &::after {
             position: relative;
             content: '↵';
@@ -127,24 +129,39 @@ body {
         background-color: var(--component-hover);
     }
 }
-#avatar{
+
+#avatar {
     position: absolute;
     inset: var(--space-4);
     mix-blend-mode: screen;
     pointer-events: none;
     opacity: 0.8;
-    z-index:0;
+    z-index: 0;
 
-    img{
+    img {
         position: absolute;
         left: 0;
         width: 100%;
         height: 100%;
     }
-    canvas{
+
+    canvas {
         width: 100%;
         height: 100%;
         position: relative;
         z-index: 1;
     }
 }
+
+/*[role="tablist"] {*/
+/*    display: inline-flex;*/
+/*    [role="tab"]{*/
+/*        text-decoration: none;*/
+/*        &:after{*/
+/*          content: '|';*/
+/*        }*/
+/*    }*/
+/*    [aria-selected="true"]{*/
+/*        color: var(--text-primary); !* Highlight Active *!*/
+/*    }*/
+/*}*/
