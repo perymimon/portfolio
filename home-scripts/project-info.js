@@ -12,12 +12,11 @@ const teachers = {
 export function injectProjectInfo (link) {
     // var template = document.querySelector('#template-info').content.cloneNode(true);
     var mainLink = document.getElementById(link.dataset.mainLink) || link
-    var {dataset} = mainLink
     var data = mainLink !== link ?{...mainLink.dataset, ...link.dataset}: link.dataset
 
     var infoPanel = document.getElementById('project-info')
 
-    var tabList = mainLink.parentElement.querySelector('[role="tablist"]')
+    var tabList = mainLink.parentElement.querySelector(':scope > [role="tablist"]')
 
     var template = `
           <h3 class="info-title">⬡
