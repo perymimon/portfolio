@@ -8,6 +8,7 @@ body {
 }
 
 #sidebar {
+    position: relative;
     width: var(--sidebar-width);
     background-color: var(--component-bg);
     background-clip: padding-box;
@@ -124,5 +125,26 @@ body {
     &:hover {
         border-color: var(--component-border);
         background-color: var(--component-hover);
+    }
+}
+#avatar{
+    position: absolute;
+    inset: var(--space-4);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    opacity: 0.8;
+    z-index:0;
+
+    img{
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    canvas{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 1;
     }
 }

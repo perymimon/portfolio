@@ -8,7 +8,7 @@ const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 canvas.width = image.width;
 canvas.height = image.height;
-var effect1 = new PixelRainEffect(canvas.width, canvas.height, image, 2)
+var effect1 = new PixelRainEffect(canvas.width, canvas.height, image, 2, 200)
 var fps = 60
 
 var framesEngine = new FrameEngine(fps, e => {

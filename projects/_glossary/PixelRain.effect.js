@@ -1,15 +1,15 @@
 import {getProperty, setCanvas} from '../_helpers/basic.js'
-import {getBrightnessImageData} from '../_helpers/color.js'
+import {getImageData} from '../_helpers/color.js'
 import {FrameEngine} from '../_helpers/FrameEngine.js'
 import {random} from '../_math/basic.js'
 import {Effect} from './Effect.js'
 import {ParticleFall} from './ParticleFall.js'
 
 export class PixelRainEffect extends Effect {
-    constructor (width, height, image, speed = 5, particleSpacing = 80) {
+    constructor (width, height, image, speed = 5, particleSpacing = 80, imageFilter = 'grayscale(1)') {
         super(width, height)
         this.image = image
-        this.brightImageData = getBrightnessImageData(image);
+        this.brightImageData = getImageData(image, imageFilter);
         this.speed = speed
         this.particleSpacing = particleSpacing
         this.init()
@@ -42,6 +42,8 @@ export class PixelRainEffect extends Effect {
     draw (ctx) {
         // ctx.putImageData(this.brightImageData, 0, 0)
         ctx.globalAlpha = .05
+        // ctx.fillStyle = getProperty(ctx,'--color-background')
+        // ctx.fillStyle = getProperty(ctx,'--component-bg')
         ctx.fillStyle = 'black'
         ctx.fillRect(0, 0, this.width, this.height)
         ctx.fillStyle = getProperty(ctx, '--text-primary')
@@ -50,9 +52,9 @@ export class PixelRainEffect extends Effect {
 }
 
 export class PixelRainEffectRun extends PixelRainEffect {
-    constructor (canvas, image, fps, speed, particleSpacing) {
+    constructor (canvas, image, fps, speed, particleSpacing, imageFilter) {
         setCanvas(canvas, image)
-        super(canvas.width, canvas.height, image, speed, particleSpacing)
+        super(canvas.width, canvas.height, image, speed, particleSpacing, imageFilter)
         this.fps = fps
         this.canvas = canvas
         this.ctx = canvas.getContext("2d")

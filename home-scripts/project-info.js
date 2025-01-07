@@ -28,8 +28,8 @@ export function injectExtraContent (link) {
         </h3>
         <span class="info-description info-detail">
             ${dataset.description.trim() || 'No description available'}
-            <span data-value="${dataset.teacher}">
-               , teach by <a href="${teachers[dataset.teacher].url}">${teachers[dataset.teacher].name}</a>
+            <span data-value="${dataset.teacher || ''}">
+               , teach by <a href="${teachers[dataset.teacher]?.url}">${teachers[dataset.teacher]?.name}</a>
             </span>
         </span>
             <!--        <div class="info-actions">-->
