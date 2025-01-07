@@ -16,14 +16,15 @@ export function injectExtraContent (link) {
     var template = `
           <h3 class="info-title">⬡
                 <span id="info-title" data-value="${dataset.title}">${dataset.title}</span> |
-                <span id="info-year" data-value="${dataset.year}">${dataset.year}</span>
+                <span id="info-year" data-value="${dataset.year}">${dataset.year}</span> |
+                <a href="${dataset.source}" data-value="${dataset.source}" class="info-detail" target="_blanck"><strong>⎇Github</strong></a>
+                    <a href="${dataset.npm}"  data-value="${dataset.npm}" class="info-detail" target="_blanck"><strong>⚙ NPM</strong></a>
                 <div class="info-content">
                     <span class="info-detail" data-value="${dataset.stack}">
                         <strong>Stack▯</strong>
                         <span class="info-value info-stack">${dataset.stack}</span>
                     </span>
-                    <a href="${dataset.source}" data-value="${dataset.source}" class="info-detail" target="_blanck"><strong>⎇Github</strong></a>
-                    <a href="${dataset.npm}"  data-value="${dataset.npm}" class="info-detail" target="_blanck"><strong>⚙ NPM</strong></a>
+                    
                 </div>
         </h3>
         <span class="info-description info-detail">
