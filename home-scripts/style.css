@@ -1,4 +1,4 @@
-@import './info-style.css';
+@import 'info-style.css';
 
 body {
     display: flex;
@@ -76,7 +76,7 @@ a.sidebar-link, .sidebar-link > a {
 
     }
 
-    &:target {
+    &:target,&[aria-selected=true] {
         background-color: var(--color-primary);
         color: var(--color-background);
         position: relative;

@@ -354,7 +354,7 @@ p{
         color: var(--text-primary);
         transition: color var(--transition-normal), border-color var(--transition-normal);
 
-        &[aria-selected="true"] {
+        &[aria-selected="true"], &:target {
             font-weight: bold;
             border-color: var(--color-primary);
             color: var(--color-primary);
