@@ -53,7 +53,9 @@ body {
 
     margin-bottom: var(--space-4);
 }
-
+.sidebar-link > :not(a){
+    display: none;
+}
 a.sidebar-link, .sidebar-link > a {
     display: block;
     padding: var(--space-2);
