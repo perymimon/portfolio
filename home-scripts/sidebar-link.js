@@ -12,8 +12,10 @@ export function processLink () {
         const href = link.getAttribute('href')
          var id = href
             .replace(/^https?:\/\//, '')
+             .replace(/\?.*/,'')
             .replace(/[\/.]/g, '-')
             .replace(/(-index.html)?-?$/, '')
+             .toLowerCase()
         link.id = id
         link.dataset.href = href
         link.href = '#' + id
