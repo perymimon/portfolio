@@ -1,11 +1,15 @@
 const teachers = {
     '@Radu': {
         url: 'https://www.youtube.com/@Radu',
-        name: 'Dr.Radu Mariescu-Istodor',
+        name: 'Dr.Radu',/*Mariescu-Istodor*/
     },
     '@Frank':{
         url: 'https://www.youtube.com/@Frankslaboratory',
         name:'@Franks'
+    },
+    '@me':{
+        url: 'https://github.com/perymimon',
+        name: '@pery'
     }
 }
 
@@ -13,7 +17,7 @@ export function injectProjectInfo (link) {
     // var template = document.querySelector('#template-info').content.cloneNode(true);
     var mainLink = document.getElementById(link.dataset.mainLink) || link
     var data = mainLink !== link ?{...mainLink.dataset, ...link.dataset}: link.dataset
-
+    var teacher = teachers[data.teacher]
     var infoPanel = document.getElementById('project-info')
 
     var tabList = mainLink.parentElement.querySelector(':scope > [role="tablist"]')
@@ -29,15 +33,18 @@ export function injectProjectInfo (link) {
                     <span class="info-detail" data-value="${data.stack}">
                         <strong>Stack▯</strong>
                         <span class="info-value info-stack">${data.stack}</span>
+                        <span data-value="${data.teacher}">
+                            , seed 
+                            <a href="${teacher?.url}">${teacher?.name}</a>
+                        </span>
                     </span>
-                    <span data-value="${data.teacher || ''}">
-                   , seed <a href="${teachers[data.teacher]?.url}">${teachers[data.teacher]?.name}</a>
-                    </span>
+                    
+                   
                 </div>
           </h3>
           <div class="bottom-bar">
             <span class="info-description info-content info-detail">
-                ${data.description.trim() || 'No description available'}
+                ${data.description?.trim() || 'No description available'}
                 
             </span>
             ${tabList?.outerHTML || ''}
