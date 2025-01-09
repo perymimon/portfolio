@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <title>practicals</title>
     <link rel="stylesheet" href="../style.css">
+    <style>
+        canvas {
+            filter: blur(7px) contrast(2);
+        }
+    </style>
 </head>
 <body>
-<style>
-    canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-</style>
-<canvas id="canvas1"></canvas>
-<canvas id="canvas2"></canvas>
+<canvas id="canvas1" class="with-opaque-background"></canvas>
+<canvas id="canvas2" class="with-opaque-background"></canvas>
 <script src="script.js" type="module"></script>
 </body>
 </html>

@@ -10,9 +10,8 @@
     flex-direction: column;
     gap: var(--space-2); /* Small gap between sections */
     margin: var(--space-2);
-
-
 }
+
 .info-value{
     text-transform: capitalize;
 }
@@ -29,8 +28,9 @@
     /*display: inline-flex; !* Align items horizontally *!*/
     gap: var(--space-1); /* Space between label and value */
     color: var(--text-secondary);
-    text-transform: uppercase;
-    &[data-value=""], & [data-value=""] {
+    /*text-transform: uppercase;*/
+    :is(&, & *)[data-value=""],
+    :is(&, & *)[data-value="undefined"]{
         display: none;
     }
 }

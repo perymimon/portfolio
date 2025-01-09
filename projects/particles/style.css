@@ -13,15 +13,25 @@ body{
     position: absolute;
     top: 0;
     left: 0;
+
+}
+canvas.with-transparency-background{
+    mix-blend-mode: color-dodge;
+}
+canvas.with-opaque-background{
+    mix-blend-mode: screen;
 }
 
 h1{
     color: white;
-    font-size: 2vw;
+    font-size:  10svw;
     font-family:Impact, cursive;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-top: 5px solid white;
+}
+img{
+    display: none;
 }
