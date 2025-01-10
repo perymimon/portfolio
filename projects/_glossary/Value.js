@@ -22,8 +22,6 @@ export class Value {
         if (this.mode === 'reset') this.offLimitMethod = this.reset
         if (this.mode === 'warp') this.offLimitMethod = this.warp
         if (this.mode === 'random') this.offLimitMethod = this.random
-
-
     }
 
     update () {

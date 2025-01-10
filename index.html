@@ -145,12 +145,26 @@
     import {PixelRainEffectRun} from './projects/_glossary/PixelRain.effect.js'
     import {getImage} from './projects/_helpers/basic.js'
     import {processLink} from './home-scripts/sidebar-link.js'
+    import {
+        brightnessProcessors, channels,
+        getImageData,
+        processImageData,
+        rampUpProcessors, thresholdProcessors,
+    } from './projects/_helpers/color.js'
     import {linkPageFromParent, toggleTheme} from './projects/_helpers/link-page.js'
 
     var image = await getImage('#me-photo')
     var canvas = document.getElementById('avatar-canvas')
-    new PixelRainEffectRun(canvas, image, 20, 7, '200', 'brightness(2) contrast(2) grayscale(1)').start()
-
+    var imageData = getImageData(image)
+    imageData = processImageData(imageData, [
+        brightnessProcessors()
+        , rampUpProcessors('r', 4)
+        , channels('rrr'),
+    ])
+    new PixelRainEffectRun(canvas, imageData, {
+        fps: 30, speed: .5, particleSpacing: 40,
+        minSize: 1, maxSize: 1,
+    }).start()
     const themeToggle = document.getElementById('theme-toggle')
     themeToggle.addEventListener('click', toggleTheme)
     linkPageFromParent()
