@@ -1,3 +1,4 @@
+@import '../base.css' ;
 @import 'info-style.css';
 
 body {
@@ -29,6 +30,7 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 #content-frame {
@@ -133,25 +135,33 @@ a.sidebar-link, .sidebar-link > a {
 }
 
 #avatar {
-    position: absolute;
-    inset: var(--space-4);
+    position: relative;
     mix-blend-mode: screen;
     pointer-events: none;
     opacity: 0.8;
     z-index: 0;
+    height: 5em;
+    background: inherit;
+    float:left;
+    margin-inline-end:var(--space-2);
+
 
     img {
-        position: absolute;
-        left: 0;
-        width: 100%;
+        position: relative;
         height: 100%;
+        background-image:radial-gradient(black, transparent);
+        background-size: cover;
+        background-blend-mode: multiply;
+        /*filter: grayscale(100%) hue-rotate(120deg);*/
+
     }
 
     canvas {
         width: 100%;
         height: 100%;
-        position: relative;
+        position: absolute;
         z-index: 1;
+        mix-blend-mode: screen;
     }
 }
 

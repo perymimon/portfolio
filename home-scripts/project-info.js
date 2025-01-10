@@ -12,7 +12,6 @@ const teachers = {
         name: '@pery'
     }
 }
-
 export function injectProjectInfo (link) {
     // var template = document.querySelector('#template-info').content.cloneNode(true);
     var mainLink = document.getElementById(link.dataset.mainLink) || link
@@ -22,25 +21,29 @@ export function injectProjectInfo (link) {
 
     var tabList = mainLink.parentElement.querySelector(':scope > [role="tablist"]')
 
+    infoPanel.classList.remove(infoPanel.dataset.extraClasses)
+    infoPanel.classList.add(data.layout)
+    infoPanel.dataset.extraClasses = data.layout
+
+
     var template = `
-          <h3 class="info-title">⬡
-                <span id="info-title" data-value="${data.title}">${data.title}</span> |
-                <span id="info-year" data-value="${data.year}">${data.year}</span> |
-                <a href="${data.source}" data-value="${data.source}" class="info-detail" target="_blanck"><strong>⎇Github</strong></a>
-                    <a href="${data.npm}"  data-value="${data.npm}" class="info-detail" target="_blanck"><strong>⚙ NPM</strong></a>
-                 
-                <div class="info-content">
-                    <span class="info-detail" data-value="${data.stack}">
-                        <strong>Stack▯</strong>
-                        <span class="info-value info-stack">${data.stack}</span>
-                        <span data-value="${data.teacher}">
-                            , seed 
-                            <a href="${teacher?.url}">${teacher?.name}</a>
-                        </span>
+          <h3 class="info-title>⬡
+            <span id="info-title" data-value="${data.title}">${data.title}</span> |
+            <span id="info-year" data-value="${data.year}">${data.year}</span> |
+            <a href="${data.source}" data-value="${data.source}" class="info-detail" target="_blanck"><strong>⎇Github</strong></a>
+            <a href="${data.npm}"  data-value="${data.npm}" class="info-detail" target="_blanck"><strong>⚙ NPM</strong></a>
+             
+            <div class="info-content">
+                <span class="info-detail" data-value="${data.stack}">
+                    <strong>Stack▯</strong>
+                    <span class="info-value info-stack">${data.stack}</span>
+                    <span data-value="${data.teacher}">, seed 
+                        <a href="${teacher?.url}">${teacher?.name}</a>
                     </span>
-                    
-                   
-                </div>
+                </span>
+                
+               
+            </div>
           </h3>
           <div class="bottom-bar">
             <span class="info-description info-content info-detail">

@@ -1,3 +1,4 @@
+@import 'home-scripts/view-transition-animation.css';
 /*reset*/
 *{
     box-sizing: border-box;
@@ -55,7 +56,7 @@ body, html {
 
     /* Text Colors */
     --text-primary: light-dark(hsl(120, 100%, 50%), hsl(120, 40%, 60%)); /* Neon Green */
-    --text-secondary: light-dark(hsl(120, 80%, 70%), hsl(120, 20%, 50%));
+    --text-secondary: light-dark(hsl(120, 80%, 70%), hsl(120, 20%, 60%));
     --text-muted: light-dark(hsl(120, 40%, 40%), hsl(120, 10%, 35%));
     --text-inverse: light-dark(hsl(290, 100%, 50%), hsl(290, 100%, 60%)); /* White vs Deep Green */
 
@@ -198,6 +199,7 @@ body, html {
 /* Elements */
 body{
     background-color: var(--color-background);
+    color: var(--text-primary);
 }
 a{
     font-family: var(--font-family-mono), monospace;
@@ -215,18 +217,17 @@ h1,h2{
     font-weight: var(--font-weight-bold);
 }
 h1{
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-relative-2xl);
     margin-bottom: var(--space-1);
 }
 h2{
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-relative-xl);
     margin-bottom: var(--space-2);
 }
 h3{
     font-family:var(--font-family-mono), monospace;
     font-weight: var(--font-weight-bold);
     padding: var(--space-2);
-    color: var(--text-secondary);
     margin: 0 ;
 }
 

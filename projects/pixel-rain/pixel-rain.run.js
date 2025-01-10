@@ -4,7 +4,7 @@ import {getImageData} from '../_helpers/color.js'
 import {FrameEngine} from '../_helpers/FrameEngine.js'
 
 var image = await getImage('./hacker2.webp')
-
+// var image = await getImage('../../assets/me.jpg')
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 canvas.width = image.width;
@@ -16,7 +16,7 @@ var effect1 = new PixelRainEffect(canvas.width, canvas.height, grayscaleImageDat
 var fps = 60
 var framesEngine = new FrameEngine(fps, e => {
     effect1.update()
-    effect1.draw(ctx)
+    effect1.draw(ctx, false)
 })
 framesEngine.start()
 
