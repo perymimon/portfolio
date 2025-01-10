@@ -6,8 +6,8 @@ body {
     align-items: stretch;
     background-color: var(--color-background);
     gap: var(--space-4);
-
     height:100vh;
+    padding-inline-end: var(--space-2);
 
     header {
         padding-block: var(--space-1);
