@@ -1,8 +1,19 @@
+#project-info {
+    view-transition-name:project-info-pannel;
+
+}
+
 @view-transition {
     navigation: auto;
 }
 ::view-transition-group(root) {
     animation-duration: 0.5s;
+}
+::view-transition-old(project-info-pannel){
+
+}
+::view-transition-new(project-info-pannel) {
+    /*position: relative;*/
 }
 /* Create a custom animation */
 

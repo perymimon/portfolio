@@ -67,8 +67,20 @@ export function processLink () {
         }
     }
 
-    window.addEventListener('hashchange', () => { loadContent(); });
-    window.addEventListener('load', () => { loadContent() });
+    window.addEventListener('hashchange', () => {
+        startViewTransition( () => loadContent());
+    });
+    window.addEventListener('load', () => {
+        startViewTransition( () => loadContent());
+    });
 
 }
 
+function startViewTransition(viewEffect){
+    if (!document.startViewTransition) {
+        return void viewEffect();
+
+    }
+    // With View Transitions (return promise)
+    return document.startViewTransition(viewEffect);
+}
