@@ -7,15 +7,16 @@ export function processLink () {
     const contentFrame = document.querySelector(frameSelector)
 
     links.forEach(link => {
-        var sidebarLink =link.closest('.sidebar-link')
+        var sidebarLink = link.closest('.sidebar-link')
         var parentLink = sidebarLink.querySelector(':scope > a')
         const href = link.getAttribute('href')
-         var id = href
-            .replace(/^https?:\/\//, '')
-             .replace(/\?.*/,'')
-            .replace(/[\/.]/g, '-')
-            .replace(/(-index.html)?-?$/, '')
-             .toLowerCase()
+        var id = href
+            .replace(/[\/:.]/g, '-')
+            .replace(/^(https?)?-*/, '')
+            .replace(/\?.*/, '')
+            .replace(/-*(com|html)-*$/g,'')
+            .toLowerCase()
+        console.log(id, href)
         link.id = id
         link.dataset.href = href
         link.href = '#' + id
@@ -39,9 +40,11 @@ export function processLink () {
                 link = subActiveLink ?? link
                 contentFrame.src = link.dataset.href
                 injectProjectInfo(link)
-            } else {
-                contentFrame.src = 'welcome.html';
             }
+        } else {
+            link = document.querySelector('[data-href*="welcome"]')
+            if (link) loadContent('#'+link.id)
+            else contentFrame.src = 'welcome.html';
         }
     }
 

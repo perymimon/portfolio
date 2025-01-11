@@ -36,6 +36,7 @@
     animation: 0.4s ease-in both move-in;
 }
 /*
+https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using
 figcaption {
      view-transition-name: figure-caption;
  }

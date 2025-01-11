@@ -8,6 +8,8 @@
     box-shadow: var(--shadow-sm);
     gap: var(--space-2); /* Small gap between sections */
     margin: var(--space-2);
+    display: block;
+    transition: none;
 }
 
 .info-container {
@@ -17,6 +19,9 @@
         right: var(--space-2);
         background-color: color(from var(--component-bg) srgb r g b / 0.5);
         text-shadow: hsl(from var(--text-primary) h s calc(l - 20 ) ) 0em 0.1em .1em;
+    }
+    &.disapear{
+        display: none;
     }
 
 }

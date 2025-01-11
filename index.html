@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio Landing Page</title>
     <link rel="stylesheet" href="home-scripts/style.css">
+    <link rel="expect" href="#project-info" blocking="render">
 </head>
 <body>
+
 <aside id="sidebar" class="scrollbar-custom">
+
     <div class="sidebar-header">
         <div id="avatar">
             <canvas id="avatar-canvas"></canvas>
             <img src="assets/me.jpg" id="me-photo" alt="Avatar of me"/>
         </div>
-        <h2 class="sidebar-title"><a href="welcome.html" target="content-frame">Hello Worlds</a></h2>
+        <h2 class="sidebar-title"><a href="welcome.html" target="content-frame">Hello World<span
+                class="last-letter">s</span></a></h2>
         <h3 class="sidebar-subtitle">spine up creative Code from scratch</h3>
     </div>
     <nav>
         <div class="sidebar-separator"></div>
+
+        <a href="./welcome.html" class="sidebar-link"
+           data-layout="disapear"
+        >
+            Welcome
+        </a>
         <div class="sidebar-section-title">
             Side projects by
             <a href="https://github.com/perymimon?tab=repositories" target="_blank">me</a></div>
@@ -77,7 +87,7 @@
                data-description="Basic particle effects, responsive to mouse interactions."
                data-teacher="@Frank"
                data-tutorial="https://www.youtube.com/watch?v=PoDjjHh931c"
-               data-layout ="top-floating"
+               data-layout="top-floating"
             >
                 Particles
             </a>
@@ -122,7 +132,7 @@
            data-description="A matrix rain, create with vanilla es6 on canvas and some css filter"
            data-teacher="@Frank"
            data-tutorial="https://www.youtube.com/watch?v=f5ZswIE_SgY"
-           data-layout ="top-floating"
+           data-layout="top-floating"
         >Matrix rain</a>
         <a href="projects/pixel-rain/index.html" class="sidebar-link"
            data-title="Pixels rain"
@@ -131,13 +141,14 @@
            data-description="What if we change the speed of the particles by the luminosity of hidden image"
            data-teacher="@Frank"
            data-tutorial=""
-           data-layout ="top-floating"
+           data-layout="top-floating"
         >Pixels rain</a>
 
     </nav>
-
-
 </aside>
+<button class="sidebar-toggle-button button-base">
+    ☰ Glossary
+</button>
 <main id="main-content">
     <div id="project-info" class="info-container component-base">
     </div>
@@ -146,35 +157,25 @@
 <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
     🌓
 </button>
+
 <script type="module">
-
-    import {PixelRainEffectRun} from './projects/_glossary/PixelRain.effect.js'
-    import {getImage} from './projects/_helpers/basic.js'
     import {processLink} from './home-scripts/sidebar-link.js'
-    import {
-        brightnessProcessors, channels,
-        getImageData,
-        processImageData,
-        rampUpProcessors, thresholdProcessors,
-    } from './projects/_helpers/color.js'
     import {linkPageFromParent, toggleTheme} from './projects/_helpers/link-page.js'
+    import './home-scripts/avatar-effect.js'
 
-    var image = await getImage('#me-photo')
-    var canvas = document.getElementById('avatar-canvas')
-    var imageData = getImageData(image)
-    imageData = processImageData(imageData, [
-        brightnessProcessors()
-        , rampUpProcessors('r', 4)
-        , channels('rrr'),
-    ])
-    new PixelRainEffectRun(canvas, imageData, {
-        fps: 30, speed: .5, particleSpacing: 40,
-        minSize: 1, maxSize: 1,
-    }).start()
-    const themeToggle = document.getElementById('theme-toggle')
+    var themeToggle = document.getElementById('theme-toggle')
     themeToggle.addEventListener('click', toggleTheme)
     linkPageFromParent()
     processLink()
+
+    var toggleThemes = document.querySelector('.sidebar-toggle-button')
+    var sidebar = document.querySelector('#sidebar')
+
+    window.addEventListener('hashchange',ev => sidebar.classList.remove('open'))
+
+    toggleThemes.addEventListener('click',
+        ev => sidebar.classList.toggle('open'),
+    )
 
 </script>
 </body>
