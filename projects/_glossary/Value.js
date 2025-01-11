@@ -24,13 +24,17 @@ export class Value {
         if (this.mode === 'random') this.offLimitMethod = this.random
     }
 
+    onOffLimit () {}
+
     update () {
         this.speed += this.velocity
         this.v += this.speed
         if (this.exceedsLimits) {
             this.offLimitMethod()
-            for(let v of this.linked){
+            this.onOffLimit()
+            for (let v of this.linked) {
                 v.offLimitMethod()
+                v.onOffLimit()
             }
         }
     }
