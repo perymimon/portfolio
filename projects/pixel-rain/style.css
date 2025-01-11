@@ -1,4 +1,5 @@
 @import "../../base.css";
+@import '../project-base.css';
 #canvas1{
     position: absolute;
     top: 0;

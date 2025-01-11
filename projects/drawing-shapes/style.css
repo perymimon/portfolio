@@ -1,4 +1,5 @@
 @import '../../base.css';
+@import '../project-base.css';
 
 body {
     display: flex;

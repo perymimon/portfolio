@@ -14,7 +14,7 @@ export function processLink () {
             .replace(/[\/:.]/g, '-')
             .replace(/^(https?)?-*/, '')
             .replace(/\?.*/, '')
-            .replace(/-*(com|html)-*$/g,'')
+            .replace(/-*(com|html)-*$/g, '')
             .toLowerCase()
         console.log(id, href)
         link.id = id
@@ -39,11 +39,11 @@ export function processLink () {
                     ?.querySelector('[aria-selected="true"]')
                 link = subActiveLink ?? link
                 contentFrame.src = link.dataset.href
-                injectProjectInfo(link)
+                startViewTransition(_ => injectProjectInfo(link))
             }
         } else {
             link = document.querySelector('[data-href*="welcome"]')
-            if (link) loadContent('#'+link.id)
+            if (link) loadContent('#' + link.id)
             else contentFrame.src = 'welcome.html';
         }
     }
@@ -67,16 +67,12 @@ export function processLink () {
         }
     }
 
-    window.addEventListener('hashchange', () => {
-        startViewTransition( () => loadContent());
-    });
-    window.addEventListener('load', () => {
-        startViewTransition( () => loadContent());
-    });
+    window.addEventListener('hashchange', () =>  loadContent())
+    window.addEventListener('load', () => loadContent())
 
 }
 
-function startViewTransition(viewEffect){
+function startViewTransition (viewEffect) {
     if (!document.startViewTransition) {
         return void viewEffect();
 

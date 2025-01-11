@@ -1,4 +1,5 @@
 @import "../../base.css";
+@import '../project-base.css';
 :root{
     --color-char: var(--text-primary);
     --color-bg: hsl( from var(--color-background) h s l / 99.9%);
