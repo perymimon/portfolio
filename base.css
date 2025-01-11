@@ -124,12 +124,18 @@ body, html {
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
+    /*blur*/
+    --blur-sm: 2px;
+    --blur-md: 6px;
+    --blur-lg: 15px;
+
     /* Transitions */
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Z-index */
+    --z-index-above-absolute:1;
     --z-index-dropdown: 1000;
     --z-index-sticky: 1020;
     --z-index-fixed: 1030;
@@ -200,6 +206,8 @@ body, html {
 body{
     background-color: var(--color-background);
     color: var(--text-primary);
+    width:100vw;
+    height:100vh;
 }
 a{
     font-family: var(--font-family-mono), monospace;
@@ -316,7 +324,9 @@ p{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
+.transition-all{
+    transition: all var(--transition-normal) allow-discrete;
+}
 .scrollbar-custom {
     scrollbar-width: thin;
     scrollbar-color: var(--color-muted) transparent;
