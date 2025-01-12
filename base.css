@@ -1,7 +1,7 @@
-@import 'home-scripts/view-transition-animation.css';
 /*reset*/
 *{
     box-sizing: border-box;
+    transition-behavior: allow-discrete;
 }
 /* Design System CSS */
 @font-face {

@@ -1,5 +1,6 @@
 @import '../base.css';
 @import 'project-info-style.css';
+@import 'home-scripts/view-transition-animation.css';
 
 body {
     display: flex;
@@ -10,6 +11,8 @@ body {
 
 #sidebar {
     anchor-name: --sidebar;
+    display:flex;
+    flex-direction: column;
     position: relative;
     width: var(--sidebar-width);
     background-color: var(--component-bg);
@@ -17,7 +20,6 @@ body {
     border-right: 6px solid var(--component-border);
     border-block: 6px solid var(--component-border);
     padding: var(--space-4);
-    overflow-y: auto;
     border-image: linear-gradient(to left, var(--color-border) 2px, transparent 2px, transparent 4px, var(--color-border) 4px, transparent 40px) 6;
     transition: transform 0.3s ease;
 
@@ -25,7 +27,7 @@ body {
         height: 100vh;
     }
     @media (orientation: portrait) {
-        height: 100vh;
+        height: 100dvh;
         position: fixed;
         top: 0;
         left: 0;
@@ -42,15 +44,30 @@ body {
         transform: translateX(0);
     }
 }
-
+nav{
+    overflow-y: auto;
+    flex: 1;
+}
 button.sidebar-toggle-button {
+    &::before{
+        content: '☰ Glossary';
+    }
     position: fixed;
-    position-anchor: --sidebar;
-    justify-self: left;
-    bottom: anchor(bottom);
+    width:max-content;
+    top: 0;
+    left:100%;
+    transform: translateX(0);
     z-index: calc(var(--z-index-popover) + 1);
+    transition: transform var(--transition-slow)  allow-discrete;
     @media (orientation: landscape) {
         display: none;
+    }
+
+    .open &{
+        transform: translateX(-100%);
+        &::before{
+            content: "X close";
+        }
     }
 }
 
@@ -70,7 +87,8 @@ button.sidebar-toggle-button {
 }
 
 .sidebar-header {
-    margin-bottom: var(--space-4);
+    margin-block: var(--space-4);
+    margin-block-end: var(--space-1);
 }
 
 .sidebar-title {
@@ -86,8 +104,6 @@ button.sidebar-toggle-button {
 
 .sidebar-subtitle {
     font-size: var(--font-size-sm);
-
-    margin-bottom: var(--space-4);
 }
 
 .sidebar-link > :not(a) {
