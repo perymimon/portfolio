@@ -18,7 +18,7 @@
         left: var(--space-2);
         right: var(--space-2);
         background-color: color(from var(--component-bg) srgb r g b / 0.5);
-        text-shadow: hsl(from var(--text-primary) h s calc(l - 20 ) ) 0em 0.1em .1em;
+        text-shadow: hsl(from var(--text-primary) h s 0 ) 0em 0.1em .1em;
     }
     &.disapear{
         display: none;
@@ -59,6 +59,8 @@
 /* bottom-bar */
 .bottom-bar {
     display: flex;
+    flex-wrap: wrap;
+    row-gap: var(--space-2);
     justify-content: space-between;
 }
 
