@@ -142,6 +142,7 @@ class Effect {
 
 const effect = new Effect(canvas);
 effect.handleParticles(ctx)
+var requestId = null
 
 function animation () {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -158,7 +159,10 @@ function animation () {
         ctx.stroke()
         ctx.restore()
     }
-    requestAnimationFrame(animation)
+    requestId =requestAnimationFrame(animation)
 }
 
-requestAnimationFrame(animation)
+requestId =requestAnimationFrame(animation)
+window.addEventListener("pageswap", (e) =>{
+    cancelAnimationFrame(requestId)
+})

@@ -209,7 +209,7 @@ class Effect {
         this.particles.forEach((particle) => particle.resize())
     }
 }
-
+var requestId = null
 window.addEventListener('load', () => {
     const effect = new Effect(canvas);
 
@@ -223,8 +223,11 @@ window.addEventListener('load', () => {
         lastTimeStamp = timeStamp;
         effect.handleParticles(ctx, deltaTime);
 
-        requestAnimationFrame(animation)
+        requestId = requestAnimationFrame(animation)
     }
 
-    requestAnimationFrame(animation)
+    requestId = requestAnimationFrame(animation)
+})
+window.addEventListener("pageswap", (e) =>{
+    cancelAnimationFrame(requestId)
 })

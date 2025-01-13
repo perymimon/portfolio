@@ -160,6 +160,7 @@ class Effect {
 const effect = new Effect(canvas);
 effect.handleParticles(ctx)
 
+var requestId = null
 function animation () {
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save()
@@ -176,7 +177,11 @@ function animation () {
         drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
         ctx.restore()
     }
-    requestAnimationFrame(animation)
+    requestId =requestAnimationFrame(animation)
 }
 
-requestAnimationFrame(animation)
+requestId = requestAnimationFrame(animation)
+
+window.addEventListener("pageswap", (e) =>{
+    cancelAnimationFrame(requestId)
+})

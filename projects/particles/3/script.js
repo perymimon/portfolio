@@ -157,6 +157,7 @@ class Effect {
     }
 }
 
+var requestId = null
 
 window.addEventListener("load", function () {
     const effect = new Effect(canvas);
@@ -173,9 +174,12 @@ window.addEventListener("load", function () {
         //     drawAlgebra.circle(ctx, m, m.radius, {drawFill: true, drawStroke: true})
         //     ctx.restore()
         // }
-        requestAnimationFrame(animation)
+        requestId =requestAnimationFrame(animation)
+
     }
 
-    requestAnimationFrame(animation)
-
+    requestId =requestAnimationFrame(animation)
+})
+window.addEventListener("pageswap", (e) =>{
+    cancelAnimationFrame(requestId)
 })

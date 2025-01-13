@@ -18,6 +18,7 @@ export function injectProjectInfo (link) {
     var data = mainLink !== link ?{...mainLink.dataset, ...link.dataset}: link.dataset
     var teacher = teachers[data.teacher]
     var infoPanel = document.getElementById('project-info')
+    var bottomBar = document.getElementById('bottom-bar')
 
     var tabList = mainLink.parentElement.querySelector(':scope > [role="tablist"]')
 
@@ -41,16 +42,12 @@ export function injectProjectInfo (link) {
                         <a href="${teacher?.url}">${teacher?.name}</a>
                     </span>
                 </span>
-                
-               
             </div>
           </h3>
           <div class="bottom-bar">
             <span class="info-description info-content info-detail">
                 ${data.description?.trim() || 'No description available'}
-                
             </span>
-            ${tabList?.outerHTML || ''}
           </div>
             
         
@@ -60,4 +57,5 @@ export function injectProjectInfo (link) {
             <!--        </div>-->
     `
     infoPanel.innerHTML = template
+    bottomBar.replaceChildren(tabList?.cloneNode(true) ?? '')
 }

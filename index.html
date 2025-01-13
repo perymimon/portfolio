@@ -25,11 +25,11 @@
 
     <title>Hello Worlds</title>
     <link rel="stylesheet" href="home-scripts/style.css">
-<!--    <link rel="expect" href="#project-info" blocking="render">-->
+    <link rel="expect" href="#project-info" blocking="render">
 </head>
 <body>
 
-<aside id="sidebar" class="scrollbar-custom open">
+<aside id="sidebar" class="scrollbar-custom">
 
     <div class="sidebar-header">
         <div id="avatar">
@@ -112,7 +112,7 @@
                 Particles
             </a>
             <div role="tablist" aria-label="Particles Demo">
-                particles
+                ☆
                 <div>
                     <a role="tab" aria-selected="true" aria-controls="content-frame"
                        href="projects/particles/1/index.html"
@@ -142,6 +142,7 @@
                        data-title="With Gradient"
                        href="projects/particles/7/index.html">7 </a>
                 </div>
+                ☆
             </div>
 
         </div>
@@ -174,20 +175,22 @@
     <div id="project-info" class="info-container component-base">
     </div>
     <iframe id="content-frame" name="content-frame" src="welcome.html"></iframe>
+    <div id="bottom-bar" class="component-base">
+        sdfsfsd
+    </div>
 </main>
 <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
     🌓
 </button>
 
 <script type="module">
-    import {processLink} from './home-scripts/sidebar-link.js'
+    import './home-scripts/sidebar-link.js'
     import {linkPageFromParent, toggleTheme} from './projects/_helpers/link-page.js'
     import './home-scripts/avatar-effect.js'
 
     var themeToggle = document.getElementById('theme-toggle')
     themeToggle.addEventListener('click', toggleTheme)
     linkPageFromParent()
-    processLink()
 
     var toggleThemes = document.querySelector('.sidebar-toggle-button')
     var sidebar = document.querySelector('#sidebar')

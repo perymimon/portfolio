@@ -10,6 +10,7 @@
     margin: var(--space-2);
     display: block;
     transition: none;
+    z-index: var(--z-index-above-absolute);
 }
 
 .info-container {
