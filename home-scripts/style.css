@@ -35,6 +35,8 @@ nav{
 }
 
 #bottom-bar{
+    display: flex;
+    justify-content: space-between;
     line-height: 2em;
     position: absolute;
     left: var(--space-2);
@@ -46,6 +48,21 @@ nav{
         position: fixed;
     }
 
+    #tabs-container {
+        display: flex;
+        justify-content: center;
+        flex:1;
+    }
+    #theme-toggle {
+        background-color: var(--component-bg);
+        bottom: var(--space-4);
+        right: var(--space-4);
+
+        &:hover {
+            border-color: var(--component-border);
+            background-color: var(--component-hover);
+        }
+    }
 }
 .extra-info {
     /*display: none;*/
@@ -53,17 +70,7 @@ nav{
 
 }
 
-#theme-toggle {
-    position: fixed;
-    background-color: var(--component-bg);
-    bottom: var(--space-4);
-    right: var(--space-4);
 
-    &:hover {
-        border-color: var(--component-border);
-        background-color: var(--component-hover);
-    }
-}
 
 #avatar {
     position: relative;
