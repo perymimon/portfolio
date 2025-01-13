@@ -3,13 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Pery Mimon">
+    <!-- Open Graph Meta Data -->
+    <meta property="og:title" content="My Portfolio Landing Page">
+    <meta property="og:description" content="Spine up creative Code from scratch">
+    <meta property="og:image" content="./assets/site-image.png">
+    <meta property="og:image:alt" content="developing code">
+    <meta property="og:url" content="https://perymimon.github.io/portofolio/">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="My Portfolio Landing Page">
+    <meta name="twitter:description" content="Spine up creative Code from scratch">
+    <meta name="twitter:image" content="./assets/site-image.png">
+    <!-- Favicon and Other Visual Assets-->
+    <link rel="icon" href="./assets/site-image.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./assets/site-image.png">
+    <meta name="theme-color" content="hsl(120, 50%, 50%)">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="hsl(120, 15%, 5%)" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="light-dark(hsl(120, 30%, 95%)" />
+
     <title>My Portfolio Landing Page</title>
     <link rel="stylesheet" href="home-scripts/style.css">
 <!--    <link rel="expect" href="#project-info" blocking="render">-->
 </head>
 <body>
 
-<aside id="sidebar" class="scrollbar-custom">
+<aside id="sidebar" class="scrollbar-custom open">
 
     <div class="sidebar-header">
         <div id="avatar">
@@ -145,10 +165,11 @@
         >Pixels rain</a>
 
     </nav>
+    <button class="sidebar-toggle-button button-base">
+    <!-- ☰ Glossary -->
+    </button>
 </aside>
-<button class="sidebar-toggle-button button-base">
-    ☰ Glossary
-</button>
+
 <main id="main-content">
     <div id="project-info" class="info-container component-base">
     </div>
