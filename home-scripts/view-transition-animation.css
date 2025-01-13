@@ -23,12 +23,12 @@
 }
 
 ::view-transition-old(project-info-pannel) {
-    animation: 0.3s ease-in-out forwards dust;
+    animation: 0.3s ease-in-out both dust;
 
 }
 
 ::view-transition-new(project-info-pannel) {
-    animation: 0.3s ease-in-out reverse dust;
+    animation: 0.3s ease-in-out both dust;
 }
 
 /* Create a custom animation */

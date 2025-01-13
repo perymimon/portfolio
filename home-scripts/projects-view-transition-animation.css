@@ -44,11 +44,11 @@
 ::view-transition-old(main-content-frame) {
     transform-style: preserve-3d;
     transform-origin: right center;
-    animation: 0.5s ease-in forwards move-out;
+    animation: 0.5s ease-in both move-out;
 }
 
 ::view-transition-new(main-content-frame) {
     transform-style: preserve-3d;
     transform-origin: left center;
-    animation: 0.5s ease-in forwards move-in;
+    animation: 0.5s ease-in both move-in;
 }
