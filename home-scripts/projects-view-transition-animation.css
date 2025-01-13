@@ -1,7 +1,7 @@
 @view-transition {
     navigation: auto;
 }
-#main-content{
+#content-frame{
     view-transition-name: main-content-frame;
 }
 
