@@ -9,98 +9,25 @@
 <body>
 <div class="right-side">
     <div id="toc"></div>
+    <label id="color-hue-selector" style="--min: 0;--max: 360">
+        <div id="fancy-cube" class="cube" style="display:inline-block">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+        Hue
+        <input value="120" type="range" id="colors-range" min="0" max="360">
+        <output for="colors-range"></output>
+    </label>
+    <!--    <input id="colors-range" type="range" min="0" max="359" step="1" value="120" >-->
+    <!--    <div id="color-range-value">230</div>-->
 </div>
-<div id="codeSnippets" class="left-side scrollbar-custom"></div>
-<script type="module">
-    import drawItemGenerators from './index.js'
-    import hljs from './libs/highlight/es/highlight.js'
-    import javascript from './libs/highlight/es/languages/javascript.js';
+<div id="snippets" class="left-side scrollbar-custom"></div>
+<script type="module" src="./draw.js"></script>
 
-    hljs.registerLanguage('javascript', javascript);
-
-    var toc = document.getElementById('toc')
-    var cellSize = 200
-    var dayes = 24
-    var canvases = Array(dayes).fill(1).map(() => {
-        let canvas = document.createElement('canvas');
-        canvas.width = cellSize;
-        canvas.height = cellSize;
-        return canvas;
-    })
-    for (let i = 0; i < dayes; i++) {
-        let canvas = canvases[i];
-        toc.appendChild(canvas);
-        fillCell(i, canvas);
-        await snippetSection(i)
-        canvas.addEventListener('click', function (event) {
-            event.preventDefault();
-            canvases.forEach((c) => c.classList.remove('active'));
-            canvas.classList.add('active')
-            var item = drawItemGenerators[i]
-            if (item) {
-                var snippet = document.getElementById(item.name)
-                snippet.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                    inline: 'center',
-                })
-            }
-        })
-
-    }
-
-    function fillCell (index, canvas) {
-        var ctx = canvas.getContext('2d');
-        var x = canvas.width / 2;
-        var y = canvas.height / 2;
-        var itemSize = canvas.width * 0.6;
-
-        var drawItem = drawItemGenerators[index]?.draw,
-            hue = Math.floor(Math.random() * 360);
-        if (drawItem) {
-            drawItem(ctx, x, y, itemSize, hue)
-
-        } else {
-            drawNumber(ctx, index + 1, x, y, itemSize);
-        }
-    }
-
-    function drawNumber (ctx, value, x, y, itemSize) {
-        ctx.font = `${itemSize}px Arial`
-        ctx.textBaseline = "middle"
-        ctx.textAlign = "center"
-        ctx.fillText(value, x, y);
-    }
-
-    async function snippetSection (index) {
-        const item = drawItemGenerators[index]
-
-        var template = document.getElementById('code-section-template');
-
-        var sectionFragment = template.content.cloneNode(true)
-
-        var sectionElement = sectionFragment.querySelector('section');
-        sectionElement.dataset.index = index;
-        if (item) sectionElement.id = item.name;
-
-        var canvas = sectionFragment.querySelector('canvas')
-        canvas.width = cellSize
-        canvas.height = cellSize
-        fillCell(index, canvas)
-
-        if (item) {
-            var path = item.filePath
-            var drawCode = await fetch(path).then(res => res.text())
-            var codeElement = sectionFragment.querySelector('code')
-            var coloredCode = hljs.highlight(drawCode.trim(), {language: 'javascript'}).value
-                /* add line number */
-                .split('\n').map((line, i) => `<span class="line-number">${i + 1}</span> ${line}`)
-            codeElement.innerHTML = coloredCode.join('\n')
-        }
-        codeSnippets.append(sectionFragment)
-
-    }
-</script>
 <template id="code-section-template">
     <section class="code-section">
         <pre>
@@ -112,8 +39,27 @@
 
 <script type="module">
     import {linkPageToParent} from '../_helpers/link-page.js'
+    import {fillCells} from './draw.js'
 
     linkPageToParent()
+    var HueSelector = document.getElementById('color-hue-selector')
+    var range = document.getElementById('colors-range')
+    var fancyCube = document.getElementById('fancy-cube')
+    updateValues(range.value)
+    range.addEventListener('input', function (event) {
+        event.preventDefault()
+        updateValues(event.target.value)
+    })
+
+    function updateValues (value) {
+        HueSelector.style.setProperty('--val', value)
+        fancyCube.style.setProperty('--color-face', `hsl(${value}deg 50% 50%)`)
+        fillCells(value)
+    }
+    fancyCube.addEventListener('click', function (event) {
+        event.preventDefault()
+        fillCells(/*random*/)
+    })
 </script>
 </body>
 </html>

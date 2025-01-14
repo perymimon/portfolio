@@ -1,58 +1,58 @@
 @import '../../base.css';
-@import '../project-base.css';
-
+@import '../../assets/fancy-slider.css';
+@import '../../assets/fancy-cube.css';
 body {
     display: flex;
     flex-direction: row-reverse;
+    @media (orientation: portrait) {
+        flex-direction: column;
+    }
     align-items: stretch;
     background-color: var(--color-background);
     gap: var(--space-4);
-    height:100vh;
+    height: 100vh;
     padding-inline-end: var(--space-2);
-
-    header {
-        padding-block: var(--space-1);
-        font-size: var(--font-size-sm);
-    }
-
-    #toc {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: var(--space-2);
-    }
-    .right-side{
-        flex:1
-    }
-    .left-side {
-        flex:2;
-        /*height: 100vh;*/
-    }
-    #codeSnippets {
-        overflow: auto;
+    .right-side {
+        flex: 1;
         display: flex;
-
         flex-direction: column;
-        row-gap: var(--space-2);
-        direction: rtl;
-
-        & > * {
-            direction: ltr
+        gap: var(--space-2);
+        @media (orientation: portrait) {
+            align-self: center;
+            max-width: 24em;
         }
     }
+    .left-side {
+        flex: 2;
+        /*height: 100vh;*/
+    }
+
+}
+#toc {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-2);
+}
+header {
+    padding-block: var(--space-1);
+    font-size: var(--font-size-sm);
+}
+#snippets {
+    overflow: auto;
+    display: flex;
+
+    flex-direction: column;
+    row-gap: var(--space-2);
+    direction: rtl;
+
+    & > * {
+        direction: ltr
+    }
 }
 
-@media (orientation: portrait) {
-    body {
-        flex-direction: column;
-    }
-    .right-side {
-        align-self: center;
-        max-width:24em;
-    }
-}
 .code-section {
     /* typography */
-    color: var(--text-inverse);
+    color: var(--text-primary);
     /*font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;*/
     font-family: var(--font-family-mono);
     font-feature-settings: normal;
@@ -79,6 +79,7 @@ body {
         top: 0;
         right: 0;
         z-index: -10;
+        opacity: 0.5;
     }
 
     pre {
@@ -102,7 +103,7 @@ body {
 }
 
 .active {
-    outline: 0.5em solid var(--color-border);
+    outline: 0.1em solid var(--color-border-active);
 }
 
 canvas {
@@ -111,9 +112,21 @@ canvas {
 }
 
 #toc {
-    canvas{
+    canvas {
         background-color: var(--color-foreground);
-        border:1px solid var(--color-border);
+        border: 1px solid var(--color-border);
         border-radius: 5px;
     }
+}
+#color-hue-selector{
+    input {
+        width: 100%;
+    }
+    .cube{
+        position: absolute;
+        position-anchor:--range-thumb;
+        position-area:top;
+        margin-block-end: var(--space-2);
+    }
+
 }

@@ -1,0 +1,43 @@
+@property --color-face {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: yellow
+}
+
+@keyframes rotate {
+    0% { transform: rotateX(0) rotateY(0); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+.cube {
+    display: block;
+    --size: .5em;
+    --dis: calc(var(--size));
+    --duration: 10s;
+    perspective: 1000px;
+    width: calc(var(--size));
+    aspect-ratio: 1;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 40s infinite linear;
+    --color-border: transparent;
+    &:hover {
+        --color-border: var(--color-border-active);
+    }
+
+    .face {
+        pointer-events: none;
+        position: absolute;
+        width: var(--size);
+        aspect-ratio: 1;
+        border: 2px solid var(--color-border);
+        opacity: 0.8;
+        background-color: var(--color-face);
+        &.front { transform: translateZ(var(--dis)); }
+        &.back { transform: translateZ(calc(var(--dis) * -1)) rotateY(180deg); }
+        &.right { transform: translateX(var(--dis)) rotateY(90deg); }
+        &.left { transform: translateX(calc(var(--dis) * -1)) rotateY(-90deg); }
+        &.top { transform: translateY(calc(var(--dis) * -1)) rotateX(90deg); }
+        &.bottom { transform: translateY(var(--dis)) rotateX(-90deg); }
+    }
+}

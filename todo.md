@@ -1,0 +1,9 @@
+- [ ] color on particle should taked from base.css
+- [ ] create tag version 1.0 on git
+- [ ] move the Glossary button to bottom bar
+- [ ] fix the size of the project-info title to match the container width
+- [ ] navigate tab by jesture right and left
+- [ ] implament record button. use it to record the canvas 
+  - use that videos on the welcome page
+  - create nice circle video player like the one in whatapp
+- [ ] link-page can know automaticly if the page run as iframe or main 
