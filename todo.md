@@ -6,4 +6,7 @@
 - [ ] implament record button. use it to record the canvas 
   - use that videos on the welcome page
   - create nice circle video player like the one in whatapp
-- [ ] link-page can know automaticly if the page run as iframe or main 
+- [ ] link-page can know automaticly if the page run as iframe or main
+
+-----
+- align draw-shapes to color project
