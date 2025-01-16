@@ -8,14 +8,14 @@ export default class ToastMessageElement extends HTMLElement {
       <style>
         :host {
           position: fixed;
-          bottom: 20px;
+          bottom: var(--space-4, 20px);
           left: 50%;
           transform: translateX(-50%);
           background: var(--primary-color, #00ff00);
           color: var(--background-color, #000000);
-          padding: 10px;
-          border-radius: 5px;
-          font-family: 'Courier New', monospace;
+          padding: var(--space-2, 10px);
+          border-radius: var(--radius-md, 5px);
+          font-family: var(--font-family-base), monospace;
           opacity: 0;
           animation: fadein 0.5s forwards, fadeout 0.5s 2.5s forwards;
         }

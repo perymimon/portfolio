@@ -7,25 +7,13 @@ canvasRecorderTemplate.innerHTML = `
   <link rel="stylesheet" href="${componentBaseUrl}canvas-record.compoents.css">
 
   <div id="recorder-ui">
-  <label for="record-btn">
-    <button id="record-btn" class="button" aria-label="Start recording" >⏺</button>
-    <span class="tooltip">Start recording</span>
-  </label>
+    <button id="record-btn" class="tooltip" aria-label="Start Recording" >⏺</button>
    <div id="floating-bar" class="">
         <div class="recording-dot"></div>
         <span id="time">00:00</span>
-        <label for="resume-btn">
-            <button id="resume-btn" class="button" aria-label="Resume recording">▶</button>
-            <span class="tooltip">Resume</span> 
-        </label>
-        <label for="puase-btn">
-            <button id="pause-btn" class="button" aria-label="Pause recording">⏸</button>
-            <span class="tooltip">Pause</span>
-        </label>
-        <label for="stop-btn">
-            <button id="stop-btn" class="button" aria-label="Stop recording and download">⏹</button>
-            <span class="tooltip">Stop and download</span>
-        </label>
+        <button id="resume-btn" class="tooltip" aria-label="Resume">▶</button>
+        <button id="pause-btn" class="tooltip" aria-label="Pause">⏸</button>
+        <button id="stop-btn" class="tooltip" aria-label="Stop and download">⏹</button>
     </div>
     
 </div>

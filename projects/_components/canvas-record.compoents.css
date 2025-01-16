@@ -40,52 +40,61 @@
 }
 
 button {
-    position: relative;
     background: var(--primary-color);
     color: var(--background-color);
     border: none;
     border-radius: var(--border-radius);
     padding: var(--padding) calc(var(--padding) * 2);
     cursor: pointer;
-
 }
 
-.tooltip {
+/* position tooltip */
+button {
+    /*position: relative; make trouble with anchor-position*/
+    anchor-name: --button;
+    anchor-scope: --button;
+    &::after {
+        position: absolute;
+        position-anchor: --button;
+        position-area: block-start center;
+        position-try: auto;
+        maring: 0;
+        margin-block-end: var(--space-2);
+    }
+    &#record-btn::after {
+        margin-inline-end: var(--space-2);
+        maring: 0;
+        position-area: inline-start center;
+
+    }
+}
+
+button#record-btn {
+    border: .1em solid var(--color-border);
+    background-color: var(--background-color);
+    color: var(--color-border);
+    &:hover {
+        --color-border: var(--color-border-active);
+    }
+}
+
+button.tooltip::after {
+    content: attr(aria-label);
     background-color: var(--color-background);
     color: var(--primary-text);
     border: 1px solid var(--color-primary);
     padding: var(--padding) calc(var(--padding) * 2);
-    border-radius: var(--border-radius 5px);
-    font-size: var(--font-size 12px);
+    border-radius: var(--border-radius, 5px);
+    font-size: var(--font-size, 12px);
     white-space: nowrap;
     opacity: 0;
     transition: opacity var(--transition-normal);
     pointer-events: none;
 }
 
-label {
-    anchor-scope: --button;
-    button {
-        anchor-name: --button;
-    }
-    .tooltip {
-        position: absolute;
-        position-anchor: --button;
-        position-area: start center;
-        margin:0;
-        margin-block: var(--space-2);
-    }
-    &:has(#record-btn) .tooltip {
-        position-area: center start;
-        margin:0;
-        margin-inline: var(--space-2);
-
-    }
-}
-
-label:hover {
-    button { background: hsl(120deg 100% 60%); }
-    .tooltip { opacity: 1;}
+button:hover {
+    background: hsl(120deg 100% 60%);
+    &::after { opacity: 1;}
 }
 
 .recording-dot {
