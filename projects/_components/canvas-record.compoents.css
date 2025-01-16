@@ -1,0 +1,110 @@
+:host {
+    --primary-color: var(--color-primary, #00ff00);
+    --background-color: var(--color-background, #000000);
+    --primary-text: var(--text-primary, #ffffff);
+    --border-radius: var(--radius-md, 5px);
+    --padding: var(--space-1, 5px);
+    --font-size: var(--font-size-sm);
+    font-family: "Courier New", monospace;
+    position: relative;
+}
+
+#recorder-ui {
+    display: flex;
+    flex-direction: row;
+}
+
+#recorder-ui[data-state="idle"] {
+    #floating-bar { display: none; }
+}
+
+#recorder-ui[data-state="recording"] {
+    #record-btn { display: none; }
+    #resume-btn { display: none; }
+}
+
+#recorder-ui[data-state="paused"] {
+    #record-btn { display: none; }
+    #pause-btn { display: none; }
+}
+
+#floating-bar {
+    display: flex;
+    flex-direction: row;
+    background: var(--component-bg);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-1);
+    align-items: center;
+    gap: var(--space-2);
+}
+
+button {
+    position: relative;
+    background: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--padding) calc(var(--padding) * 2);
+    cursor: pointer;
+
+}
+
+.tooltip {
+    background-color: var(--color-background);
+    color: var(--primary-text);
+    border: 1px solid var(--color-primary);
+    padding: var(--padding) calc(var(--padding) * 2);
+    border-radius: var(--border-radius 5px);
+    font-size: var(--font-size 12px);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+}
+
+label {
+    anchor-scope: --button;
+    button {
+        anchor-name: --button;
+    }
+    .tooltip {
+        position: absolute;
+        position-anchor: --button;
+        position-area: start center;
+        margin:0;
+        margin-block: var(--space-2);
+    }
+    &:has(#record-btn) .tooltip {
+        position-area: center start;
+        margin:0;
+        margin-inline: var(--space-2);
+
+    }
+}
+
+label:hover {
+    button { background: hsl(120deg 100% 60%); }
+    .tooltip { opacity: 1;}
+}
+
+.recording-dot {
+    display: inline-block;
+    width: .5em;
+    height: .5em;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
