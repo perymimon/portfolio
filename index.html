@@ -100,7 +100,7 @@
             <a href="https://www.youtube.com/@Frankslaboratory" target="_blank">Franks</a>
         </div>
         <div class="sidebar-link">
-            <a href="projects/particles/home.html"
+            <a href="projects/particles/code-pens.html"
                data-title="particles"
                data-year="2024"
                data-stack="particles, canvas, vanilla es6 "
@@ -177,12 +177,13 @@
     <iframe id="content-frame" name="content-frame" src="welcome.html"></iframe>
     <div id="bottom-bar" class="component-base">
         <div id="tabs-container"></div>
+        <fancy-recorder target="content-frame"></fancy-recorder>
         <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
             🌓
         </button>
     </div>
 </main>
-
+<script type="module" src="./projects/_components/fancy-recorder.components.js"></script>
 
 <script type="module">
     import './home-scripts/sidebar-link.js'
