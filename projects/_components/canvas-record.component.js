@@ -28,7 +28,7 @@ class CanvasRecorderElement extends HTMLElement {
         var shadow = this.shadow;
         shadow.appendChild(canvasRecorderTemplate.content.cloneNode(true))
 
-        this.targetCanvas = null;
+        this.target = null;
         this.ui = shadow.getElementById('recorder-ui');
         this.recordBtn = shadow.getElementById('record-btn');
         this.resumeBtn = shadow.getElementById('resume-btn');
@@ -46,12 +46,17 @@ class CanvasRecorderElement extends HTMLElement {
     }
 
     connectedCallback () {
-        const canvasId = this.getAttribute('target')
-        this.targetCanvas = document.getElementById(canvasId) || document.querySelector('canvas')
-        if (!this.targetCanvas) throw new Error('CanvasRecorder: No canvas element found!')
-        this.showToast(`Recording canvas: #${this.targetCanvas.id || 'auto-detected'}`)
+        const targetId = this.getAttribute('target')
+        if (targetId) {
+            this.target = document.getElementById(targetId)
+        } else {
+            this.target = document.querySelector('canvas')
+            this.showToast(`Recording canvas: #${this.target.id || 'auto-detected'}`)
+        }
+        if (!this.target) throw new Error('CanvasRecorder: No canvas or iframe element found!')
 
-        this.canvasRecorder = new CanvasRecorder(this.targetCanvas)
+
+        this.canvasRecorder = new CanvasRecorder(this.target)
         this.timerInterval = setInterval(this.updateTimer.bind(this), 1000)
 
         this.recordBtn.onclick = this.startRecording.bind(this)
@@ -66,7 +71,7 @@ class CanvasRecorderElement extends HTMLElement {
 
     startRecording () {
         var {canvasRecorder} = this
-        if (!this.targetCanvas) return
+        if (!this.target) return
         this.recordBtn.disabled = false
         this.#setState('recording')
 
