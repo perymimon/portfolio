@@ -42,24 +42,11 @@
         background-color: var(--component-hover);
     }
 }
-
-button {
-    background: var(--primary-color);
-    color: var(--background-color);
-    border: none;
-    border-radius: var(--border-radius);
-    padding: var(--padding) calc(var(--padding) * 2);
-    cursor: pointer;
-}
-
 /* position tooltip */
 button {
     /*position: relative; make trouble with anchor-position*/
     anchor-name: --button;
     anchor-scope: --button;
-    &:disabled {
-
-    }
     &::after {
         position: absolute;
         position-anchor: --button;
@@ -76,7 +63,26 @@ button {
     }
 }
 
-button#record-btn {
+button {
+    background: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--padding) calc(var(--padding) * 2);
+    cursor: pointer;
+
+    transition: background-color var(--transition-normal);
+    &:disabled:is(&, :hover, :focus){
+        background-color: var(--color-muted);
+        color: var(--text-muted);
+        border-color: var(--color-border);
+        cursor: not-allowed;
+        opacity: 0.6; /* Slightly dimmed appearance */
+    }
+}
+
+
+button#record-btn:not(:disabled) {
     border: .1em solid var(--color-border);
     background-color: var(--background-color);
     color: var(--color-border);
@@ -90,7 +96,7 @@ button#pause-btn {
     font-weight: 700;
 }
 
-button.tooltip::after {
+button.tooltip:not(:disabled)::after {
     content: attr(aria-label);
     background-color: var(--color-background);
     color: var(--primary-text);

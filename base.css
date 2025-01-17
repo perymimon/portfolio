@@ -1,13 +1,14 @@
 /*reset*/
-*{
+* {
     box-sizing: border-box;
     /*transition-behavior: allow-discrete; make the browser collapse*/
 }
+
 /* Design System CSS */
 @font-face {
-    font-family: 'MatrixCode';
-    src: url('assets/matrix-code-nfi.ttf') format('truetype'),
-    url('assets/matrix-code-nfi.otf') format('otf');
+    font-family: "MatrixCode";
+    src: url("assets/matrix-code-nfi.ttf") format("truetype"),
+    url("assets/matrix-code-nfi.otf") format("otf");
     font-weight: normal;
     font-style: normal;
 }
@@ -39,16 +40,15 @@ body, html {
     --color-success-hover: light-dark(hsl(120, 90%, 45%), hsl(120, 70%, 50%));
 
     /* Neutral Colors */
-    --color-background: light-dark(hsl(120, 30%, 95%), hsl(120, 15%, 5%) ); /* Deep Greenish Black vs Light Greenish White */
+    --color-background: light-dark(hsl(120, 30%, 95%), hsl(120, 15%, 5%)); /* Deep Greenish Black vs Light Greenish White */
     --color-foregrowund: light-dark(hsl(120, 100%, 90%), hsl(120deg 100% 30% / 10%)); /* Light Green vs Dark Green */
-    --color-muted: light-dark(hsl(120, 15%, 70%),hsl(120, 10%, 50%)); /* Subtle Green */
-    --color-muted-hover: light-dark(hsl(120, 20%, 80%),hsl(120, 20%, 60%));
-
+    --color-muted: light-dark(hsl(120, 15%, 70%), hsl(120, 10%, 50%)); /* Subtle Green */
+    --color-muted-hover: light-dark(hsl(120, 20%, 80%), hsl(120, 20%, 60%));
 
     /* Border Colors */
-    --color-border: light-dark(hsl(120, 20%, 70%), hsl(120 40% 20% ));
+    --color-border: light-dark(hsl(120, 20%, 70%), hsl(120 40% 20%));
     --color-border-hover: light-dark(hsl(120 25% 80%), hsl(120 40% 40%));
-    --color-border-active:  light-dark(hsl(290, 100%, 50%), hsl(290, 100%, 60%));
+    --color-border-active: light-dark(hsl(290, 100%, 50%), hsl(290, 100%, 60%));
 
     /* Component Colors */
     --component-bg: light-dark(hsl(120deg 30% 95% / 15%), hsl(120deg 100% 10% / 15%));
@@ -79,7 +79,7 @@ body, html {
 
     /* Typography */
     /*--font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;*/
-    --font-family-base: Consolas, Lucida Console, 'Courier New', monospace;
+    --font-family-base: Consolas, Lucida Console, "Courier New", monospace;
     --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
     --font-size-xs: 0.75rem; /* 12px */
@@ -99,7 +99,6 @@ body, html {
     --font-size-relative-2xl: 1.5em; /* 24px */
     --font-size-relative-3xl: 1.875em; /* 30px */
     --font-size-relative-4xl: 2.25em; /* 36px */
-
 
     /* Font Weights */
     --font-weight-normal: 400;
@@ -136,7 +135,7 @@ body, html {
     --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Z-index */
-    --z-index-above-absolute:1;
+    --z-index-above-absolute: 1;
     --z-index-dropdown: 1000;
     --z-index-sticky: 1020;
     --z-index-fixed: 1030;
@@ -159,10 +158,10 @@ body, html {
 [data-theme="dark"] {
     color-scheme: dark;
 }
+
 [data-theme="light"] {
     color-scheme: light;
 }
-
 
 /* Accessibility */
 .sr-only {
@@ -203,50 +202,58 @@ body, html {
         --text-muted: #666666;
     }
 }
+
 /* Elements */
-body{
+body {
     background-color: var(--color-background);
     color: var(--text-primary);
-    width:100vw;
-    height:100vh;
-}
-a{
-    font-family: var(--font-family-mono), monospace;
-    color:inherit;
+    width: 100vw;
+    height: 100vh;
 }
 
-h1,h2{
+a {
+    font-family: var(--font-family-mono), monospace;
+    color: inherit;
+}
+
+h1, h2 {
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
 
-    font-family:var(--font-family-mono), monospace;
+    font-family: var(--font-family-mono), monospace;
     text-transform: uppercase;
 }
-h1,h2{
+
+h1, h2 {
     font-weight: var(--font-weight-bold);
 }
-h1{
+
+h1 {
     font-size: var(--font-size-relative-2xl);
     margin-bottom: var(--space-1);
 }
-h2{
+
+h2 {
     font-size: var(--font-size-relative-xl);
     margin-bottom: var(--space-2);
 }
-h3{
-    font-family:var(--font-family-mono), monospace;
+
+h3 {
+    font-family: var(--font-family-mono), monospace;
     font-weight: var(--font-weight-bold);
     padding: var(--space-2);
-    margin: 0 ;
+    margin: 0;
 }
 
-code{
+code {
     font-family: var(--font-family-mono), monospace;
     font-size: var(--font-size-sm);
 }
-p{
+
+p {
     color: var(--text-secondary);
 }
+
 /*---*/
 
 /* Base Component Styles */
@@ -278,18 +285,12 @@ p{
     cursor: pointer;
     transition: background-color var(--transition-normal);
 
-    &:disabled{
+    &:disabled:is(&, :hover, :focus) {
         background-color: var(--color-muted);
         color: var(--text-muted);
         border-color: var(--color-border);
         cursor: not-allowed;
         opacity: 0.6; /* Slightly dimmed appearance */
-        &:hover, &:focus {
-            background-color:inherit;
-            color:inherit;
-            border-color: inherit;
-            box-shadow: none;
-        }
     }
 
 }
@@ -311,18 +312,13 @@ p{
         border-color: var(--color-primary);
         box-shadow: 0 0 0 2px var(--color-primary-hover);
     }
-    &:disabled{
+    &:disabled:is(&, :hover, :focus) {
         background-color: var(--color-background); /* Neutral background for inputs */
         color: var(--text-muted);
         border-color: var(--color-border);
-        &:focus{
-            outline: none;
-            border-color: inherit;
-        }
+        outline: none;
     }
 }
-
-
 
 /* Label Base */
 .label-base {
@@ -351,9 +347,11 @@ p{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.transition-all{
+
+.transition-all {
     transition: all var(--transition-normal) allow-discrete;
 }
+
 .scrollbar-custom {
     scrollbar-width: thin;
     scrollbar-color: var(--color-muted) transparent;
@@ -382,6 +380,7 @@ p{
         outline-offset: 2px;
     }
 }
+
 /* tabs sections */
 [role="tablist"] {
     display: flex;
@@ -415,6 +414,7 @@ p{
         }
     }
 }
+
 /* Animation Classes */
 .animate-fade {
     animation: fade var(--transition-normal);
