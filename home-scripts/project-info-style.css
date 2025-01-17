@@ -11,6 +11,10 @@
     display: block;
     transition: none;
     z-index: var(--z-index-above-absolute);
+    &:empty{
+        display: none;
+        white-space:nowrap;
+    }
 }
 
 .info-container {
