@@ -166,16 +166,20 @@
         >Pixels rain</a>
 
     </nav>
-    <button class="sidebar-toggle-button button-base">
-    <!-- ☰ Glossary -->
-    </button>
-</aside>
 
+</aside>
+<div id="top-bar">
+    <button id="sidebar-toggle-button" class="button-base">
+        <!-- ☰ Glossary -->
+    </button>
+</div>
 <main id="main-content">
+
     <div id="project-info" class="info-container component-base">
     </div>
     <iframe id="content-frame" name="content-frame" src="welcome.html"></iframe>
     <div id="bottom-bar" >
+
         <div id="tabs-container"></div>
         <fancy-recorder target="content-frame"></fancy-recorder>
         <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
@@ -194,7 +198,7 @@
     themeToggle.addEventListener('click', toggleTheme)
     linkPageFromParent()
 
-    var toggleThemes = document.querySelector('.sidebar-toggle-button')
+    var toggleThemes = document.getElementById('sidebar-toggle-button')
     var sidebar = document.querySelector('#sidebar')
 
     window.addEventListener('hashchange',ev => sidebar.classList.remove('open'))

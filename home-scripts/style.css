@@ -1,24 +1,26 @@
-@import '../base.css';
-@import 'project-info-style.css';
-@import './view-transition-animation.css';
-@import './projects-view-transition-animation.css';
+@import "../base.css";
+@import "project-info-style.css";
+@import "./view-transition-animation.css";
+@import "./projects-view-transition-animation.css";
 @import "side-pannel.css";
 
 body {
-    display: flex;
+    display: grid;
     min-height: 100vh;
     margin: 0;
     background-color: var(--color-background);
+    grid-template-areas: "a b" "a c";
+    grid-template-rows: max-content 1fr;
+    grid-template-columns: max-content 1fr;
+    #main-content { grid-area: c; }
+    #top-bar { grid-area: b; }
+    #sidebar{grid-area: a; }
 }
 
-
-nav{
+nav {
     overflow-y: auto;
     flex: 1;
 }
-
-
-
 
 #main-content {
     flex-grow: 1;
@@ -35,18 +37,26 @@ nav{
     height: 100%;
 }
 
-#bottom-bar{
+#top-bar {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
-    align-items:flex-end;
-    /*line-height: 2em;*/
+    align-items: flex-start;
+    padding: var(--space-2);
+
+}
+
+#bottom-bar {
+    display: flex;
     position: absolute;
+    justify-content: space-between;
+    align-items: flex-end;
+    /*line-height: 2em;*/
     left: var(--space-2);
     right: var(--space-2);
     bottom: 0;
     z-index: var(--z-index-above-absolute);
     padding: var(--space-1);
-
 
     @media (orientation: portrait) {
         position: fixed;
@@ -55,7 +65,7 @@ nav{
     #tabs-container {
         display: flex;
         justify-content: center;
-        flex:1;
+        flex: 1;
     }
     #theme-toggle {
         background-color: var(--component-bg);
@@ -68,13 +78,12 @@ nav{
         }
     }
 }
+
 .extra-info {
     /*display: none;*/
     /*pointer-events: none;*/
 
 }
-
-
 
 #avatar {
     position: relative;
@@ -86,7 +95,6 @@ nav{
     background: inherit;
     float: left;
     margin-inline-end: var(--space-2);
-
 
     img {
         position: relative;

@@ -1,8 +1,7 @@
-button.sidebar-toggle-button {
+button#sidebar-toggle-button {
     &::before{
         content: '☰ Glossary';
     }
-    position: fixed;
     width:max-content;
     top: 0;
     left:100%;
