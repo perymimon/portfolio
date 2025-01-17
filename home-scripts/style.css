@@ -3,6 +3,7 @@
 @import "./view-transition-animation.css";
 @import "./projects-view-transition-animation.css";
 @import "side-pannel.css";
+@import "./small-elements.css";
 
 body {
     display: grid;
@@ -14,7 +15,7 @@ body {
     grid-template-columns: max-content 1fr;
     #main-content { grid-area: c; }
     #top-bar { grid-area: b; }
-    #sidebar{grid-area: a; }
+    #sidebar {grid-area: a; }
 }
 
 nav {
@@ -62,21 +63,11 @@ nav {
         position: fixed;
     }
 
-    #tabs-container {
-        display: flex;
-        justify-content: center;
-        flex: 1;
+    fancy-recorder {
+        position: sticky;
+        inset-inline: 0;
     }
-    #theme-toggle {
-        background-color: var(--component-bg);
-        bottom: var(--space-4);
-        right: var(--space-4);
 
-        &:hover {
-            border-color: var(--component-border);
-            background-color: var(--component-hover);
-        }
-    }
 }
 
 .extra-info {

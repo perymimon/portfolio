@@ -1,0 +1,15 @@
+#theme-toggle {
+    background-color: var(--component-bg);
+    bottom: var(--space-4);
+    right: var(--space-4);
+
+    &:hover {
+        border-color: var(--component-border);
+        background-color: var(--component-hover);
+    }
+}
+#tabs-container {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}

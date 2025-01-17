@@ -4,11 +4,12 @@ import "./toast.componets.js"
 const componentBaseUrl = new URL(import.meta.url).pathname.replace(/[^/]+$/, '')
 const canvasRecorderTemplate = document.createElement('template');
 canvasRecorderTemplate.innerHTML = `
+   <style>#floating-bar{display:none}</style>
   <link rel="stylesheet" href="${componentBaseUrl}fancy-recorder.components.css">
 
-  <div id="recorder-ui">
+  <div id="recorder-ui" data-state="idle">
     <button id="record-btn" class="tooltip" role="button" aria-label="Start Recording" >⏺</button>
-   <div id="floating-bar" class="">
+   <div id="floating-bar" >
         <div class="recording-dot"></div>
         <span id="time">00:00</span>
         <button id="resume-btn" class="tooltip" role="button" aria-label="Resume">▶</button>
