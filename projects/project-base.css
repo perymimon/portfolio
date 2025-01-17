@@ -4,4 +4,8 @@ canvas-recorder{
     position: fixed;
     bottom: var(--space-4);
     right: var(--space-4);
+    margin-block-end: var(--space-4);
+}
+toast-message{
+    margin-block-end: var(--space-4);
 }

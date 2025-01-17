@@ -1,5 +1,5 @@
 import {getProperty} from '../_helpers/basic.js'
-import {FrameEngine} from '../_helpers/FrameEngine.js'
+import {FrameEngine} from '../_glossary/FrameEngine.js'
 import {RainEffect} from './matrix-rain.effect.js'
 
 const canvas = document.getElementById("canvas1");

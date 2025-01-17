@@ -1,5 +1,5 @@
 import {drawAlgebra} from '../../_helpers/draw.js'
-import {Sprite} from '../../_helpers/sprite.js'
+import {Sprite} from '../../_glossary/Sprite.js'
 import {distance, getAngle} from '../../_math/algebra.js'
 import {clamp, exceedsLimits, isBetween, lerp, linearLerp, random} from '../../_math/basic.js'
 

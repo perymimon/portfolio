@@ -34,9 +34,13 @@
     background: var(--component-bg);
     color: var(--text-primary);
     border-radius: var(--radius-md);
-    padding: var(--space-1);
+    padding: var(--space-2);
     align-items: center;
     gap: var(--space-2);
+    border: var(--component-border) 1px solid;
+    &:hover {
+        background-color: var(--component-hover);
+    }
 }
 
 button {
@@ -53,6 +57,9 @@ button {
     /*position: relative; make trouble with anchor-position*/
     anchor-name: --button;
     anchor-scope: --button;
+    &:disabled {
+
+    }
     &::after {
         position: absolute;
         position-anchor: --button;
@@ -73,9 +80,14 @@ button#record-btn {
     border: .1em solid var(--color-border);
     background-color: var(--background-color);
     color: var(--color-border);
+
     &:hover {
         --color-border: var(--color-border-active);
     }
+}
+
+button#pause-btn {
+    font-weight: 700;
 }
 
 button.tooltip::after {

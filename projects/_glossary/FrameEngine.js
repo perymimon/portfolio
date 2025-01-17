@@ -1,7 +1,7 @@
 export class FrameEngine extends EventTarget {
     #fps = 60
     #canvas = null
-
+    animationIndex = null
     constructor (fps = 60, callback = null, canvas = null) {
         super()
         this.canvas = canvas
@@ -9,7 +9,6 @@ export class FrameEngine extends EventTarget {
         this.elapsedTime = 0
         this.frameCounter = 0
         this.fps = fps
-
         if (callback) {
             this.addEventListener('frames', callback)
         }
@@ -61,7 +60,8 @@ export class FrameEngine extends EventTarget {
     }
 
     stop () {
-        window.cancelAnimationFrame(this.animationIndex);
+        window.cancelAnimationFrame(this.animationIndex)
+        this.animationIndex = null
         return this
     }
 }
