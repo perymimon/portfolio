@@ -8,6 +8,7 @@ export default class ToastMessageElement extends HTMLElement {
       <style>
         :host {
           position: fixed;
+          z-index: var(--z-index-popover);
           bottom: var(--space-4, 20px);
           left: 50%;
           transform: translateX(-50%);
