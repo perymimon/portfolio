@@ -9,14 +9,7 @@ links.forEach(link => {
     var sidebarLink = link.closest('.sidebar-link')
     var parentLink = sidebarLink.querySelector(':scope > a')
     const href = link.getAttribute('href')
-    var id = href
-        .replace(/[\/:.]/g, '-')
-        .replace(/^(https?)?-*/, '')
-        .replace(/\?.*/, '')
-        .replace(/-*(com|html)-*$/g, '')
-        .toLowerCase()
-    console.log(id, href)
-    link.id = id
+    link.id = href2id(href)
     link.dataset.href = href
     link.href = '#' + id
 
@@ -25,6 +18,17 @@ links.forEach(link => {
     }
 
 });
+
+function href2id (href) {
+    var id = href
+        .replace(/[\/:.]/g, '-')
+        .replace(/^(https?)?-*/, '')
+        .replace(/\?.*/, '')
+        .replace(/-*(com|html)-*$/g, '')
+        .toLowerCase()
+    console.log(id, href)
+    return id
+}
 
 function loadContent (hash = window.location.hash) {
     if (hash) {
@@ -38,10 +42,10 @@ function loadContent (hash = window.location.hash) {
                 ?.querySelector('[aria-selected="true"]')
             link = subActiveLink ?? link
 
-            startViewTransition(_ =>{
+            startViewTransition(_ => {
                 contentFrame.src = link.dataset.href
                 injectProjectInfo(link)
-            } )
+            })
         }
     } else {
         link = document.querySelector('[data-href*="welcome"]')
@@ -69,7 +73,7 @@ function toggleLink (activeLink) {
     }
 }
 
-window.addEventListener('hashchange', () =>  loadContent())
+window.addEventListener('hashchange', () => loadContent())
 window.addEventListener('load', () => loadContent())
 
 export function processLink () {

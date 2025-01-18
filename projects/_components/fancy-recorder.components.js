@@ -2,8 +2,8 @@ import Recorder from "../_glossary/Recorder.js"
 import "./toast.componets.js"
 /* canvas-recorder */
 const componentBaseUrl = new URL(import.meta.url).pathname.replace(/[^/]+$/, '')
-const canvasRecorderTemplate = document.createElement('template');
-canvasRecorderTemplate.innerHTML = `
+const template = document.createElement('template');
+template.innerHTML = `
    <style>#floating-bar{display:none}</style>
   <link rel="stylesheet" href="${componentBaseUrl}fancy-recorder.components.css">
 
@@ -18,7 +18,7 @@ canvasRecorderTemplate.innerHTML = `
     </div>
     
 </div>
-`;
+`
 
 class RecorderElement extends HTMLElement {
     // Attach Shadow DOM
@@ -29,7 +29,7 @@ class RecorderElement extends HTMLElement {
     constructor () {
         super();
         var shadow = this.shadow;
-        shadow.appendChild(canvasRecorderTemplate.content.cloneNode(true))
+        shadow.appendChild(template.content.cloneNode(true))
 
         this.target = null;
         this.ui = shadow.getElementById('recorder-ui');
@@ -202,7 +202,7 @@ class RecorderElement extends HTMLElement {
         this.showToast('Downloading record')
         const link = document.createElement('a');
         link.href = url;
-        link.download = 'canvas_recording.webm';
+        link.download = 'matrix-rain.webm';
         link.click();
     }
 }

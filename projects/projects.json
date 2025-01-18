@@ -1,0 +1,34 @@
+[
+  {
+    "group-id": "tutorials-by-frank",
+    "title": "Particles",
+    "link": "projects/particles/code-pens.html",
+    "year": 2024,
+    "stack": "particles, canvas, vanilla es6",
+    "description": "Basic particle effects, responsive to mouse interactions.",
+    "teacher": "@Frank",
+    "tutorial": "https://www.youtube.com/watch?v=PoDjjHh931c"
+  },
+  {
+    "group-id": "tutorials-by-frank",
+    "title": "Matrix Rain",
+    "link": "projects/matrix-rain/index.html",
+    "year": 2024,
+    "stack": "particles, canvas, vanilla es6",
+    "description": "A matrix rain, created with vanilla ES6 on canvas and some CSS filters.",
+    "teacher": "@Frank",
+    "tutorial": "https://www.youtube.com/watch?v=f5ZswIE_SgY"
+  },
+  {
+    "group-id": "drawing-shapes-tabs",
+    "title": "Tab 1",
+    "link": "projects/drawing-shapes/tab1.html",
+    "description": "Example Tab Description 1"
+  },
+  {
+    "group-id": "drawing-shapes-tabs",
+    "title": "Tab 2",
+    "link": "projects/drawing-shapes/tab2.html",
+    "description": "Example Tab Description 2"
+  }
+]

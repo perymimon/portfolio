@@ -1,0 +1,123 @@
+:host {
+    display: inline-block;
+    margin: var(--space-2);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: auto;
+    container-name: component;
+    container-type:inline-size;
+}
+
+
+@property --progress {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
+#component-ui {
+    &:not([data-state="loading"]) .loader {
+        display: none;
+    }
+    &[data-state="idle"] {}
+    &[data-state="loading"] {}
+    &[data-state="error"] {}
+    &[data-state="playing"] {}
+    --progress: 0;
+    transition: --progress 100ms ease; /*not working;*/
+    position: relative;
+}
+
+.circle-video-container {
+
+    aspect-ratio: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    padding: var(--space-1);
+    transition: bacground 200ms ease; /*not working*/
+    background: conic-gradient(var(--color-primary, #00ff00) calc(var(--progress) * 1deg), transparent calc(var(--progress) * 1deg));
+    box-shadow: 0 0 20px var(--color-primary, #00ff00);
+
+    * {
+        border-radius: 50%;
+        aspect-ratio: 1;
+    }
+}
+
+video {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: 1;
+    object-fit: cover;
+    width: 100% !important;
+}
+
+a {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    place-content: center;
+}
+slot{
+    font-size: 16qb;
+}
+slot[name="title"] {
+    display: block;
+    position: absolute;
+    z-index: var(--z-index-above-absolute, 1);
+    aspect-ratio: unset;
+
+}
+
+.loader {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+}
+
+.radar {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, transparent 0% 50%, var(--color-primary), hsl(120deg 100% 50%) 120%),
+        /*radial-gradient(circle , transparent 0% ,transparent 70%, var(--color-primary, ) 70%),*/ conic-gradient(from 0deg, var(--color-primary, hsl(120deg 100% 50% / .2)) 0deg, transparent 60deg 360deg);
+    animation: radar-scan 2s linear infinite;
+}
+
+@keyframes radar-scan {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* pulse effect */
+.circle-video-container::before,
+.circle-video-container::after {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--space-2));
+    border: 2px solid var(--color-primary, #00ff00);
+    border-radius: 50%;
+    animation: pulse 2s linear infinite;
+}
+
+.circle-video-container {
+    position: relative;
+}
+
+.circle-video-container::after {
+    animation-delay: 1s;
+}
+
+@keyframes pulse {
+    from {transform: scale(1); opacity: 0; }
+    20% { transform: scale(1.02); opacity: 1;}
+    100% { transform: scale(1.1); opacity: 0; }
+}

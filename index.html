@@ -130,16 +130,17 @@
                        data-title="Lava lamp effect"
                        data-description="This one use css on canvas himself to achieve nice effect."
                        href="projects/particles/4/index.html">4</a>
-
                     <a role="tab" aria-selected="false" aria-controls="content-frame"
                        data-title="With Gradient"
                        href="projects/particles/5/index.html">5</a>
+
                     <a role="tab" aria-selected="false" aria-controls="content-frame"
                        data-title="With Gradient"
                        data-description="Wait for it.. the text there is real HTML Element"
                        href="projects/particles/6/index.html">6</a>
+
                     <a role="tab" aria-selected="false" aria-controls="content-frame"
-                       data-title="With Gradient"
+                       data-title="force f"
                        href="projects/particles/7/index.html">7 </a>
                 </div>
                 ☆
@@ -164,7 +165,10 @@
            data-tutorial=""
            data-layout="top-floating"
         >Pixels rain</a>
-
+        <div class="sidebar-separator"></div>
+        <!-- links: tutorials-by-frank -->
+        <div class="sidebar-separator"></div>
+        <!-- tabs: drawing-shapes-tabs -->
     </nav>
 
 </aside>
@@ -189,9 +193,10 @@
 <script type="module" src="./projects/_components/fancy-recorder.components.js"></script>
 
 <script type="module">
-    import './home-scripts/sidebar-link.js'
+    // import './home-scripts/sidebar-link.js'
     import {linkPageFromParent, toggleTheme} from './projects/_helpers/link-page.js'
     import './home-scripts/avatar-effect.js'
+    import './home-scripts/new-link-processing.js'
 
     var themeToggle = document.getElementById('theme-toggle')
     themeToggle.addEventListener('click', toggleTheme)

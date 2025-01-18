@@ -13,23 +13,28 @@
             line-height: var(--line-height-normal);
             padding: var(--space-6);
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
         }
+
         h1 {
             font-size: var(--font-size-3xl);
             margin-bottom: var(--space-4);
             color: var(--color-primary);
         }
+
         p {
             font-size: var(--font-size-lg);
             margin-bottom: var(--space-4);
         }
+
         .project-list {
             list-style-type: none;
             padding: 0;
         }
+
         .project-item {
             background-color: var(--component-bg);
             border: 1px solid var(--component-border);
@@ -37,43 +42,99 @@
             padding: var(--space-4);
             margin-bottom: var(--space-4);
             transition: transform var(--transition-normal);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 10em);
+            justify-content: space-between;
+            gap: var(--space-2)
         }
+
         .project-item:hover {
             transform: translateY(-3px);
         }
+
         .project-title {
-            font-size: var(--font-size-xl);
             color: var(--color-secondary);
             margin-bottom: var(--space-2);
+            font-size: inherit;
+        }
+        h3.project-title {
+            font-size: var(--font-size-xl);
         }
     </style>
+    <script type="module" src="projects/_components/fancy-video.component.js"></script>
 </head>
 <body>
 <div class="container">
     <h1>Welcome to My Creative Portfolio</h1>
-    <p>Hello! I'm Pery Mimon , a passionate creator and developer. This portfolio showcases some of my favorite projects that demonstrate my skills in web development, design, and creative problem-solving.</p>
+    <p>Hello! I'm Pery Mimon , a passionate creator and developer. This portfolio showcases some of my favorite projects
+        that demonstrate my skills in web development, design, and creative problem-solving.</p>
     <p>Feel free to explore my projects using the sidebar navigation. Here's a quick overview of what you'll find:</p>
 
-    <!--<ul class="project-list">
+    <ul class="project-list">
         <li class="project-item">
-            <h2 class="project-title">Project 1: Interactive Web Application</h2>
-            <p>A dynamic web app that showcases my frontend development skills using modern JavaScript frameworks.</p>
+            <fancy-video
+                    src="./assets/videos/particle-stick.webm"
+                    href="https://example.com"
+                    target="_top"
+            >
+                <h4 slot="title" class="project-title">Particle Rain</h4>
+            </fancy-video>
+            <fancy-video
+                    src="./assets/videos/matrix-rain.webm"
+                    href="https://example.com"
+                    target="_top"
+            >
+                <h4 slot="title" class="project-title">Matrix Rain</h4>
+            </fancy-video>
+            <fancy-video
+                    src="./assets/videos/particle-1.webm"
+                    href="https://example.com"
+                    target="_top"
+            ></fancy-video>
+            <fancy-video
+                    src="./assets/videos/particle-2.webm"
+                    href="https://example.com"
+                    target="_top"
+            ></fancy-video>
+            <fancy-video
+                    src="./assets/videos/particle-3.webm"
+                    href="https://example.com"
+                    target="_top"
+            ></fancy-video>
+            <fancy-video
+                    src="./assets/videos/particle-4.webm"
+                    href="https://example.com"
+                    target="_top"
+            ></fancy-video>
+            <fancy-video
+                    src="./assets/videos/particle-5.webm"
+                    href="https://example.com"
+                    target="_top"
+            ></fancy-video>
+            <fancy-video
+                    src="./assets/videos/particle-6.webm"
+                    href="https://example.com"
+                    target="_top"
+            ></fancy-video>
+            <fancy-video
+                    src="./assets/videos/particle-7.webm"
+                    href="https://example.com"
+                    target="_top"
+            ></fancy-video>
         </li>
-        <li class="project-item">
-            <h2 class="project-title">Project 2: Responsive Design Showcase</h2>
-            <p>A collection of responsive web designs that adapt seamlessly to various screen sizes and devices.</p>
-        </li>
-        <li class="project-item">
-            <h2 class="project-title">Project 3: Creative Coding Experiment</h2>
-            <p>An artistic project that combines code and creativity, demonstrating my skills in generative art and animation.</p>
-        </li>
-    </ul>-->
+        <!--        <li class="project-item">-->
+        <!--            <h2 class="project-title">Project 2: Responsive Design Showcase</h2>-->
+        <!--            <p>A collection of responsive web designs that adapt seamlessly to various screen sizes and devices.</p>-->
+        <!--        </li>-->
+
+    </ul>
 
     <p>Thank you for visiting my portfolio. I hope you enjoy exploring my work!</p>
 </div>
 
 <script type="module">
     import {linkPageToParent} from './projects/_helpers/link-page.js'
+
     linkPageToParent()
 </script>
 </body>
