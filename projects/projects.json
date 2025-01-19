@@ -1,5 +1,35 @@
 [
   {
+    "group-id": "side-projects",
+    "title": "3D Taki Game",
+    "link": "https://client-taki-game.onrender.com/",
+    "year": 2018,
+    "stack": "ES6, React 17, vite, NodeJS, Socket.io",
+    "description": "Wait 50 sec for server to spin up. Multi player game and the first React app I write",
+    "source": "https://github.com/perymimon/Taki-react",
+    "actions": [
+      "cold spin up Taki server (50sec) | https://taki-game.onrender.com/",
+      "render dashboard | https://dashboard.render.com/"
+    ]
+  },{
+    "group-id": "side-projects",
+    "title": "Tiny Promise",
+    "link": "https://stackblitz.com/github/perymimon/Promise?embed=1&file=src%2FtinyPromise.js&hideExplorer=1&hideNavigation=1&view=editor&terminalHeight=50",
+    "year": 2016,
+    "stack": "vanilla es5, mocha",
+    "description": "One day, I decided to write my own implementation of Promise. I thought it would demonstrate how simple it is, but I ended up needing to run about 1,000 tests.",
+    "source": "https://github.com/perymimon/Promise",
+    "npm": "https://www.npmjs.com/package/@perymimon/tiny-promise"
+  }, {
+    "group-id": "tutorials-by-radu",
+    "title": "Drawing Shapes",
+    "link": "projects/drawing-shapes/index.html",
+    "year": 2024,
+    "stack": "vanilla es6",
+    "description": "Symbols drawn using plain vanilla JavaScript",
+    "teacher": "@Radu",
+    "tutorial": "https://www.youtube.com/playlist?list=PLB0Tybl0UNfalh9Ll82j6OKdx1QINOZom"
+  },  {
     "group-id": "tutorials-by-frank",
     "title": "Particles",
     "link": "projects/particles/code-pens.html",
@@ -7,9 +37,52 @@
     "stack": "particles, canvas, vanilla es6",
     "description": "Basic particle effects, responsive to mouse interactions.",
     "teacher": "@Frank",
-    "tutorial": "https://www.youtube.com/watch?v=PoDjjHh931c"
+    "tutorial": "https://www.youtube.com/watch?v=PoDjjHh931c",
+    "tabs-id": "frank-particals"
+  },  {
+    "group-id":"frank-particals",
+    "parent":"tutorials-by-frank",
+    "title": "Bounded Connected Particles",
+    "link": "projects/particles/1/index.html"
+  },  {
+    "group-id":"frank-particals",
+    "parent":"tutorials-by-frank",
+    "title": "Inflate Bubbles",
+    "link": "projects/particles/2/index.html",
+    "description": "Try to click anywhere to inflate bubbles."
   },
   {
+    "group-id":"frank-particals",
+    "parent":"tutorials-by-frank",
+    "title": "Use Sprite",
+    "link": "projects/particles/3/index.html",
+    "description": "This one uses sprite to draw the particles."
+  },
+  {
+    "group-id":"frank-particals",
+    "parent":"tutorials-by-frank",
+    "title": "Lava Lamp Effect",
+    "link": "projects/particles/4/index.html",
+    "description": "This one uses CSS on canvas itself to achieve a nice effect."
+  },  {
+    "group-id":"frank-particals",
+    "parent":"tutorials-by-frank",
+    "title": "With Gradient",
+    "link": "projects/particles/5/index.html",
+    "description": ""
+  },  {
+    "group-id":"frank-particals",
+    "parent":"tutorials-by-frank",
+    "title": "With Gradient",
+    "link": "projects/particles/6/index.html",
+    "description": ""
+  },  {
+    "group-id":"frank-particals",
+    "parent":"tutorials-by-frank",
+    "title": "force from item",
+    "link": "projects/particles/7/index.html",
+    "description": ""
+  },  {
     "group-id": "tutorials-by-frank",
     "title": "Matrix Rain",
     "link": "projects/matrix-rain/index.html",
@@ -18,17 +91,12 @@
     "description": "A matrix rain, created with vanilla ES6 on canvas and some CSS filters.",
     "teacher": "@Frank",
     "tutorial": "https://www.youtube.com/watch?v=f5ZswIE_SgY"
-  },
-  {
-    "group-id": "drawing-shapes-tabs",
-    "title": "Tab 1",
-    "link": "projects/drawing-shapes/tab1.html",
-    "description": "Example Tab Description 1"
-  },
-  {
-    "group-id": "drawing-shapes-tabs",
-    "title": "Tab 2",
-    "link": "projects/drawing-shapes/tab2.html",
-    "description": "Example Tab Description 2"
-  }
-]
+  },  {
+    "group-id": "tutorials-by-frank",
+    "title": "Pixels Rain",
+    "link": "projects/pixel-rain/index.html",
+    "year": 2024,
+    "stack": "canvas, vanilla es6",
+    "description": "What if we change the speed of the particles based on the luminosity of a hidden image?",
+    "teacher": "@Frank"
+  }]

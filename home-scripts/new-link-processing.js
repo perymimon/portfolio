@@ -1,7 +1,10 @@
+export var projects = null
+
 document.addEventListener('DOMContentLoaded', () => {
     fetch('./projects/projects.json')
         .then(response => response.json())
         .then(data => {
+            projects = data
             const groups = Object.groupBy(data, datum=> datum['group-id']);
             buildNavigation(groups);
         })
@@ -10,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Build the navigation by inserting groups based on HTML comments.
- * @param {Array} groups - List of all groups with their IDs and items.
+ * @param {Object} groups - Object where keys are group IDs and values are arrays of items.
  */
 function buildNavigation (groups) {
     const comments = findComments(document.body);
