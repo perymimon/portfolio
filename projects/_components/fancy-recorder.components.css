@@ -83,9 +83,9 @@ button {
 
 
 button#record-btn:not(:disabled) {
-    border: .1em solid var(--color-border);
+    border: .1em solid var(--color-primary);
     background-color: var(--background-color);
-    color: var(--color-border);
+    color: var(--color-primary);
 
     &:hover {
         --color-border: var(--color-border-active);

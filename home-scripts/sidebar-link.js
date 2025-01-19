@@ -54,11 +54,6 @@ function loadContent (hash = window.location.hash) {
     }
 }
 
-function toggleTab (activeTab) {
-    var tablist = activeTab.closest('[role="tablist"]')
-    tablist?.querySelectorAll('[aria-selected]')
-        .forEach(tab => tab.ariaSelected = String(tab === activeTab))
-}
 
 function toggleLink (activeLink) {
     if (activeLink.role === 'tab') {
@@ -75,11 +70,6 @@ function toggleLink (activeLink) {
 
 window.addEventListener('hashchange', () => loadContent())
 window.addEventListener('load', () => loadContent())
-
-export function processLink () {
-
-
-}
 
 function startViewTransition (viewEffect) {
     if (!document.startViewTransition) {

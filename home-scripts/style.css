@@ -1,7 +1,6 @@
 @import "../base.css";
 @import "project-info-style.css";
 @import "./view-transition-animation.css";
-@import "./projects-view-transition-animation.css";
 @import "side-pannel.css";
 @import "./small-elements.css";
 
@@ -40,35 +39,20 @@ nav {
 
 #top-bar {
     display: flex;
-    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: flex-start;
     padding: var(--space-2);
 
+    .my-name {
+        margin: 0;
+        padding: 0;
+        -webkit-text-stroke: 1px var(--text-primary);
+        color: transparent;
+        font-size: 1.5em;
+    }
 }
 
-#bottom-bar {
-    display: flex;
-    position: absolute;
-    justify-content: space-between;
-    align-items: flex-end;
-    /*line-height: 2em;*/
-    left: var(--space-2);
-    right: var(--space-2);
-    bottom: 0;
-    z-index: var(--z-index-above-absolute);
-    padding: var(--space-1);
 
-    @media (orientation: portrait) {
-        position: fixed;
-    }
-
-    fancy-recorder {
-        position: sticky;
-        inset-inline: 0;
-    }
-
-}
 
 .extra-info {
     /*display: none;*/

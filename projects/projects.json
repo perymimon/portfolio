@@ -1,6 +1,7 @@
 [
   {
-    "group-id": "side-projects",
+    "groupId": "side-projects",
+    "id": "client-taki-game-onrender",
     "title": "3D Taki Game",
     "link": "https://client-taki-game.onrender.com/",
     "year": 2018,
@@ -11,8 +12,10 @@
       "cold spin up Taki server (50sec) | https://taki-game.onrender.com/",
       "render dashboard | https://dashboard.render.com/"
     ]
-  },{
-    "group-id": "side-projects",
+  },
+  {
+    "groupId": "side-projects",
+    "id": "stackblitz-github-promise",
     "title": "Tiny Promise",
     "link": "https://stackblitz.com/github/perymimon/Promise?embed=1&file=src%2FtinyPromise.js&hideExplorer=1&hideNavigation=1&view=editor&terminalHeight=50",
     "year": 2016,
@@ -20,8 +23,10 @@
     "description": "One day, I decided to write my own implementation of Promise. I thought it would demonstrate how simple it is, but I ended up needing to run about 1,000 tests.",
     "source": "https://github.com/perymimon/Promise",
     "npm": "https://www.npmjs.com/package/@perymimon/tiny-promise"
-  }, {
-    "group-id": "tutorials-by-radu",
+  },
+  {
+    "groupId": "tutorials-by-radu",
+    "id": "projects-drawing-shapes",
     "title": "Drawing Shapes",
     "link": "projects/drawing-shapes/index.html",
     "year": 2024,
@@ -29,8 +34,10 @@
     "description": "Symbols drawn using plain vanilla JavaScript",
     "teacher": "@Radu",
     "tutorial": "https://www.youtube.com/playlist?list=PLB0Tybl0UNfalh9Ll82j6OKdx1QINOZom"
-  },  {
-    "group-id": "tutorials-by-frank",
+  },
+  {
+    "groupId": "tutorials-by-frank",
+    "id": "projects-particles-code-pens",
     "title": "Particles",
     "link": "projects/particles/code-pens.html",
     "year": 2024,
@@ -38,52 +45,66 @@
     "description": "Basic particle effects, responsive to mouse interactions.",
     "teacher": "@Frank",
     "tutorial": "https://www.youtube.com/watch?v=PoDjjHh931c",
-    "tabs-id": "frank-particals"
-  },  {
-    "group-id":"frank-particals",
-    "parent":"tutorials-by-frank",
+    "tabsId": "frank-particles"
+  },
+  {
+    "groupId": "frank-particles",
+    "id": "projects-particles-1",
+    "parent": "projects-particles-code-pens",
     "title": "Bounded Connected Particles",
     "link": "projects/particles/1/index.html"
-  },  {
-    "group-id":"frank-particals",
-    "parent":"tutorials-by-frank",
+  },
+  {
+    "groupId": "frank-particles",
+    "id": "projects-particles-2",
+    "parent": "projects-particles-code-pens",
     "title": "Inflate Bubbles",
     "link": "projects/particles/2/index.html",
     "description": "Try to click anywhere to inflate bubbles."
   },
   {
-    "group-id":"frank-particals",
-    "parent":"tutorials-by-frank",
+    "groupId": "frank-particles",
+    "id": "projects-particles-3",
+    "parent": "projects-particles-code-pens",
     "title": "Use Sprite",
     "link": "projects/particles/3/index.html",
     "description": "This one uses sprite to draw the particles."
   },
   {
-    "group-id":"frank-particals",
-    "parent":"tutorials-by-frank",
+    "groupId": "frank-particles",
+    "id": "projects-particles-4",
+    "parent": "projects-particles-code-pens",
     "title": "Lava Lamp Effect",
     "link": "projects/particles/4/index.html",
     "description": "This one uses CSS on canvas itself to achieve a nice effect."
-  },  {
-    "group-id":"frank-particals",
-    "parent":"tutorials-by-frank",
+  },
+  {
+    "groupId": "frank-particles",
+    "id": "projects-particles-5",
+    "parent": "projects-particles-code-pens",
     "title": "With Gradient",
     "link": "projects/particles/5/index.html",
     "description": ""
-  },  {
-    "group-id":"frank-particals",
-    "parent":"tutorials-by-frank",
+  },
+  {
+    "groupId": "frank-particles",
+    "id": "projects-particles-6",
+    "parent": "projects-particles-code-pens",
     "title": "With Gradient",
     "link": "projects/particles/6/index.html",
     "description": ""
-  },  {
-    "group-id":"frank-particals",
-    "parent":"tutorials-by-frank",
+  },
+  {
+    "groupId": "frank-particles",
+    "id": "projects-particles-7",
+    "parent": "projects-particles-code-pens",
     "title": "force from item",
     "link": "projects/particles/7/index.html",
     "description": ""
-  },  {
-    "group-id": "tutorials-by-frank",
+  },
+  {
+    "groupId": "tutorials-by-frank",
+    "id": "projects-matrix-rain",
     "title": "Matrix Rain",
     "link": "projects/matrix-rain/index.html",
     "year": 2024,
@@ -91,12 +112,15 @@
     "description": "A matrix rain, created with vanilla ES6 on canvas and some CSS filters.",
     "teacher": "@Frank",
     "tutorial": "https://www.youtube.com/watch?v=f5ZswIE_SgY"
-  },  {
-    "group-id": "tutorials-by-frank",
+  },
+  {
+    "groupId": "tutorials-by-frank",
+    "id": "projects-pixel-rain",
     "title": "Pixels Rain",
     "link": "projects/pixel-rain/index.html",
     "year": 2024,
     "stack": "canvas, vanilla es6",
     "description": "What if we change the speed of the particles based on the luminosity of a hidden image?",
     "teacher": "@Frank"
-  }]
+  }
+]

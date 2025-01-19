@@ -1,33 +1,42 @@
+import {getAnchorsGroup, getProjectById} from './new-link-processing.js'
+
 const teachers = {
     '@Radu': {
         url: 'https://www.youtube.com/@Radu',
-        name: 'Dr.Radu',/*Mariescu-Istodor*/
+        name: 'Dr.Radu',/* Mariescu-Istodor */
     },
-    '@Frank':{
+    '@Frank': {
         url: 'https://www.youtube.com/@Frankslaboratory',
-        name:'@Franks'
+        name: '@Franks',
     },
-    '@me':{
+    '@me': {
         url: 'https://github.com/perymimon',
-        name: '@pery'
-    }
+        name: '@pery',
+    },
 }
-export function injectProjectInfo (link) {
-    // var template = document.querySelector('#template-info').content.cloneNode(true);
-    var mainLink = document.getElementById(link.dataset.mainLink) || link
-    var data = mainLink !== link ?{...mainLink.dataset, ...link.dataset}: link.dataset
+
+export function injectProjectInfo2 (project) {
+    var $infoPanel = document.getElementById('project-info')
+    var $tabContainer = document.getElementById('tabs-container')
+    if (!project) return $infoPanel.replaceChildren(/*empty*/)
+
+    var parentProject = getProjectById(project.parent) ?? {}
+    var data = {...parentProject, ...project}
     var teacher = teachers[data.teacher]
-    var infoPanel = document.getElementById('project-info')
-    var tabsContainer = document.getElementById('tabs-container')
+    var parentId = '', fragment = ''
+    if (data.tabsId){
+        parentId = parentProject.id ?? data.id
+        if($tabContainer.dataset.parent !== parentId){
+            fragment = getAnchorsGroup(data.tabsId, 'tabs')
+            $tabContainer.replaceChildren(fragment)
+            $tabContainer.dataset.parent = parentId
+        }
+    }else {
+        $tabContainer.replaceChildren()
+        delete $tabContainer.dataset.parent
+    }
 
-    var tabList = mainLink.parentElement.querySelector(':scope > [role="tablist"]')
-
-    infoPanel.classList.remove(infoPanel.dataset.extraClasses)
-    infoPanel.classList.add(data.layout)
-    infoPanel.dataset.extraClasses = data.layout
-
-
-    var template = `
+    $infoPanel.innerHTML = `
           <h3 class="info-title>⬡
             <span id="info-title" data-value="${data.title}">${data.title}</span> |
             <span id="info-year" data-value="${data.year}">${data.year}</span> |
@@ -49,13 +58,10 @@ export function injectProjectInfo (link) {
                 ${data.description?.trim() || 'No description available'}
             </span>
           </div>
-            
         
             <!--        <div class="info-actions">-->
             <!--            <button class="button-base" id="live-demo-btn">Live</button>-->
             <!--            <button class="button-base" id="source-code-btn">Code</button>-->
             <!--        </div>-->
     `
-    infoPanel.innerHTML = template
-    tabsContainer.replaceChildren(tabList?.cloneNode(true) ?? '')
 }

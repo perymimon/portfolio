@@ -31,7 +31,7 @@ body, html {
     --color-primary: light-dark(hsl(120, 100%, 35%), hsl(120, 50%, 40%)); /* Neon Green */
     --color-primary-hover: light-dark(hsl(120, 100%, 45%), hsl(120, 50%, 50%));
     --color-secondary: light-dark(hsl(90, 60%, 30%), hsl(90, 50%, 50%)); /* Darker Green */
-    --color-secondary-hover: light-dark(hsl(90, 70%, 40%), hsl(90, 60%, 60%));
+    --color-secondary-hover: light-dark(hsl(90, 50%, 40%), hsl(90, 60%, 60%));
     --color-warning: light-dark(hsl(50, 80%, 40%), hsl(50, 60%, 60%)); /* Yellow-Green */
     --color-warning-hover: light-dark(hsl(50, 90%, 50%), hsl(50, 70%, 70%));
     --color-error: light-dark(hsl(0, 80%, 40%), hsl(0, 60%, 50%)); /* Red */
@@ -40,10 +40,10 @@ body, html {
     --color-success-hover: light-dark(hsl(120, 90%, 45%), hsl(120, 70%, 50%));
 
     /* Neutral Colors */
-    --color-background: light-dark(hsl(120, 30%, 95%), hsl(120, 15%, 5%)); /* Deep Greenish Black vs Light Greenish White */
-    --color-foregrowund: light-dark(hsl(120, 100%, 90%), hsl(120deg 100% 30% / 10%)); /* Light Green vs Dark Green */
-    --color-muted: light-dark(hsl(120, 15%, 70%), hsl(120, 10%, 50%)); /* Subtle Green */
-    --color-muted-hover: light-dark(hsl(120, 20%, 80%), hsl(120, 20%, 60%));
+    --color-background: light-dark(hsl(120, 100%, 10%), hsl(120, 15%, 5%)); /* Deep Greenish Black vs Light Greenish White */
+    --color-foregrowund: light-dark(hsl(120, 80%, 50%), hsl(120deg 100% 30% / 10%)); /* Light Green vs Dark Green */
+    --color-muted: light-dark(hsl(120, 15%, 50%), hsl(120, 10%, 50%)); /* Subtle Green */
+    --color-muted-hover: light-dark(hsl(120, 20%, 50%), hsl(120, 20%, 60%));
 
     /* Border Colors */
     --color-border: light-dark(hsl(120, 20%, 70%), hsl(120 40% 20%));
@@ -51,9 +51,9 @@ body, html {
     --color-border-active: light-dark(hsl(290, 100%, 50%), hsl(290, 100%, 60%));
 
     /* Component Colors */
-    --component-bg: light-dark(hsl(120deg 30% 95% / 15%), hsl(120deg 100% 10% / 15%));
+    --component-bg: light-dark(hsl(120deg 50% 35% / 50%), hsl(120deg 100% 10% / 15%));
     --component-border: light-dark(hsl(120, 40%, 60%), hsl(120, 10%, 20%));
-    --component-hover: light-dark(hsl(120, 50%, 90%), hsl(120deg 50% 15% / 55%));
+    --component-hover: light-dark(hsl(120, 50%, 50%), hsl(120deg 50% 15% / 55%));
 
     /* Text Colors */
     --text-primary: light-dark(hsl(120, 100%, 50%), hsl(120, 40%, 60%)); /* Neon Green */
@@ -384,7 +384,7 @@ p {
 /* tabs sections */
 [role="tablist"] {
     display: flex;
-    gap: var(--space-2);
+    gap: var(--space-1);
     white-space: nowrap;
 
     .tabs-header {

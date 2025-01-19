@@ -1,37 +1,130 @@
-export var projects = null
+import {injectProjectInfo2} from './project-info.js'
+import {startViewTransition} from './view-transition.js'
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('./projects/projects.json')
+
+document.addEventListener('DOMContentLoaded', handleContentLoaded)
+document.addEventListener('click', handleGlobalClick)
+// window.addEventListener('hashchange', (event) => goToProjectPage())
+
+const contentFrame = document.querySelector('#content-frame')
+export var projects = null
+export var byGroups = null
+
+
+async function loadProjects () {
+    projects = await fetch('./projects/projects.json')
         .then(response => response.json())
-        .then(data => {
-            projects = data
-            const groups = Object.groupBy(data, datum=> datum['group-id']);
-            buildNavigation(groups);
-        })
-        .catch(error => console.error('Error loading projects:', error));
-})
+        .catch(error => console.error('Error loading projects:', error))
+    /* add id to each project */
+    // projects.forEach(project => project.id = href2id(project.link))
+    /* group by group-id*/
+    byGroups = Object.groupBy(projects, (datum) => datum.groupId);
+}
+
+const loadingProjects = loadProjects()
+
+async function handleContentLoaded (event) {
+    await loadingProjects
+    buildNavigation()
+    var project = await goToProjectPage()
+
+    if (!project) {
+        contentFrame.src = 'welcome.html'
+    }
+}
+
+async function handleGlobalClick (event) {
+    if (!(event.target instanceof HTMLAnchorElement)) return
+    if (contentFrame.src === event.target.href) {
+        return event.preventDefault()
+    }
+    //
+    var project = await goToProjectPage(event.target.id)
+    toggleAnchor(event.target)
+    if (project) {
+        event.preventDefault()
+    }
+}
+
+function toggleAnchor (anchor) {
+    anchor = (typeof anchor === 'string') ? document.getElementById(anchor) : anchor
+    if (!anchor) throw 'no anchor get or found'
+    if (anchor.role === 'tab') {
+        var roleset = anchor.closest('[role="tablist"]')
+        roleset.querySelectorAll('[aria-selected]')
+            .forEach(tab => tab.ariaSelected = String(tab === anchor))
+        toggleAnchor(roleset.dataset.parent)
+
+    } else {
+        anchor.closest('nav')
+            .querySelectorAll('a.sidebar-link')
+            .forEach(link => link.ariaSelected = String(link === anchor))
+    }
+}
+
+async function goToProjectPage (id = window.location.hash) {
+    id = id.replace(/^#/, '')
+    var project = getProjectById(id)
+    var link = document.getElementById(id)
+    var href = project?.link ?? link?.href
+
+    if (project?.tabsId) {
+        var group = getProjectsByGroupId(project.tabsId)
+        var firstTab = group.at(0)
+        return goToProjectPage(firstTab.id)
+    }
+    window.location.hash = id
+
+    var viewTransition = startViewTransition(_ => {
+        contentFrame.src = href
+        injectProjectInfo2(project)
+        toggleAnchor(id)
+    })
+    await viewTransition.finished
+    return project
+}
+
+export function getProjectById (projectId) {
+    return projects.find(item => item.id === projectId)
+}
+
+export function getProjectsByGroupId (groupId) {
+    return byGroups[groupId]
+}
 
 /**
  * Build the navigation by inserting groups based on HTML comments.
  * @param {Object} groups - Object where keys are group IDs and values are arrays of items.
  */
-function buildNavigation (groups) {
+const commentMatcher = /(links|tabs):\s*([\w-]+)/
+
+function buildNavigation () {
     const comments = findComments(document.body);
-    const matcher = /(links|tabs):\s*([\w-]+)/
     comments
-        .filter(comment => comment.data.match(matcher))
+        .filter(comment => comment.data.match(commentMatcher))
         .forEach(comment => {
-            const [, type, groupId] = comment.data.match(matcher)
-            const group =  groups[groupId]
-            if (group) {
-                const fragment  = document.createDocumentFragment()
-                group.forEach(item => {
-                    const element = buildLink(item, type === 'tabs')
-                    fragment.appendChild(element)
-                });
-                comment.parentNode.insertBefore(fragment, comment.nextSibling)
-            }
+            addGroupAfterComment(comment)
         });
+}
+
+export function getAnchorsGroup (groupId, type) {
+    var group = getProjectsByGroupId(groupId)
+    const fragment = document.createDocumentFragment()
+    if (!group) throw 'no group found'
+
+    group.forEach((item, i) => {
+        var isTabs = type === 'tabs'
+        const element = buildLink(item, isTabs)
+        if (isTabs) element.textContent = i + 1
+        fragment.appendChild(element)
+    });
+    return fragment
+}
+
+export function addGroupAfterComment (comment) {
+    const [, type, groupId] = comment.data.match(commentMatcher)
+    const fragment = getAnchorsGroup(groupId, type)
+    comment.parentNode.insertBefore(fragment, comment.nextSibling)
 }
 
 /**
@@ -42,16 +135,11 @@ function buildNavigation (groups) {
  */
 function buildLink (item, isTab = false) {
     const link = document.createElement('a');
-    link.classList.add('sidebar-link');
+    if (!isTab) link.classList.add('sidebar-link');
     link.href = item.link;
+    link.id = item.id
     link.textContent = item.title;
     link.target = 'content-frame';
-    if(item.title) link.dataset.title = item.title;
-    if (item.description) link.dataset.description = item.description
-    if (item.year) link.dataset.year = item.year
-    if (item.stack) link.dataset.stack = item.stack
-    if (item.teacher) link.dataset.teacher = item.teacher
-    if (item.tutorial) link.dataset.tutorial = item.tutorial
 
     if (isTab) {
         link.role = 'tab'

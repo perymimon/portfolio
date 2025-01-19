@@ -20,12 +20,13 @@
     <link rel="icon" href="https://perymimon.github.io/portofolio/assets/site-image.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="https://perymimon.github.io/portofolio/assets/site-image.png">
     <meta name="theme-color" content="hsl(120, 50%, 50%)">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="hsl(120, 15%, 5%)" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="light-dark(hsl(120, 30%, 95%)" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="hsl(120, 15%, 5%)"/>
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="light-dark(hsl(120, 30%, 95%)"/>
 
     <title>Hello Worlds</title>
     <link rel="stylesheet" href="home-scripts/style.css">
     <link rel="expect" href="#project-info" blocking="render">
+    <link rel="prefetch" href="./projects/projects.json"/>
 </head>
 <body>
 
@@ -43,151 +44,46 @@
     <nav>
         <div class="sidebar-separator"></div>
 
-        <a href="./welcome.html" class="sidebar-link"
+        <a href="./welcome.html"
+           class="sidebar-link" target="content-frame"
+           id="welcome"
            data-layout="disapear"
-        >
-            Welcome
-        </a>
+        >Welcome</a>
         <div class="sidebar-section-title">
             Side projects by
             <a href="https://github.com/perymimon?tab=repositories" target="_blank">me</a></div>
-
-        <a href="https://client-taki-game.onrender.com/" class="sidebar-link"
-           data-title="3D Taki Game"
-           data-year="2018"
-           data-stack="ES6, React 17, vite, NodeJS, Socket.io"
-           data-description="Wait 50 sec for server to spin up. Multi player game and the first React app I write"
-           data-source="https://github.com/perymimon/Taki-react"
-
-           data-action-0="cold spin up Taki server (50sec) | https://taki-game.onrender.com/"
-           data-action-1="render dashboard | https://dashboard.render.com/"
-        >
-            3D Taki Game
-        </a>
-
-        <a href="https://stackblitz.com/github/perymimon/Promise?embed=1&file=src%2FtinyPromise.js&hideExplorer=1&hideNavigation=1&view=editor&terminalHeight=50"
-           class="sidebar-link"
-           data-title="Tiny Promise"
-           data-year="2016"
-           data-stack="vanilla es5, mocha"
-           data-description="One day, I decided to write my own implementation of Promise. I thought it would demonstrate how simple it is, but I ended up needing to run about 1,000 tests."
-           data-source="https://github.com/perymimon/Promise"
-           data-npm="https://www.npmjs.com/package/@perymimon/tiny-promise"
-        >
-            Tiny Promise
-        </a>
+        <!--links:side-projects -->
         <div class="sidebar-separator"></div>
-
         <!--Radu section -->
         <div class="sidebar-section-title">Tutorials I follow by
             <a href="https://www.youtube.com/@Radu" target="_blank">Radu</a>
         </div>
-        <a href="projects/drawing-shapes/index.html"
-           class="sidebar-link"
-           data-title="Drawing Shapes"
-           data-year="2024"
-           data-stack="vanilla es6"
-           data-description="Symbols drawn using plain vanilla JavaScript"
-           data-teacher="@Radu"
-           data-tutorial="https://www.youtube.com/playlist?list=PLB0Tybl0UNfalh9Ll82j6OKdx1QINOZom"
-
-        >
-            Radu's Christmas Calendar
-        </a>
+        <!--links:tutorials-by-radu -->
 
         <!--Frank section -->
         <div class="sidebar-section-title">Tutorials I follow by
             <a href="https://www.youtube.com/@Frankslaboratory" target="_blank">Franks</a>
         </div>
-        <div class="sidebar-link">
-            <a href="projects/particles/code-pens.html"
-               data-title="particles"
-               data-year="2024"
-               data-stack="particles, canvas, vanilla es6 "
-               data-description="Basic particle effects, responsive to mouse interactions."
-               data-teacher="@Frank"
-               data-tutorial="https://www.youtube.com/watch?v=PoDjjHh931c"
-               data-layout="top-floating"
-            >
-                Particles
-            </a>
-            <div role="tablist" aria-label="Particles Demo">
-                ☆
-                <div>
-                    <a role="tab" aria-selected="true" aria-controls="content-frame"
-                       href="projects/particles/1/index.html"
-                       data-title="Bounded Connected Particles"
-                    >1</a>
-                    <a role="tab" aria-selected="false" aria-controls="content-frame"
-                       data-title="Inflate bubbles"
-                       data-description="Try to click anywhere to inflate bubbles."
-                       href="projects/particles/2/index.html">2</a>
-                    <a role="tab" aria-selected="false" aria-controls="content-frame"
-                       data-title="Use Sprite"
-                       data-description="This one use sprite to draw the particles."
-                       href="projects/particles/3/index.html">3</a>
-                    <a role="tab" aria-selected="false" aria-controls="content-frame"
-                       data-title="Lava lamp effect"
-                       data-description="This one use css on canvas himself to achieve nice effect."
-                       href="projects/particles/4/index.html">4</a>
-                    <a role="tab" aria-selected="false" aria-controls="content-frame"
-                       data-title="With Gradient"
-                       href="projects/particles/5/index.html">5</a>
-
-                    <a role="tab" aria-selected="false" aria-controls="content-frame"
-                       data-title="With Gradient"
-                       data-description="Wait for it.. the text there is real HTML Element"
-                       href="projects/particles/6/index.html">6</a>
-
-                    <a role="tab" aria-selected="false" aria-controls="content-frame"
-                       data-title="force f"
-                       href="projects/particles/7/index.html">7 </a>
-                </div>
-                ☆
-            </div>
-
-        </div>
-        <a href="projects/matrix-rain/index.html" class="sidebar-link"
-           data-title="Matrix Rain"
-           data-year="2024"
-           data-stack="particles, canvas, vanilla es6 "
-           data-description="A matrix rain, create with vanilla es6 on canvas and some css filter"
-           data-teacher="@Frank"
-           data-tutorial="https://www.youtube.com/watch?v=f5ZswIE_SgY"
-           data-layout="top-floating"
-        >Matrix rain</a>
-        <a href="projects/pixel-rain/index.html" class="sidebar-link"
-           data-title="Pixels rain"
-           data-year="2024"
-           data-stack="canvas vanilla es6 "
-           data-description="What if we change the speed of the particles by the luminosity of hidden image"
-           data-teacher="@Frank"
-           data-tutorial=""
-           data-layout="top-floating"
-        >Pixels rain</a>
-        <div class="sidebar-separator"></div>
-        <!-- links: tutorials-by-frank -->
-        <div class="sidebar-separator"></div>
-        <!-- tabs: drawing-shapes-tabs -->
+        <!--links:tutorials-by-frank -->
     </nav>
 
 </aside>
-<div id="top-bar">
+<header id="top-bar">
+    <h3 class="my-name">Pery Mimon</h3>
     <button id="sidebar-toggle-button" class="button-base">
         <!-- ☰ Glossary -->
     </button>
-</div>
+</header>
 <main id="main-content">
-
+    <!-- project info -->
     <div id="project-info" class="info-container component-base"><!--Project Info--></div>
-    <iframe id="content-frame" name="content-frame" src="welcome.html"><!--Demo Pages--></iframe>
-    <div id="bottom-bar" >
-
-        <div id="tabs-container"></div>
+    <!--main frame-->
+    <iframe id="content-frame" name="content-frame" src=""><!--Demo Pages--></iframe>
+    <!--bottom bar -->
+    <div id="bottom-bar">
+        <button id="theme-toggle" class="button-base" aria-label="Toggle theme"> 🌓</button>
         <fancy-recorder target="content-frame"></fancy-recorder>
-        <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
-            🌓
-        </button>
+        <div id="tabs-container" role="tablist" class="component-base"></div>
     </div>
 </main>
 <script type="module" src="./projects/_components/fancy-recorder.components.js"></script>
@@ -205,7 +101,7 @@
     var toggleThemes = document.getElementById('sidebar-toggle-button')
     var sidebar = document.querySelector('#sidebar')
 
-    window.addEventListener('hashchange',ev => sidebar.classList.remove('open'))
+    window.addEventListener('hashchange', ev => sidebar.classList.remove('open'))
 
     toggleThemes.addEventListener('click',
         ev => sidebar.classList.toggle('open'),

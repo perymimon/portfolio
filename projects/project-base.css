@@ -1,5 +1,7 @@
 /*@import '../home-scripts/projects-view-transition-animation.css';*/
-
+body{
+    overflow: clip;
+}
 canvas-recorder{
     position: fixed;
     bottom: var(--space-4);
