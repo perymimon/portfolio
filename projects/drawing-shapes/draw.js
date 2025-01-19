@@ -91,7 +91,7 @@ async function snippetSection (index) {
         var codeElement = sectionFragment.querySelector('code')
         var coloredCode = hljs.highlight(drawCode.trim(), {language: 'javascript'}).value
             /* add line number */
-            .split('\n').map((line, i) => `<span class="line-number">${i + 1}</span> ${line}`)
+            .split('\n').map((line, i) => `<span class="line-number">${i + 1}</span> <span>${line}</span>`)
         codeElement.innerHTML = coloredCode.join('\n')
     }
     snippets.append(sectionFragment)
