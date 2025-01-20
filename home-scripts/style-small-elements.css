@@ -1,0 +1,41 @@
+#theme-toggle {
+    background-color: var(--component-bg);
+    bottom: var(--space-4);
+    right: var(--space-4);
+
+    &:hover {
+        border-color: var(--component-border);
+        background-color: var(--component-hover);
+    }
+}
+#tabs-container {
+    display: flex;
+    justify-content: center;
+    margin-inline:auto;
+    background-color: var(--color-background);
+    box-shadow: var(--shadow-md);
+}
+
+#bottom-bar {
+    display: flex;
+    flex-direction: row-reverse;
+    position: absolute;
+    /*justify-content: space-between;*/
+    align-items: flex-end;
+    /*line-height: 2em;*/
+    left: var(--space-2);
+    right: var(--space-2);
+    bottom: 0;
+    z-index: var(--z-index-above-absolute);
+    padding: var(--space-1);
+
+    @media (orientation: portrait) {
+        position: fixed;
+    }
+
+    fancy-recorder {
+        position: sticky;
+        inset-inline: 0;
+    }
+
+}

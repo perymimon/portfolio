@@ -27,6 +27,9 @@ class CircularVideo extends HTMLElement {
         this.video = shadow.querySelector('video')
         this.ui = shadow.querySelector('#component-ui')
         this.#setState(LOADING)
+        this.ui.onclick = () => {
+            this.link.click()
+        }
 
     }
 
@@ -44,11 +47,11 @@ class CircularVideo extends HTMLElement {
 
     #setComponent () {
         const {video, link, shadowRoot} = this;
-        link.href = this.getAttribute('href') || '#'
-        link.href = this.getAttribute('target') || ''
+        // link.href = this.getAttribute('href') || '#'
+        // link.target = this.getAttribute('target') || ''
 
         //todo: better to recreate the video element against to prevent memory leak
-        video.src = this.getAttribute('src') || ''
+        // video.src = this.getAttribute('src') || ''
         video.onloadedmetadata = () => video.play()
         video.oncanplay = () => this.#setState(PLAYING)
         // video.ontimeupdate = () => {
@@ -67,19 +70,13 @@ class CircularVideo extends HTMLElement {
         if (oldValue !== newValue) {
             this[name] = newValue;
             if (name === 'src') {
+                this.video.src = newValue;
                 this.#setState(LOADING)
             }
-            this.#setComponent()
+            if (name === 'href') this.link.setAttribute('href', newValue)
+            if (name === 'target') this.link.setAttribute('target', newValue)
         }
     }
-
-    // setupVideo() {
-    //     const video = this.shadowRoot.querySelector('video');
-    //     const container = this.shadowRoot.querySelector('.circle-video-container');
-    //     const loader = this.shadowRoot.querySelector('.loader');
-    //
-    //
-    // }
 }
 
 customElements.define(componentName, CircularVideo);

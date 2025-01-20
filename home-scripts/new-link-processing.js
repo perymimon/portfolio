@@ -4,7 +4,7 @@ import {startViewTransition} from './view-transition.js'
 
 document.addEventListener('DOMContentLoaded', handleContentLoaded)
 document.addEventListener('click', handleGlobalClick)
-// window.addEventListener('hashchange', (event) => goToProjectPage())
+window.addEventListener('hashchange', (event) => goToProjectPage())
 
 const contentFrame = document.querySelector('#content-frame')
 export var projects = null
@@ -27,7 +27,7 @@ async function handleContentLoaded (event) {
     await loadingProjects
     buildNavigation()
     var project = await goToProjectPage()
-
+    console.log(project)
     if (!project) {
         contentFrame.src = 'welcome.html'
     }

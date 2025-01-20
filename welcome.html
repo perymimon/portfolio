@@ -52,11 +52,13 @@
             transform: translateY(-3px);
         }
 
-        .project-title {
+        .anchor-project-title {
             color: var(--color-secondary);
             margin-bottom: var(--space-2);
-            font-size: inherit;
+            font-size: var(--font-size-relative-lg);
+            text-shadow: 0 0.1em .1em var(--color-background);
         }
+
         h3.project-title {
             font-size: var(--font-size-xl);
         }
@@ -73,52 +75,53 @@
     <ul class="project-list">
         <li class="project-item">
             <fancy-video
-                    src="./assets/videos/particle-stick.webm"
-                    href="https://example.com"
+                    src="./assets/videos/taki-multiplayer.mp4"
+                    href="index.html#client-taki-game-onrender"
                     target="_top"
             >
-                <h4 slot="title" class="project-title">Particle Rain</h4>
+                <h4 slot="title" class="anchor-project-title">Taki</h4>
+            </fancy-video>
+            <fancy-video
+                    src="./assets/videos/promise-test.mp4"
+                    href="index.html#stackblitz-github-promise"
+                    target="_top"
+            >
+                <h4 slot="title" class="anchor-project-title">Tiny Promise</h4>
+            </fancy-video>
+            <fancy-video
+                    src="./assets/videos/particle-stick.webm"
+                    href="index.html#projects-pixel-rain"
+                    target="_top"
+            >
+                <h4 slot="title" class="anchor-project-title">Particle Rain</h4>
             </fancy-video>
             <fancy-video
                     src="./assets/videos/matrix-rain.webm"
-                    href="https://example.com"
+                    href="index.html#projects-matrix-rain"
                     target="_top"
             >
-                <h4 slot="title" class="project-title">Matrix Rain</h4>
+                <h4 slot="title" class="anchor-project-title">Matrix Rain</h4>
             </fancy-video>
             <fancy-video
-                    src="./assets/videos/particle-1.webm"
-                    href="https://example.com"
-                    target="_top"
-            ></fancy-video>
-            <fancy-video
                     src="./assets/videos/particle-2.webm"
-                    href="https://example.com"
+                    href="index.html#projects-particles-2"
                     target="_top"
-            ></fancy-video>
-            <fancy-video
-                    src="./assets/videos/particle-3.webm"
-                    href="https://example.com"
-                    target="_top"
-            ></fancy-video>
+            >
+                <h4 slot="title" class="anchor-project-title">Particles</h4>
+            </fancy-video>
             <fancy-video
                     src="./assets/videos/particle-4.webm"
-                    href="https://example.com"
-                    target="_top"
-            ></fancy-video>
-            <fancy-video
-                    src="./assets/videos/particle-5.webm"
-                    href="https://example.com"
+                    href="index.html#projects-particles-4"
                     target="_top"
             ></fancy-video>
             <fancy-video
                     src="./assets/videos/particle-6.webm"
-                    href="https://example.com"
+                    href="index.html#projects-particles-6"
                     target="_top"
             ></fancy-video>
             <fancy-video
                     src="./assets/videos/particle-7.webm"
-                    href="https://example.com"
+                    href="index.html#projects-particles-7"
                     target="_top"
             ></fancy-video>
         </li>

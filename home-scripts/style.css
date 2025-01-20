@@ -1,8 +1,8 @@
 @import "../base.css";
-@import "project-info-style.css";
-@import "./view-transition-animation.css";
-@import "side-pannel.css";
-@import "./small-elements.css";
+@import "style-project-info.css";
+@import "style-view-transition.css";
+@import "style-side-panel.css";
+@import "style-small-elements.css";
 
 body {
     display: grid;
