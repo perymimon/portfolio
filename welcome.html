@@ -54,9 +54,9 @@
 
         .anchor-project-title {
             color: var(--color-secondary);
-            margin-bottom: var(--space-2);
             font-size: var(--font-size-relative-lg);
             text-shadow: 0 0.1em .1em var(--color-background);
+            margin:0;
         }
 
         h3.project-title {
@@ -79,7 +79,7 @@
                     href="index.html#client-taki-game-onrender"
                     target="_top"
             >
-                <h4 slot="title" class="anchor-project-title">Taki</h4>
+                <h4 slot="title" class="anchor-project-title">TAKI</h4>
             </fancy-video>
             <fancy-video
                     src="./assets/videos/promise-test.mp4"
@@ -137,8 +137,58 @@
 
 <script type="module">
     import {linkPageToParent} from './projects/_helpers/link-page.js'
-
     linkPageToParent()
+    // var h4s = document.querySelectorAll('.anchor-project-title')
+    // Array.from(h4s).forEach((h4) => {
+    //     convertTextToArcWithCenter(h4, 70, -90, 180 )
+    // })
+
+    function convertTextToArcWithCenter(element, radius, centerAngle, totalArc, fontSize = 16, maxScale = 1) {
+        const text = element.textContent.trim(); // Get and trim the text content
+        const characters = text.split(""); // Split text into individual characters
+
+        // Handle cases where text is very short
+        const angleRange = characters.length > 1 ? totalArc / (characters.length - 1) : 0; // Angle step per character
+        const startAngle = centerAngle - (totalArc / 2); // Calculate the starting angle
+
+        // Calculate the natural text width and available arc width
+        const maxTextWidth = (totalArc * Math.PI * radius) / 180; // Max width for text along the arc
+        const naturalTextWidth = characters.length * fontSize; // Natural width of the text
+
+        // Scale down if text is too wide, but don't scale up beyond `maxScale`
+        let scale = Math.min(maxScale, maxTextWidth / naturalTextWidth);
+        const adjustedFontSize = fontSize * scale;
+
+        // Clear the original text
+        element.textContent = "";
+
+        // Apply styles to arc the text
+        characters.forEach((char, index) => {
+            const span = document.createElement("span");
+            const angle = startAngle + index * angleRange; // Calculate the angle for each character
+            const x = radius * Math.cos((angle * Math.PI) / 180); // X coordinate
+            const y = radius * Math.sin((angle * Math.PI) / 180); // Y coordinate
+
+            span.textContent = char;
+            span.style.position = "absolute";
+            span.style.transform = `translate(${x}px, ${y}px)`;
+            span.style.transformOrigin = "center";
+            span.style.whiteSpace = "nowrap";
+            span.style.fontSize = `${adjustedFontSize}px`;
+
+            element.appendChild(span);
+        });
+
+        // Ensure parent is relatively positioned
+        const parent = element.parentElement;
+        if (parent) {
+            parent.style.position = "relative";
+        }
+        element.style.position = "absolute";
+    }
+
+
+
 </script>
 </body>
 </html>

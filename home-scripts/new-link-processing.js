@@ -24,15 +24,9 @@ async function loadProjects () {
 const loadingProjects = loadProjects()
 
 async function handleContentLoaded (event) {
-    try {
-        await loadingProjects
-        buildNavigation()
-        var project = await goToProjectPage()
-        console.log(project)
-    }catch(err) {
-        contentFrame.src = 'welcome.html'
-    }
-
+    await loadingProjects
+    buildNavigation()
+    await goToProjectPage()
 }
 
 async function handleGlobalClick (event) {
@@ -71,10 +65,13 @@ async function goToProjectPage (id = window.location.hash) {
     var href = project?.link ?? link?.href
 
     if (project?.tabsId) {
-        var group = getProjectsByGroupId(project.tabsId)
-        var firstTab = group.at(0)
+        var firstTab = getProjectsByGroupId(project.tabsId)?.at(0)
         return goToProjectPage(firstTab.id)
     }
+    if (!href) return goToProjectPage('welcome')
+    /* what if we already on that project / page */
+    if (contentFrame.src.includes(href)) return false
+
     window.location.hash = id
 
     var viewTransition = startViewTransition(_ => {
