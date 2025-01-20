@@ -18,6 +18,8 @@
     }
 }
 
+
+
 .info-container {
     &.top-floating {
         position: absolute;
@@ -51,6 +53,7 @@
     flex-wrap: wrap;
     color: var(--text-secondary);
     /*text-transform: uppercase;*/
+    align-items: baseline;
 
     :is(&, & *)[data-value=""],
     :is(&, & *)[data-value="undefined"] {

@@ -7,7 +7,7 @@
     "year": 2018,
     "stack": "ES6, React 17, vite, NodeJS, Socket.io",
     "description": "Wait 50 sec for server to spin up. Multi player game and the first React app I write",
-    "source": "https://github.com/perymimon/Taki-react",
+    "github": "https://github.com/perymimon/Taki-react",
     "actions": [
       "cold spin up Taki server (50sec) | https://taki-game.onrender.com/",
       "render dashboard | https://dashboard.render.com/"
@@ -21,7 +21,7 @@
     "year": 2016,
     "stack": "vanilla es5, mocha",
     "description": "One day, I decided to write my own implementation of Promise. I thought it would demonstrate how simple it is, but I ended up needing to run about 1,000 tests.",
-    "source": "https://github.com/perymimon/Promise",
+    "github": "https://github.com/perymimon/Promise",
     "npm": "https://www.npmjs.com/package/@perymimon/tiny-promise"
   },
   {
@@ -100,7 +100,8 @@
     "parent": "projects-particles-code-pens",
     "title": "force from item",
     "link": "projects/particles/7/index.html",
-    "description": ""
+    "description": "",
+    "github": "https://github.com/perymimon/portofolio/tree/main/projects/particles"
   },
   {
     "groupId": "tutorials-by-frank",
@@ -111,7 +112,8 @@
     "stack": "particles, canvas, vanilla es6",
     "description": "A matrix rain, created with vanilla ES6 on canvas and some CSS filters.",
     "teacher": "@Frank",
-    "tutorial": "https://www.youtube.com/watch?v=f5ZswIE_SgY"
+    "tutorial": "https://www.youtube.com/watch?v=f5ZswIE_SgY",
+    "github": "https://github.com/perymimon/portofolio/tree/main/projects/matrix-rain"
   },
   {
     "groupId": "tutorials-by-frank",
@@ -121,6 +123,7 @@
     "year": 2024,
     "stack": "canvas, vanilla es6",
     "description": "What if we change the speed of the particles based on the luminosity of a hidden image?",
-    "teacher": "@Frank"
+    "teacher": "@Frank",
+    "github": "https://github.com/perymimon/portofolio/tree/main/projects/pixel-rain"
   }
 ]
