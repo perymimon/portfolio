@@ -24,13 +24,15 @@ async function loadProjects () {
 const loadingProjects = loadProjects()
 
 async function handleContentLoaded (event) {
-    await loadingProjects
-    buildNavigation()
-    var project = await goToProjectPage()
-    console.log(project)
-    if (!project) {
+    try {
+        await loadingProjects
+        buildNavigation()
+        var project = await goToProjectPage()
+        console.log(project)
+    }catch(err) {
         contentFrame.src = 'welcome.html'
     }
+
 }
 
 async function handleGlobalClick (event) {
