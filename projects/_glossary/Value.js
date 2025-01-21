@@ -3,72 +3,68 @@ import {clamp, exceedsLimits, random} from '../_math/basic.js'
 // offScreenMode =  'die' || 'teleportation' ||
 
 export class Value {
-    constructor (v, min = -Infinity, max = Infinity) {
+    constructor (v, min = -Infinity, max = Infinity, onExceedBoundary = null) {
         this.start = v
-        this.v = v
+        this.value = v
         this.speed = 0
         this.velocity = 0
         this.min = min
         this.max = max
-        this.mode = null
-        this.offLimitMethod = null
-        this.linked = []
+        this.onExceedBoundary = onExceedBoundary
+        this.onBelowMin = null
+        this.onAboveMax = null
     }
 
-    set offLimitMode (mode) {
-        this.mode = mode
-        if (this.mode === 'reflection') this.offLimitMethod = this.reflect
-        if (this.mode === 'clamp') this.offLimitMethod = this.clamp
-        if (this.mode === 'reset') this.offLimitMethod = this.reset
-        if (this.mode === 'warp') this.offLimitMethod = this.warp
-        if (this.mode === 'random') this.offLimitMethod = this.random
+    get isAboveMax () {
+        return this.value > this.max;
     }
 
-    onOffLimit () {}
+    get isBelowMin () {
+        return this.value < this.min;
+    }
 
     update () {
         this.speed += this.velocity
-        this.v += this.speed
-        if (this.exceedsLimits) {
-            this.offLimitMethod()
-            this.onOffLimit()
-            for (let v of this.linked) {
-                v.offLimitMethod()
-                v.onOffLimit()
-            }
+        this.value += this.speed
+        if (this.isBelowMin) this.onBelowMin?.(this)
+        if (this.isAboveMax) this.onAboveMax?.(this)
+        if (this.isExceedsBoundary) {
+            this.onExceedBoundary?.(this)
         }
     }
 
     random (integer) {
-        this.v = random(this.min, this.max, integer)
+        return this.value = random(this.min, this.max, integer)
+    }
+    randomSet(min, max, integer) {
+        return this.value = random(min, max, integer)
     }
 
-    warp () {
-        if (this.v > this.max) this.v = this.min
-        if (this.v < this.min) this.v = this.max
+    wrapAround () {
+        if (this.value > this.max) this.value = this.min
+        if (this.value < this.min) this.value = this.max
+        return this.value
     }
 
     reset () {
-        this.v = this.start
+        /* if start is a function run it otherwise it is scalar*/
+        return this.value = this.start?.()?? this.start
     }
 
     reflect () {
-        this.speed *= -1
+        return this.speed *= -1
     }
 
     clamp () {
-        this.v = this.clamped
+        return this.value = clamp(this.min, this.value, this.min)
     }
 
     valueOf () {
-        return this.v
+        return this.value
     }
 
-    get exceedsLimits () {
-        return exceedsLimits(this.min, this.v, this.max)
+    get isExceedsBoundary () {
+        return exceedsLimits(this.min, this.value, this.max)
     }
 
-    get clamped () {
-        clamp(this.min, this.v, this.min)
-    }
 }

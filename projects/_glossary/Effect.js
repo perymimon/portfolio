@@ -7,14 +7,14 @@ export class Effect {
         this.resize(width, height)
     }
 
+    resize (width, height) {
+        this.width = width
+        this.height = height
+        this.init()
+    }
     init () {
         throw 'init() must be implemented by derived class'
     }
-
-    resize () {
-        this.init()
-    }
-
     update () {
         for (let p of this.particles) {
             p.update()

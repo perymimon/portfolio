@@ -1,6 +1,6 @@
 import {FrameEngine} from '../_glossary/FrameEngine.js'
 import {getProperty} from '../_helpers/basic.js'
-import {RainEffect} from '../_glossary/effects/matrix-rain.effect.js'
+import {SymbolsRainEffect} from '../_glossary/effects/SymbolsRain.effect.js'
 
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
@@ -11,14 +11,13 @@ var gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
 gradient.addColorStop(0, getProperty(ctx, '--color-char'));
 
 
-var effect3 = new RainEffect(canvas, 23)
-var effect2 = new RainEffect(canvas, 17)
-var effect1 = new RainEffect(canvas, 11)
+var effect3 = new SymbolsRainEffect(canvas.width, canvas.height, 23)
+var effect2 = new SymbolsRainEffect(canvas.width, canvas.height, 17)
+var effect1 = new SymbolsRainEffect(canvas.width, canvas.height, 11)
 var fps = 10
-var framesEngine = new FrameEngine(fps)
 
-framesEngine.addEventListener('frames', e => {
-    var fillStyle = `hsl(120deg 15% 1% / ${fps/180})`
+var framesEngine = new FrameEngine(fps, e => {
+    var fillStyle = `hsl(120deg 15% 1% / ${fps / 180})`
     // var fillStyle = `rgba(0,0,0, ${fps / 10})`
     // var fillStyle = getProperty(ctx, '--color-bg');
 
@@ -29,18 +28,17 @@ framesEngine.addEventListener('frames', e => {
     ctx.shadowOffsetX = 1
     ctx.shadowOffsetY = 1
     ctx.shadowBlur = 1
+    effect1.update()
+    effect2.update()
+    effect3.update()
+    ctx.globalAlpha = .9;
     effect1.draw(ctx, gradient)
     effect2.draw(ctx, gradient)
     effect3.draw(ctx, gradient)
     ctx.restore()
 })
+framesEngine.start()
 
-function animation (timeStamp) {
-    framesEngine.updateFrame(timeStamp)
-    requestAnimationFrame(animation)
-}
-
-window.requestAnimationFrame(animation);
 window.addEventListener('resize', event => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;

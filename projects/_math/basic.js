@@ -3,7 +3,7 @@ export function clamp (min, value, max) {
 }
 
 export function exceedsLimits (min = -Infinity, value, max = Infinity) {
-    return value <= min || value >= max;
+    return value < min || value > max;
 }
 
 export function isBetween (min, value, max) {

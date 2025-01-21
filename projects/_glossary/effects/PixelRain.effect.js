@@ -1,9 +1,9 @@
 import {getProperty, setCanvas} from '../../_helpers/basic.js'
 import {getImageData} from '../../_helpers/color.js'
-import {FrameEngine} from '../FrameEngine.js'
 import {random} from '../../_math/basic.js'
 import {Effect} from '../Effect.js'
-import {FallParticle} from '../particles/fall.particle.js'
+import {FrameEngine} from '../FrameEngine.js'
+import {Particle} from '../particles/Particle.js'
 
 export class PixelRainEffect extends Effect {
     constructor (width, height, grayscaleImageData, settings = {}) {
@@ -21,10 +21,18 @@ export class PixelRainEffect extends Effect {
         this.particles = []
         for (let i = 0; i < this.numberOfParticles; i++) {
             let x = i % this.width
-            // let y = random(0, this.height)
             let y = random(0, this.height / 8)
             var size = random( minSize, maxSize, false)
-            var particle = new ParticleFall(this, x, y, size, speed * .5)
+            const particle = new Particle(x, y, size, this)
+            particle.setBoundary(0)
+
+            particle.y.speed = speed
+            particle.y.velocity = random(0, speed * .5, false)
+            particle.y.onAboveMax =(y)=>{
+                particle.x.random()
+                y.wrapAround()
+            }
+
             this.particles.push(particle)
         }
     }
