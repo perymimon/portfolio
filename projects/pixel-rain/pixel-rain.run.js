@@ -1,4 +1,4 @@
-import {PixelRainEffect} from '../_glossary/PixelRain.effect.js'
+import {PixelRainEffect} from '../_glossary/effects/PixelRain.effect.js'
 import {getImage} from '../_helpers/basic.js'
 import {getImageData} from '../_helpers/color.js'
 import {FrameEngine} from '../_glossary/FrameEngine.js'

@@ -1,4 +1,4 @@
-import {PixelRainEffectRun} from '../projects/_glossary/PixelRain.effect.js'
+import {PixelRainEffectRun} from '../projects/_glossary/effects/PixelRain.effect.js'
 import {getImage} from '../projects/_helpers/basic.js'
 import {
     brightnessProcessors,    channels,

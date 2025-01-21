@@ -1,5 +1,5 @@
-import {random} from '../_math/basic.js'
-import {ParticleBoundary} from './particleBaundery.js'
+import {random} from '../../_math/basic.js'
+import {Particle} from '../Particle.js'
 
 export class ParticleFall extends ParticleBoundary {
     constructor (effect, x, y = 0, size , maxVelocity = 4) {

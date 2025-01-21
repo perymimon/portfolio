@@ -1,6 +1,6 @@
-import {getProperty} from '../_helpers/basic.js'
 import {FrameEngine} from '../_glossary/FrameEngine.js'
-import {RainEffect} from './matrix-rain.effect.js'
+import {getProperty} from '../_helpers/basic.js'
+import {RainEffect} from '../_glossary/effects/matrix-rain.effect.js'
 
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");

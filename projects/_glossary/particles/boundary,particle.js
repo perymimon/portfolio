@@ -1,4 +1,4 @@
-import {Particle} from './Particle.js'
+import {Particle} from '../Particle.js'
 
 export class ParticleBoundary extends Particle {
     constructor (effect, x, y, size, offBoundaryMode) {

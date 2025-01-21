@@ -1,3 +1,5 @@
+import {Effect} from '../_glossary/Effect.js'
+import {Particle} from '../_glossary/Particle.js'
 import {random} from '../_math/basic.js'
 export class SymbolChar {
     constructor (c, r, fontSize, canvasHeight) {
