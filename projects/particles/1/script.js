@@ -6,7 +6,7 @@ setCanvas(canvas);
 const ctx = canvas.getContext("2d");
 
 import {drawAlgebra} from '../../_helpers/draw.js'
-import {distance, getAngle} from '../../_math/algebra.js'
+import {distance, getAngle} from '../../_math/2D.math.js'
 import {clamp, exceedsLimits} from '../../_math/basic.js'
 
 class Particle {

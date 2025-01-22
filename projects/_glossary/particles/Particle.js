@@ -12,9 +12,10 @@ export class Particle {
         this.x.update()
         this.y.update()
     }
-    draw(ctx){
+    draw(ctx, options){
         draw.circle(ctx,this.x, this.y, this.size,{
             drawFill: true,
+            ...options
         });
     }
     setBoundary(padding){

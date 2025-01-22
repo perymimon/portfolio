@@ -1,6 +1,6 @@
 import {drawAlgebra} from '../../_helpers/draw.js'
 import {Sprite} from '../../_glossary/Sprite.js'
-import {distance, getAngle} from '../../_math/algebra.js'
+import {distance, getAngle} from '../../_math/2D.math.js'
 import {clamp, exceedsLimits, isBetween, lerp, linearLerp, random} from '../../_math/basic.js'
 
 // setup

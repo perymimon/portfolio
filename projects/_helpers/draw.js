@@ -1,4 +1,5 @@
 export const draw = {}
+export default draw
 
 draw.circle = function (ctx, x, y, radius, options = {}) {
     ctx.beginPath();
@@ -17,9 +18,9 @@ draw.circle = function (ctx, x, y, radius, options = {}) {
 }
 
 draw.ellipse = function (ctx, x, y, xRadius, yRadius, options = {}) {
-    ctx.beginPath();
+    ctx.beginPath()
     ctx.ellipse(x, y, xRadius, yRadius, 0, 0, Math.PI * 2, true);
-    Object.assign(ctx, options);
+    Object.assign(ctx, options)
 
     if (options.drawFill || options.fillStyle) ctx.fill()
     if (options.drawStroke || options.strokeStyle) ctx.stroke()
@@ -28,11 +29,27 @@ draw.ellipse = function (ctx, x, y, xRadius, yRadius, options = {}) {
 }
 
 draw.line = function (ctx, xFrom, yFrom, xTo, yTo, options = {}) {
-    ctx.beginPath();
-    ctx.moveTo(xFrom, yFrom);
-    ctx.lineTo(xTo, yTo);
-    Object.assign(ctx, options);
+    ctx.beginPath()
+    ctx.moveTo(xFrom, yFrom)
+    ctx.lineTo(xTo, yTo)
+    Object.assign(ctx, options)
     ctx.stroke()
+}
+
+draw.polygon = function (ctx, points, options = {}) {
+    ctx.beginPath()
+    var point = points.at(0)
+    ctx.moveTo(point.x, point.y)
+    for (let point of points.slice(1)) {
+        ctx.lineTo(point.x, point.y)
+    }
+    ctx.closePath()
+    Object.assign(ctx, options)
+
+    if (options.drawFill || options.fillStyle) ctx.fill()
+    if (options.drawStroke || options.strokeStyle) ctx.stroke()
+    let keyWords = 'strokeStyle,fillStyle,drawFill,drawStroke'.split(',')
+    drawTest(options, keyWords, 'polygon')
 }
 
 export const drawAlgebra = {
@@ -51,9 +68,9 @@ color.light = (hue) => `hsl(${hue}, 100%, 70%)`;
 color.lightest = (hue) => `hsl(${hue}, 100%, 90%)`;
 color.reverse = (hue) => (hue + 180) % 360;
 
-function drawTest(object, keyWords, entity ='shape'){
-    let test =  new Set(keyWords).intersection(new Set(Object.keys(object)))
-    if( test.size === 0){
+function drawTest (object, keyWords, entity = 'shape') {
+    let test = new Set(keyWords).intersection(new Set(Object.keys(object)))
+    if (test.size === 0) {
         throw `draw: Missing ${keyWords.join(' or ')} to paint the ${entity}`
     }
 }
