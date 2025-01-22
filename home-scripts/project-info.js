@@ -9,6 +9,10 @@ const teachers = {
         url: 'https://www.youtube.com/@Frankslaboratory',
         name: '@Franks',
     },
+    '@Dan':{
+        url: 'https://thecodingtrain.com/about',
+        name: '@Dan',
+    },
     '@me': {
         url: 'https://github.com/perymimon',
         name: '@pery',
