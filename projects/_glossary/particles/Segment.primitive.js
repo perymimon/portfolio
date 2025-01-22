@@ -8,10 +8,12 @@ export default class Segment {
         this.p1 = p1
         this.p2 = p2
     }
-    update(){
+
+    update () {
         this.p1.update()
         this.p2.update()
     }
+
     draw (ctx, options) {
         var {p1, p2} = this
         draw.line(ctx, p1.x, p1.y, p2.x, p2.y, {
@@ -27,6 +29,7 @@ export default class Segment {
     get length () {
         return magnitude(this.vector(false))
     }
+
     set length (length) {
         var norm = this.vector(true)
         this.p2 = this.p1.toAdd(norm.toScale(length))
@@ -41,12 +44,18 @@ export default class Segment {
             offset: scalar / this.length,
         };
     }
+
     intersectionPoint (seg) {
-         var ret = getIntersection(this, seg)
-        if( ret == null ) return  null
+        var ret = getIntersection(this, seg)
+        if (ret == null) return null
         return {
-             point: new Point(ret.x, ret.y),
-            offset: seg
+            point: new Point(ret.x, ret.y),
+            offset: seg,
         }
+    }
+
+    * [Symbol.iterator] () {
+        yield this.p1
+        yield this.p2
     }
 }

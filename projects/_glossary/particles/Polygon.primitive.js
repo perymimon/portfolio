@@ -10,7 +10,12 @@ export default class Polygon {
             drawStroke: true,
             ...settings,
         })
-
-
     }
+
+    *[Symbol.iterator]() {
+        for (const point of this.points) {
+            yield point;
+        }
+    }
+
 }
