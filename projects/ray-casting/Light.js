@@ -23,6 +23,12 @@ export default class Light {
             return new Segment(this.center, this.center.toAdd({x, y}))
         })
     }
+    moveTo ({x, y}) {
+        var vec = this.center.vectorTo({x, y})
+        this.center.setX(x)
+        this.center.setY(y)
+        this.rays.forEach(ray => ray.p2.add(vec))
+    }
 
     cast () {
         const {boundaries = [], range} = this.settings

@@ -1,8 +1,9 @@
-import {FrameEngine} from '../_glossary/FrameEngine.js'
-import Point from '../_glossary/particles/Point.primitive.js'
-import Segment from '../_glossary/particles/Segment.primitive.js'
-import {getProperty} from '../_helpers/basic.js'
-import Light from './Light.js'
+import {FrameEngine} from '../../_glossary/FrameEngine.js'
+import Mouse from '../../_glossary/Mouse.js'
+import Point from '../../_glossary/particles/Point.primitive.js'
+import Segment from '../../_glossary/particles/Segment.primitive.js'
+import {getProperty} from '../../_helpers/basic.js'
+import Light from '../Light.js'
 
 var canvas = document.getElementById("canvas1");
 canvas.width = window.innerWidth;
@@ -35,8 +36,8 @@ var light0 = new Light(canvas.width / 2, canvas.height / 2, {
     color: getProperty(ctx, '--color-primary'),
     boundaries: walls,
     beamDirection: 0,
-    spread: Math.PI / 2,
-    range: 400,
+    spread: Math.PI * 2,
+    range: 300,
 })
 
 var light1 = new Light(0, 0, {
@@ -44,16 +45,18 @@ var light1 = new Light(0, 0, {
     boundaries: walls,
     beamDirection: -Math.PI / 4,
     spread: Math.PI / 3,
-    range:800,
+    range: 800,
 })
 var light2 = new Light(0, canvas.height, {
     color: getProperty(ctx, '--color-primary'),
     boundaries: walls,
     beamDirection: Math.PI / 4,
     spread: Math.PI / 6,
-    range:800,
+    range: 800,
 })
 
+const mouse = new Mouse(canvas)
+mouse.onMove = (mouse) => light0.moveTo(mouse)
 
 new FrameEngine(25, function () {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
@@ -72,7 +75,7 @@ new FrameEngine(25, function () {
         wall.draw(ctx, {
             strokeStyle: getProperty(ctx, '--color-secondary'),
             lineWidth: 8,
-        })
+        }),
     )
 
 }).start()

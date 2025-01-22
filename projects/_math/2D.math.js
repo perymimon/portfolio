@@ -1,3 +1,4 @@
+export const eps = 0.001
 import Point from '../_glossary/particles/Point.primitive.js'
 
 export function distance (p1, p2) {
@@ -9,20 +10,20 @@ export function getAngle (p2, p1) {
     return Math.atan2(p1.y - p2.y, p1.x - p2.x)
 }
 
-/* ----- new staff ----------*/
-
-export const eps = 0.001
-
 export function getNearestPoint(point, points, threshold = Number.MAX_SAFE_INTEGER) {
     if (points.length === 0) return null;
 
-    let nearest = points.reduce((sel, p) => {
-        let nearest = distance(point, sel)
+    let nearest = points.reduce((select, p) => {
+        let nearest = distance(point, select)
         let current = distance(point, p)
-        return nearest < current ? sel : p
+        return nearest < current ? select : p
     })
     return distance(point, nearest) > threshold ? null : nearest
 }
+
+/* ----- new staff ----------*/
+
+
 
 export function getNearestSegment(point, segments, threshold = Number.MAX_SAFE_INTEGER) {
     if (segments.length === 0) return null;
