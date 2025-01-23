@@ -7,6 +7,10 @@ export default class Point extends Particle {
 
     setX (x) { this.x.value = x }
     setY (y) { this.y.value = y }
+    set({x, y}) {
+        this.x.value = x
+        this.y.value = y
+    }
     toAdd ({x, y}) {
         return new Point(
             this.x + x,
