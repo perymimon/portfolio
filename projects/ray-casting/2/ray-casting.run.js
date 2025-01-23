@@ -61,12 +61,6 @@ var light2 = new Light(0, canvas.height, {
 const mouse = new Pointer(canvas)
 mouse.onMove = (mouse) => {
     light0.moveTo(mouse)
-    // var cx = light0.center.x.value, cy = light0.center.y.value
-    // var {range} = light0.settings
-    // light0.settings.color = getRadialGradient(ctx,cx, cy,range,{
-    //     0.4:'--color-primary',
-    //     1:'transparent',
-    // })
 }
 
 new FrameEngine(25, function () {

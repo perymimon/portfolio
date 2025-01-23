@@ -18,11 +18,15 @@ export default class Light {
         const {beamDirection = 0, spread = Math.PI / 3} = this.settings
 
         this.rays = Array(amount).fill().map((_, i) => {
-            let angle = beamDirection - (i / amount - .5) * spread
-            let x = Math.cos(angle) * range
-            let y = Math.sin(-angle) * range
-            return new Segment(this.center, this.center.toAdd({x, y}))
+            return new Segment(this.center, this.center.toAdd({x:0, y:0}))
         })
+        this.rays.forEach((ray, i) => {
+            let angle = beamDirection - (i / amount - .5) * spread
+            ray.p2.setPolar(1, -angle)
+        })
+
+
+
     }
 
     moveTo ({x, y}) {

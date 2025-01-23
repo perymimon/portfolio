@@ -10,13 +10,21 @@ export default class Point extends Particle {
     set({x, y}) {
         this.x.value = x
         this.y.value = y
+        return this
+    }
+    setPolar(amplitude, angle) {
+        const xOffset = amplitude * Math.cos(angle);
+        const yOffset = amplitude * Math.sin(angle);
+
+        this.x.value = this.x.start + xOffset;
+        this.y.value = this.y.start + yOffset;
+        return this;
     }
     toAdd ({x, y}) {
         return new Point(
             this.x + x,
             this.y + y,
-            this.size,
-            this.effect,
+            this.parent
         )
     }
     add ({x, y}) {
@@ -35,6 +43,7 @@ export default class Point extends Particle {
         return new Point(
             this.x * scalar,
             this.y * scalar,
+            this.parent
         )
     }
 

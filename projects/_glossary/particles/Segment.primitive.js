@@ -58,4 +58,12 @@ export default class Segment {
         yield this.p1
         yield this.p2
     }
+    debugInfo(fixed = 0){
+        console.info('[Segment]\n\tp1{x:%s,y:%s}\n\tp2{x:%s,y:%s}',
+            this.p1.x.value.toFixed(fixed),
+            this.p1.y.value.toFixed(fixed),
+            this.p2.x.value.toFixed(fixed),
+            this.p2.y.value.toFixed(fixed),
+            )
+    }
 }
