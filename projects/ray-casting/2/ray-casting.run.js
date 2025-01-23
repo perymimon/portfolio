@@ -1,8 +1,9 @@
 import {FrameEngine} from '../../_glossary/FrameEngine.js'
-import Pointer from '../../_glossary/Pointer.js'
 import Point from '../../_glossary/particles/Point.primitive.js'
 import Segment from '../../_glossary/particles/Segment.primitive.js'
+import Pointer from '../../_glossary/Pointer.js'
 import {getProperty} from '../../_helpers/basic.js'
+import {getRadialGradient} from '../../_helpers/cavas.basic.js'
 import Light from '../Light.js'
 
 var canvas = document.getElementById("canvas1");
@@ -34,7 +35,7 @@ var walls = Array.from({length: 5}, (_) => {
 
 
 var light0 = new Light(canvas.width / 2, canvas.height / 2, {
-    color: getProperty(ctx, '--color-primary'),
+    color: '--shade-0',
     boundaries: walls,
     beamDirection: 0,
     spread: Math.PI * 2,
@@ -43,24 +44,34 @@ var light0 = new Light(canvas.width / 2, canvas.height / 2, {
 
 
 var light1 = new Light(0, 0, {
-    color: getProperty(ctx, '--color-primary'),
+    color:  '--shade-1',
     boundaries: walls,
     beamDirection: -Math.PI / 4,
     spread: Math.PI / 3,
     range: 800,
 })
 var light2 = new Light(0, canvas.height, {
-    color: getProperty(ctx, '--color-primary'),
+    color:  '--shade-2',
     boundaries: walls,
     beamDirection: Math.PI / 4,
     spread: Math.PI / 6,
     range: 800,
 })
 
-const mouse = new Mouse(canvas)
-mouse.onMove = (mouse) => light0.moveTo(mouse)
+const mouse = new Pointer(canvas)
+mouse.onMove = (mouse) => {
+    light0.moveTo(mouse)
+    // var cx = light0.center.x.value, cy = light0.center.y.value
+    // var {range} = light0.settings
+    // light0.settings.color = getRadialGradient(ctx,cx, cy,range,{
+    //     0.4:'--color-primary',
+    //     1:'transparent',
+    // })
+}
 
 new FrameEngine(25, function () {
+    // ctx.fillStyle = gradient0
+    // ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     walls.forEach(wall => wall.update())
 
@@ -68,7 +79,7 @@ new FrameEngine(25, function () {
     light1.update()
     light2.update()
     ctx.save()
-    ctx.globalAlpha = 0.5
+    ctx.globalAlpha = 0.4
     light0.draw(ctx)
     light1.draw(ctx)
     light2.draw(ctx)

@@ -1,6 +1,7 @@
 import Point from '../_glossary/particles/Point.primitive.js'
 import Segment from '../_glossary/particles/Segment.primitive.js'
 import {getProperty} from '../_helpers/basic.js'
+import {getRadialGradient} from '../_helpers/cavas.basic.js'
 import {draw} from '../_helpers/draw.js'
 
 export default class Light {
@@ -23,6 +24,7 @@ export default class Light {
             return new Segment(this.center, this.center.toAdd({x, y}))
         })
     }
+
     moveTo ({x, y}) {
         var vec = this.center.vectorTo({x, y})
         this.center.setX(x)
@@ -48,19 +50,26 @@ export default class Light {
     }
 
     draw (ctx, settings = {}) {
-        var {spread} = this.settings;
-        this.center.draw(ctx, {
+        var {center} = this
+        var {range, spread, gradientLight = true, rainbow} = this.settings;
+
+        center.draw(ctx, {
             fillStyle: this.settings.color,
             ...settings,
         })
-        var {rainbow} = this.settings
-        var points = this.rays.map((ray, i) => ray.p2)
 
-        if(spread <Math.PI * 2) points.unshift(this.center)
+        var points = this.rays.map((ray, i) => ray.p2)
+        if (spread < Math.PI * 2) points.unshift(this.center)
+
+        var fillStyle = getProperty(ctx,this.settings.color)
+        if (gradientLight)
+            fillStyle = getRadialGradient(ctx, center.x, center.y, range, {
+                0.4: getProperty(ctx,this.settings.color),
+                1: 'transparent',
+            })
 
         draw.polygon(ctx, points, {
-            fillStyle: this.settings.color,
-            ...settings,
+            fillStyle, ...settings,
         })
         if (rainbow) {
             this.rays.forEach((ray, i) => ray.draw(ctx, {

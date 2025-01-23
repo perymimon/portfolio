@@ -1,5 +1,5 @@
 import {getProperty, setCanvas} from '../../_helpers/basic.js'
-import {getImageData} from '../../_helpers/color.js'
+import {getImageData} from '../../_helpers/filters.colors.js'
 import {random} from '../../_math/basic.js'
 import {Effect} from '../Effect.js'
 import {FrameEngine} from '../FrameEngine.js'

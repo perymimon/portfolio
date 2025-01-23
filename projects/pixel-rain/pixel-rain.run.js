@@ -1,6 +1,6 @@
 import {PixelRainEffect} from '../_glossary/effects/PixelRain.effect.js'
 import {getImage} from '../_helpers/basic.js'
-import {getImageData} from '../_helpers/color.js'
+import {getImageData} from '../_helpers/filters.colors.js'
 import {FrameEngine} from '../_glossary/FrameEngine.js'
 
 var image = await getImage('./hacker2.webp')

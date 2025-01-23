@@ -3,7 +3,7 @@ import {getImage} from '../projects/_helpers/basic.js'
 import {
     brightnessProcessors,    channels,
     getImageData,    processImageData,    rampUpProcessors,
-} from '../projects/_helpers/color.js'
+} from '../projects/_helpers/filters.colors.js'
 
 var image = await getImage('#me-photo')
 var canvas = document.getElementById('avatar-canvas')
