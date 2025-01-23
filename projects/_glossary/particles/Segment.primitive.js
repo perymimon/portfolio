@@ -31,8 +31,8 @@ export default class Segment {
     }
 
     set length (length) {
-        var norm = this.vector(true)
-        this.p2 = this.p1.toAdd(norm.toScale(length))
+        var vector = this.vector().toScale(length)
+        this.p2.set(this.p1.toAdd(vector))
     }
 
     projectPoint (point) {

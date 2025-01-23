@@ -8,8 +8,8 @@ export default class Point extends Particle {
     setX (x) { this.x.value = x }
     setY (y) { this.y.value = y }
     set({x, y}) {
-        this.x.value = x
-        this.y.value = y
+        this.x.value = x + 0
+        this.y.value = y + 0
         return this
     }
     setPolar(amplitude, angle) {

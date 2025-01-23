@@ -13,14 +13,14 @@ export class Value {
         this.onExceedBoundary = onExceedBoundary
         this.onBelowMin = null
         this.onAboveMax = null
+        this.onChange = null
     }
-
     get isAboveMax () {
-        return this.value > this.max;
+        return this.value > this.max
     }
 
     get isBelowMin () {
-        return this.value < this.min;
+        return this.value < this.min
     }
 
     update () {
@@ -31,6 +31,8 @@ export class Value {
         if (this.isExceedsBoundary) {
             this.onExceedBoundary?.(this)
         }
+        if(this.speed !== 0) this.onChange?.(this)
+
     }
 
     random (integer) {

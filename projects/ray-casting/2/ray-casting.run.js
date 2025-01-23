@@ -3,7 +3,6 @@ import Point from '../../_glossary/particles/Point.primitive.js'
 import Segment from '../../_glossary/particles/Segment.primitive.js'
 import Pointer from '../../_glossary/Pointer.js'
 import {getProperty} from '../../_helpers/basic.js'
-import {getRadialGradient} from '../../_helpers/cavas.basic.js'
 import Light from '../Light.js'
 
 var canvas = document.getElementById("canvas1");
@@ -39,45 +38,58 @@ var light0 = new Light(canvas.width / 2, canvas.height / 2, {
     boundaries: walls,
     beamDirection: 0,
     spread: Math.PI * 2,
-    range: 300,
+    range: Math.min(canvas.width, canvas.height) / 2,
 })
 
 
 var light1 = new Light(0, 0, {
-    color:  '--shade-1',
-    boundaries: walls,
-    beamDirection: -Math.PI / 4,
-    spread: Math.PI / 3,
-    range: 800,
-})
-var light2 = new Light(0, canvas.height, {
-    color:  '--shade-2',
+    color: '--shade-1',
     boundaries: walls,
     beamDirection: Math.PI / 4,
-    spread: Math.PI / 6,
-    range: 800,
+    spread: Math.PI / 3,
+    range: canvas.height * .8,
+})
+Object.assign(light1.direction, {
+    speed: Math.PI / 360,
+    min: Math.PI / 6,
+    max: Math.PI * (1 / 2 - 1 / 6),
+    onExceedBoundary: (v) => v.reflect(),
 })
 
+
+var light2 = new Light(0, canvas.height, {
+    color: '--shade-2',
+    boundaries: walls,
+    beamDirection: -Math.PI / 4,
+    spread: Math.PI / 6,
+    range: canvas.height * .8,
+})
+Object.assign(light2.spread, {
+    speed: Math.PI / 360,
+    min: Math.PI / 12,
+    max: Math.PI /3,
+    onExceedBoundary: (v) => v.reflect(),
+})
 const mouse = new Pointer(canvas)
 mouse.onMove = (mouse) => {
     light0.moveTo(mouse)
 }
 
 new FrameEngine(25, function () {
-    // ctx.fillStyle = gradient0
-    // ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     walls.forEach(wall => wall.update())
 
     light0.update()
     light1.update()
     light2.update()
+
     ctx.save()
     ctx.globalAlpha = 0.4
     light0.draw(ctx)
     light1.draw(ctx)
     light2.draw(ctx)
     ctx.restore()
+
     walls.forEach(wall =>
         wall.draw(ctx, {
             strokeStyle: getProperty(ctx, '--color-secondary'),
