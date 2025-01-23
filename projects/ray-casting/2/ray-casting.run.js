@@ -3,6 +3,7 @@ import Point from '../../_glossary/particles/Point.primitive.js'
 import Segment from '../../_glossary/particles/Segment.primitive.js'
 import Pointer from '../../_glossary/Pointer.js'
 import {getProperty} from '../../_helpers/basic.js'
+import {random} from '../../_math/basic.js'
 import Light from '../Light.js'
 
 var canvas = document.getElementById("canvas1");
@@ -67,9 +68,26 @@ var light2 = new Light(0, canvas.height, {
 Object.assign(light2.spread, {
     speed: Math.PI / 360,
     min: Math.PI / 12,
-    max: Math.PI /3,
+    max: Math.PI / 3,
     onExceedBoundary: (v) => v.reflect(),
 })
+
+var light3 = new Light(canvas.width, 0, {
+    color: '--shade-3',
+    boundaries: walls,
+    beamDirection: Math.PI * 3 / 4,
+    spread: Math.PI / 3,
+    range: canvas.height * random(.4, .8),
+})
+var light4 = new Light(canvas.width, canvas.height, {
+    color: '--shade-4',
+    boundaries: walls,
+    beamDirection: Math.PI * 5/4,
+    spread: Math.PI / 3,
+    range: canvas.height * random(.4, .8),
+})
+
+
 const mouse = new Pointer(canvas)
 mouse.onMove = (mouse) => {
     light0.moveTo(mouse)
@@ -82,12 +100,16 @@ new FrameEngine(25, function () {
     light0.update()
     light1.update()
     light2.update()
+    light3.update()
+    light4.update()
 
     ctx.save()
     ctx.globalAlpha = 0.4
     light0.draw(ctx)
     light1.draw(ctx)
     light2.draw(ctx)
+    light3.draw(ctx)
+    light4.draw(ctx)
     ctx.restore()
 
     walls.forEach(wall =>
