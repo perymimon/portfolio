@@ -1,5 +1,5 @@
 import {FrameEngine} from '../../_glossary/FrameEngine.js'
-import Mouse from '../../_glossary/Mouse.js'
+import Pointer from '../../_glossary/Pointer.js'
 import Point from '../../_glossary/particles/Point.primitive.js'
 import Segment from '../../_glossary/particles/Segment.primitive.js'
 import {getProperty} from '../../_helpers/basic.js'
@@ -32,6 +32,7 @@ var walls = Array.from({length: 5}, (_) => {
     return wall
 })
 
+
 var light0 = new Light(canvas.width / 2, canvas.height / 2, {
     color: getProperty(ctx, '--color-primary'),
     boundaries: walls,
@@ -39,6 +40,7 @@ var light0 = new Light(canvas.width / 2, canvas.height / 2, {
     spread: Math.PI * 2,
     range: 300,
 })
+
 
 var light1 = new Light(0, 0, {
     color: getProperty(ctx, '--color-primary'),

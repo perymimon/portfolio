@@ -11,3 +11,8 @@ canvas-recorder{
 toast-message{
     margin-block-end: var(--space-4);
 }
+
+canvas{
+    touch-action: none;
+    -ms-touch-action: none;
+}
