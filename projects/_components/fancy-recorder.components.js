@@ -8,7 +8,7 @@ template.innerHTML = `
   <link rel="stylesheet" href="${componentBaseUrl}fancy-recorder.components.css">
 
   <div id="recorder-ui" data-state="idle">
-    <button id="record-btn" class="tooltip" role="button" aria-label="Start Recording" >⏺</button>
+    <button id="record-btn" class="tooltip" role="button" aria-label="Start Recording" >&#11044;</button>
    <div id="floating-bar" >
         <div class="recording-dot"></div>
         <span id="time">00:00</span>
