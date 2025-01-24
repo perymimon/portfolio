@@ -8,24 +8,31 @@
         background-color: var(--component-hover);
     }
 }
+
 #tabs-container {
     display: flex;
     justify-content: center;
-    margin-inline:auto;
+    margin-inline: auto;
     background-color: var(--color-background);
     box-shadow: var(--shadow-md);
+    top:0;
+    left:0;
+    right:0;
+    width:max-content;
 }
 
 #bottom-bar {
     display: flex;
     flex-direction: row-reverse;
     position: absolute;
+    position-anchor: --content-frame;
+    top: anchor(top);
+    left: var(--space-2);
+    right: var(--space-2);
     /*justify-content: space-between;*/
     align-items: flex-end;
     /*line-height: 2em;*/
-    left: var(--space-2);
-    right: var(--space-2);
-    bottom: 0;
+
     z-index: var(--z-index-above-absolute);
     padding: var(--space-1);
 
