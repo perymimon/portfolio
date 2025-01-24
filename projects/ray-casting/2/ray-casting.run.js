@@ -51,7 +51,7 @@ var light1 = new Light(0, 0, {
     range: canvas.height * .8,
 })
 Object.assign(light1.direction, {
-    speed: Math.PI / 360,
+    speed: Math.PI / 720,
     min: Math.PI / 6,
     max: Math.PI * (1 / 2 - 1 / 6),
     onExceedBoundary: (v) => v.reflect(),
@@ -76,15 +76,15 @@ var light3 = new Light(canvas.width, 0, {
     color: '--shade-3',
     boundaries: walls,
     beamDirection: Math.PI * 3 / 4,
-    spread: Math.PI / 3,
-    range: canvas.height * random(.4, .8),
+    spread: Math.PI / 4,
+    range: Math.hypot(canvas.height,canvas.width) / 2
 })
 var light4 = new Light(canvas.width, canvas.height, {
     color: '--shade-4',
     boundaries: walls,
     beamDirection: Math.PI * 5/4,
-    spread: Math.PI / 3,
-    range: canvas.height * random(.4, .8),
+    spread: Math.PI / 4,
+    range: Math.hypot(canvas.height,canvas.width) / 2,
 })
 
 
