@@ -3,17 +3,31 @@ import {clamp, exceedsLimits, random} from '../_math/basic.js'
 // offScreenMode =  'die' || 'teleportation' ||
 
 export class Value {
-    constructor (v, min = -Infinity, max = Infinity, onExceedBoundary = null) {
+    constructor (v, settings = {}) {
+        if (v instanceof Value) return v
         this.start = v
         this.value = v
-        this.speed = 0
-        this.velocity = 0
-        this.min = min
-        this.max = max
-        this.onExceedBoundary = onExceedBoundary
-        this.onBelowMin = null
-        this.onAboveMax = null
-        this.onChange = null
+        Object.assign(this, {
+            speed: 0,
+            velocity: 0,
+            min: -Infinity,
+            max: Infinity,
+            ...settings,
+        })
+    }
+
+    onExceedBoundary () {}
+
+    onBelowMin () {}
+
+    onAboveMax () {}
+
+    onChange (value) {}
+    set offsetMax (value) {
+        this.max = this.start + value
+    }
+    set offsetMin (value) {
+        this.min = this.start - value
     }
     get isAboveMax () {
         return this.value > this.max
@@ -31,14 +45,15 @@ export class Value {
         if (this.isExceedsBoundary) {
             this.onExceedBoundary?.(this)
         }
-        if(this.speed !== 0) this.onChange?.(this)
+        if (this.speed !== 0) this.onChange?.(this)
 
     }
 
     random (integer) {
         return this.value = random(this.min, this.max, integer)
     }
-    randomSet(min, max, integer) {
+
+    randomSet (min, max, integer) {
         return this.value = random(min, max, integer)
     }
 
@@ -50,7 +65,7 @@ export class Value {
 
     reset () {
         /* if start is a function run it otherwise it is scalar*/
-        return this.value = this.start?.()?? this.start
+        return this.value = this.start?.() ?? this.start
     }
 
     reflect () {
