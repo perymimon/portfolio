@@ -39,65 +39,56 @@
     "groupId": "tutorials-by-frank",
     "id": "projects-particles-code-pens",
     "title": "Particles",
-    "link": "projects/particles/code-pens.html",
     "year": 2024,
     "stack": "particles, Canvas, vanilla es6",
     "description": "Basic particle effects, responsive to mouse interactions.",
     "teacher": "@Frank",
-    "tutorial": "https://www.youtube.com/watch?v=PoDjjHh931c",
-    "tabsId": "frank-particles"
+    "tutorial": "https://www.youtube.com/watch?v=PoDjjHh931c"
   },
   {
-    "groupId": "frank-particles",
+    "groupId": "projects-particles-code-pens",
     "id": "projects-particles-1",
-    "parent": "projects-particles-code-pens",
     "title": "Bounded Connected Particles",
     "link": "projects/particles/1/index.html"
   },
   {
-    "groupId": "frank-particles",
+    "groupId": "projects-particles-code-pens",
     "id": "projects-particles-2",
-    "parent": "projects-particles-code-pens",
     "title": "Inflate Bubbles",
     "link": "projects/particles/2/index.html",
-    "description": "Try to click anywhere to inflate bubbles."
+    "description": "Swipe around to inflate the bubbles."
   },
   {
-    "groupId": "frank-particles",
+    "groupId": "projects-particles-code-pens",
     "id": "projects-particles-3",
-    "parent": "projects-particles-code-pens",
     "title": "Use Sprite",
     "link": "projects/particles/3/index.html",
     "description": "This one uses sprite to draw the particles."
   },
   {
-    "groupId": "frank-particles",
+    "groupId": "projects-particles-code-pens",
     "id": "projects-particles-4",
-    "parent": "projects-particles-code-pens",
     "title": "Lava Lamp Effect",
     "link": "projects/particles/4/index.html",
     "description": "This one uses CSS on canvas itself to achieve a nice effect."
   },
   {
-    "groupId": "frank-particles",
+    "groupId": "projects-particles-code-pens",
     "id": "projects-particles-5",
-    "parent": "projects-particles-code-pens",
     "title": "With Gradient",
     "link": "projects/particles/5/index.html",
     "description": ""
   },
   {
-    "groupId": "frank-particles",
+    "groupId": "projects-particles-code-pens",
     "id": "projects-particles-6",
-    "parent": "projects-particles-code-pens",
     "title": "With Gradient",
     "link": "projects/particles/6/index.html",
     "description": ""
   },
   {
-    "groupId": "frank-particles",
+    "groupId": "projects-particles-code-pens",
     "id": "projects-particles-7",
-    "parent": "projects-particles-code-pens",
     "title": "force from item",
     "link": "projects/particles/7/index.html",
     "description": "",

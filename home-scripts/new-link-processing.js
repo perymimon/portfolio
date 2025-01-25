@@ -31,15 +31,9 @@ async function handleContentLoaded (event) {
 
 async function handleGlobalClick (event) {
     if (!(event.target instanceof HTMLAnchorElement)) return
-    if (contentFrame.src === event.target.href) {
-        return event.preventDefault()
-    }
-    //
-    var project = await goToProjectPage(event.target.id)
-    toggleAnchor(event.target)
-    if (project) {
-        event.preventDefault()
-    }
+    event.preventDefault()
+    await goToProjectPage(event.target.id)
+
 }
 
 function toggleAnchor (anchor) {
@@ -58,15 +52,22 @@ function toggleAnchor (anchor) {
     }
 }
 
+/**
+ *
+ * @param id - can be project-id or object id, or undefined to get value from location.hash
+ * @returns {Promise<string|*|boolean|boolean>}
+ */
+
 async function goToProjectPage (id = window.location.hash) {
     id = id.replace(/^#/, '')
-    var project = getProjectById(id)
+
+    var project = Object(id) === id ? id : getProjectById(id)
     var link = document.getElementById(id)
     var href = project?.link ?? link?.href
 
-    if (project?.tabsId) {
-        var firstTab = getProjectsByGroupId(project.tabsId)?.at(0)
-        return goToProjectPage(firstTab.id)
+    var tabs = getProjectsByGroupId(project.id)
+    if (tabs) {
+        return goToProjectPage(tabs.at(0))
     }
     if (!href) return goToProjectPage('welcome')
     /* what if we already on that project / page */
@@ -77,9 +78,9 @@ async function goToProjectPage (id = window.location.hash) {
     var viewTransition = startViewTransition(_ => {
         contentFrame.src = href
         injectProjectInfo2(project)
-        toggleAnchor(id)
     })
     await viewTransition.finished
+    toggleAnchor(id)
     return project
 }
 
@@ -109,7 +110,7 @@ function buildNavigation () {
 export function getAnchorsGroup (groupId, type) {
     var group = getProjectsByGroupId(groupId)
     const fragment = document.createDocumentFragment()
-    if (!group) throw 'no group found'
+    if (!group) return null
 
     group.forEach((item, i) => {
         var isTabs = type === 'tabs'

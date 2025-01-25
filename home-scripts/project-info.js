@@ -24,23 +24,23 @@ export function injectProjectInfo2 (project) {
     var $tabContainer = document.getElementById('tabs-container')
     if (!project) return $infoPanel.replaceChildren(/*empty*/)
 
-    var parentProject = getProjectById(project.parent) ?? {}
+    var parentProject = getProjectById(project.groupId)
     var data = {...parentProject, ...project}
     var teacher = teachers[data.teacher]
-    var parentId = '', fragment = ''
-    if (data.tabsId){
-        parentId = parentProject.id ?? data.id
+    var parentId = parentProject?.id
+
+    if (parentId) {
         if($tabContainer.dataset.parent !== parentId){
-            fragment = getAnchorsGroup(data.tabsId, 'tabs')
-            $tabContainer.replaceChildren(fragment)
-            $tabContainer.dataset.parent = parentId
-        }
-    }else {
+       var fragment = getAnchorsGroup(parentId, 'tabs')
+        $tabContainer.replaceChildren(fragment)
+        $tabContainer.dataset.parent = parentId
+            }
+    }else{
         $tabContainer.replaceChildren()
         delete $tabContainer.dataset.parent
     }
 
-    $infoPanel.innerHTML = `
+     $infoPanel.innerHTML = `
           <h3 class="info-header">⬡
             <span id="info-title" data-value="${data.title}">${data.title}</span> 
             <span id="info-year" data-value="${data.year}">| ${data.year}</span> 
