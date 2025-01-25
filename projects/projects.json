@@ -53,13 +53,6 @@
   },
   {
     "groupId": "projects-particles-code-pens",
-    "id": "projects-particles-2",
-    "title": "Inflate Bubbles",
-    "link": "projects/particles/2/index.html",
-    "description": "Swipe around to inflate the bubbles."
-  },
-  {
-    "groupId": "projects-particles-code-pens",
     "id": "projects-particles-3",
     "title": "Use Sprite",
     "link": "projects/particles/3/index.html",
@@ -71,13 +64,6 @@
     "title": "Lava Lamp Effect",
     "link": "projects/particles/4/index.html",
     "description": "This one uses CSS on canvas itself to achieve a nice effect."
-  },
-  {
-    "groupId": "projects-particles-code-pens",
-    "id": "projects-particles-5",
-    "title": "With Gradient",
-    "link": "projects/particles/5/index.html",
-    "description": ""
   },
   {
     "groupId": "projects-particles-code-pens",

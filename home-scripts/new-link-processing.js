@@ -59,11 +59,19 @@ function toggleAnchor (anchor) {
  */
 
 async function goToProjectPage (id = window.location.hash) {
-    id = id.replace(/^#/, '')
+    var project = null
+    if(Object(id) === id){
+         project =  id
+        id = project.id
+    }else{
+        id = id.replace(/^#/, '')
+        project =  getProjectById(id)
+    }
 
-    var project = Object(id) === id ? id : getProjectById(id)
     var link = document.getElementById(id)
     var href = project?.link ?? link?.href
+
+    if (contentFrame.src.includes(href)) return false
 
     var tabs = getProjectsByGroupId(project.id)
     if (tabs) {
@@ -71,7 +79,6 @@ async function goToProjectPage (id = window.location.hash) {
     }
     if (!href) return goToProjectPage('welcome')
     /* what if we already on that project / page */
-    if (contentFrame.src.includes(href)) return false
 
     window.location.hash = id
 
