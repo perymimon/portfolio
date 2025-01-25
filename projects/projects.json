@@ -41,7 +41,7 @@
     "title": "Particles",
     "link": "projects/particles/code-pens.html",
     "year": 2024,
-    "stack": "particles, canvas, vanilla es6",
+    "stack": "particles, Canvas, vanilla es6",
     "description": "Basic particle effects, responsive to mouse interactions.",
     "teacher": "@Frank",
     "tutorial": "https://www.youtube.com/watch?v=PoDjjHh931c",
@@ -109,7 +109,7 @@
     "title": "Matrix Rain",
     "link": "projects/matrix-rain/index.html",
     "year": 2024,
-    "stack": "particles, canvas, vanilla es6",
+    "stack": "particles, Canvas, vanilla es6",
     "description": "A matrix rain, created with vanilla ES6 on canvas and some CSS filters.",
     "teacher": "@Frank",
     "tutorial": "https://www.youtube.com/watch?v=f5ZswIE_SgY",
@@ -121,7 +121,7 @@
     "title": "Pixels Rain",
     "link": "projects/pixel-rain/index.html",
     "year": 2024,
-    "stack": "canvas, vanilla es6",
+    "stack": "Canvas, vanilla es6",
     "description": "What if we change the speed of the particles based on the luminosity of a hidden image?",
     "teacher": "@Frank",
     "github": "https://github.com/perymimon/portofolio/tree/main/projects/pixel-rain"
@@ -131,25 +131,10 @@
     "title": "Ray Cast",
     "link": "projects/ray-casting/2/index.html",
     "year": 2025,
-    "stack": "canvas, vanilla es6",
+    "stack": "Canvas, vanilla es6",
     "teacher": "@Dan",
     "github": "https://github.com/perymimon/portofolio/tree/main/projects/ray-casting/1/index.html",
-    "youtube": "https://www.youtube.com/watch?v=TOEi6T2mtH"
-  },
-  {
-    "groupId": "ray-cast",
-    "id": "projects-ray-cast-1",
-    "parent": "projects-ray-cast",
-    "link": "projects/ray-casting/1/index.html",
-    "description": "The light is block by the walls, a project of segment intersection and live polygons",
-    "github": "https://github.com/perymimon/portofolio/tree/main/projects/ray-casting/1/index.html"
-  },
-  {
-    "groupId": "ray-cast",
-    "id": "projects-ray-cast-2",
-    "parent": "projects-ray-cast",
-    "link": "projects/ray-casting/2/index.html",
-    "description": "Move you mouse around and see how the light block by thw walls",
-    "github": "https://github.com/perymimon/portofolio/tree/main/projects/ray-casting/2/index.html"
-  }
+    "youtube": "https://www.youtube.com/watch?v=TOEi6T2mtH",
+    "description": "Move you pointer around and see how the light block by thw walls. You can click to creat a new wall"
+}
 ]
