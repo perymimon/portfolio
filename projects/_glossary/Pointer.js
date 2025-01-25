@@ -35,6 +35,7 @@ export default class Pointer extends Interactive {
     onDrop (e, draggingPoint, hoveredPoint) {}
 
     onSelected (e, selectedPoint) {}
+    onTap (e, tapPoint) {}
 
     /* Internals */
 
@@ -64,6 +65,7 @@ export default class Pointer extends Interactive {
         } else {
             this.onSelected(e, this.mouse, this);
         }
+        this.onTap(e, this.mouse, this);
     }
 
     #onPointerUp (e) {
