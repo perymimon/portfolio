@@ -1,18 +1,30 @@
-import {Particle} from './Particle.js'
+import {draw} from '../../_helpers/draw.js'
+import {Value} from '../Value.js'
 
-export default class Point extends Particle {
-    constructor (x, y, effect) {
-        super(x, y, 10, effect)
+export default class Point {
+    constructor (x, y, z) {
+        this.x = new Value(x)
+        this.y = new Value(y)
+        if (z !== undefined) this.z = new Value(z)
+    }
+
+    update () {
+        this.x.update()
+        this.y.update()
+        this.z?.update()
     }
 
     setX (x) { this.x.value = x }
+
     setY (y) { this.y.value = y }
-    set({x, y}) {
-        this.x.value = x + 0
+
+    set ({x, y}) {
+        this.x.value = x + 0 /*in case x is Value*/
         this.y.value = y + 0
         return this
     }
-    setPolar(amplitude, angle) {
+
+    setPolar (amplitude, angle) {
         const xOffset = amplitude * Math.cos(angle);
         const yOffset = amplitude * Math.sin(angle);
 
@@ -20,16 +32,17 @@ export default class Point extends Particle {
         this.y.value = this.y.start + yOffset;
         return this;
     }
+
     toAdd ({x, y}) {
         return new Point(
             this.x + x,
             this.y + y,
-            this.parent
         )
     }
+
     add ({x, y}) {
-        this.x.value +=x
-        this.y.value +=y
+        this.x.value += x
+        this.y.value += y
     }
 
     vectorTo ({x, y}) {
@@ -43,8 +56,13 @@ export default class Point extends Particle {
         return new Point(
             this.x * scalar,
             this.y * scalar,
-            this.parent
         )
     }
 
+    draw (ctx, size = 10, options) {
+        draw.circle(ctx, this.x, this.y, size, {
+            drawFill: true,
+            ...options,
+        });
+    }
 }

@@ -1,21 +1,17 @@
+import Point from './Point.primitive.js'
 import {draw} from '../../_helpers/draw.js'
-import {Value} from '../Value.js'
 
-export class Particle {
+export class Particle extends Point{
     constructor(x, y, size, effect) {
-        this.x = new Value(x)
-        this.y = new Value(y)
+        super(x, y)
         this.size = size
         this.effect = effect
     }
-    update() {
-        this.x.update()
-        this.y.update()
-    }
-    draw(ctx, options){
-        draw.circle(ctx,this.x, this.y, this.size,{
+
+    draw (ctx, size = 10, options) {
+        draw.circle(ctx, this.x, this.y, size, {
             drawFill: true,
-            ...options
+            ...options,
         });
     }
     setBoundary(padding){
