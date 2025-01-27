@@ -5,9 +5,9 @@ export default class Polygon {
         this.points = points
     }
 
-    draw (ctx, settings) {
+    draw (ctx, settings = {drawStroke: true,}) {
+
         draw.polygon(ctx, this.points, {
-            drawStroke: true,
             ...settings,
         })
     }
