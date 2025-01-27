@@ -84,10 +84,6 @@ export function angle(p) {
     return Math.atan2(p.y, p.x)
 }
 
-export function angleToScreen(p) {
-    return Math.PI / 2 - angle(p)
-}
-
 export function add(p1, p2) {
     return new Point(p1.x + p2.x, p1.y + p2.y)
 }

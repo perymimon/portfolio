@@ -39,10 +39,18 @@ export default class Point {
             this.y + y,
         )
     }
+    toSub({x, y}) {
+        return new Point(
+            this.x - x,
+            this.y - y,
+        )
+    }
+
 
     add ({x, y}) {
         this.x.value += x
         this.y.value += y
+        return this
     }
 
     vectorTo ({x, y}) {

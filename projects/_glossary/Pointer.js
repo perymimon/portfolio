@@ -42,7 +42,7 @@ export default class Pointer extends Interactive {
     #onPointerMove (e) {
         e.preventDefault();
         this.pointer = {x: e.clientX, y: e.clientY}
-        console.debug('pointer move', this.pointer)
+        // console.debug('pointer move', this.pointer)
         if (this.dragging) {
             this.dragging.x = this.pointer.x;
             this.dragging.y = this.pointer.y;

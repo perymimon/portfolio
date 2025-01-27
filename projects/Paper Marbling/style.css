@@ -1,0 +1,10 @@
+@import "../../base.css";
+@import "../project-base.css";
+
+canvas {
+    --shade-0: color-mix(in srgb, var(--color-primary) 60%, #5DFF00FF);
+    --shade-1: color-mix(in srgb, var(--color-primary) 60%, yellow);
+    --shade-2: color-mix(in srgb, var(--color-primary) 60%, blue);
+    --shade-3: color-mix(in srgb, var(--color-primary) 60%, purple);
+    --shade-4: color-mix(in srgb, var(--color-primary) 60%, #00ffff);
+}

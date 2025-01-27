@@ -5,6 +5,7 @@ import {clamp, exceedsLimits, random} from '../_math/basic.js'
 export class Value {
     constructor (v, settings = {}) {
         if (v instanceof Value) return v
+        if(!(typeof v ==='number')) throw new Error('Value must be a number')
         this.start = v
         this.value = v
         Object.assign(this, {
