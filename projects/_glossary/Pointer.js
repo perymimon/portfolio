@@ -8,6 +8,7 @@ export default class Pointer extends Interactive {
         pointermove: this.#onPointerMove.bind(this),
         pointercancel: this.#onPointerUp.bind(this),
     }
+    doubleTapThreshold = 300 // Time in milliseconds
 
     constructor (triggerElement = window) {
         super()
@@ -21,9 +22,17 @@ export default class Pointer extends Interactive {
         this.pointer = {x: 0, y: 0}
         this.pointerStart = {x: 0, y: 0}
         this.interestPoints = []
+
+        // Double tap tracking
+        this.lastTapTime = 0;
+
+        // Press tracking
+        this.isPointerDown = false;
+        this.pressFrameId = null;
+
         this.enable()
         if(getComputedStyle(triggerElement).touchAction !== 'none') {
-            console.warn(`trigger element`, triggerElement, `not set touchAction to 'none'` )
+            console.warn(`trigger element`, triggerElement, `must set touchAction to 'none'` )
         }
     }
 
@@ -36,7 +45,8 @@ export default class Pointer extends Interactive {
 
     onSelected (e, selectedPoint) {}
     onTap (e, tapPoint) {}
-
+    onPress (e, tapPoint) {} // Fires repeatedly while pointer is down
+    onDblTap (e, tapPoint) {} // Fires on double tap
     /* Internals */
 
     #onPointerMove (e) {
@@ -55,9 +65,21 @@ export default class Pointer extends Interactive {
         // if (this.#shouldIgnoreEvent(e)) return;
         this.pointer = {x: e.clientX, y: e.clientY}
         this.pointerStart = {x: e.clientX, y: e.clientY};
-        console.debug('pointer down', this.pointer)
+        this.isPointerDown = true
         this.hovered = getNearestPoint(this.pointer, this.interestPoints, this.hoverThreshold);
 
+        // Double tap logic
+        const currentTime = Date.now();
+        if (currentTime - this.lastTapTime < this.doubleTapThreshold) {
+            this.onDblTap(e, this.pointer, this);
+            this.lastTapTime = 0; // Reset to prevent triple taps
+        } else {
+            this.lastTapTime = currentTime;
+        }
+        // Start press loop
+        this.#startPressLoop(e)
+
+        // Selection Logic
         if (this.hovered) {
             this.selected = this.dragging = this.hovered;
             this.hovered = null;
@@ -65,18 +87,34 @@ export default class Pointer extends Interactive {
         } else {
             this.onSelected(e, this.mouse, this);
         }
+        // Tap event
+        // event.button specifies which mouse button was pressed:
+        // 0: Left button
+        // 1: Middle button
+        // 2: Right button
         this.onTap(e, this.mouse, this);
     }
 
     #onPointerUp (e) {
-        // if (this.#shouldIgnoreEvent(e)) return;
-        console.debug('pointer up', this.pointer)
+        this.isPointerDown = false
+        cancelAnimationFrame(this.pressFrameId)
+        this.pressFrameId = null
+
+        // if (this.#shouldIgnoreEvent(e)) return
         if (this.dragging) {
             this.onDrop(e, this.dragging, this.hovered, this);
             this.dragging = null;
         }
     }
-
+    #startPressLoop(e) {
+        const firePress = () => {
+            if (this.isPointerDown) {
+                this.onPress(e, this.pointer, this)
+                this.pressFrameId = requestAnimationFrame(firePress)
+            }
+        };
+        this.pressFrameId = requestAnimationFrame(firePress);
+    }
     #shouldIgnoreEvent (e) {
         // For touch: button is -1, buttons is 0
         // For mouse: respect activeButton (0 = left click)
