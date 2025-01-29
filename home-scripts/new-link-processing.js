@@ -73,7 +73,7 @@ async function goToProjectPage (id = window.location.hash) {
 
     if (contentFrame.src.includes(href)) return false
 
-    var tabs = getProjectsByGroupId(project.id)
+    var tabs = getProjectsByGroupId(project?.id)
     if (tabs) {
         return goToProjectPage(tabs.at(0))
     }
