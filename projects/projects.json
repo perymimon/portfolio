@@ -113,5 +113,16 @@
     "github": "https://github.com/perymimon/portofolio/tree/main/projects/ray-casting/1/index.html",
     "youtube": "https://www.youtube.com/watch?v=TOEi6T2mtH",
     "description": "Move you pointer around and see how the light block by thw walls. You can click to creat a new wall"
+},{
+    "groupId": "tutorials-by-coding-train",
+    "id": "projects-paper-marbling",
+    "title": "Paper Marbling",
+    "link": "projects/paper-marbling/index.html",
+    "year": 2025,
+    "stack": "Canvas, vanilla es6",
+    "teacher": "@Dan",
+    "github": "https://github.com/perymimon/portofolio/tree/main/projects/paper-marbling",
+    "youtube": "https://www.youtube.com/watch?v=p7IGZTjC008&ab_channel=TheCodingTrain",
+    "description": "Double Tab to drop a new drop and swift around to tineLine the canvas"
 }
 ]
