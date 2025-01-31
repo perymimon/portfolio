@@ -1,6 +1,6 @@
 import {FrameEngine} from '../../_glossary/FrameEngine.js'
-import Point from '../../_glossary/particles/Point.primitive.js'
-import Segment from '../../_glossary/particles/Segment.primitive.js'
+import Point from '../../_glossary/primitive/Point.primitive.js'
+import Segment from '../../_glossary/primitive/Segment.primitive.js'
 import {getProperty} from '../../_helpers/basic.js'
 import Light from '../Light.js'
 

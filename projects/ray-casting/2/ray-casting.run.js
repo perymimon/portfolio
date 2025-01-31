@@ -1,6 +1,6 @@
 import {FrameEngine} from '../../_glossary/FrameEngine.js'
-import Point from '../../_glossary/particles/Point.primitive.js'
-import Segment from '../../_glossary/particles/Segment.primitive.js'
+import Point from '../../_glossary/primitive/Point.primitive.js'
+import Segment from '../../_glossary/primitive/Segment.primitive.js'
 import Pointer from '../../_glossary/Pointer.js'
 import {Value} from '../../_glossary/Value.js'
 import {getProperty} from '../../_helpers/basic.js'
@@ -35,7 +35,7 @@ function createWall (cx, cy) {
 
 const pointer = new Pointer(canvas)
 pointer.onMove = (pointer) => {
-    light0.moveTo(pointer)
+    light0.translateTo(pointer)
 }
 pointer.onTap = (pointer) => {
     walls.push(createWall(pointer.x, pointer.y))
@@ -113,7 +113,7 @@ new FrameEngine(25, function () {
 
     ctx.save()
     ctx.globalAlpha = 0.4
-    lights.forEach(light => light.draw(ctx))
+    lights.forEach(light => light.draw(ctx, {rainbow: false}))
     ctx.restore()
 
     walls.forEach(wall =>

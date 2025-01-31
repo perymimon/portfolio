@@ -1,9 +1,9 @@
 import {getProperty, setCanvas} from '../../_helpers/basic.js'
 import {getImageData} from '../../_helpers/filters.colors.js'
-import {random} from '../../_math/basic.js'
+import {random} from '../../_math/2D.math.js'
 import {Effect} from '../Effect.js'
 import {FrameEngine} from '../FrameEngine.js'
-import {Particle} from '../particles/Particle.js'
+import {Particle} from '../primitive/Particle.js'
 
 export class PixelRainEffect extends Effect {
     constructor (width, height, grayscaleImageData, settings = {}) {

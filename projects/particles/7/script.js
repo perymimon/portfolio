@@ -1,7 +1,8 @@
-import {drawAlgebra} from '../../_helpers/draw.js'
 import {Sprite} from '../../_glossary/Sprite.js'
-import {distance, getAngle} from '../../_math/2D.math.js'
-import {clamp, exceedsLimits, isBetween, lerp, linearLerp, random} from '../../_math/basic.js'
+import {drawAlgebra} from '../../_helpers/draw.js'
+import {
+    angle2P, clamp, distance, exceedsLimits, isBetween, lerp, random,
+} from '../../_math/2D.math.js'
 
 // setup
 const canvas = document.getElementById("canvas1");
@@ -105,7 +106,7 @@ class Particle {
         let {whale} = this.effect
 
         let dis = distance(whale, this)
-        let angle = getAngle(whale, this)
+        let angle = angle2P(this,whale)
         if (dis < whale.radius && isBetween(-Math.PI /2 ,angle, Math.PI /2)) {
             let force = 3 * (whale.radius / dis)
 
@@ -215,7 +216,7 @@ window.addEventListener('load', () => {
 
     var lastTimeStamp = null
 
-    // Array(5000).forEach( _=> effect.particles.forEach(p => p.update()))
+    // Array(5000).forEach( _=> effect.primitive.forEach(p => p.update()))
 
     function animation (timeStamp) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);

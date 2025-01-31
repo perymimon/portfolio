@@ -8,8 +8,8 @@ export class Particle extends Point{
         this.effect = effect
     }
 
-    draw (ctx, size = 10, options) {
-        draw.circle(ctx, this.x, this.y, size, {
+    draw (ctx, options) {
+        draw.circle(ctx, this.x, this.y, this.size, {
             drawFill: true,
             ...options,
         });

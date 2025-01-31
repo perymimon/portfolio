@@ -9,23 +9,15 @@ draw.circle = function (ctx, x, y, radius, options = {}) {
     }
 
     ctx.arc(x, y, radius, 0, Math.PI * 2, true);
-    Object.assign(ctx, options);
 
-    if (options.drawFill || options.fillStyle) ctx.fill()
-    if (options.drawStroke || options.strokeStyle) ctx.stroke()
-    let keyWords = 'strokeStyle,fillStyle,drawFill,drawStroke'.split(',')
-    drawTest(options, keyWords, 'circle')
+    drawing(ctx, options,'circle')
+
 }
 
 draw.ellipse = function (ctx, x, y, xRadius, yRadius, options = {}) {
     ctx.beginPath()
     ctx.ellipse(x, y, xRadius, yRadius, 0, 0, Math.PI * 2, true);
-    Object.assign(ctx, options)
-
-    if (options.drawFill || options.fillStyle) ctx.fill()
-    if (options.drawStroke || options.strokeStyle) ctx.stroke()
-    let keyWords = 'strokeStyle,fillStyle,drawFill,drawStroke'.split(',')
-    drawTest(options, keyWords, 'ellipse')
+    drawing(ctx, options, 'ellipse')
 }
 
 draw.line = function (ctx, xFrom, yFrom, xTo, yTo, options = {}) {
@@ -44,20 +36,43 @@ draw.polygon = function (ctx, points, options = {}) {
         ctx.lineTo(point.x, point.y)
     }
     ctx.closePath()
-    Object.assign(ctx, options)
 
+    drawing(ctx, options, 'polygon')
+}
+
+draw.arrow = function (ctx, sx, sy, ex, ey, size, options = {}) {
+    ctx.beginPath()
+    ctx.moveTo(sx, sy)
+    ctx.lineTo(sx, sy)
+    let angle = Math.atan2(ey - sy, ex - sx)
+
+    ctx.moveTo(ex, ey)
+    ctx.lineTo(
+        ex - size * Math.cos(angle - Math.PI / 6),
+        ey - size * Math.sin(angle - Math.PI / 6),
+    )
+    ctx.lineTo(
+        ex - size * Math.cos(angle + Math.PI / 6),
+        ey - size * Math.sin(angle + Math.PI / 6)
+    )
+    ctx.closePath()
+
+    drawing(ctx, options ,'arrow')
+}
+function drawing(ctx, options, shapeName){
+    Object.assign(ctx, options)
     if (options.drawFill || options.fillStyle) ctx.fill()
     if (options.drawStroke || options.strokeStyle) ctx.stroke()
     let keyWords = 'strokeStyle,fillStyle,drawFill,drawStroke'.split(',')
-    drawTest(options, keyWords, 'polygon')
+    drawTest(options, keyWords, shapeName)
 }
-
 export const drawAlgebra = {
     line (ctx, p0, p1, opt) { draw.line(ctx, p0.x, p0.y, p1.x, p1.y, opt)},
     circle (ctx, p0, radius, opt) { draw.circle(ctx, p0.x, p0.y, radius, opt)},
     ellipse (ctx, p0, xRad, yRad, opt) {draw.ellipse(ctx, p0.x, p0.y, xRad, yRad, opt)},
 
 }
+
 
 export const color = {}
 

@@ -34,8 +34,6 @@ window.addEventListener("message", async (event) => {
             return function (event) {
                 sendState(event.type, event.detail?.url)
                 fps[fpsAction]()
-                console.log(event.type)
-
             }
         }
 
@@ -101,11 +99,9 @@ export default class Recorder extends EventsEmitter {
 
         this.mediaRecorder.ondataavailable = (event) => {
             recordedChunks.push(event.data)
-            console.log(this.recodingTime, 'data available', recordedChunks)
         }
 
         this.mediaRecorder.onstop = (event) => {
-            console.log('on stop', event)
             var blob = new Blob(recordedChunks, {type: "video/webm"})
             var url = URL.createObjectURL(blob)
             resolve(url)

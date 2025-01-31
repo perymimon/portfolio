@@ -1,6 +1,5 @@
 import {drawAlgebra} from '../../_helpers/draw.js'
-import {distance} from '../../_math/2D.math.js'
-import {clamp} from '../../_math/basic.js'
+import {distance, clamp} from '../../_math/2D.math.js'
 import {rectCollision} from '../../_math/collision-detection.js'
 
 // setup

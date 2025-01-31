@@ -22,10 +22,12 @@ export class Effect  {
             p.update()
         }
     }
-
-    draw (ctx) {
-        for (let p of this.particles) {
-            p.draw(ctx)
+    getDrawSetting(settings, p, i){
+        return settings instanceof Function ? settings(p,i) : settings
+    }
+    draw (ctx, drawSetting) {
+        for (let [i,p] of this.particles.entries()) {
+            p.draw(ctx, this.getDrawSetting(drawSetting,p,i))
         }
     }
 }

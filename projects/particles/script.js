@@ -1,6 +1,7 @@
 import {drawAlgebra} from '../_helpers/draw.js'
-import {distance, getAngle} from '../_math/2D.math.js'
-import {clamp, exceedsLimits, random} from '../_math/basic.js'
+import {
+    angle2P, clamp, distance, exceedsLimits, random,
+} from '../_math/2D.math.js'
 
 // setup
 const canvas = document.getElementById("canvas1");
@@ -41,7 +42,7 @@ class Particle {
             let dis = distance(mouse, this)
             if (dis < mouse.radius) {
                 let force = mouse.radius / dis
-                let angle = getAngle(mouse, this)
+                let angle = angle2P(this, mouse)
                 this.pushX = Math.cos(angle) * force
                 this.pushY = Math.sin(angle) * force
             }

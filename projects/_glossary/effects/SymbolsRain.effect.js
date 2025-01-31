@@ -1,6 +1,6 @@
 import {Effect} from '../Effect.js'
-import {Particle} from '../particles/Particle.js'
-import {random} from '../../_math/basic.js'
+import {Particle} from '../primitive/Particle.js'
+import {random} from '../../_math/2D.math.js'
 
 /* 30 lines */
 var charactes = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$+-*/=%"'#&_(),.;:?\|{}<>[]^~`
@@ -33,6 +33,7 @@ export class SymbolChar extends Particle {
 export class SymbolsRainEffect extends Effect {
     constructor (width, height, fontSize = 10) {
         super(width,height, {fontSize})
+        this.init()
     }
 
     init () {

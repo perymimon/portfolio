@@ -1,5 +1,5 @@
-import Point from '../_glossary/particles/Point.primitive.js'
-import Segment from '../_glossary/particles/Segment.primitive.js'
+import Point from '../_glossary/primitive/Point.primitive.js'
+import Segment from '../_glossary/primitive/Segment.primitive.js'
 import {Value} from '../_glossary/Value.js'
 import {getProperty} from '../_helpers/basic.js'
 import {getRadialGradient} from '../_helpers/cavas.basic.js'
@@ -15,16 +15,14 @@ export default class Light {
         this.amount = this.settings.raysAmount
         var {raysAmount} = this.settings;
         this.setRays(raysAmount)
-        this.direction.onChange = ()=> this.updateDirection()
-        this.spread.onChange = ()=> this.updateDirection()
+        this.direction.onChange = () => this.updateDirection()
+        this.spread.onChange = () => this.updateDirection()
     }
 
     setRays (amount) {
-        this.rays = Array(amount).fill().map((_, i) => {
-            var ray =  new Segment(this.center, this.center.toAdd({x: 0, y: 0}))
-            Object.freeze(ray)
-            return ray
-        })
+        this.rays = Array.from({length: amount}, (_, i) =>
+            new Segment(this.center)
+        )
         this.updateDirection()
     }
 
@@ -32,25 +30,26 @@ export default class Light {
         const {spread, amount, direction} = this
         this.rays.forEach((ray, i) => {
             let angle = direction + (i / amount - .5) * spread
-            ray.p2.setPolar(1, angle)
+            console.log(angle)
+            ray.p2.orbitAround(ray.p1, angle)
         })
     }
 
-    moveTo ({x, y}) {
+    translateTo ({x, y}) {
         var vec = this.center.vectorTo({x, y})
         this.center.setX(x)
         this.center.setY(y)
-        this.rays.forEach(ray => ray.p2.add(vec))
+        this.rays.forEach(ray => ray.p2.translate(vec))
     }
 
     cast () {
         const {boundaries = [], range} = this.settings
+
         for (let ray of this.rays) {
-            ray.length = range
-        }
-        for (let boundary of boundaries) {
-            for (let ray of this.rays) {
+            ray.setLength(range)
+            for (let boundary of boundaries) {
                 var intr = boundary.intersectionPoint(ray)
+                if (intr?.exceedsSeg2) continue
                 if (intr) ray.p2.set(intr.point)
             }
         }
@@ -64,7 +63,8 @@ export default class Light {
 
     draw (ctx, settings = {}) {
         var {center} = this
-        var {range, spread, gradientLight = true, rainbow} = this.settings;
+        var {range, spread, gradientLight = true} = this.settings
+        var {rainbow} = settings
 
         center.draw(ctx, {
             fillStyle: this.settings.color,

@@ -1,11 +1,11 @@
-import {clamp, exceedsLimits, random} from '../_math/basic.js'
+import {clamp, exceedsLimits, random} from '../_math/2D.math.js'
 
 // offScreenMode =  'die' || 'teleportation' ||
 
 export class Value {
     constructor (v, settings = {}) {
-        if (v instanceof Value) return v
-        if(!(typeof v ==='number')) throw new Error('Value must be a number')
+        if (v instanceof Value) v = v + 0
+        if (!(typeof v === 'number')) throw new Error('Value must be a number')
         this.start = v
         this.value = v
         Object.assign(this, {
@@ -24,12 +24,15 @@ export class Value {
     onAboveMax () {}
 
     onChange (value) {}
+
     set offsetMax (value) {
         this.max = this.start + value
     }
+
     set offsetMin (value) {
         this.min = this.start - value
     }
+
     get isAboveMax () {
         return this.value > this.max
     }
@@ -81,6 +84,9 @@ export class Value {
         return this.value
     }
 
+    toString(){
+        return this.value.toFixed(2)
+    }
     get isExceedsBoundary () {
         return exceedsLimits(this.min, this.value, this.max)
     }

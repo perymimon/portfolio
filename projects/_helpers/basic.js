@@ -41,13 +41,13 @@ export async function waitFor (eventName, element) {
 export async function getImage (image) {
     if (typeof image == 'string') {
         if (isUrl(image)) {
-            var imageInstance = new Image()
-            imageInstance.src = image
-            await waitFor('load', imageInstance)
-            return imageInstance
+            var url = image
+            image = new Image()
+            image.src = url
+        }else {
+            /*is css selector*/
+            image = document.querySelector(image)
         }
-        /*is css selector*/
-        image = document.querySelector(image)
     }
     /* image is instance or dom element or Image instance*/
     if (image.complete) return image
@@ -79,4 +79,22 @@ export function setCanvas (canvas, element) {
         canvas.height = window.innerHeight;
     }
 
+}
+/* set Object property */
+
+export function defineProtect(obj, key, value) {
+    Object.defineProperty(obj, key, {
+        value,
+        writable:false, // Prevents reassignment of this[key]
+        enumerable:true,
+        configurable:true,
+    })
+}
+
+export function protect(obj, key){
+    Object.defineProperty(obj, key, {
+        writable:false,
+        enumerable:true,
+        configurable:true,
+    })
 }
