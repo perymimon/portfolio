@@ -1,5 +1,5 @@
 import {draw} from '../../_helpers/draw.js'
-import {lerp} from '../../_math/2D.math.js'
+import {lerp} from '../../_math/math.js'
 
 import Coordinates from './Coordinates.primitive.js'
 import Vector from './Vector.primitive.js'

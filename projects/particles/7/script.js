@@ -2,7 +2,7 @@ import {Sprite} from '../../_glossary/Sprite.js'
 import {drawAlgebra} from '../../_helpers/draw.js'
 import {
     angle2P, clamp, distance, exceedsLimits, isBetween, lerp, random,
-} from '../../_math/2D.math.js'
+} from '../../_math/math.js'
 
 // setup
 const canvas = document.getElementById("canvas1");

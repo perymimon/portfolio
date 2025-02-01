@@ -1,6 +1,6 @@
 import {getProperty, setCanvas} from '../../_helpers/basic.js'
 import {getImageData} from '../../_helpers/filters.colors.js'
-import {random} from '../../_math/2D.math.js'
+import {random} from '../../_math/math.js'
 import {Effect} from '../Effect.js'
 import {FrameEngine} from '../FrameEngine.js'
 import {Particle} from '../primitive/Particle.js'

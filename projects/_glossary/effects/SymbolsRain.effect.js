@@ -1,6 +1,6 @@
 import {Effect} from '../Effect.js'
 import {Particle} from '../primitive/Particle.js'
-import {random} from '../../_math/2D.math.js'
+import {random} from '../../_math/math.js'
 
 /* 30 lines */
 var charactes = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$+-*/=%"'#&_(),.;:?\|{}<>[]^~`

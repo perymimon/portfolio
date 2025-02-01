@@ -1,6 +1,6 @@
 import {protect} from '../../_helpers/basic.js'
 import {draw} from '../../_helpers/draw.js'
-import {dot} from '../../_math/2D.math.js'
+import {dot} from '../../_math/math.js'
 import {getIntersection} from '../../_math/segment-intersection.js'
 import Point from './Point.primitive.js'
 

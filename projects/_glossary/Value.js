@@ -1,4 +1,4 @@
-import {clamp, exceedsLimits, random} from '../_math/2D.math.js'
+import {clamp, exceedsLimits, random} from '../_math/math.js'
 
 // offScreenMode =  'die' || 'teleportation' ||
 

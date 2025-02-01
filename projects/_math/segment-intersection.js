@@ -1,4 +1,4 @@
-import {eps, lerp, maxeps} from './2D.math.js'
+import {eps, lerp, maxeps} from './math.js'
 
 export function getIntersection (seg1, seg2) {
     var {p1: A, p2: B} = seg1

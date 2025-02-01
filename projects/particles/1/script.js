@@ -1,6 +1,6 @@
 import {setCanvas} from '../../_helpers/basic.js'
 import {drawAlgebra} from '../../_helpers/draw.js'
-import {angle2P, clamp, distance, exceedsLimits} from '../../_math/2D.math.js'
+import {angle2P, clamp, distance, exceedsLimits} from '../../_math/math.js'
 
 // setup
 const canvas = document.getElementById("canvas1");

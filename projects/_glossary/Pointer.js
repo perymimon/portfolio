@@ -1,5 +1,5 @@
 import draw from '../_helpers/draw.js'
-import {getNearestPoint} from '../_math/2D.math.js'
+import {getNearestPoint} from '../_math/math.js'
 import Interactive from './Interactive.abstract.js'
 
 export default class Pointer extends Interactive {

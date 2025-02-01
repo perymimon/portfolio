@@ -1,4 +1,4 @@
-import {magnitude} from '../../_math/2D.math.js'
+import {magnitude} from '../../_math/math.js'
 import Coordinates from './Coordinates.primitive.js'
 import {draw} from '../../_helpers/draw.js'
 

@@ -1,5 +1,5 @@
 import {Effect} from '../_glossary/Effect.js'
-import {dot, magnitude} from '../_math/2D.math.js'
+import {dot, magnitude} from '../_math/math.js'
 
 export default class MarbleEffect extends Effect {
     constructor (width, height, polygons = [], settings = {}) {
