@@ -1,4 +1,4 @@
-import {Effect} from '../_glossary/Effect.js'
+import {Effect} from '../_glossary/effects/Effect.js'
 import {dot, magnitude} from '../_math/math.js'
 
 export default class MarbleEffect extends Effect {

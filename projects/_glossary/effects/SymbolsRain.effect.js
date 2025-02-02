@@ -1,4 +1,4 @@
-import {Effect} from '../Effect.js'
+import {Effect} from './Effect.js'
 import {Particle} from '../primitive/Particle.js'
 import {random} from '../../_math/math.js'
 

@@ -1,4 +1,4 @@
-import {Sprite} from '../../_glossary/Sprite.js'
+import {Sprite} from '../../_glossary/effects/Sprite.js'
 import {drawAlgebra} from '../../_helpers/draw.js'
 import {
     angle2P, clamp, distance, exceedsLimits, isBetween, lerp, random,
