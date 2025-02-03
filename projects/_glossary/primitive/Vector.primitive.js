@@ -10,9 +10,10 @@ export default class Vector extends Coordinates{
         return new Vector(this.x, this.y)
     }
     add ({x, y}) {
-        this.x.value += x
-        this.y.value += y
-        return this
+        return this.set({
+            x: this.x + x,
+            y: this.y + y
+        })
     }
     get length(){
         return Math.hypot(this.x.value, this.y.value, this.z?.value?? 0)

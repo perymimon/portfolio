@@ -38,17 +38,20 @@ export async function waitFor (eventName, element) {
 /**
  * image can be image instance, dom img element, url , css selector
  * */
-export async function getImage (image) {
-    if (typeof image == 'string') {
-        if (isUrl(image)) {
-            var url = image
+export async function imageFrom (imageLike) {
+    var image = null
+    if (typeof imageLike == 'string') {
+        if (isUrl(imageLike)) {
+            var url = imageLike
             image = new Image()
             image.src = url
-        }else {
+        } else {
             /*is css selector*/
-            image = document.querySelector(image)
+            image = document.querySelector(imageLike)
+            if( ! (image instanceof HTMLImageElement)) throw 'image is not valid selector of Image Element'
         }
     }
+    if( !(image instanceof Image)) throw 'imageLike cannot convert to image'
     /* image is instance or dom element or Image instance*/
     if (image.complete) return image
     await waitFor('load', image)
@@ -80,6 +83,7 @@ export function setCanvas (canvas, element) {
     }
 
 }
+
 /* set Object property */
 
 export function defineProtect(obj, key, value) {
@@ -93,8 +97,8 @@ export function defineProtect(obj, key, value) {
 
 export function protect(obj, key){
     Object.defineProperty(obj, key, {
-        writable:false,
-        enumerable:true,
-        configurable:true,
+        writable: false,
+        enumerable: true,
+        configurable: true,
     })
 }

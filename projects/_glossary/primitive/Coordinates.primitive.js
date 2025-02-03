@@ -17,16 +17,19 @@ export default class Coordinates {
         //     defineProtect(this, 'z', new Value(z))
     }
 
-    setX (x) { this.x.value = x }
+    setX (x) { this.x.value = x  + 0}
 
-    setY (y) { this.y.value = y }
+    setY (y) { this.y.value = y  + 0}
 
     set ({x, y}) {
         this.x.value = x + 0 /*in case x is Value Instance*/
         this.y.value = y + 0
         return this
     }
-
+    setStart ({x, y}) {
+        this.x.start = x + 0
+        this.y.start = y + 0
+    }
     equalTo ({x, y}) {
         return Math.abs(this.x.value - x) < eps && Math.abs(this.y.value - y) < eps
     }
@@ -37,14 +40,11 @@ export default class Coordinates {
         this.z?.update()
     }
 
-    setStart ({x, y}) {
-        this.x.start = x + 0
-        this.y.start = y + 0
-    }
-
     resetStart () {
-        this.x.start = this.x.value
-        this.y.start = this.y.value
+        this.setStart({
+            x: this.x,
+            y: this.y
+        })
     }
 
     transitionToStart (speed) {

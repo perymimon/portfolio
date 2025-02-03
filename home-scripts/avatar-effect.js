@@ -1,11 +1,11 @@
 import {PixelRainEffectRun} from '../projects/_glossary/effects/PixelRain.effect.js'
-import {getImage} from '../projects/_helpers/basic.js'
+import {imageFrom} from '../projects/_helpers/basic.js'
 import {
     brightnessProcessors,    channels,
     getImageData,    processImageData,    rampUpProcessors,
 } from '../projects/_helpers/filters.colors.js'
 
-var image = await getImage('#me-photo')
+var image = await imageFrom('#me-photo')
 var canvas = document.getElementById('avatar-canvas')
 var imageData = getImageData(image)
 imageData = processImageData(imageData, [
