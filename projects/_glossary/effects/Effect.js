@@ -1,10 +1,10 @@
 export class Effect  {
+    particles = []
+
     constructor (width, height, settings = {}) {
-        this.particles = []
         this.width = width
         this.height = height
         this.settings = settings
-
     }
 
     resize (width, height) {

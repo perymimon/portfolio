@@ -15,7 +15,8 @@ export function processImageData (imageData, processors = []) {
     var pixels = imageData.data
     for (var process of processors) {
         for (let i = 0; i < pixels.length; i += 4) {
-            let r = pixels[i], g = pixels[i + 1], b = pixels[i + 2], a = pixels[i + 3];
+            let r = pixels[i], g = pixels[i + 1], b = pixels[i + 2],
+                a = pixels[i + 3];
             let [nr, ng, nb, na] = process(r, g, b, a, i, pixels)
             pixels[i] = nr
             pixels[i + 1] = ng
