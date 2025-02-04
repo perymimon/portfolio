@@ -8,15 +8,17 @@ import {
 } from '../_glossary/primitive/RegularPolygon.primitive.js'
 import Pointer from '../_glossary/Pointer.js'
 import Vector from '../_glossary/primitive/Vector.primitive.js'
-import MarbleEffect from './Marbling.effect.js'
+import {random} from '../_math/math.js'
+import PaperMarbleEffect from './PaperMarble.effect.js'
 
 var canvas = document.getElementById("canvas1");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var ctx = canvas.getContext("2d");
 var pointer = new Pointer(canvas)
-let marbleEffect = new MarbleEffect(canvas.width, canvas.height)
-const pixelImage =  await PixelImage.from('./chibi-style-cyberpunk.webp', '', canvas.width, canvas.height)
+let marbleEffect = new PaperMarbleEffect(canvas.width, canvas.height)
+// const pixelImage =  await PixelImage.from('./chibi-style-cyberpunk.webp', '', canvas.width, canvas.height)
+const pixelImage =  await PixelImage.from('./chibi-style-city-street-scene.webp', '', canvas.width, canvas.height)
 marbleEffect.pixels.push( pixelImage )
 
 var cw = canvas.width
@@ -54,27 +56,38 @@ var dropRadius = 20
 // marbleEffect.tineLine(cw / 2, 40, 20)
 var tineStart = null, tineEnd = null
 
-// pointer.onSwift = (e, {delta, start}) => {
-//     // marbleEffect.tineLine(e.x, 1 , 20)
-//     var point = Point.from(e)
-//     var vec = Vector.from(delta).setLength(1)
-//     console.debug(delta.velocity)
-//     marbleEffect.tineLine(point, vec, 12, 1)
-//
-// }
+pointer.onSwift = (e, {delta, start}) => {
+    // marbleEffect.tineLine(e.x, 1 , 20)
+    var point = Point.from(e)
+    var vec = Vector.from(delta).setLength(1)
+    console.debug(delta.velocity)
+    marbleEffect.tineLine(point, vec, 12, 1)
+
+}
 
 
 pointer.onDblTap = (e, point) => {
-    var poly = new RegularPolygon(e.x, e.y, 20, 20)
+    var poly = new RegularPolygon(e.x, e.y, 50, 20)
     marbleEffect.putDrop(poly)
+    pixelImage.render4()
 };
 
 new FrameEngine(25, function () {
+
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     pixelImage.draw(ctx,0,0, ctx.canvas.width, ctx.canvas.height)
+    var  [x,y] = [random(0,ctx.canvas.width), random(0,ctx.canvas.height)]
+    var poly = new RegularPolygon(x, y, 50, 20)
+    marbleEffect.putDrop(poly, true)
+    // pixelImage.render4() //fastest
+    pixelImage.render2() //nicer
+
+    // ctx.save()
+    // ctx.globalCompositeOperation = "destination-out";
     marbleEffect.draw(ctx, (poly, i) => ({
-        fillStyle: `hsl(${120 + (i % 10)} ${20 + (i % 21) * 5} ${20 + (i % 11) * 3})`,
+        fillStyle: `hsl(${120 + (i % 10)} ${20 + (i % 21) * 5} ${20 + (i % 11) * 3} / 20%)`,
     }))
-    // pointer.drawDebug(ctx)
+    // // pointer.drawDebug(ctx)
+    // ctx.restore()
 
 }).start()

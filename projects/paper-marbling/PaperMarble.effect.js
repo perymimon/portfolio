@@ -1,9 +1,12 @@
 import {Effect} from '../_glossary/effects/Effect.js'
-import {dot, magnitude} from '../_math/math.js'
+import {add, dot, magnitude, scale, vectorFrom} from '../_math/math.js'
 
-export default class MarbleEffect extends Effect {
+export default class PaperMarbleEffect extends Effect {
     constructor (width, height, polygons = [], settings = {}) {
-        super(width, height, settings)
+        super(width, height, {
+            limitPolygons: 200,
+            ...settings,
+        })
         this.init(polygons)
         delete this.particles
     }
@@ -16,13 +19,18 @@ export default class MarbleEffect extends Effect {
         }
     }
 
-    putDrop (drop) {
+    putDrop (drop, saveIt) {
         this.marbling(this.particles(), drop)
-        // this.particles.push(...drop)
-        this.polygons.push(drop)
+        if (saveIt) {
+            this.polygons.push(drop)
+            if (this.settings.limitPolygons) {
+                const {polygons, settings: {limitPolygons}} = this
+                while (polygons.length > limitPolygons) polygons.shift()
+            }
+        }
     }
 
-    *particles () {
+    * particles () {
         for (let pixelImage of this.pixels) {
             yield* pixelImage
         }
@@ -30,6 +38,7 @@ export default class MarbleEffect extends Effect {
             yield* poly
         }
     }
+
     draw (ctx, drawSettings) {
         for (let [i, poly] of this.polygons.entries()) {
             poly.draw(ctx, this.getDrawSetting(drawSettings, poly, i))
@@ -40,26 +49,26 @@ export default class MarbleEffect extends Effect {
         let C = drop.center
         let r = drop.radius
         for (let P of points) {
-            let V = P.vectorFrom(C)
+            let V = vectorFrom(C, P)
             let mag = magnitude(V)
             let factor = Math.sqrt(1 + (r * r) / (mag * mag))
-            P.set(V.scale(factor).add(C))
+            P.set(add(C, scale(V, factor)))
         }
     }
 
-    tineLine(point, vec, z, c) {
+    tineLine (point, vec, z, c) {
         // Debug: Log input parameters
         // P += z + u^d + m
-        const u = 1 / Math.pow(2, 1 / c);
-        const normal = vec.clone.normal();
+        const u = 1 / Math.pow(2, 1 / c)
+        const normal = vec.clone.normal()
         // Debug: Log the number of particles
-        for (let p of this.particles) {
+        for (let p of this.particles()) {
             // Debug: Log current particle
-            let pb = p.vectorFrom(point);
-            let d = Math.abs(dot(pb, normal));
-            let mag = z * Math.pow(u, d);
-            let translationVector = vec.clone.scale(mag);
-            p.translate(translationVector);
+            let pb = vectorFrom(point, p)
+            let d = Math.abs(dot(pb, normal))
+            let mag = z * Math.pow(u, d)
+            let translationVector = scale(vec, mag)
+            p.set(add(p, translationVector))
         }
     }
 

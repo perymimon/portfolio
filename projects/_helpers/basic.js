@@ -85,17 +85,7 @@ export function setCanvas (canvas, element) {
 }
 
 /* set Object property */
-
-export function defineProtect(obj, key, value) {
-    Object.defineProperty(obj, key, {
-        value,
-        writable:false, // Prevents reassignment of this[key]
-        enumerable:true,
-        configurable:true,
-    })
-}
-
-export function protect(obj, key){
+export function protect (obj, key) {
     Object.defineProperty(obj, key, {
         writable: false,
         enumerable: true,

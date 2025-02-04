@@ -34,11 +34,7 @@ export default class Pixel extends Point {
         const {width, height, data} = imageData
         const i4 = (Math.round(this.x) + Math.round(this.y) * width) * 4
         if (i4 > data.length && i4 < 0) return false
-        const [r, g, b, a] = this.rgba
-        data[i4 + 0] = r
-        data[i4 + 1] = g
-        data[i4 + 2] = b
-        data[i4 + 3] = a
+        data.set(this.rgba, i4)
     }
 
     draw (ctx, size, options) {

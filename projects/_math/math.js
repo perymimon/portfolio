@@ -28,13 +28,15 @@ export function linearLerp (A, B, s) {
     var v = A + s
     return v > B ? B : v
 }
+
 /* trigonometric from 0 to 1*/
-export function cos(angle) {
-    var  a = (angle/1) * (Math.PI * 2)
+export function cos (angle) {
+    var a = (angle / 1) * (Math.PI * 2)
     return Math.cos(a)
 }
-export function sin(angle){
-    var  a = (angle/1) * (Math.PI * 2)
+
+export function sin (angle) {
+    var a = (angle / 1) * (Math.PI * 2)
     return Math.sin(a)
 }
 
@@ -44,27 +46,27 @@ export function distance (p1, p2) {
 }
 
 /** from p2 to p1*/
-export function angle2P(p1, p2) {
+export function angle2P (p1, p2) {
     return Math.atan2(p1.y - p2.y, p1.x - p2.x)
 }
 
-export function angle(p) {
+export function angle (p) {
     return Math.atan2(p.y, p.x)
 }
 
-// export function add(p1, p2) {
-//     return new Point(p1.x + p2.x, p1.y + p2.y)
-// }
-//
-// export function scale(p, scalar = 1) {
-//     return new Point(p.x * scalar, p.y * scalar)
-// }
+export function add (p1, p2) {
+    return {x: p1.x + p2.x, y: p1.y + p2.y}
+}
+
+export function scale (p, scalar = 1) {
+    return {x: p.x * scalar, y: p.y * scalar}
+}
 
 // export function normalize(p) {
 //     return scale(p, 1 / magnitude(p))
 // }
 
-export function magnitude(p) {
+export function magnitude (p) {
     return Math.hypot(p.x, p.y)
 }
 
@@ -72,16 +74,24 @@ export function magnitude(p) {
 //     return new Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2)
 // }
 
-export function dot(p1, p2) {
+export function dot (p1, p2) {
     return p1.x * p2.x + p1.y * p2.y
 }
 
-export function cross(p1, p2) {
+export function cross (p1, p2) {
     return p1.x * p2.y - p1.y * p2.x
 }
 
+export function vectorFrom (p1, p2) {
+    return {x: p2.x - p1.x, y: p2.y - p1.y};
+}
 
-export function getNearestPoint(point, points, threshold = Number.MAX_SAFE_INTEGER) {
+export function subtract (p1, p2) {
+    return {x: p1.x - p2.x, y: p1.y - p2.y}
+}
+
+
+export function getNearestPoint (point, points, threshold = Number.MAX_SAFE_INTEGER) {
     if (points.length === 0) return null;
 
     let minDistance = Infinity;
@@ -93,14 +103,13 @@ export function getNearestPoint(point, points, threshold = Number.MAX_SAFE_INTEG
         }
         return nearest
     })
-    return {nearest, distance:minDistance}
+    return {nearest, distance: minDistance}
 }
 
 /* ----- new staff ----------*/
 
 
-
-export function getNearestSegment(point, segments, threshold = Number.MAX_SAFE_INTEGER) {
+export function getNearestSegment (point, segments, threshold = Number.MAX_SAFE_INTEGER) {
     if (segments.length === 0) return null;
 
     let minDist = Number.MAX_SAFE_INTEGER;
@@ -115,7 +124,7 @@ export function getNearestSegment(point, segments, threshold = Number.MAX_SAFE_I
     return nearest
 }
 
-export function getNearestPolygon(point, polygons, threshold = Number.MAX_SAFE_INTEGER) {
+export function getNearestPolygon (point, polygons, threshold = Number.MAX_SAFE_INTEGER) {
     if (polygons.length === 0) return null;
 
     let nearestPolygon = null;
@@ -139,25 +148,19 @@ export function getNearestPolygon(point, polygons, threshold = Number.MAX_SAFE_I
     return nearestPolygon
 }
 
-export function vector3d(horAngle, verAngle, length) {
+export function vector3d (horAngle, verAngle, length) {
     return new Point(
         Math.cos(horAngle) * Math.cos(verAngle) * length, // X component
         Math.sin(horAngle) * Math.cos(verAngle) * length, // Y component
-        Math.sin(verAngle) * length                            // Z component
+        Math.sin(verAngle) * length,                            // Z component
     );
 }
 
-export function subtract(p1, p2) {
-    return new Point(p1.x - p2.x, p1.y - p2.y)
-}
 
-
-
-
-export function toPolarForm(p) {
+export function toPolarForm (p) {
     return {
         angle: angle(p),
-        magnitude: magnitude(p)
+        magnitude: magnitude(p),
     }
 }
 
@@ -168,35 +171,35 @@ export function toPolarForm(p) {
  * @returns {{x: number, y: number}}
  */
 
-export function polarToXY(magnitude, angle) {
+export function polarToXY (magnitude, angle) {
     //zero is up by the game
     angle += Math.PI / 2
     return {
         x: magnitude * Math.cos(angle),
         // - is because screen is opposite on Y axis and want
         // 90deg point up
-        y: - magnitude * Math.sin(angle)
+        y: -magnitude * Math.sin(angle),
     }
 }
 
-export function translate(point, angle, offset) {
+export function translate (point, angle, offset) {
     return new Point(
         point.x + Math.cos(angle) * offset,
         point.y + Math.sin(angle) * offset,
-        point.z
+        point.z,
     )
 }
 
-export function translate3d(point, offset, angle, angle2 = 0) {
+export function translate3d (point, offset, angle, angle2 = 0) {
     return new Point(
         point.x + Math.cos(angle) * offset,
         point.y + Math.sin(angle) * offset,
-        point.z + Math.sin(angle2) * offset
+        point.z + Math.sin(angle2) * offset,
     )
 }
 
 
-export function radToDeg(rad) {
+export function radToDeg (rad) {
     return ((180 / Math.PI) * rad).toFixed(3)
 }
 
@@ -204,11 +207,11 @@ console.assert(radToDeg(Math.PI / 4) == 45)
 console.assert(radToDeg(Math.PI / 3) == 60)
 console.assert(radToDeg(Math.PI) == 180)
 
-export function degToRad(deg) {
+export function degToRad (deg) {
     return ((Math.PI / 180) * deg).toFixed(3)
 }
 
-export function inward(a, b, p = 0.3) {
+export function inward (a, b, p = 0.3) {
     var A = lerp2D(a, b, p)
     var B = lerp2D(b, a, p)
     a.x = A.x
@@ -218,8 +221,7 @@ export function inward(a, b, p = 0.3) {
 }
 
 
-
-export function polysIntersect(poly1, poly2) {
+export function polysIntersect (poly1, poly2) {
     for (let i = 0; i < poly1.length; i++)
         for (let j = 0; j < poly2.length; j++) {
             let A = poly1[i]
@@ -233,7 +235,7 @@ export function polysIntersect(poly1, poly2) {
     return false
 }
 
-export function isPointIntoPolygon(point, poly) {
+export function isPointIntoPolygon (point, poly) {
     const outerPoint = new Point(-10000, -10000)
     const crossSegment = new Segment(outerPoint, point)
     let intersectionCount = 0;
@@ -244,7 +246,7 @@ export function isPointIntoPolygon(point, poly) {
     return intersectionCount % 2 == 1
 }
 
-export function getFake3dPoint(point, viewPoint, height) {
+export function getFake3dPoint (point, viewPoint, height) {
     const dir = normalize(subtract(point, viewPoint));
     const dist = distance(point, viewPoint);
     const scalar = Math.atan(dist / 300) / (Math.PI / 2);
@@ -258,24 +260,24 @@ export function getFake3dPoint(point, viewPoint, height) {
 //     console.log(s);
 //     return add(point, scale(dir, s));
 // }
-export function inRange(min, max, value) {
+export function inRange (min, max, value) {
     if (value <= min) return false
     if (value >= max) return false
     return true
 }
 
-export function perpendicular(p) {
+export function perpendicular (p) {
     return new Point(-p.y, p.x)
 }
 
-export function domainToRange(v, domain, range) {
+export function domainToRange (v, domain, range) {
     let [ds, de] = domain
     let [rs, re] = range
 
     return (v - ds) / (de - ds) * (re - rs) + rs
 }
 
-export function reflection(velocity, segment) {
+export function reflection (velocity, segment) {
     var normal = segment.normal(velocity)
     var d = dot(normal, velocity)
     return subtract(velocity, scale(normal, 2 * d))

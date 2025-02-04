@@ -5,7 +5,7 @@ export function getImageData (image, filters, width, height) {
         var offScreenCanvas = new OffscreenCanvas(width, height)
         var ctx = offScreenCanvas.getContext('2d')
         if (filters) ctx.filter = filters
-        ctx.drawImage(image, 0, 0, width, height)
+        ctx.drawImage(image,0,0, image.width, image.height, 0, 0, width, height)
         return ctx.getImageData(0, 0, width, height);
     }
     throw 'image must be an image object'
