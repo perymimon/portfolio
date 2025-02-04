@@ -13,7 +13,12 @@
     <meta property="og:image:alt" content="chibi cyberpunk">
 
     <meta http-equiv="refresh" content="0;url=https://perymimon.github.io/portofolio/#projects-paper-marbling">
-
+    <script>
+        if (window.self !== window.top) {
+            // The page is inside an iframe, so prevent redirection
+            document.querySelector('meta[http-equiv="refresh"]')?.remove();
+        }
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
