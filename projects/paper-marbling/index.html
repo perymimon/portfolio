@@ -12,12 +12,17 @@
     <meta property="og:image" content="https://perymimon.github.io/portofolio/projects/paper-marbling/chibi-style-cyberpunk.webp">
     <meta property="og:image:alt" content="chibi cyberpunk">
 
-    <meta http-equiv="refresh" content="0;url=https://perymimon.github.io/portofolio/#projects-paper-marbling">
-    <script>
-        if (window.self !== window.top) {
-            // The page is inside an iframe, so prevent redirection
-            document.querySelector('meta[http-equiv="refresh"]')?.remove();
+    <meta property="parent" content="https://perymimon.github.io/portofolio/#projects-paper-marbling" >
+    <script type="module">
+        if(new URLPattern(this.location).hostname !== 'localhost') {
+            if (window.self === window.top) {
+                setTimeout(() => {
+                    // The page is inside an iframe, so redirection
+                    window.location.href = document.querySelector('meta[property="parent"]').getAttribute('content')
+                }, 60_000)
+            }
         }
+
     </script>
     <link rel="stylesheet" href="style.css">
 </head>
