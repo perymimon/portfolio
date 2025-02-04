@@ -14,13 +14,13 @@
 
     <meta property="parent" content="https://perymimon.github.io/portofolio/#projects-paper-marbling" >
     <script type="module">
-        if(new URLPattern(this.location).hostname !== 'localhost') {
-            if (window.self === window.top) {
-                setTimeout(() => {
-                    // The page is inside an iframe, so redirection
-                    window.location.href = document.querySelector('meta[property="parent"]').getAttribute('content')
-                }, 60_000)
-            }
+        var url = new URL(globalThis.location)
+        var time = parseInt(url.searchParams.get("time"))
+        if( !isNaN(time) ) {
+            setTimeout(() => {
+                // The page is inside an iframe, so redirection
+                window.location.href = document.querySelector('meta[property="parent"]').getAttribute('content')
+            }, time * 1000)
         }
 
     </script>
