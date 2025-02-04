@@ -2,8 +2,8 @@ import {Effect} from '../_glossary/effects/Effect.js'
 import {add, dot, magnitude, scale, vectorFrom} from '../_math/math.js'
 
 export default class PaperMarbleEffect extends Effect {
-    constructor (width, height, polygons = [], settings = {}) {
-        super(width, height, {
+    constructor (polygons = [], settings = {}) {
+        super(0, 0, {
             limitPolygons: 200,
             ...settings,
         })

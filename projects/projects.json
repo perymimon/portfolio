@@ -120,9 +120,20 @@
     "link": "projects/paper-marbling/index.html",
     "year": 2025,
     "stack": "Canvas, vanilla es6",
+    "teacher": "@me",
+    "github": "https://github.com/perymimon/portofolio/tree/main/projects/paper-marbling",
+    "youtube": "https://www.youtube.com/watch?v=p7IGZTjC008&ab_channel=TheCodingTrain",
+    "description": "Sit back and enjoy from the paper marble effect "
+},{
+    "groupId": "tutorials-by-coding-train",
+    "id": "projects-paper-marbling-2",
+    "title": "Paper Drop Marbling",
+    "link": "projects/paper-marbling/index-2.html",
+    "year": 2025,
+    "stack": "Canvas, vanilla es6",
     "teacher": "@Dan",
     "github": "https://github.com/perymimon/portofolio/tree/main/projects/paper-marbling",
     "youtube": "https://www.youtube.com/watch?v=p7IGZTjC008&ab_channel=TheCodingTrain",
-    "description": "Double Tab to drop a new drop and swift around to tineLine the canvas"
+    "description": "Double Tab to drop a new drop and swift around to tineLine the Liquid"
 }
 ]
