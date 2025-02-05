@@ -59,7 +59,7 @@ draw.arrow = function (ctx, sx, sy, ex, ey, size, options = {}) {
 
     drawing(ctx, options ,'arrow')
 }
-function drawing(ctx, options, shapeName){
+export function drawing(ctx, options, shapeName){
     Object.assign(ctx, options)
     if (options.drawFill || options.fillStyle) ctx.fill()
     if (options.drawStroke || options.strokeStyle) ctx.stroke()
