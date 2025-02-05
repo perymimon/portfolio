@@ -67,13 +67,13 @@ export function isUrl (string) {
     }
 }
 
-export function setCanvas (canvas, element) {
-    if (element) {
-        if (element.width) {
-            canvas.width = element.width
-            canvas.height = element.height
+export function setCanvas (canvas, byElement) {
+    if (byElement) {
+        if (byElement.width) {
+            canvas.width = byElement.width
+            canvas.height = byElement.height
         } else {
-            var rect = element.getBoundingClientRect()
+            var rect = byElement.getBoundingClientRect()
             canvas.width = rect.width
             canvas.height = rect.height
         }

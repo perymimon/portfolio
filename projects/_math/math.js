@@ -19,6 +19,9 @@ export function random (min, max, integer = true) {
     var value = Math.random() * (max - min) + min
     return integer ? Math.floor(value) : value
 }
+export function randomItem(array){
+    return array[random(0,array.length)]
+}
 
 export function lerp (A, B, t) {
     return A + (B - A) * t
