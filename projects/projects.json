@@ -135,5 +135,18 @@
     "github": "https://github.com/perymimon/portofolio/tree/main/projects/paper-marbling",
     "youtube": "https://www.youtube.com/watch?v=p7IGZTjC008&ab_channel=TheCodingTrain",
     "description": "Double Tab to drop a new drop and swift around to tineLine the Liquid"
+  },{
+  "groupId": "tutorials-by-coding-train",
+  "id": "falling-sand-1",
+  "title": "Falling sand",
+  "link": "projects/falling-sand/1/index.html",
+  "year": 2025,
+  "stack": "Canvas, vanilla es6",
+  "tags": "cellularAutomata",
+  "teacher": "@me",
+  "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand",
+  "youtube": "https://www.youtube.com/watch?v=L4u7Zy_b868&t=36s&ab_channel=TheCodingTrain",
+  "description": "Falling send with fast and simple cellular Automata algorithm"
 }
+
 ]

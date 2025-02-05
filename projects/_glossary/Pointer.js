@@ -57,7 +57,8 @@ export default class Pointer extends Interactive {
 
     /* Internals */
     #onPointerMove (e) {
-        e.preventDefault();
+        e.preventDefault()
+        this.e = e
         this.pointer = {x: e.clientX, y: e.clientY}
         this.delta = {
             x: this.pointer.x - this.swiftStart.x,
@@ -92,7 +93,7 @@ export default class Pointer extends Interactive {
         // 0: Left button
         // 1: Middle button
         // 2: Right button
-
+        this.e = e
         this.pointer = this.start = this.delta = this.swiftStart =
             {x: e.clientX, y: e.clientY}
 
@@ -110,7 +111,7 @@ export default class Pointer extends Interactive {
             this.lastTapTime = currentTime
         }
         // Start press loop
-        this.#startPressLoop(e)
+        this.#startPressLoop()
 
         // Selection Logic
         if (this.hovered) {
@@ -125,6 +126,7 @@ export default class Pointer extends Interactive {
     }
 
     #onPointerUp (e) {
+        this.e = e
         this.isPointerDown = false
         cancelAnimationFrame(this.pressFrameId)
         this.pressFrameId = null
@@ -136,10 +138,10 @@ export default class Pointer extends Interactive {
         }
     }
 
-    #startPressLoop (e) {
+    #startPressLoop () {
         const firePress = () => {
             if (this.isPointerDown) {
-                this.onPress(e, this.pointer, this)
+                this.onPress.call(this, this.e, this.pointer, this)
                 this.pressFrameId = requestAnimationFrame(firePress)
             }
         };

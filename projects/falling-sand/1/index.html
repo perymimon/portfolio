@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Falling Sand</title>
+    <!-- Open Graph Meta/Facebook Data -->
+    <meta property="og:url" content="https://perymimon.github.io/portofolio/projects/paper-marbling/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Falling Sand">
+    <meta property="og:site_name" content="Pery's Portfolio - Falling Sand">
+    <meta property="og:description" content="Spine up creative Code from scratch - Falling Sand Effect">
+    <meta property="og:image" content="https://perymimon.github.io/portofolio/projects/paper-marbling/chibi-style-cyberpunk.webp">
+    <meta property="og:image:alt" content="Falling Sand">
+
+    <meta property="parent" content="https://perymimon.github.io/portofolio/#ralling-sand" >
+    <script type="module">
+        var url = new URL(globalThis.location)
+        var time = parseInt(url.searchParams.get("time"))
+        if( !isNaN(time) ) {
+            setTimeout(() => {
+                // The page is inside an iframe, so redirection
+                window.location.href = document.querySelector('meta[property="parent"]').getAttribute('content')
+            }, time * 1000)
+        }
+
+    </script>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="infinity-container">
+<canvas id="canvas1"></canvas>
+<div id="mouse"></div>
+ <script type="module" src="falling-sand.run.js"></script>
+
+<style>
+    .infinity-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #mouse {
+        position: absolute;
+        /*width: 10px;*/
+        /*height: 10px;*/
+        /*background-color: red;*/
+        animation: moveAlongPath 4s linear infinite alternate,
+        moveAlongPath2 30s linear infinite alternate;
+        /*z-index: 1;*/
+        animation-fill-mode: both;
+        offset-path: path("M25,50 C50,10 75,10 75,50 C75,90 25,90 25,50 Z");
+    }
+
+    @keyframes moveAlongPath {
+        0% {
+            offset-distance: 0%;
+        }
+        100% {
+            offset-distance: 100%;
+        }
+    }
+    @keyframes moveAlongPath2 {
+        0% {
+            left: 2em;
+        }
+        100% {
+            left: calc(100% - 5em);
+        }
+    }
+
+</style>
+</body>
+</html>

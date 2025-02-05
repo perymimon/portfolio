@@ -1,0 +1,22 @@
+@import "../../base.css";
+@import "../project-base.css";
+
+canvas {
+    --shade-0: color-mix(in srgb, var(--color-primary) 60%, #5DFF00FF);
+    --shade-1: color-mix(in srgb, var(--color-primary) 60%, yellow);
+    --shade-2: color-mix(in srgb, var(--color-primary) 60%, blue);
+    --shade-3: color-mix(in srgb, var(--color-primary) 60%, purple);
+    --shade-4: color-mix(in srgb, var(--color-primary) 60%, #00ffff);
+}
+body{
+    place-items: center;
+}
+
+img, canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    max-height: 100vh;
+    max-width: 100vw;
+}

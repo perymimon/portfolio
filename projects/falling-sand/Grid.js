@@ -73,7 +73,7 @@ export default class Grid {
                 bit++
                 const cell = this.getCell(x + dx, y + dy, mode, padValue);
                 const m = (mask >> bit & 1)
-                number |= (cell * m) << bit;
+                number |= (!!cell * m) << bit;
             }
         }
         return number;
@@ -90,8 +90,22 @@ export default class Grid {
                 let ny = y + dy
 
                 const pass = (pattern >> bit) & 1
-                this.setCell(nx,ny,pass, mode)
+                this.setCell(nx, ny, pass, mode)
 
+            }
+        }
+    }
+
+    setChunk2 (value, x, y, pattern, mode) {
+        let bit = -1;
+        for (let dy = 1; dy >= -1; dy--) {
+            for (let dx = 1; dx >= -1; dx--) {
+                bit++
+                const pass = (pattern >> bit) & 1
+                if (!pass) continue
+                let nx = x + dx
+                let ny = y + dy
+                this.setCell(nx, ny, value, mode)
             }
         }
     }
@@ -102,8 +116,9 @@ export default class Grid {
         for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
                 let cell = this.cells[this.index(x, y)]
-                ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize)
+                // ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize)
                 if (cell) {
+                    ctx.fillStyle= `hsl(${cell} 50% 50% )`
                     ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize)
                 }
             }
