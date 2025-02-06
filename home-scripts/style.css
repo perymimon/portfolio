@@ -6,7 +6,8 @@
 
 body {
     display: grid;
-    min-height: 100vh;
+    height: 100dvh;
+    min-height: 100dvh;
     margin: 0;
     background-color: var(--color-background);
     grid-template-areas: "a b" "a c";
