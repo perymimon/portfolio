@@ -35,9 +35,10 @@ export default class Pointer extends Interactive {
         // Swift detection
 
         this.enable()
-        if (getComputedStyle(triggerElement).touchAction !== 'none') {
-            console.warn(`trigger element`, triggerElement, `must set touchAction to 'none'`)
-        }
+        triggerElement.style.touchAction = 'none'
+        // if (getComputedStyle().touchAction !== 'none') {
+        //     console.warn(`trigger element`, triggerElement, `must set touchAction to 'none'`)
+        // }
     }
 
     // Public interface methods
