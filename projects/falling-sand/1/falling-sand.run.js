@@ -69,16 +69,13 @@ new FrameEngine(60, function () {
     })
     update()
 }).start()
-
+/* --------  Fuck Mouse ------- */
 var fakeMouse = document.getElementById('mouse')
+
 var animationMouse = new FrameEngine(60, function () {
     var {x,y} = fakeMouse.getBoundingClientRect()
     pointer.onPress({x, y})
 }).start()
-fakeMouse.addEventListener('animationend', e=>{
-    setTimeout(()=>{
-        animationMouse.stop()
-    }, 2000)
 
-})
+pointer.onTap = e=> animationMouse.stop()
 
