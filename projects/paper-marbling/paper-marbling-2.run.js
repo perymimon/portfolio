@@ -60,7 +60,7 @@ pointer.onSwift = (e, {delta, start}) => {
 }
 
 
-pointer.onDblTap = (e, point) => {
+pointer.onTap = (e, point) => {
     var poly = new RegularPolygon(e.x, e.y, 50, 20)
     marbleEffect.putDrop(poly, true)
 };
