@@ -5,6 +5,7 @@
 body{
     /*overflow: clip;*/
     display: flex;
+    height: 100dvh;
 }
 canvas-recorder{
     position: fixed;
