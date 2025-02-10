@@ -22,8 +22,6 @@ function swapBuffers () {
     nextGrid.clear()
 }
 
-grid.setCell(0, 0, 1)
-const dirtyCells = new Set()
 const stateMachine = new Map()
 stateMachine.set(0b000, 0b010)
 stateMachine.set(0b001, 0b010)
