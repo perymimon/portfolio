@@ -476,36 +476,37 @@ export default class Grid {
  }
 }
 ```
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Falling Sand</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Falling Sand</title>
+    <link rel="stylesheet" href="1/style.css">
 </head>
 <body>
-  <canvas id="canvas1"></canvas>
-  <script type="module" src="falling-sand.js"></script>
-  <div id="mouse"></div>
-  <style>
-     #mouse {
-       position: absolute;
-       animation: moveAlongPath 4s linear infinite alternate,
-                  moveAlongPath2 30s linear infinite alternate;
-       offset-path: path("M25,50 C50,10 75,10 75,50 C75,90 25,90 25,50 Z");
-     }
-   
-     @keyframes moveAlongPath {
-       0% { offset-distance: 0%; }
-       100% { offset-distance: 100%; }
-     }
-   
-     @keyframes moveAlongPath2 {
-       0% { left: 2em; }
-       100% { left: calc(100% - 5em); }
-     }
-  </style>
+<canvas id="canvas1"></canvas>
+<script type="module" src="falling-sand.js"></script>
+<div id="mouse"></div>
+<style>
+    #mouse {
+        position: absolute;
+        animation: moveAlongPath 4s linear infinite alternate,
+        moveAlongPath2 30s linear infinite alternate;
+        offset-path: path("M25,50 C50,10 75,10 75,50 C75,90 25,90 25,50 Z");
+    }
+
+    @keyframes moveAlongPath {
+        0% { offset-distance: 0%; }
+        100% { offset-distance: 100%; }
+    }
+
+    @keyframes moveAlongPath2 {
+        0% { left: 2em; }
+        100% { left: calc(100% - 5em); }
+    }
+</style>
 </body>
 </html>
 ````

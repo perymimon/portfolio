@@ -1,5 +1,5 @@
-@import "../../base.css";
-@import "../project-base.css";
+@import "../../../base.css";
+@import "../../project-base.css";
 
 canvas {
     --shade-0: color-mix(in srgb, var(--color-primary) 60%, #5DFF00FF);
