@@ -62,9 +62,7 @@ pointer.onPress = (({x,y})=>{
 // Start simulation
 new FrameEngine(60, function () {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    grid.draw(ctx, cellSize, {
-        strokeStyle: 'black',
-    })
+    grid.draw(ctx, cellSize)
     update()
 }).start()
 /* --------  Fuck Mouse ------- */
