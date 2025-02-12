@@ -112,7 +112,6 @@ export default class Grid {
 
     draw (ctx, cellSize, settings) {
         ctx.strokeStyle = 'white'
-        ctx.fillStyle = 'red'
         for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
                 let cell = this.cells[this.index(x, y)]

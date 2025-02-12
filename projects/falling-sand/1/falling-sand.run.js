@@ -47,16 +47,16 @@ function update () {
     swapBuffers()
     console.timeEnd('update')
 }
-var hsl = 20
+var hsl = 0
 pointer.onPress = (({x,y})=>{
     let {width, height} = canvas.getBoundingClientRect()
     let ratioW = width / canvas.width
     let ratioH = height / canvas.height
     let cellX = Math.floor(x/ (cellSize * ratioW))
     let cellY = Math.floor(y/ (cellSize * ratioH))
-    hsl += 1
+    hsl = (hsl+1) % 20
     // grid.setCell(cellX, cellY, hsl)
-    grid.setChunk2(hsl,cellX, cellY, 0b101010101, 'pad')
+    grid.setChunk2(40 + hsl,cellX, cellY, 0b101010101, 'pad')
 })
 
 // Start simulation
