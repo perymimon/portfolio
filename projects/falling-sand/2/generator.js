@@ -4,38 +4,41 @@ export function fillStates (stateMachine, symbol, pattern, nextStatePattern, mat
 
     // + is like 2 but with inc index
     // if symbol appears a couple of times in the `materials` list , it generates for each index
+    const explicitRef = (sym) =>
+        c => (c === symbol) ? sym : materials.includes(c) ? materials.indexOf(c) : c
 
-    for (let [symbolIndex, state] of generateNextState(nextStatePattern, symbol, materials)) {
-        console.log([symbolIndex, state])
-        pattern = pattern
-            .replaceAll(' ', '')
-            .replaceAll(/./g, c => (c === symbol) ? symbolIndex : materials.includes(c) ? materials.indexOf(c) : c)
-        for (let pattern1 of replicaPatterns(pattern, 'x', 0, materials.length)) {
+    nextStatePattern = nextStatePattern.replaceAll(/./g, explicitRef(symbol))  // Explicit Create Ops
+    var symbols = materials.matchAll(symbol).map(m => m.index).toArray()
+
+
+    for (let i = 0; i < symbols.length; i++) {
+        let symbolIndex = symbols[i]
+        let nextSymbolIndex = symbols[i + 1] ?? 0
+        let nextStates = generateNextState(nextStatePattern, symbol, symbolIndex, nextSymbolIndex)
+
+        var sig = pattern.replaceAll(' ', '').replaceAll(/./g, explicitRef(symbolIndex))
+
+        for (let pattern1 of replicaPatterns(sig, 'x', 0, materials.length)) {
             for (let pattern2 of replicaPatterns(pattern1, 'f', 1, materials.length)) {
-                console.log(pattern2, state)
-                stateMachine.set(pattern2, state)
+                console.log(pattern2, nextStates)
+                stateMachine.set(pattern2, nextStates)
             }
         }
     }
 }
 
-function* generateNextState (nextState, symbol, materials) {
-    var symbols = materials.matchAll(symbol).map(m => m.index).toArray()
-    console.log(symbols)
-    for (let [i, symbolIndex] of symbols.entries()) {
-        // Step 1: Replace 'c' and '+', then explicit indices
-        let base = nextState
-            .replaceAll(' ', '')
-            .replaceAll('c', symbolIndex) // Replica ops
-            .replaceAll('+', symbols[i + 1] ?? 0) // Swap & Inc ops
-            .replaceAll(/./g, c => (c === symbol) ? symbolIndex : materials.includes(c) ? materials.indexOf(c) : c)  // Explicit Create Ops
+function generateNextState (nextState, symbol, symbolIndex, nextSymbolIndex) {
+    // Step 1: Replace 'c' and '+', then explicit indices
+    let base = nextState
+        .replaceAll(' ', '')
+        .replaceAll('c', symbolIndex) // Replica ops
+        .replaceAll('+', nextSymbolIndex) // Swap & Inc ops
+        .replaceAll(/./g, c => (c === symbol) ? symbolIndex : c)  // Explicit Create Ops
 
-        // Step 2: Generate replica patterns for 's' (if any)
-        let state = base.matchAll(/s/g).toArray().length > 1 ?
-            pivotPattern(base, 's', 0, '1').toArray() :
-            base.replace('s', '1')
-        yield [symbolIndex, state]
-    }
+    // Step 2: Generate replica patterns for 's' (if any)
+    return base.matchAll(/s/g).toArray().length > 1 ?
+        pivotPattern(base, 's', 0, '1').toArray() :
+        base.replace('s', '1')
 }
 
 
