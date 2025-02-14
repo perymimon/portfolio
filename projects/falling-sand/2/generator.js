@@ -1,45 +1,45 @@
-export function fillStates (stateMachine, symbol, pattern, nextState, materials) {
+export function fillStates (stateMachine, symbol, pattern, nextStatePattern, materials) {
     // 1 - swap with the value. if more than one 1 choose one
     // 2 - replica to that spot
 
     // + is like 2 but with inc index
-    // if symbol appears a couple of times in the `materials` list , it generate for each index
-    pattern = pattern.replaceAll(' ','')
-    pattern = replaceExplicit(pattern, materials)
+    // if symbol appears a couple of times in the `materials` list , it generates for each index
 
-    for (let newState of generateNextState(nextState, symbol, materials)) {
-        for (let pattern1 of generatePatterns(pattern, 'x', 0, materials.length)) {
-            for (let pattern2 of generatePatterns(pattern1, 'f', 1, materials.length)) {
-                console.log(pattern2, newState)
-                stateMachine.set(pattern2, newState)
+    for (let [symbolIndex, state] of generateNextState(nextStatePattern, symbol, materials)) {
+        console.log([symbolIndex, state])
+        pattern = pattern
+            .replaceAll(' ', '')
+            .replaceAll(/./g, c => (c === symbol) ? symbolIndex : materials.includes(c) ? materials.indexOf(c) : c)
+        for (let pattern1 of replicaPatterns(pattern, 'x', 0, materials.length)) {
+            for (let pattern2 of replicaPatterns(pattern1, 'f', 1, materials.length)) {
+                console.log(pattern2, state)
+                stateMachine.set(pattern2, state)
             }
         }
     }
 }
 
-function* generateNextState(nextState, symbol, materials) {
-    nextState = nextState.replaceAll(' ','')
+function* generateNextState (nextState, symbol, materials) {
     var symbols = materials.matchAll(symbol).map(m => m.index).toArray()
+    console.log(symbols)
     for (let [i, symbolIndex] of symbols.entries()) {
         // Step 1: Replace 'c' and '+', then explicit indices
         let base = nextState
+            .replaceAll(' ', '')
             .replaceAll('c', symbolIndex) // Replica ops
             .replaceAll('+', symbols[i + 1] ?? 0) // Swap & Inc ops
-            .replaceAll(/./g, c => materials.includes(c) ? materials.indexOf(c) : c)  // Explicit Create Ops
+            .replaceAll(/./g, c => (c === symbol) ? symbolIndex : materials.includes(c) ? materials.indexOf(c) : c)  // Explicit Create Ops
 
         // Step 2: Generate replica patterns for 's' (if any)
-        yield base.matchAll(/s/g).toArray().length > 1?
-            replicaPattern(base, 's', 0, '1').toArray():
-            base.replace('s','1')
+        let state = base.matchAll(/s/g).toArray().length > 1 ?
+            pivotPattern(base, 's', 0, '1').toArray() :
+            base.replace('s', '1')
+        yield [symbolIndex, state]
     }
 }
 
 
-function replaceExplicit (pattern, materials) {
-    return pattern.replaceAll(/./g, c => materials.includes(c) ? materials.indexOf(c) : c)
-}
-
-function* generatePatterns (pattern, char, min, max/*not include*/) {
+function* replicaPatterns (pattern, char, min, max/*not include*/) {
     const range = max - min; // Range of numbers to replace 'x'
     if (range === 1) return yield pattern.replaceAll(char, min)
     pattern = pattern.split(char)
@@ -54,7 +54,7 @@ function* generatePatterns (pattern, char, min, max/*not include*/) {
     }
 }
 
-function* replicaPattern (pattern, pivotChar, clearChar, symbol = pivotChar) {
+function* pivotPattern (pattern, pivotChar, clearChar, symbol = pivotChar) {
     const basePattern = pattern.replaceAll(pivotChar, clearChar).split('')
 
     for (let m of pattern.matchAll(pivotChar)) {
@@ -110,26 +110,26 @@ function testGeneratePatterns3 (generatePatterns) {
 function testedReplicaPattern () {
 // Test case 1: Simple pattern with two '1's
     let expectedOutput1 = ['100', '001'];
-    for (let pattern of replicaPattern('101', '1', '0')) {
+    for (let pattern of pivotPattern('101', '1', '0')) {
         let expected = expectedOutput1.shift()
         console.assert(pattern === expected, `Test case 1 failed. Expected: ${expected} Actual: "${pattern}"`);
     }
 
 // Test case 2: Pattern with multiple '1's
     let expectedOutput2 = ['12030', '02130', '02031']
-    for (let pattern of replicaPattern('12131', '1', '0')) {
+    for (let pattern of pivotPattern('12131', '1', '0')) {
         let expected = expectedOutput2.shift()
         console.assert(pattern === expected, `Test case 2 failed. Expected: ${expected} Actual: "${pattern}"`);
     }
 
 // Test case 3: Pattern with no '1's
-    for (let pattern of replicaPattern('000', '1', '0')) {
+    for (let pattern of pivotPattern('000', '1', '0')) {
         console.assert(false, `Test case 3 failed. Expected no output, but got: "${pattern}"`);
     }
 
 // Test case 4: Pattern with all '1's
     let expectedOutput3 = ['100', '010', '001']
-    for (let pattern of replicaPattern('111', '1', '0')) {
+    for (let pattern of pivotPattern('111', '1', '0')) {
         let expected = expectedOutput3.shift()
         console.assert(pattern === expected, `Test case 4 failed. Expected: ${expected} Actual: "${pattern}"`);
     }
@@ -138,5 +138,5 @@ function testedReplicaPattern () {
 }
 
 // Run the tests
-testGeneratePatterns3(generatePatterns);
+testGeneratePatterns3(replicaPatterns);
 testedReplicaPattern()
