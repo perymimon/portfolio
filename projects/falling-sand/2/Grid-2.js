@@ -127,10 +127,11 @@ export default class Grid {
             for (let x = 0; x < this.width; x++) {
                 let index = this.index(x, y)
                 let cell = this.cells[index]
-                ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize)
+                let symbol = matrialsColorMap.symbols[cell]
+                // ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize)
 
                 if (cell) {
-                    var [start, end] = matrialsColorMap[cell]
+                    var [start, end] = matrialsColorMap[symbol].color
                     var range = end - start
                     var hue = start + Math.sign(range) * (index % range)
                     ctx.fillStyle = `hsl(${hue} 50% 50% )`

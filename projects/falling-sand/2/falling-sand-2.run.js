@@ -8,7 +8,7 @@ import './generator.js'
 const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false
-const cols = 10, rows = 10
+const cols = 400, rows = 400
 const cellSize = 10;
 canvas.width = cols * cellSize
 canvas.height = rows * cellSize
@@ -17,8 +17,8 @@ var grid = new Grid(cols, rows)
 var nextGrid = new Grid(cols, rows)
 var pointer = new Pointer(canvas)
 
-grid.setCell(2, 0, 2)
-grid.setCell(2, 2, 3)
+grid.setCell(2, 0, 4)
+// grid.setCell(2, 2, 3)
 
 function swapBuffers () {
     let temp = nextGrid
@@ -33,7 +33,7 @@ function swapBuffers () {
  Input pattern:
  x don't care
  0 is empty
-f there is something not zero
+ f there is something not zero
  ch specific material
  -----
  2 everything but me
@@ -44,87 +44,61 @@ f there is something not zero
  ✅ c clone/copy to that spot
  */
 
-var materials = 'A_SW'
-const materialsStates = {}
+var symbols = 'A_SWMMM'
+const materials = {
+    symbols: symbols,
+
+}
 /* SAND */
-const sandStates = new Map()
-fillStates(sandStates, 'S', 'x0x', '0s0', materials)
-fillStates(sandStates, 'S', '0f0', 's0s', materials)
-fillStates(sandStates, 'S', 'ff0', '00s', materials)
-fillStates(sandStates, 'S', '0ff', 's00', materials)
-fillStates(sandStates, 'S', 'fff', '0000s0', materials)
-fillStates(sandStates, 'S', 'xWx', '0s0', materials)
-materialsStates.S = {
-    mask:'111',
-    stateMachine:sandStates
+materials.S = {
+    color: [60, 42],
+    mask: '111',
+    states: new Map(),
 }
+fillStates(materials.S.states, 'S', 'x0x', '0s0', symbols)
+fillStates(materials.S.states, 'S', '0f0', 's0s', symbols)
+fillStates(materials.S.states, 'S', 'ff0', '00s', symbols)
+fillStates(materials.S.states, 'S', '0ff', 's00', symbols)
+fillStates(materials.S.states, 'S', 'fff', '0000s0', symbols)
+fillStates(materials.S.states, 'S', 'xWx', '0s0', symbols)
+
 /* WATER */
-const watterStates = new Map()
-fillStates(watterStates, 'W', 'x0x xx x', '0s0', materials)
-fillStates(watterStates, 'W', '0f0 xx x', 's0s', materials)
-fillStates(watterStates, 'W', 'ff0 xx x', '00s', materials)
-fillStates(watterStates, 'W', '0ff xx x', 's00', materials)
-fillStates(watterStates, 'W', 'fff xx x', '000 0s0', materials)
-fillStates(watterStates, 'W', 'fff xx S', '000 000 0s0', materials)
-fillStates(watterStates, 'W', 'fff f0 S', '000 00s', materials)
-fillStates(watterStates, 'W', 'fff 0f S', '000 s00', materials)
-
-materialsStates.W =  {
-    mask:'111101010',
-    stateMachine:watterStates
+materials.W = {
+    color: [200, 210],
+    mask: '111101010',
+    states: new Map(),
 }
 
-// fillStates(stateMachine, 'W', '111010', '000101', materials)
-// /* MATRIX */
-// fillStates(stateMachine,'M','xxx','0+0',materials )
-//↻⟳⟲↺⇄∅
-// output 0 is not change
-// output 1 is
-// stateMachine.set(0x020_000, 0x010)
-// stateMachine.set(0x020_001, 0x010)
-// stateMachine.set(0x020_010, [0x100, 0x001])
-// stateMachine.set(0x020_011, 0x100)
-// stateMachine.set(0x020_100, 0x010)
-// stateMachine.set(0x020_101, 0x010)
-// stateMachine.set(0x020_110, 0x001)
-//
-// stateMachine.set(0x030_000, 0x030)
-// stateMachine.set(0x030_001, 0x030)
-// stateMachine.set(0x030_100, 0x030)
-// stateMachine.set(0x030_101, 0x030)
-//
-// stateMachine.set(0x030_020, 0x020_030)
-// stateMachine.set(0x030_021, 0x020_030)
-// stateMachine.set(0x030_120, 0x020_030)
-// stateMachine.set(0x030_121, 0x020_030)
-//
-// stateMachine.set(0x030_010, 0x300)
-// stateMachine.set(0x030_111)
-// stateMachine.set(0x030_011, 0x300)
-// stateMachine.set(0x030_110, 0x003)
-//
-// stateMachine.set(0x030_010, 0x300)
-// stateMachine.set(0x030_111)
-// stateMachine.set(0x030_011, 0x300)
-// stateMachine.set(0x030_110, 0x003)
+fillStates(materials.W.states, 'W', 'x0x xx x', '0s0', symbols)
+fillStates(materials.W.states, 'W', '0f0 xx x', 's0s', symbols)
+fillStates(materials.W.states, 'W', 'ff0 xx x', '00s', symbols)
+fillStates(materials.W.states, 'W', '0ff xx x', 's00', symbols)
+fillStates(materials.W.states, 'W', 'fff xx x', '000 0s0', symbols)
+fillStates(materials.W.states, 'W', 'fff xx S', '000 000 0s0', symbols)
+fillStates(materials.W.states, 'W', 'fff f0 S', '000 00s', symbols)
+fillStates(materials.W.states, 'W', 'fff 0f S', '000 s00', symbols)
 
-// stateMachine.set(0x131_000, 0x040)
-// stateMachine.set(0x141_000, 0x050)
-// stateMachine.set(0x151_000, null)
+materials.M =  {
+    color: [120, 122],
+    mask:'000010',
+    states: new Map(),
+}
+
+fillStates(materials.M.states, 'M', 'M', '0+0', symbols)
 
 function update () {
     // console.time('update')
-    for (let i = grid.cells.length; i >=0 ; i--) {
+    for (let i = grid.cells.length; i >= 0; i--) {
         let {x, y} = grid.xy(i)
 
         let cell = grid.getCell(x, y)
         if (!cell) continue
-        let symbol = materials[cell]
-        let {stateMachine,mask} = materialsStates[symbol]
+        let symbol = materials.symbols[cell]
+        let {states, mask} = materials[symbol]
         let state = grid.getChunk(x, y, mask, 'pad', 1)
 
-        let newState = stateMachine.get(state)
-        if(!newState) {
+        let newState = states.get(state)
+        if (!newState) {
             console.warn(`${symbol}/${cell}: no new state for ${state}`)
             continue
         }
@@ -136,10 +110,10 @@ function update () {
     // console.timeEnd('update')
 }
 
-var hsl = 20
-pointer.onPress = (({x, y}) => {
+pointer.onPress = ((e) => {
+    var {x, y, target}  = e
     var material = getSelectedMaterial()
-
+    console.log(x, e.clientX, e.offsetX)
     let {width, height} = canvas.getBoundingClientRect()
     let ratioW = width / canvas.width
     let ratioH = height / canvas.height
@@ -153,14 +127,11 @@ pointer.onPress = (({x, y}) => {
 // Start simulation
 new FrameEngine(10, function () {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    grid.draw(ctx, cellSize, {
-        [materials.indexOf('S')]: [60, 42],
-        [materials.indexOf('W')]: [200, 210],
-    })
+    grid.draw(ctx, cellSize, materials)
     update()
 }).start()
 
 function getSelectedMaterial () {
     var input = document.querySelector('#material-selector').querySelector('input[type=radio]:checked')
-    return materials.indexOf(input.value)
+    return materials.symbols.indexOf(input.value)
 }

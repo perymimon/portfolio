@@ -9,11 +9,9 @@ export function fillStates (stateMachine, symbol, pattern, nextStatePattern, mat
 
     nextStatePattern = nextStatePattern.replaceAll(/./g, explicitRef(symbol))  // Explicit Create Ops
     var symbols = materials.matchAll(symbol).map(m => m.index).toArray()
+        .map((v, i, arr) => [v, arr[i + 1] || 0])
 
-
-    for (let i = 0; i < symbols.length; i++) {
-        let symbolIndex = symbols[i]
-        let nextSymbolIndex = symbols[i + 1] ?? 0
+    for (let [symbolIndex, nextSymbolIndex] of symbols) {
         let nextStates = generateNextState(nextStatePattern, symbol, symbolIndex, nextSymbolIndex)
 
         var sig = pattern.replaceAll(' ', '').replaceAll(/./g, explicitRef(symbolIndex))
