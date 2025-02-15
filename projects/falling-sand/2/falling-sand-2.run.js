@@ -1,5 +1,6 @@
 import {FrameEngine} from '../../_glossary/FrameEngine.js'
 import Pointer from '../../_glossary/Pointer.js'
+import {setCanvas} from '../../_helpers/basic.js'
 import {randomItem} from '../../_math/math.js'
 import {fillStates} from './generator.js'
 import Grid from './Grid-2.js';
@@ -8,16 +9,16 @@ import './generator.js'
 const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false
-const cols = 400, rows = 400
-const cellSize = 10;
-canvas.width = cols * cellSize
-canvas.height = rows * cellSize
+setCanvas(canvas, document.getElementById('canvas-container'));
+const cols = 100, rows = 100
+const cellSize = canvas.height / rows;
 
 var grid = new Grid(cols, rows)
 var nextGrid = new Grid(cols, rows)
 var pointer = new Pointer(canvas)
 
 grid.setCell(2, 0, 4)
+
 // grid.setCell(2, 2, 3)
 
 function swapBuffers () {
@@ -34,9 +35,8 @@ function swapBuffers () {
  x don't care
  0 is empty
  f there is something not zero
- ch specific material
- -----
- 2 everything but me
+ Material-char specific material
+
 
  Output pattern: 4bits (0-15)
  0 not change
@@ -74,13 +74,15 @@ fillStates(materials.W.states, 'W', '0f0 xx x', 's0s', symbols)
 fillStates(materials.W.states, 'W', 'ff0 xx x', '00s', symbols)
 fillStates(materials.W.states, 'W', '0ff xx x', 's00', symbols)
 fillStates(materials.W.states, 'W', 'fff xx x', '000 0s0', symbols)
-fillStates(materials.W.states, 'W', 'fff xx S', '000 000 0s0', symbols)
-fillStates(materials.W.states, 'W', 'fff f0 S', '000 00s', symbols)
-fillStates(materials.W.states, 'W', 'fff 0f S', '000 s00', symbols)
+fillStates(materials.W.states, 'W', 'fff f0 x', '000 00s', symbols)
+fillStates(materials.W.states, 'W', 'fff 0f x', '000 s00', symbols)
+fillStates(materials.W.states, 'W', 'fff 00 x', '000 s0s', symbols)
+fillStates(materials.W.states, 'W', 'fff ff S', '000 000 0s0', symbols)
 
-materials.M =  {
+
+materials.M = {
     color: [120, 122],
-    mask:'000010',
+    mask: '000010',
     states: new Map(),
 }
 
@@ -96,7 +98,7 @@ function update () {
         let symbol = materials.symbols[cell]
         let {states, mask} = materials[symbol]
         let state = grid.getChunk(x, y, mask, 'pad', 1)
-
+        grid.setCell(x, y, 0)
         let newState = states.get(state)
         if (!newState) {
             console.warn(`${symbol}/${cell}: no new state for ${state}`)
@@ -104,16 +106,15 @@ function update () {
         }
 
         if (Array.isArray(newState)) newState = randomItem(newState)
-        nextGrid.setChunk2(cell, x, y, newState, 'pad')
+        grid.setChunk2(cell, x, y, newState, 'pad')
     }
-    swapBuffers()
+    // swapBuffers()
     // console.timeEnd('update')
 }
 
 pointer.onPress = ((e) => {
-    var {x, y, target}  = e
+    var {x, y, target} = e
     var material = getSelectedMaterial()
-    console.log(x, e.clientX, e.offsetX)
     let {width, height} = canvas.getBoundingClientRect()
     let ratioW = width / canvas.width
     let ratioH = height / canvas.height
