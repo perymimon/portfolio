@@ -1,20 +1,17 @@
-export function fillStates (stateMachine, symbol, pattern, nextStatePattern, materials) {
-    // 1 - swap with the value. if more than one 1 choose one
-    // 2 - replica to that spot
-
-    // + is like 2 but with inc index
-    // if symbol appears a couple of times in the `materials` list , it generates for each index
+export function defineStates (stateMachine, pattern, statePattern, materials) {
+    pattern = pattern.replaceAll(' ', '')
+    var symbol = pattern[4]
     const explicitRef = (sym) =>
         c => (c === symbol) ? sym : materials.includes(c) ? materials.indexOf(c) : c
 
-    nextStatePattern = nextStatePattern.replaceAll(/./g, explicitRef(symbol))  // Explicit Create Ops
+    statePattern = statePattern.replaceAll(/./g, explicitRef(symbol))  // Explicit Create Ops
     var symbols = materials.matchAll(symbol).map(m => m.index).toArray()
         .map((v, i, arr) => [v, arr[i + 1] || 0])
 
     for (let [symbolIndex, nextSymbolIndex] of symbols) {
-        let nextStates = generateNextState(nextStatePattern, symbol, symbolIndex, nextSymbolIndex)
+        let nextStates = getStates(statePattern, symbol, symbolIndex, nextSymbolIndex)
 
-        var sig = pattern.replaceAll(' ', '').replaceAll(/./g, explicitRef(symbolIndex))
+        var sig = pattern.replaceAll(/./g, explicitRef(symbolIndex))
 
         for (let pattern1 of replicaPatterns(sig, 'x', 0, materials.length)) {
             for (let pattern2 of replicaPatterns(pattern1, 'f', 1, materials.length)) {
@@ -25,7 +22,7 @@ export function fillStates (stateMachine, symbol, pattern, nextStatePattern, mat
     }
 }
 
-function generateNextState (nextState, symbol, symbolIndex, nextSymbolIndex) {
+function getStates (nextState, symbol, symbolIndex, nextSymbolIndex) {
     // Step 1: Replace 'c' and '+', then explicit indices
     let base = nextState
         .replaceAll(' ', '')
@@ -35,23 +32,30 @@ function generateNextState (nextState, symbol, symbolIndex, nextSymbolIndex) {
 
     // Step 2: Generate replica patterns for 's' (if any)
     return base.matchAll(/s/g).toArray().length > 1 ?
-        pivotPattern(base, 's', 0, '1').toArray() :
-        base.replace('s', '1')
+        pivotPattern(base, 's', 0, symbolIndex).toArray() :
+        base.replace('s', symbolIndex)
 }
 
-
-function* replicaPatterns (pattern, char, min, max/*not include*/) {
+/**
+ *  Generates all possible patterns by replacing wildcards in the input pattern.
+ *
+ *  @param {string} parts  - A string with one type of wildcard (e.g., x0x).
+ *  @param {string} symbol - The wildcard character to replace (e.g., x or f).
+ *  @param {number} min - The starting value for replacements (e.g., 0 for air).
+ *  @param {number} max - The ending value (exclusive) for replacements (e.g., 3 for air, sand, water).
+ */
+function* replicaPatterns (pattern , symbol, min, max/*not include*/) {
     const range = max - min; // Range of numbers to replace 'x'
-    if (range === 1) return yield pattern.replaceAll(char, min)
-    pattern = pattern.split(char)
-    if (pattern.length === 1) return yield pattern.at(0)
-    const xs = pattern.length - 1 // number of x in the pattern
+    if (range === 1) return yield pattern.replaceAll(symbol, min)
+    var parts  = pattern .split(symbol)
+    if (parts.length === 1) return yield pattern
+    const numWildcards  = parts .length - 1 // number of x in the pattern
 
-    const totalIterations = Math.pow(range, xs);
+    const totalIterations = Math.pow(range, numWildcards );
     // Loop through all possible combinations
     for (let i = 0; i < totalIterations; i++) {
-        const digits = i.toString(range).padStart(xs, '0').split('')
-        yield digits.reduce((res, d, i) => res + (min + +d) + pattern[i + 1], pattern[0])
+        const digits = i.toString(range).padStart(numWildcards , '0').split('')
+        yield digits.reduce((res, d, i) => res + (min + +d) + parts [i + 1], parts [0])
     }
 }
 

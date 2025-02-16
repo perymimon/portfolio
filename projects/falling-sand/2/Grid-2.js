@@ -25,7 +25,7 @@ export default class Grid {
         }
     }
 
-    getCell (x, y, mode = 'wrap', padValue = 0) {
+    getCell (x, y, mode = 'pad', padValue = 0) {
         if (x >= 0 && x < this.width && y >= 0 && y < this.height) {
             return this.cells[this.index(x, y)]; // Inside grid
         }
@@ -52,7 +52,7 @@ export default class Grid {
         }
     }
 
-    setCell (x, y, v, mode = 'wrap') {
+    setCell (x, y, v, mode = 'pad') {
         if (mode === 'wrap') {
             x = (x + this.width) % this.width
             y = (y + this.height) % this.height
@@ -72,7 +72,7 @@ export default class Grid {
      * @param padValue
      * @returns {string}
      */
-    getChunk (x, y, mask = '111_111_111', mode = 'wrap', padValue = 0) {
+    getChunk (x, y, mask = '111_111_111', mode = 'pad', padValue = 1) {
         let pattern = []
         mask = mask.padEnd(9, '0')
         let m = -1
@@ -88,7 +88,7 @@ export default class Grid {
     }
 
     // Set 3x3 chunk from number (0-255 )
-    setChunk (x, y, pattern /* 9 bit */, mask = MAX_U_INT16, mode = 'wrap') {
+    setChunk (x, y, pattern /* 9 bit */, mask = MAX_U_INT16, mode = 'pad') {
         let index = -1;
         for (let dy = 1; dy >= -1; dy--) {
             for (let dx = -1; dx >= 1; dx++) {
@@ -110,32 +110,29 @@ export default class Grid {
         pattern = pattern.padEnd(9, '0')
         for (let dy = 1; dy >= -1; dy--) {
             for (let dx = -1; dx <= 1; dx++) {
-                index++;
-                let symbol = pattern[index]
+                let symbol = pattern[++index]
                 if (symbol === '0') continue
                 if (symbol === '1') symbol = value
-                let nx = x + dx
-                let ny = y + dy
-                this.setCell(nx, ny, symbol, mode)
+                this.setCell( x + dx, y + dy, symbol, mode)
             }
         }
     }
 
-    draw (ctx, cellSize, matrialsColorMap = {}) {
+    draw (ctx, cellW, cellH, matrialsColorMap = {}) {
         ctx.strokeStyle = 'white'
         for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
                 let index = this.index(x, y)
                 let cell = this.cells[index]
-                let symbol = matrialsColorMap.symbols[cell]
                 // ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize)
 
                 if (cell) {
+                    let symbol = matrialsColorMap.symbols[cell]
                     var [start, end] = matrialsColorMap[symbol].color
                     var range = end - start
                     var hue = start + Math.sign(range) * (index % range)
                     ctx.fillStyle = `hsl(${hue} 50% 50% )`
-                    ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize)
+                    ctx.fillRect(x * cellW, y * cellH, cellW, cellH)
                 }
             }
         }

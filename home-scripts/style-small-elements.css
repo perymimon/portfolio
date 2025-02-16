@@ -36,6 +36,8 @@
     z-index: var(--z-index-above-absolute);
     padding: var(--space-1);
 
+    pointer-events: none; /* to prevent interaction with iframe beneath it*/
+
     @media (orientation: portrait) {
         position: fixed;
     }
