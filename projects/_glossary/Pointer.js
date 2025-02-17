@@ -13,10 +13,7 @@ export default class Pointer extends Interactive {
     swipeThreshold = 100; // Minimum distance in pixels
 
     constructor (triggerElement = window) {
-        super()
-        this.triggerElement = triggerElement
-        this.x = 0
-        this.y = 0
+        super(triggerElement)
         this.dragging = null
         this.hovered = null
         this.hoverThreshold = 20
@@ -60,7 +57,7 @@ export default class Pointer extends Interactive {
     #onPointerMove (e) {
         e.preventDefault()
         this.e = e
-        this.pointer = {x: e.clientX, y: e.clientY}
+        this.pointer = {x: e.offsetX, y: e.offsetY}
         this.delta = {
             x: this.pointer.x - this.swiftStart.x,
             y: this.pointer.y - this.swiftStart.y,
@@ -95,8 +92,10 @@ export default class Pointer extends Interactive {
         // 1: Middle button
         // 2: Right button
         this.e = e
-        this.pointer = this.start = this.delta = this.swiftStart =
-            {x: e.clientX, y: e.clientY}
+        this.pointer = this.start = this.delta = this.swiftStart = {
+            x: e.offsetX,
+            y: e.offsetY,
+        }
 
         this.timeStart = Date.now()
 
@@ -142,7 +141,7 @@ export default class Pointer extends Interactive {
     #startPressLoop () {
         const firePress = () => {
             if (this.isPointerDown) {
-                this.onPress.call(this, this.e, this.pointer, this)
+                this.onPress.call(this,this.pointer, this.e, this)
                 this.pressFrameId = requestAnimationFrame(firePress)
             }
         };

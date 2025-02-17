@@ -17,9 +17,11 @@
 body, html {
     padding: 0;
     margin: 0;
-    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--text-primary);
+    width: 100dvw;
+    min-height: 100dvh;
 }
-
 /* Root Theme Variables */
 :root {
     /*--color-shade: #222;*/
@@ -204,12 +206,7 @@ body, html {
 }
 
 /* Elements */
-body {
-    background-color: var(--color-background);
-    color: var(--text-primary);
-    width: 100vw;
-    height: 100vh;
-}
+
 
 a {
     font-family: var(--font-family-mono), monospace;

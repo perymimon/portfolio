@@ -65,7 +65,7 @@ new FrameEngine(60, function () {
     grid.draw(ctx, cellSize)
     update()
 }).start()
-/* --------  Fuck Mouse ------- */
+/* --------  Fake Mouse ------- */
 var fakeMouse = document.getElementById('mouse')
 
 var animationMouse = new FrameEngine(60, function () {

@@ -1,6 +1,9 @@
 export default class Interactive {
     _listeners = {}
     triggerElement = window
+    constructor (triggerElement) {
+        this.triggerElement = triggerElement
+    }
     enable () { this.#addEventListeners() }
 
     disable () { this.#removeEventListener() }

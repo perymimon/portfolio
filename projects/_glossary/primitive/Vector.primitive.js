@@ -9,10 +9,10 @@ export default class Vector extends Coordinates{
     get clone(){
         return new Vector(this.x, this.y)
     }
-    add ({x, y}) {
+    add ({x, y}, scalar = 1) {
         return this.set({
-            x: this.x + x,
-            y: this.y + y
+            x: this.x + (x * scalar),
+            y: this.y + (y * scalar),
         })
     }
     get length(){
@@ -23,7 +23,9 @@ export default class Vector extends Coordinates{
     get angle(){
         return Math.atan2(this.y.value,this.x.value)
     }
-
+    dot(v){
+        return this.x * v.x + this.y * v.y
+    }
     setLength(length) {
         var a = this.angle
         var x = length * Math.cos(a);
