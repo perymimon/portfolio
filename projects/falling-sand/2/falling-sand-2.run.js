@@ -107,9 +107,9 @@ try{
     grid.cells.set(new Uint8Array(blob), 0)
 }
 catch(err){ console.log(err) }
-//
-// var $button = document.getElementById('saved-btn')
-// $button.addEventListener('click', e => {
-//     savedArrayBuffer(grid.cells, 'saved-grid.hex')
-// })
+
+var $button = document.getElementById('saved-btn')
+$button?.addEventListener('click', e => {
+    savedArrayBuffer(grid.cells, 'saved-grid.hex')
+})
 
