@@ -102,11 +102,11 @@ var animationMouse = new FrameEngine(10, function () {
 pointer.onTap = e => animationMouse.stop()
 
 // /* load / saved grid */
-// try{
-//     var blob = await fetchArrayBuffer('./saved-grid.hex')
-//     grid.cells.set(new Uint8Array(blob), 0)
-// }
-// catch(err){ console.log(err) }
+try{
+    var blob = await fetchArrayBuffer('./saved-grid.hex')
+    grid.cells.set(new Uint8Array(blob), 0)
+}
+catch(err){ console.log(err) }
 //
 // var $button = document.getElementById('saved-btn')
 // $button.addEventListener('click', e => {
