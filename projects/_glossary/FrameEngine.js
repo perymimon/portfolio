@@ -2,12 +2,13 @@ export class FrameEngine extends EventTarget {
     #fps = 60
     #canvas = null
     animationIndex = null
+
     constructor (fps = 60, callback = null, canvas = null) {
         super()
         this.canvas = canvas
         this.lastTimeStamp = null
         this.elapsedTime = 0
-        this.frameCounter = 0
+        this.frames = 0
         this.fps = fps
         if (callback) {
             this.addEventListener('frames', callback)
@@ -25,16 +26,17 @@ export class FrameEngine extends EventTarget {
         this.ctx = this.#canvas.getContext('2d')
     }
 
-    updateFrame (timestampe) {
+    updateFrame (timestamp) {
         // Update animation frame based on frameRate
-        var deltaTime = timestampe - this.lastTimeStamp
+        var deltaTime = timestamp - this.lastTimeStamp
         this.elapsedTime += deltaTime
-        this.lastTimeStamp = timestampe
-        var frames = Math.floor(this.elapsedTime / this.timeframe)
-        this.frameCounter += frames
-        this.elapsedTime -= frames * this.timeframe
-        if (frames > 0)
-            this.#trigger('frames', {frames, ctx: this.ctx})
+        this.lastTimeStamp = timestamp
+        var elapsedFrames = Math.floor(this.elapsedTime / this.timeframe)
+        this.frames += elapsedFrames
+        this.elapsedTime -= elapsedFrames * this.timeframe
+        var {ctx, frames} = this
+        if (elapsedFrames > 0)
+            this.#trigger('frames', {elapsedFrames, frames, ctx, timestamp})
 
 
     }
@@ -56,6 +58,7 @@ export class FrameEngine extends EventTarget {
             framesEngine.updateFrame(timeStamp)
             framesEngine.animationIndex = requestAnimationFrame(animation)
         }
+
         return this
     }
 
