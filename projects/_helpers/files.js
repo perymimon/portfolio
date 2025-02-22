@@ -1,5 +1,9 @@
 export async function fetchArrayBuffer(filename){
-    return fetch(`./${filename}`)
+    return await fetch(`./${filename}`)
+        .then(response=> {
+            if (!response.ok) throw response.statusText
+            return response
+        })
         .then(response => response.arrayBuffer())
 }
 
