@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Falling Sand</title>
+    <!-- Open Graph Meta/Facebook Data -->
+    <meta property="og:url" content="https://perymimon.github.io/portofolio/projects/paper-marbling/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Falling Sand">
+    <meta property="og:site_name" content="Pery's Portfolio - Falling Sand">
+    <meta property="og:description" content="Spine up creative Code from scratch - Falling Sand Effect">
+    <meta property="og:image"
+          content="https://perymimon.github.io/portofolio/projects/paper-marbling/chibi-style-cyberpunk.webp">
+    <meta property="og:image:alt" content="Falling Sand">
+
+    <meta property="parent" content="https://perymimon.github.io/portofolio/#ralling-sand">
+    <script type="module">
+        var url = new URL(globalThis.location)
+        var time = parseInt(url.searchParams.get("time"))
+        if (!isNaN(time)) {
+            setTimeout(() => {
+                // The page is inside an iframe, so redirection
+                window.location.href = document.querySelector('meta[property="parent"]').getAttribute('content')
+            }, time * 1000)
+        }
+
+    </script>
+    <link rel="stylesheet" href="../2/style.css">
+</head>
+<body>
+<div class="group-base" id="material-selector">
+    <button id="saved-btn" class="button-base">save</button>
+
+    <div class="gap"></div>
+    <label class="label-base ">
+        sand
+        <input type="radio" name="material" value="S">
+    </label>
+    <label class="label-base">
+        water
+        <input type="radio" name="material" value="W" checked>
+    </label>
+    <label class="label-base">
+        matrix
+        <input type="radio" name="material" value="M" >
+    </label>
+    <label class="label-base">
+        brush
+        <input type="radio" name="material" value="B">
+    </label>
+    <label class="label-base">
+        bubbles
+        <input type="radio" name="material" value="G">
+    </label>
+    <label class="label-base">
+        stone
+        <input type="radio" name="material" value="Q">
+    </label>
+
+
+    <button id="clear-btn" class="button-base">clear</button>
+
+</div>
+<canvas id="canvas1"></canvas>
+<script type="module" src="falling-sand.run.js"></script>
+<div id="mouse-1" class="mouse"></div>
+<div id="mouse-2" class="mouse"></div>
+<div id="mouse-3" class="mouse"></div>
+<style>
+    .mouse {
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+        animation-fill-mode: both;
+        height: 10px;
+        width: 10px;
+        animation-fill-mode: both;
+    }
+    @keyframes moveAlongPath {
+        0% {
+            offset-distance: 0%;
+        }
+        100% {
+            offset-distance: 100%;
+        }
+    }
+    #mouse-1 {
+        animation: moveAlongPath 4s linear infinite alternate,
+        move-line-2 30s linear infinite alternate;
+        offset-path: path("M25,50 C50,10 75,10 75,50 C75,90 25,90 25,50 Z");
+    }
+    @keyframes move-line-2 {
+        0% {
+            left: -1em;
+            top:40%;
+        }
+        100% {
+            top: 30%;
+            left: 3em;
+        }
+    }
+    #mouse-2 {
+        background-color: #5be0d0;
+        animation: moveAlongPath 4s linear infinite alternate,
+        move-line-3 30s linear infinite alternate;
+        offset-path: path("M20,50 Q50,10 80,50 T140,50 Q170,90 200,50");
+    }
+
+    #mouse-3 {
+        /*background-color: #dc7dec;*/
+        animation: moveAlongPath 4s linear infinite alternate,
+        move-line-4 10s linear infinite alternate;
+        offset-path: path("M120,10 C80,50 40,90 10,130");
+        /*offset-path: path("M10,80 C40,10 80,10 120,80 S200,150 250,80 T350,60");*/
+        top: 20%;
+    }
+
+
+
+
+
+    @keyframes move-line-3 {
+        0% {
+            right: 20em;
+        }
+        100% {
+            left: calc(30% - 5em);
+        }
+    }
+
+    @keyframes move-line-4 {
+        0% {
+            left: 2em;
+        }
+        100% {
+            left: calc(80% - 4em);
+        }
+    }
+
+</style>
+</body>
+</html>

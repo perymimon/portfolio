@@ -38,9 +38,6 @@ export default function defineStates (stateMachine, masks, pattern, nextState, s
         }
     }
 }
-// if (ne[4] === 'x') {
-//     console.warn(`Replace with wild material: ${pattern2} [${i}] / ${ns}`)
-// }
 function getStates (statePattern, currentIndex, nextIndex, pattern, symbols) {
     let normPattern = statePattern
         .replaceAll(' ', '') // clear spaces

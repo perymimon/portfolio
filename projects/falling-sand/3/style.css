@@ -1,0 +1,18 @@
+@import "../../../base.css";
+@import "../../project-base.css";
+
+
+body{
+    flex-direction: column;
+}
+
+#canvas-container{
+
+}
+
+canvas{
+    flex: 1;
+    position: relative;
+    overflow: clip;
+    min-height: 0;
+}
