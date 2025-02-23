@@ -5,7 +5,7 @@ import {random, randomItem} from '../../_math/math.js'
 import defineStates, {maskedPattern} from './define-states.js'
 import Grid from './Grid.js';
 
-const cols = 100, rows = 100
+const cols = 200, rows = 200
 var grid = new Grid(cols, rows)
 var touched = new Grid(cols, rows)
 const canvas = document.getElementById('canvas1')

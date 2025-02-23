@@ -17,7 +17,7 @@ export default class Grid {
         var x = index % this.width, y = Math.floor(index / this.width)
         return {x, y}
     }
-
+d
     getCell(x, y) {
         if (x >= 0 && x < this.width && y >= 0 && y < this.height) {
             return this.cells[this.index(x, y)];

@@ -159,6 +159,18 @@
   "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand",
   "youtube": "https://www.youtube.com/watch?v=L4u7Zy_b868&t=36s&ab_channel=TheCodingTrain",
   "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
+},{
+  "groupId": "tutorials-by-coding-train",
+  "id": "falling-sand-3",
+  "title": "Falling Sand & Water",
+  "link": "projects/falling-sand/3/index.html",
+  "year": 2025,
+  "stack": "Canvas, vanilla es6",
+  "tags": "cellularAutomata",
+  "teacher": "@me",
+  "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand",
+  "youtube": "https://www.youtube.com/watch?v=L4u7Zy_b868&t=36s&ab_channel=TheCodingTrain",
+  "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
 }
 
 ]
