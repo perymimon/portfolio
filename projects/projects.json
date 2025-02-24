@@ -170,6 +170,15 @@
   "tags": "cellularAutomata",
   "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand/3",
   "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
+},{
+  "groupId": "tutorials-by-coding-train",
+  "id": "hilbert-curve",
+  "title": "Hilbert Curve",
+  "link": "projects/hilbert-curve/index.html",
+  "year": 2025,
+  "tags": "math",
+  "github": "https://github.com/perymimon/portofolio/tree/main/projects/hilbert-curve",
+  "description": "The Hilbert Curve is a special type of space-filling curve that covers an entire 2D area in such a way that any point on the curve does not move significantly when the resolution is increased"
 }
 
 ]

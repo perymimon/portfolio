@@ -37,6 +37,7 @@
     padding: var(--space-1);
 
     pointer-events: none; /* to prevent interaction with iframe beneath it*/
+    transform: translateY(100%);
     *{
         pointer-events: auto; /* to allow interaction inputs inside it */
     }
