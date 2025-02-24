@@ -6,8 +6,8 @@ export class Value {
     constructor (v, settings = {}) {
         if (v instanceof Value) v = v + 0
         if (!(typeof v === 'number')) throw new Error('Value must be a number')
-        this.start = v
         this.value = v
+        this.start = v
         Object.assign(this, {
             speed: 0,
             velocity: 0,
