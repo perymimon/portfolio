@@ -31,11 +31,30 @@ export default class Point extends Coordinates {
         })
     }
 
+    mult (scalar) {
+        return this.set({
+            x: this.x * scalar,
+            y: this.y * scalar,
+        })
+    }
+
     translate ({x, y}) {
         return this.set({
             x: this.x + x,
             y: this.y + y,
         })
+    }
+
+    swapMainDiagonal () {
+        let x = this.y.valueOf()
+        let y = this.x.valueOf()
+        return this.set({x, y})
+    }
+
+    swapSecondDiagonal (len) {
+        let y = len - this.x
+        let x = len - this.y
+        return this.set({x, y})
     }
 
     vectorFrom ({x, y}) {
@@ -62,8 +81,8 @@ export default class Point extends Coordinates {
         const cos = Math.cos(angle);
         const sin = Math.sin(angle);
         return this.set({
-            x:x + (dx * cos - dy * sin),
-            y:y + (dx * sin + dy * cos)
+            x: x + (dx * cos - dy * sin),
+            y: y + (dx * sin + dy * cos),
         });
     }
 
@@ -103,8 +122,14 @@ console.assert(point2.x.start == 10, 'Test 2 failed: cloned x.start should be 10
 console.assert(point2.y.start == 20, 'Test 2 failed: cloned y.start should be 20');
 
 // Test 3: distanceFrom method
-console.assert(point1.distanceFrom({ x: 10, y: 20 }) === 0, 'Test 3 failed: distance should be 0');
-console.assert(point1.distanceFrom({ x: 13, y: 24 }) === 5, 'Test 3 failed: distance should be 5');
+console.assert(point1.distanceFrom({
+    x: 10,
+    y: 20,
+}) === 0, 'Test 3 failed: distance should be 0');
+console.assert(point1.distanceFrom({
+    x: 13,
+    y: 24,
+}) === 5, 'Test 3 failed: distance should be 5');
 
 // Test 4: lerpPoint method
 point1.lerpPoint({x: 20, y: 30}, 0.5);
@@ -148,8 +173,14 @@ console.assert(Math.abs(point1.x - 10) < 0.001, 'Test 9 failed: x should be ~10 
 console.assert(Math.abs(point1.y - 10) < 0.001, 'Test 9 failed: y should be ~ 10 after orbit');
 
 // Test 10: isInsideBoundingBox method
-console.assert(point1.isInsideBoundingBox({ x: 0, y: 0 }, { x: 20, y: 20 }), 'Test 10 failed: point should be inside bounding box');
-console.assert(!point1.isInsideBoundingBox({ x: 0, y: 0 }, { x: 5, y: 5 }), 'Test 10 failed: point should be outside bounding box');
+console.assert(point1.isInsideBoundingBox({x: 0, y: 0}, {
+    x: 20,
+    y: 20,
+}), 'Test 10 failed: point should be inside bounding box');
+console.assert(!point1.isInsideBoundingBox({x: 0, y: 0}, {
+    x: 5,
+    y: 5,
+}), 'Test 10 failed: point should be outside bounding box');
 
 // Test 11: static from method
 const point3 = Point.from({x: 30, y: 40});

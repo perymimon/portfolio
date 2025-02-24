@@ -19,8 +19,9 @@ export function random (min, max, integer = true) {
     var value = Math.random() * (max - min) + min
     return integer ? Math.floor(value) : value
 }
-export function randomItem(array){
-    return array[random(0,array.length)]
+
+export function randomItem (array) {
+    return array[random(0, array.length)]
 }
 
 export function lerp (A, B, t) {
@@ -30,6 +31,10 @@ export function lerp (A, B, t) {
 export function linearLerp (A, B, s) {
     var v = A + s
     return v > B ? B : v
+}
+
+export function map (v, rangeStart, rangeEnd, domainStart, domainEnd) {
+    return domainStart + (v - rangeStart) / (rangeEnd - rangeStart) * (domainEnd - rangeStart)
 }
 
 /* trigonometric from 0 to 1*/

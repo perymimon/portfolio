@@ -39,6 +39,16 @@ draw.polygon = function (ctx, points, options = {}) {
 
     drawing(ctx, options, 'polygon')
 }
+draw.curve = function (ctx, points, options = {drawStroke:true}) {
+    ctx.beginPath()
+    var point = points.at(0)
+    ctx.moveTo(point.x, point.y)
+    for (let point of points.slice(1)) {
+        ctx.lineTo(point.x, point.y)
+    }
+
+    drawing(ctx, options, 'polygon')
+}
 
 draw.arrow = function (ctx, sx, sy, ex, ey, size, options = {}) {
     ctx.beginPath()
