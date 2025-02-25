@@ -52,19 +52,24 @@ window.addEventListener("message", async (event) => {
 
 export default class Recorder extends EventsEmitter {
     canvas = null
-    fps = 25
-    mimeType = "video/webm; codecs=vp9"
+    fps = 30
+    // mimeType = "video/webm; codecs=vp9"
+    mimeType = "video/mp4; codecs=avc3" // Use H.264
     mediaRecorder = null
+    videoBitsPerSecond = 1440000
 
-    constructor (canvas, fps, mimeType) {
+    constructor (canvas, fps, mimeType, videoBitsPerSecond) {
         super()
         if (fps) this.fps = fps
         if (mimeType) this.mimeType = mimeType
+        if (videoBitsPerSecond) this.videoBitsPerSecond = videoBitsPerSecond
         this.canvas = canvas
         this.fps = fps
-        this.mimeType = mimeType
         var stream = canvas.captureStream(fps)
-        this.mediaRecorder = new MediaRecorder(stream, {mimeType});
+        this.mediaRecorder = new MediaRecorder(stream, {
+            mimeType: this.mimeType,
+            videoBitsPerSecond: this.videoBitsPerSecond,
+        })
 
         this.mediaRecorder.onstart = e => this.emit(e)
         this.mediaRecorder.onpause = e => this.emit(e)
