@@ -5,7 +5,7 @@ import {randomItem} from '../../_math/math.js'
 import defineStates from './define-states.js'
 import Grid from './Grid-2.js';
 
-const cols = 400, rows = 400
+const cols = 200, rows = 200
 var grid = new Grid(cols, rows)
 window.grid = grid
 const canvas = document.getElementById('canvas1')
@@ -86,6 +86,8 @@ pointer.onPress = ({x, y}) => {
     let cellY = Math.floor(y/ (cellSize * (height / canvas.height)))
     let material = getSelectedMaterial() // < update
     grid.setCell(cellX, cellY, material)
+    var brush = Array(5).fill(material).join('0')
+    grid.setChunk(cellX, cellY, brush)
 }
 
 function getSelectedMaterial () {
@@ -99,19 +101,20 @@ var fakeMouse = document.getElementById('mouse')
 var animationMouse = new FrameEngine(10, function () {
     var {x, y} = fakeMouse.getBoundingClientRect()
     pointer.onPress({x, y})
-}).start()
+})
 
 pointer.onTap = e => animationMouse.stop()
 
 // /* load / saved grid */
 try{
-    var blob = await fetchArrayBuffer('./saved-grid.hex')
+    var blob = await fetchArrayBuffer(`./saved-grid${cols}X${rows}.hex`)
     grid.cells.set(new Uint8Array(blob), 0)
+    animationMouse.start()
 }
 catch(err){ console.log(err) }
 
 var $button = document.getElementById('saved-btn')
 $button?.addEventListener('click', e => {
-    savedArrayBuffer(grid.cells, 'saved-grid.hex')
+    savedArrayBuffer(grid.cells, `saved-grid${cols}X${rows}.hex`)
 })
 
