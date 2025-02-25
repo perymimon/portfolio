@@ -56,7 +56,7 @@ d
 
     setChunk(x, y, pattern) {
         // Updates cells based of the pattern ( 9 byte )
-        if(!pattern) return null // you can change that to worning
+        if(!pattern) return null // you can change that to warning
         let index = -1
         for (let dy = 1; dy >= -1; dy--) {
             for (let dx = -1; dx <= 1; dx++) {  // left to right

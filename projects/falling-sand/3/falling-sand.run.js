@@ -117,7 +117,8 @@ pointer.onPress = ({x, y}, e, mouse, material = getSelectedMaterial()) => {
     let {width, height} = canvas.getBoundingClientRect()
     let cellX = Math.floor(x / (cellSize * (width / canvas.width)))
     let cellY = Math.floor(y / (cellSize * (height / canvas.height)))
-    grid.setCell(cellX, cellY, material)
+    var brush = Array(5).fill(material).join('0')
+    grid.setChunk(cellX, cellY, brush)
 }
 
 function getSelectedMaterial () {
