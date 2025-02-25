@@ -44,7 +44,7 @@ function update () {
     touched.cells.fill(0)
 }
 
-new FrameEngine(10, function ({detail: {frames}}) {
+new FrameEngine(20, function ({detail: {frames}}) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     grid.draw(ctx, frames, cellSize, cellSize, materials) //<- update
     update()

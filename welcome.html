@@ -56,7 +56,7 @@
             color: var(--color-secondary);
             font-size: var(--font-size-relative-lg);
             text-shadow: 0 0.1em .1em var(--color-background);
-            margin:0;
+            margin-block-end: 7em;
         }
 
         h3.project-title {
@@ -68,19 +68,21 @@
 <body>
 <div class="container">
     <h1>Welcome to My Creative Portfolio</h1>
-    <p>Hello! I'm Pery Mimon , a passionate creator and developer. This portfolio showcases some of my favorite projects
-        that demonstrate my skills in web development, design, and creative problem-solving.</p>
-    <p>Feel free to explore my projects using the sidebar navigation. Here's a quick overview of what you'll find:</p>
+    <p>Hello! I'm Pery Mimon , a passionate creator and developer. This Sandbox showcases some of my enjoyable
+        projects </p>
+    <p>Feel free to explore them using the sidebar navigation. Here's a quick overview of what you'll find:</p>
 
     <ul class="project-list">
         <li class="project-item">
+            <!-- link 1 -->
             <fancy-video
                     src="./assets/videos/taki-multiplayer.mp4"
                     href="index.html#client-taki-game-onrender"
                     target="_top"
             >
-                <h4 slot="title" class="anchor-project-title">TAKI</h4>
+                <h4 slot="title" class="anchor-project-title">Taki Game</h4>
             </fancy-video>
+            <!-- link 2 -->
             <fancy-video
                     src="./assets/videos/promise-test.mp4"
                     href="index.html#stackblitz-github-promise"
@@ -88,6 +90,15 @@
             >
                 <h4 slot="title" class="anchor-project-title">Tiny Promise</h4>
             </fancy-video>
+            <!-- link 3-->
+            <fancy-video
+                    src="./assets/videos/falling-sand.mp4"
+                    href="index.html#falling-sand-3"
+                    target="_top"
+            >
+                <h4 slot="title" class="anchor-project-title">Falling Sand</h4>
+            </fancy-video>
+            <!-- link 4 -->
             <fancy-video
                     src="./assets/videos/particle-stick.webm"
                     href="index.html#projects-pixel-rain"
@@ -95,35 +106,36 @@
             >
                 <h4 slot="title" class="anchor-project-title">Particle Rain</h4>
             </fancy-video>
+            <!-- link 5 -->
             <fancy-video
-                    src="./assets/videos/matrix-rain.webm"
-                    href="index.html#projects-matrix-rain"
+                    src="./assets/videos/ray-cast.mp4"
+                    href="index.html#projects-ray-cast"
                     target="_top"
             >
-                <h4 slot="title" class="anchor-project-title">Matrix Rain</h4>
+                <h4 slot="title" class="anchor-project-title">Ray Cast</h4>
             </fancy-video>
+            <!-- link 6 -->
             <fancy-video
-                    src="./assets/videos/particle-2.webm"
-                    href="index.html#projects-particles-2"
+                    src="./assets/videos/paper-drop-marbling.mp4"
+                    href="index.html#projects-paper-marbling-2"
                     target="_top"
             >
-                <h4 slot="title" class="anchor-project-title">Particles</h4>
+                <h4 slot="title" class="anchor-project-title">Drop Marbling</h4>
             </fancy-video>
+            <!-- link 7 -->
             <fancy-video
-                    src="./assets/videos/particle-4.webm"
-                    href="index.html#projects-particles-4"
-                    target="_top"
-            ></fancy-video>
-            <fancy-video
-                    src="./assets/videos/particle-6.webm"
-                    href="index.html#projects-particles-6"
-                    target="_top"
-            ></fancy-video>
+                    src="./assets/videos/hilbert-curve.mp4"
+                    href="index.html#hilbert-curve"
+                    target="_top">
+                <h4 slot="title" class="anchor-project-title">Hilbert Curve</h4>
+            </fancy-video>
+            <!-- link 7 -->
             <fancy-video
                     src="./assets/videos/particle-7.webm"
                     href="index.html#projects-particles-7"
-                    target="_top"
-            ></fancy-video>
+                    target="_top">
+                <h4 slot="title" class="anchor-project-title"></h4>
+            </fancy-video>
         </li>
         <!--        <li class="project-item">-->
         <!--            <h2 class="project-title">Project 2: Responsive Design Showcase</h2>-->
@@ -137,13 +149,14 @@
 
 <script type="module">
     import {linkPageToParent} from './projects/_helpers/link-page.js'
+
     linkPageToParent()
     // var h4s = document.querySelectorAll('.anchor-project-title')
     // Array.from(h4s).forEach((h4) => {
     //     convertTextToArcWithCenter(h4, 70, -90, 180 )
     // })
 
-    function convertTextToArcWithCenter(element, radius, centerAngle, totalArc, fontSize = 16, maxScale = 1) {
+    function convertTextToArcWithCenter (element, radius, centerAngle, totalArc, fontSize = 16, maxScale = 1) {
         const text = element.textContent.trim(); // Get and trim the text content
         const characters = text.split(""); // Split text into individual characters
 
@@ -186,7 +199,6 @@
         }
         element.style.position = "absolute";
     }
-
 
 
 </script>

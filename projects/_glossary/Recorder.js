@@ -56,7 +56,7 @@ export default class Recorder extends EventsEmitter {
     // mimeType = "video/webm; codecs=vp9"
     mimeType = "video/mp4; codecs=avc3" // Use H.264
     mediaRecorder = null
-    videoBitsPerSecond = 1440000
+    videoBitsPerSecond = 288000
 
     constructor (canvas, fps, mimeType, videoBitsPerSecond) {
         super()

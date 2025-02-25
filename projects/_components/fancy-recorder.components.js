@@ -206,7 +206,7 @@ class RecorderElement extends HTMLElement {
         this.showToast('Downloading record')
         const link = document.createElement('a')
         link.href = url
-        link.download = 'matrix-rain.webm'
+        link.download = 'canvas-recorder.mp4'
         link.click()
     }
 }
