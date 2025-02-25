@@ -5,9 +5,12 @@ import Grid from '../Grid.js';
 
 const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d');
-ctx.imageSmoothingEnabled = false
+// Enable high-quality rendering
+ctx.imageSmoothingEnabled = true;
+ctx.imageSmoothingQuality = 'high';
+
 const cols = 400, rows = 400
-const cellSize = 10;
+const cellSize = 1;
 canvas.width = cols * cellSize
 canvas.height = rows * cellSize
 
