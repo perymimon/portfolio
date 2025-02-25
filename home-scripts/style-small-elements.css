@@ -56,4 +56,7 @@ fancy-recorder {
     right: anchor(right);
     left:auto;
     margin: var(--space-1);
+    &[disabled]{
+        display: none;
+    }
 }

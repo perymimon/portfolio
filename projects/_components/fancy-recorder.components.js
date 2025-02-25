@@ -56,6 +56,10 @@ class RecorderElement extends HTMLElement {
     #setReadyState (state) {
         this.ui.dataset.ready = state
         this.recordBtn.disabled = !Boolean(state)
+        if(!state)
+            this.setAttribute('disabled', 'disabled')
+        else
+            this.removeAttribute('disabled')
     }
 
     connectedCallback () {
