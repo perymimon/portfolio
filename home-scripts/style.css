@@ -29,6 +29,7 @@ nav {
     flex-direction: column;
     position: relative;
     overflow: clip;
+    anchor-scope:--content-frame;
 }
 
 #content-frame {

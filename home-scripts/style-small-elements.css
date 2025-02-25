@@ -15,10 +15,10 @@
     margin-inline: auto;
     background-color: var(--color-background);
     box-shadow: var(--shadow-md);
-    top:0;
-    left:0;
-    right:0;
-    width:max-content;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: max-content;
 }
 
 #bottom-bar {
@@ -38,7 +38,7 @@
 
     pointer-events: none; /* to prevent interaction with iframe beneath it*/
     transform: translateY(100%);
-    *{
+    * {
         pointer-events: auto; /* to allow interaction inputs inside it */
     }
 
@@ -46,9 +46,14 @@
         position: fixed;
     }
 
-    fancy-recorder {
-        position: sticky;
-        inset-inline: 0;
-    }
+}
 
+fancy-recorder {
+    position: absolute;
+    inset-inline: 0;
+    position-anchor: --content-frame;
+    bottom: anchor(bottom);
+    right: anchor(right);
+    left:auto;
+    margin: var(--space-1);
 }
