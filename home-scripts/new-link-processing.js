@@ -31,6 +31,7 @@ async function handleContentLoaded (event) {
 
 async function handleGlobalClick (event) {
     if (!(event.target instanceof HTMLAnchorElement)) return
+    if(event.target.getAttribute('href').startsWith('http')) return
     event.preventDefault()
     await goToProjectPage(event.target.id)
 

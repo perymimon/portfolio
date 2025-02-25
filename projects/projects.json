@@ -148,6 +148,7 @@
   "title": "Falling Sand - part 1",
   "link": "projects/falling-sand/1/index.html",
   "year": 2025,
+  "article": "https://perymimon.hashnode.dev/building-a-falling-sand-simulation-with-html-canvas",
   "tags": "cellularAutomata",
 
   "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand/1",
@@ -159,6 +160,7 @@
   "link": "projects/falling-sand/2/index.html",
   "year": 2025,
   "tags": "cellularAutomata",
+  "article": "https://perymimon.hashnode.dev/falling-sand-part-2",
   "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand/2",
   "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
 },{
@@ -168,6 +170,7 @@
   "link": "projects/falling-sand/3/index.html",
   "year": 2025,
   "tags": "cellularAutomata",
+  "article": "https://perymimon.hashnode.dev/building-a-falling-sand-simulation-with-html-canvas",
   "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand/3",
   "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
 },{

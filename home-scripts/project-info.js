@@ -18,7 +18,9 @@ const teachers = {
         name: '@pery',
     },
 }
-
+function link(text, link, target) {
+    return `<a href="${link}" target="${target}">${text}</a>`
+}
 export function injectProjectInfo2 (project) {
     var $infoPanel = document.getElementById('project-info')
     var $tabContainer = document.getElementById('tabs-container')
@@ -39,15 +41,16 @@ export function injectProjectInfo2 (project) {
         $tabContainer.replaceChildren()
         delete $tabContainer.dataset.parent
     }
-
+    var title = data.article? link(data.title,data.article,'_blank'):data.title
+    // 🗞
      $infoPanel.innerHTML = `
           <h3 class="info-header">⬡
-            <span id="info-title" data-value="${data.title}">${data.title}</span> 
+            <span id="info-title" data-value="${data.title}">${title}</span> 
             <span id="info-year" data-value="${data.year}">| ${data.year}</span> 
             <span class="info-detail" data-value="${data.github || data.npm}"> |
-                <a href="${data.github}" data-value="${data.github}" class="info-detail" target="_blanck">⎇Github</a>
-                <span data-value="${data.npm}" class="info-detail">· <a href="${data.npm}" target="_blanck">⚙ NPM</a></span>
-                <span data-value="${data.tutorial}" class="info-detail">· <a href="${data.tutorial}" target="_blanck">▶YouTube</a></span>
+                <a href="${data.github}" data-value="${data.github}" class="info-detail" target="_blank">⎇Github</a>
+                <span data-value="${data.npm}" class="info-detail">· <a href="${data.npm}" target="_blank">⚙NPM</a></span>
+                <span data-value="${data.tutorial}" class="info-detail">· <a href="${data.tutorial}" target="_blank">▶YouTube</a></span>
              </span>
            
           </h3>
@@ -56,7 +59,7 @@ export function injectProjectInfo2 (project) {
                     <span>Stack▯</span>
                     <strong class="info-value info-stack">${data.stack}</strong>
                     <div data-value="${data.teacher}">
-                    seed <a href="${teacher?.url}">${teacher?.name}</a>
+                    seed <a href="${teacher?.url}" target="_blank">${teacher?.name}</a>
                     </div>
                 </span>
             </div>
