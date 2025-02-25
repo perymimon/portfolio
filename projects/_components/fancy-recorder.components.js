@@ -2,7 +2,7 @@ import Recorder from "../_glossary/Recorder.js"
 import "./toast.componets.js"
 /* canvas-recorder */
 const componentBaseUrl = new URL(import.meta.url).pathname.replace(/[^/]+$/, '')
-const template = document.createElement('template');
+const template = document.createElement('template')
 template.innerHTML = `
    <style>#floating-bar{display:none}</style>
   <link rel="stylesheet" href="${componentBaseUrl}fancy-recorder.components.css">
@@ -27,26 +27,26 @@ class RecorderElement extends HTMLElement {
     #iframeWindow = null
 
     constructor () {
-        super();
-        var shadow = this.shadow;
+        super()
+        var shadow = this.shadow
         shadow.appendChild(template.content.cloneNode(true))
 
-        this.target = null;
-        this.ui = shadow.getElementById('recorder-ui');
-        this.recordBtn = shadow.getElementById('record-btn');
-        this.resumeBtn = shadow.getElementById('resume-btn');
-        this.pauseBtn = shadow.getElementById('pause-btn');
-        this.stopBtn = shadow.getElementById('stop-btn');
-        this.floatingBar = shadow.getElementById('floating-bar');
-        this.timeDisplay = shadow.getElementById('time');
+        this.target = null
+        this.ui = shadow.getElementById('recorder-ui')
+        this.recordBtn = shadow.getElementById('record-btn')
+        this.resumeBtn = shadow.getElementById('resume-btn')
+        this.pauseBtn = shadow.getElementById('pause-btn')
+        this.stopBtn = shadow.getElementById('stop-btn')
+        this.floatingBar = shadow.getElementById('floating-bar')
+        this.timeDisplay = shadow.getElementById('time')
         this.#setState('idle')
         this.#setReadyState(false)
     }
 
     showToast (message) {
-        const toast = document.createElement('toast-message');
-        toast.setAttribute('message', message);
-        document.body.appendChild(toast);
+        const toast = document.createElement('toast-message')
+        toast.setAttribute('message', message)
+        document.body.appendChild(toast)
     }
 
     #setState (state) {
@@ -54,8 +54,8 @@ class RecorderElement extends HTMLElement {
     }
 
     #setReadyState (state) {
-        this.ui.dataset.ready = state;
-        this.recordBtn.disabled = !Boolean(state);
+        this.ui.dataset.ready = state
+        this.recordBtn.disabled = !Boolean(state)
     }
 
     connectedCallback () {
@@ -63,8 +63,8 @@ class RecorderElement extends HTMLElement {
         this.duration = Number(this.getAttribute('duration') || 10_000)
 
         const [targetId, canvasId] = targetAttr.split(':') ?? []
-        // var id = Math.random().toString(36).slice(2, 9);
-        this.#uniqueId = `${targetId}-${canvasId || 'default'}`;
+        // var id = Math.random().toString(36).slice(2, 9)
+        this.#uniqueId = `${targetId}-${canvasId || 'default'}`
 
         if (targetId) {
             this.target = document.getElementById(targetId)
@@ -89,30 +89,30 @@ class RecorderElement extends HTMLElement {
     }
 
     attachToFrameTarget (canvasId) {
-        this.#iframeWindow = this.target.contentWindow;
+        this.#iframeWindow = this.target.contentWindow
         this.target.addEventListener("load", () => {
-            this.#sendMessage("stream-requested", {canvasId});
-        });
+            this.#sendMessage("stream-requested", {canvasId})
+        })
         //todo: when everything work fine . save it end remove it
-        window.addEventListener("message", this.#handleMessage.bind(this));
+        window.addEventListener("message", this.#handleMessage.bind(this))
     }
 
     #sendMessage (type, payload = {}) {
-        this.#iframeWindow?.postMessage({type, id: this.#uniqueId, ...payload}, "*");
+        this.#iframeWindow?.postMessage({type, id: this.#uniqueId, ...payload}, "*")
     }
 
     #handleMessage (event) {
-        const {type, id, canvasId, ...data} = event.data;
+        const {type, id, canvasId, ...data} = event.data
 
-        if (id !== this.#uniqueId) return; // Ignore unrelated messages
+        if (id !== this.#uniqueId) return // Ignore unrelated messages
 
         switch (type) {
             case "ready":
                 this.#setReadyState(true)
-                break;
+                break
             case "timer-update":
                 this.updateTimer(data.time)
-                break;
+                break
             case "state-update":
                 let state = {
                     start: 'recording', pause: 'paused',
@@ -148,8 +148,8 @@ class RecorderElement extends HTMLElement {
             //todo: get record time as attribute
             this.recorder.record(10000).then(url => {
                 this.stopRecording()
-                this.#downloadingRecord(url);
-            });
+                this.#downloadingRecord(url)
+            })
             this.showToast('Recording started!')
         } else {
             var {duration} = this
@@ -161,7 +161,7 @@ class RecorderElement extends HTMLElement {
         if (!this.target) return
         if (this.recorder) {
             this.#setState('paused')
-            this.recorder.pause();
+            this.recorder.pause()
             this.showToast('Recording paused.')
         } else {
             this.#sendMessage('pause')
@@ -200,10 +200,10 @@ class RecorderElement extends HTMLElement {
 
     #downloadingRecord (url) {
         this.showToast('Downloading record')
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'matrix-rain.webm';
-        link.click();
+        const link = document.createElement('a')
+        link.href = url
+        link.download = 'matrix-rain.webm'
+        link.click()
     }
 }
 
