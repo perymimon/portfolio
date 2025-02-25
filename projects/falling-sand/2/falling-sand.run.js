@@ -10,7 +10,7 @@ var grid = new Grid(cols, rows)
 window.grid = grid
 const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d')
-const cellSize = 10
+const cellSize = 1
 canvas.width = cols * cellSize
 canvas.height = rows * cellSize
 
