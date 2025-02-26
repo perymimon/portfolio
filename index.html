@@ -39,7 +39,6 @@
 <body>
 
 <aside id="sidebar" class="scrollbar-custom">
-
     <div class="sidebar-header">
         <div id="avatar">
             <canvas id="avatar-canvas"></canvas>
@@ -91,7 +90,7 @@
     <!-- project info -->
     <div id="project-info" class="info-container component-base"><!--Project Info--></div>
     <!--main frame-->
-    <iframe id="content-frame" name="content-frame" ><!--Demo Pages--></iframe>
+<!--    <iframe id="content-frame" style="display:none" name="content-frame" >&lt;!&ndash;Demo Pages&ndash;&gt;</iframe>-->
     <!--bottom bar -->
     <div id="bottom-bar">
 <!--        <button id="theme-toggle" class="button-base" aria-label="Toggle theme"> 🌓</button>-->
@@ -103,6 +102,7 @@
 
 <script type="module">
     // import './home-scripts/sidebar-link.js'
+    import './home-scripts/sidebar.js'
     import {linkPageFromParent, toggleTheme} from './projects/_helpers/link-page.js'
     import './home-scripts/avatar-effect.js'
     import './home-scripts/new-link-processing.js'
@@ -111,14 +111,7 @@
     // themeToggle.addEventListener('click', toggleTheme)
     linkPageFromParent()
 
-    var toggleThemes = document.getElementById('sidebar-toggle-button')
-    var sidebar = document.querySelector('#sidebar')
 
-    window.addEventListener('hashchange', ev => sidebar.classList.remove('open'))
-
-    toggleThemes.addEventListener('click',
-        ev => sidebar.classList.toggle('open'),
-    )
 
 </script>
 </body>

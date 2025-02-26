@@ -64,6 +64,7 @@ button#sidebar-toggle-button {
 
 .sidebar-title {
     margin:0;
+    text-box: trim-start cap alphabetic;
 
     .last-letter{
         transform: rotate(-10deg);
