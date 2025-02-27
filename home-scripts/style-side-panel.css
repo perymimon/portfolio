@@ -37,6 +37,10 @@ button#sidebar-toggle-button {
         transition: none;
     }
 
+    *{
+        touch-action: pan-y; /* so user can close it my swift left/right*/
+    }
+
     @media (orientation: landscape) {
         height: 100vh;
     }
