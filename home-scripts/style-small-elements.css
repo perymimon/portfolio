@@ -66,8 +66,12 @@ fancy-recorder {
     color: transparent;
     font-family: var(--font-family-mono);
     word-spacing: -0.3em;
-    transition: word-spacing 0.3s;
+    opacity: 1;
+    transition:
+            opacity 0.3s 0.3s,
+            word-spacing 0.3s 0.3s;
     @starting-style{
         word-spacing: -3.2em;
+        opacity: 0;
     }
 }
