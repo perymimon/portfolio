@@ -1,3 +1,6 @@
 @import "../../base.css";
 @import '../project-base.css';
 
+body{
+    overflow-x: clip;
+}
