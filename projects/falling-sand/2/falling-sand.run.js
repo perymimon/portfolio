@@ -15,7 +15,7 @@ canvas.width = cols * cellSize
 canvas.height = rows * cellSize
 
 function update () {
-    console.time('update')
+    // console.time('update')
     for (let i = grid.cells.length - 1; i > 0; i--) {
         const {x, y} = grid.xy(i)
 
@@ -29,7 +29,7 @@ function update () {
         grid.setCell(x, y, 0)
         grid.setChunk(x, y, newState)
     }
-    console.timeEnd('update')
+    // console.timeEnd('update')
 }
 
 

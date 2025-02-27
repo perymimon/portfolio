@@ -65,4 +65,9 @@ fancy-recorder {
     -webkit-text-stroke: 1px var(--text-primary);
     color: transparent;
     font-family: var(--font-family-mono);
+    word-spacing: -0.3em;
+    transition: word-spacing 0.3s;
+    @starting-style{
+        word-spacing: -3.2em;
+    }
 }

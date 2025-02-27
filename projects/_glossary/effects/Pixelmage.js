@@ -59,7 +59,7 @@ export default class PixelImage {
     }
 
     * [Symbol.iterator] () {
-        console.time('pixel Iterable')
+        // console.time('pixel Iterable')
         const { xyBuffer } = this;
         const len = this.pixelAmount * 2;
 
@@ -75,11 +75,11 @@ export default class PixelImage {
             yield pixel; // Reuse the same object
         }
 
-        console.timeEnd('pixel Iterable');
+        // console.timeEnd('pixel Iterable');
     }
 
     render () {
-        console.time('render-1')
+        // console.time('render-1')
         var {width, height, data} = this.imageData
         var offScreenCanvas = new OffscreenCanvas(width, height)
         var ctx = offScreenCanvas.getContext('2d')
@@ -90,10 +90,10 @@ export default class PixelImage {
             ctx.fillRect(x, y, 1, 1)
         }
         this.offScreenCanvas = offScreenCanvas
-        console.timeEnd('render-1')
+        // console.timeEnd('render-1')
     }
     render4(){
-        console.time('render-4')
+        // console.time('render-4')
         var {width, height, data} = this.imageData
         const blendedColor = new Uint8ClampedArray(width * height * 4); // Stores blended colors
         for (let i = 0; i < width * height; i++) {
@@ -105,10 +105,10 @@ export default class PixelImage {
             blendedColor.set(color, index)
         }
         this.toDrawImageData = new ImageData(blendedColor, width, height)
-        console.timeEnd('render-4')
+        // console.timeEnd('render-4')
     }
     render2 () {
-        console.time('render-2')
+        // console.time('render-2')
         var {width, height, data} = this.imageData
         const blendedColor = new Uint8ClampedArray(width * height * 4); // Stores blended colors
 
@@ -149,11 +149,11 @@ export default class PixelImage {
         }
 
         this.toDrawImageData = new ImageData(blendedColor, width, height)
-        console.timeEnd('render-2')
+        // console.timeEnd('render-2')
     }
 
     render3 () {
-        console.time('render-3')
+        // console.time('render-3')
 
         var {width, height, data} = this.imageData;
 
@@ -206,7 +206,7 @@ export default class PixelImage {
 
         // Replace the original imageData
         this.toDrawImageData = newImageData;
-        console.timeEnd('render-3')
+        // console.timeEnd('render-3')
 
     }
 

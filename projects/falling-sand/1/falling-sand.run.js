@@ -36,7 +36,7 @@ stateMachine.set(0b110, 0b001)
 stateMachine.set(0b111, 0b010_000)
 
 function update () {
-    console.time('update')
+    // console.time('update')
     for (let i = 0; i < grid.cells.length; i++) {
         let {x, y} = grid.xy(i)
 
@@ -48,7 +48,7 @@ function update () {
         nextGrid.setChunk2(cell, x, y, newState, 'pad')
     }
     swapBuffers()
-    console.timeEnd('update')
+    // console.timeEnd('update')
 }
 var hsl = 0
 pointer.onPress = (({x,y})=>{
