@@ -45,12 +45,15 @@ nav {
     justify-content: space-between;
     align-items: flex-start;
     padding: var(--space-2);
+    @media  (orientation: landscape) {
+        display: none;
+    }
 
     .my-name {
         margin: 0;
         padding: 0;
-        -webkit-text-stroke: 1px var(--text-primary);
-        color: transparent;
+
+
         font-size: 1.5em;
     }
 }

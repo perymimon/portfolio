@@ -65,6 +65,15 @@ button#sidebar-toggle-button {
         background: transparent;
         transform: translateX(100%);
     }
+
+    .my-name{
+        @media (orientation: portrait) {
+            display: none;
+        }
+        font-size:1.3em;
+        padding:0;
+
+    }
 }
 
 .sidebar-header {

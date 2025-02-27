@@ -60,3 +60,9 @@ fancy-recorder {
         display: none;
     }
 }
+
+.my-name {
+    -webkit-text-stroke: 1px var(--text-primary);
+    color: transparent;
+    font-family: var(--font-family-mono);
+}

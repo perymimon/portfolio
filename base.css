@@ -212,7 +212,11 @@ a {
     font-family: var(--font-family-mono), monospace;
     color: inherit;
 }
-
+h1, h2, h3, h4, h5, h6 {
+    text-box-trim: trim-both ;
+    margin-inline: 0;
+    padding-inline: 0;
+}
 h1, h2 {
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
@@ -233,12 +237,12 @@ h1 {
 h2 {
     font-size: var(--font-size-relative-xl);
     margin-bottom: var(--space-2);
+    margin-block: 0;
 }
 
 h3 {
     font-family: var(--font-family-mono), monospace;
     font-weight: var(--font-weight-bold);
-    padding: var(--space-2);
     margin: 0;
 }
 
