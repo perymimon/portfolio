@@ -68,8 +68,8 @@ fancy-recorder {
     word-spacing: -0.3em;
     opacity: 1;
     transition:
-            opacity 0.3s 0.3s,
-            word-spacing 0.3s 0.3s;
+            opacity 0.3s 0.5s,
+            word-spacing 0.3s 0.5s;
     @starting-style{
         word-spacing: -3.2em;
         opacity: 0;
