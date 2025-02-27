@@ -1,20 +1,20 @@
 button#sidebar-toggle-button {
-    &::before{
-        content: '☰ Glossary';
+    &::before {
+        content: "☰ Glossary";
     }
-    width:max-content;
+    width: max-content;
     top: 0;
-    left:100%;
+    left: 100%;
     transform: translateX(0);
     z-index: calc(var(--z-index-popover) + 1);
-    transition: transform var(--transition-slow)  allow-discrete;
+    transition: transform var(--transition-slow) allow-discrete;
     @media (orientation: landscape) {
         display: none;
     }
 
-    .open &{
+    .open & {
         transform: translateX(-100%);
-        &::before{
+        &::before {
             content: "X close";
         }
     }
@@ -22,7 +22,7 @@ button#sidebar-toggle-button {
 
 #sidebar {
     anchor-name: --sidebar;
-    display:flex;
+    display: flex;
     flex-direction: column;
     position: relative;
     width: var(--sidebar-width);
@@ -33,6 +33,9 @@ button#sidebar-toggle-button {
     padding: var(--space-4);
     border-image: linear-gradient(to left, var(--color-border) 2px, transparent 2px, transparent 4px, var(--color-border) 4px, transparent 40px) 6;
     transition: transform 0.3s ease;
+    &.touched {
+        transition: none;
+    }
 
     @media (orientation: landscape) {
         height: 100vh;
@@ -42,20 +45,27 @@ button#sidebar-toggle-button {
         position: fixed;
         top: 0;
         left: 0;
-        transform: translateX(-100%);
+        transform: translateX(min(calc(-100% + var(--swipe, 0) * 1px), 0%));
         z-index: var(--z-index-popover);
-        background-color: hsl(from var(--component-bg) h s l/ 1 );
+        background-color: hsl(from var(--component-bg) h s l/ 1);
         border: none;
         border-top-right-radius: var(--radius-2xl);
         border-bottom-right-radius: var(--radius-2xl);
         align-self: anchor-center;
     }
 
-    &.open{
-        transform: translateX(0);
+    &.open {
+        transform: translateX(min(calc(0% + var(--swipe, 0) * 1px),0%));
+    }
+    #swipe-overlay {
+        position: absolute;
+        inset-block: 0;
+        right: 0;
+        width: 2em;
+        background: transparent;
+        transform: translateX(100%);
     }
 }
-
 
 .sidebar-header {
     margin-block: var(--space-4);
@@ -63,10 +73,10 @@ button#sidebar-toggle-button {
 }
 
 .sidebar-title {
-    margin:0;
+    margin: 0;
     text-box: trim-start cap alphabetic;
 
-    .last-letter{
+    .last-letter {
         transform: rotate(-10deg);
         display: inline-block;
         margin-inline-start: 0.1em;
@@ -97,7 +107,7 @@ a.sidebar-link, .sidebar-link > a {
         position: relative;
 
         &:before {
-            content: '>_';
+            content: ">_";
             left: -0.0em;
             position: absolute;
         }
@@ -111,14 +121,14 @@ a.sidebar-link, .sidebar-link > a {
 
         &::after {
             position: relative;
-            content: '↵';
+            content: "↵";
             color: var(--text-primary);
             /*left:-1em;*/
         }
     }
 
     &:is(:target,hover)::before {
-        content: '>';
+        content: ">";
         color: var(--text-primary);
         position: absolute;
         left: -0.5em;

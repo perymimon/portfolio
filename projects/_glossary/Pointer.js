@@ -12,14 +12,14 @@ export default class Pointer extends Interactive {
     doubleTapThreshold = 300 // Time in milliseconds
     swipeThreshold = 100; // Minimum distance in pixels
 
-    constructor (triggerElement = window) {
+    constructor (triggerElement = window, touchAction = 'none') {
         super(triggerElement)
         this.dragging = null
         this.hovered = null
         this.hoverThreshold = 20
         this.activeButton = 0
-        this.pointer = {x: 0, y: 0}
-        this.start = {x: 0, y: 0}
+        this.pointer = {x: 0, y: 0, px:0, py:0}
+        this.start = {x: 0, y: 0, px:0, py:0}
         this.swiftStart = {x: 0, y: 0}
         this.interestPoints = []
 
@@ -32,14 +32,18 @@ export default class Pointer extends Interactive {
         // Swift detection
 
         this.enable()
-        triggerElement.style.touchAction = 'none'
+        if (triggerElement.style)
+            triggerElement.style.touchAction = touchAction
+        else
+            window.document.body.style.touchAction = touchAction
+
         // if (getComputedStyle().touchAction !== 'none') {
         //     console.warn(`trigger element`, triggerElement, `must set touchAction to 'none'`)
         // }
     }
 
     // Public interface methods
-    onMove (e, mousePoint) {}
+    onMove (pointer, mousePoint) {}
 
     onRemove (e, targetPoint) {}
 
@@ -48,6 +52,8 @@ export default class Pointer extends Interactive {
     onSelected (e, selectedPoint) {}
 
     onTap (e, tapPoint) {}
+    onDown(pointer, e){}
+    onUp (pointer, e) {}
 
     onPress (e, tapPoint) {} // Fires repeatedly while pointer is down
     onDblTap (e, tapPoint) {} // Fires on double tap
@@ -55,12 +61,13 @@ export default class Pointer extends Interactive {
 
     /* Internals */
     #onPointerMove (e) {
+        console.log('pointer move')
         e.preventDefault()
         this.e = e
-        this.pointer = {x: e.offsetX, y: e.offsetY}
+        this.pointer = {x: e.offsetX, y: e.offsetY, px:e.pageX, py:e.pageY}
         this.delta = {
-            x: this.pointer.x - this.swiftStart.x,
-            y: this.pointer.y - this.swiftStart.y,
+            x: this.pointer.px - this.start.px,
+            y: this.pointer.py - this.start.py,
             elapsed: Date.now() - this.timeStart,
             get distance () { return Math.hypot(this.x, this.y) },
             get velocity () { return this.distance / this.elapsed},
@@ -73,8 +80,7 @@ export default class Pointer extends Interactive {
 
         }
         if (this.isPointerDown && this.delta.distance > this.swipeThreshold) {
-            this.onSwift(e, this)
-            this.swiftStart = this.pointer
+            this.onSwift(this.pointer, this)
         }
 
         if (this.dragging) {
@@ -82,7 +88,7 @@ export default class Pointer extends Interactive {
             this.dragging.y = this.pointer.y;
         }
         this.hovered = getNearestPoint(this.pointer, this.interestPoints, this.hoverThreshold);
-        this.onMove(e, this.mouse, this);
+        this.onMove(this.pointer, this);
     }
 
     #onPointerDown (e) {
@@ -95,6 +101,8 @@ export default class Pointer extends Interactive {
         this.pointer = this.start = this.delta = this.swiftStart = {
             x: e.offsetX,
             y: e.offsetY,
+            px:e.pageX,
+            py:e.pageY
         }
 
         this.timeStart = Date.now()
@@ -105,7 +113,7 @@ export default class Pointer extends Interactive {
         // Double tap logic
         const currentTime = Date.now();
         if (currentTime - this.lastTapTime < this.doubleTapThreshold) {
-            this.onDblTap(e, this.pointer, this);
+            this.onDblTap(this.pointer, this);
             this.lastTapTime = 0; // Reset to prevent triple taps
         } else {
             this.lastTapTime = currentTime
@@ -119,10 +127,11 @@ export default class Pointer extends Interactive {
             this.hovered = null
             this.onSelected(e, this.selected, this)
         } else {
-            this.onSelected(e, this.mouse, this)
+            this.onSelected(this.pointer, this)
         }
 
-        this.onTap(e, this.mouse, this)
+        this.onTap(this.pointer, this)
+        this.onDown(this.pointer, this)
     }
 
     #onPointerUp (e) {
@@ -136,12 +145,13 @@ export default class Pointer extends Interactive {
             this.onDrop(e, this.dragging, this.hovered, this);
             this.dragging = null;
         }
+        this.onUp(this.pointer, this)
     }
 
     #startPressLoop () {
         const firePress = () => {
             if (this.isPointerDown) {
-                this.onPress.call(this,this.pointer, this.e, this)
+                this.onPress.call(this, this.pointer, this.e, this)
                 this.pressFrameId = requestAnimationFrame(firePress)
             }
         };
