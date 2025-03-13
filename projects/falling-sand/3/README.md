@@ -2,7 +2,7 @@ In the [first part of this series](https://perymimon.hashnode.dev/building-a-fal
 
 ---
 
-<iframe src="https://perymimon.github.io/portofolio/projects/falling-sand/2/index.html" style="width:100vw;height:300px"></iframe>
+<iframe src="https://perymimon.github.io/portfolio/projects/falling-sand/2/index.html" style="width:100vw;height:300px"></iframe>
 
 ## Introduction
 

@@ -2,6 +2,7 @@
 * {
     box-sizing: border-box;
     /*transition-behavior: allow-discrete; make the browser collapse*/
+    border: 0 solid currentColor;
 }
 
 /* Design System CSS */
@@ -22,6 +23,18 @@ body, html {
     width: 100dvw;
     min-height: 100dvh;
 }
+audio, canvas, embed, iframe, img, object, svg, video{
+    vertical-align: middle;
+    display: block;
+}
+menu, ol, ul,blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+    margin: 0;
+    padding: 0;
+}
+menu, ol, ul{
+    list-style: none;
+}
+
 /* Root Theme Variables */
 :root {
     /*--color-shade: #222;*/
@@ -34,6 +47,7 @@ body, html {
     --color-primary-hover: light-dark(hsl(120, 100%, 45%), hsl(120, 50%, 50%));
     --color-secondary: light-dark(hsl(90, 60%, 30%), hsl(90, 50%, 50%)); /* Darker Green */
     --color-secondary-hover: light-dark(hsl(90, 50%, 40%), hsl(90, 60%, 60%));
+
     --color-warning: light-dark(hsl(50, 80%, 40%), hsl(50, 60%, 60%)); /* Yellow-Green */
     --color-warning-hover: light-dark(hsl(50, 90%, 50%), hsl(50, 70%, 70%));
     --color-error: light-dark(hsl(0, 80%, 40%), hsl(0, 60%, 50%)); /* Red */
@@ -43,7 +57,7 @@ body, html {
 
     /* Neutral Colors */
     --color-background: light-dark(hsl(120, 100%, 10%), hsl(120, 15%, 5%)); /* Deep Greenish Black vs Light Greenish White */
-    --color-foregrowund: light-dark(hsl(120, 80%, 50%), hsl(120deg 100% 30% / 10%)); /* Light Green vs Dark Green */
+    --color-foregrowund: light-dark(hsl(120, 80%, 50%), hsl(120deg 100% 30% / 20%)); /* Light Green vs Dark Green */
     --color-muted: light-dark(hsl(120, 15%, 50%), hsl(120, 10%, 50%)); /* Subtle Green */
     --color-muted-hover: light-dark(hsl(120, 20%, 50%), hsl(120, 20%, 60%));
 
@@ -53,14 +67,15 @@ body, html {
     --color-border-active: light-dark(hsl(290, 100%, 50%), hsl(290, 100%, 60%));
 
     /* Component Colors */
-    --component-bg: light-dark(hsl(120deg 50% 35% / 50%), hsl(120deg 100% 10% / 15%));
-    --component-border: light-dark(hsl(120, 40%, 60%), hsl(120, 10%, 20%));
-    --component-hover: light-dark(hsl(120, 50%, 50%), hsl(120deg 50% 15% / 55%));
+    --component-bg: light-dark(hsl(120deg 50% 35% / 30%), hsl(120deg 50% 20% / 80%));
+    --component-border: light-dark(hsl(120deg 40% 60%), hsl(120 10% 20%));
+    --component-hover: light-dark(hsl(120deg 50% 50%), hsl(120deg 50% 15% / 55%));
+    --component-base: #4caf50;
 
     /* Text Colors */
     --text-primary: light-dark(hsl(120, 100%, 50%), hsl(120, 40%, 60%)); /* Neon Green */
     --text-secondary: light-dark(hsl(120, 80%, 70%), hsl(120, 20%, 60%));
-    --text-muted: light-dark(hsl(120, 40%, 40%), hsl(120, 10%, 35%));
+    --text-muted: light-dark(hsl(120, 40%, 40%), hsl(120, 20%, 25%));
     --text-inverse: light-dark(hsl(290, 100%, 50%), hsl(290, 100%, 60%)); /* White vs Deep Green */
 
     --text-data-numeric: hsl(200, 80%, 60%); /* Cyan */
@@ -92,6 +107,7 @@ body, html {
     --font-size-2xl: 1.5rem; /* 24px */
     --font-size-3xl: 1.875rem; /* 30px */
     --font-size-4xl: 2.25rem; /* 36px */
+    --font-size-5xl: 3rem; /* 36px */
 
     --font-size-relative-xs: 0.75em; /* 12px */
     --font-size-relative-sm: 0.875em; /* 14px */
@@ -119,12 +135,18 @@ body, html {
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
-    --radius-full: 9999px;
+    --radius-full: 100%;
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(120deg 50% 10% / 20% );
-    --shadow-md: 0 4px 4px 0px rgb(0 0 0 / 0.1), 0 2px 2px 0px hsl(120deg 50% 20%  );
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-color: hsl(from var(--color-primary-hover) h s l / 20% );
+
+    --shadow-sm: 0 1px 2px 0 var(--shadow-color);
+    --shadow-md:
+            0 4px 4px 0px var(--shadow-color),
+            0 2px 2px 0px hsl(120deg 50% 20%  );
+    --shadow-lg:
+            0 0em .2em .1em hsl(from var(--shadow-color) h s l / 10% ),
+            0 .5em 3em -.1em hsl(from var(--shadow-color) h s l / 5% );
 
     /*blur*/
     --blur-sm: 2px;
@@ -252,7 +274,7 @@ code {
 }
 
 p {
-    color: var(--text-secondary);
+    color: var(--text-primary);
 }
 
 /*---*/
@@ -271,7 +293,7 @@ p {
 
 /* Button Base */
 .button-base, [role="button"] {
-    display: inline-flex;
+    display: inline flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
@@ -280,7 +302,8 @@ p {
     border: 1px solid transparent;
     padding: var(--space-1) var(--space-3);
     font-size: var(--font-size-xs);
-    background-color: var(--color-primary);
+    background-color: var(--component-bg);
+    text-decoration: none;
     /*border: none;*/
     border-radius: var(--radius-sm);
     cursor: pointer;
@@ -293,7 +316,9 @@ p {
         cursor: not-allowed;
         opacity: 0.6; /* Slightly dimmed appearance */
     }
-
+    &:hover {
+        background-color: var(--component-hover);
+    }
 }
 
 /* Input Base */

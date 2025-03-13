@@ -13,6 +13,8 @@ export class FrameEngine extends EventTarget {
         if (callback) {
             this.addEventListener('frames', callback)
         }
+
+        window.addEventListener("pageswap", (e) => this.stop())
     }
 
     set fps (v) {

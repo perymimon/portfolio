@@ -78,7 +78,7 @@
     "title": "force from item",
     "link": "projects/particles/7/index.html",
     "description": "",
-    "github": "https://github.com/perymimon/portofolio/tree/main/projects/particles"
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/particles"
   },
   {
     "groupId": "tutorials-by-frank",
@@ -90,7 +90,7 @@
     "description": "A matrix rain, created with vanilla ES6 on canvas and some CSS filters.",
     "teacher": "@Frank",
     "tutorial": "https://www.youtube.com/watch?v=f5ZswIE_SgY",
-    "github": "https://github.com/perymimon/portofolio/tree/main/projects/matrix-rain"
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/matrix-rain"
   },
   {
     "groupId": "tutorials-by-frank",
@@ -101,7 +101,7 @@
     "stack": "Canvas, vanilla es6",
     "description": "What if we change the speed of the particles based on the luminosity of a hidden image?",
     "teacher": "@Frank",
-    "github": "https://github.com/perymimon/portofolio/tree/main/projects/pixel-rain"
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/pixel-rain"
   },{
     "groupId": "tutorials-by-coding-train",
     "id": "projects-ray-cast",
@@ -110,7 +110,7 @@
     "year": 2025,
     "stack": "Canvas, vanilla es6",
     "teacher": "@Dan",
-    "github": "https://github.com/perymimon/portofolio/tree/main/projects/ray-casting/1/index.html",
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/ray-casting/1/index.html",
     "youtube": "https://www.youtube.com/watch?v=TOEi6T2mtH",
     "description": "Move you pointer around and see how the light block by thw walls. You can click to creat a new wall"
 },{
@@ -121,7 +121,7 @@
     "year": 2025,
     "stack": "Canvas, vanilla es6",
     "teacher": "@me",
-    "github": "https://github.com/perymimon/portofolio/tree/main/projects/paper-marbling",
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/paper-marbling",
     "youtube": "https://www.youtube.com/watch?v=p7IGZTjC008&ab_channel=TheCodingTrain",
     "description": "Sit back and enjoy from the paper marble effect "
 },{
@@ -132,7 +132,7 @@
     "year": 2025,
     "stack": "Canvas, vanilla es6",
     "teacher": "@Dan",
-    "github": "https://github.com/perymimon/portofolio/tree/main/projects/paper-marbling",
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/paper-marbling",
     "youtube": "https://www.youtube.com/watch?v=p7IGZTjC008&ab_channel=TheCodingTrain",
     "description": "Double Tab to drop a new drop and swift around to tineLine the Liquid"
   },{
@@ -151,7 +151,7 @@
   "article": "https://perymimon.hashnode.dev/building-a-falling-sand-simulation-with-html-canvas",
   "tags": "cellularAutomata",
 
-  "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand/1",
+  "github": "https://github.com/perymimon/portfolio/tree/main/projects/falling-sand/1",
   "description": "Falling send with fast and simple cellular Automata algorithm"
 },{
   "groupId": "falling-sand",
@@ -161,7 +161,7 @@
   "year": 2025,
   "tags": "cellularAutomata",
   "article": "https://perymimon.hashnode.dev/falling-sand-part-2",
-  "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand/2",
+  "github": "https://github.com/perymimon/portfolio/tree/main/projects/falling-sand/2",
   "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
 },{
   "groupId": "falling-sand",
@@ -171,7 +171,7 @@
   "year": 2025,
   "tags": "cellularAutomata",
   "article": "https://perymimon.hashnode.dev/building-a-falling-sand-simulation-with-html-canvas",
-  "github": "https://github.com/perymimon/portofolio/tree/main/projects/falling-sand/3",
+  "github": "https://github.com/perymimon/portfolio/tree/main/projects/falling-sand/3",
   "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
 },{
   "groupId": "tutorials-by-coding-train",
@@ -180,7 +180,7 @@
   "link": "projects/hilbert-curve/index.html",
   "year": 2025,
   "tags": "math",
-  "github": "https://github.com/perymimon/portofolio/tree/main/projects/hilbert-curve",
+  "github": "https://github.com/perymimon/portfolio/tree/main/projects/hilbert-curve",
   "description": "The Hilbert Curve is a special type of space-filling curve that covers an entire 2D area in such a way that any point on the curve does not move significantly when the resolution is increased"
 }
 

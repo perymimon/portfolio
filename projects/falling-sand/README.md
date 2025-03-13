@@ -4,7 +4,7 @@ publish on : [hashnode](https://perymimon.hashnode.dev/building-a-falling-sand-s
 
 In this article, we’ll explore how to build a **falling sand simulation** using JavaScript and the HTML5 Canvas API. We’ll start with a simple implementation, identify its limitations, and iteratively improve it step by step. By the end, you’ll have a smooth, interactive simulation that you can tweak and expand.
 
-You can find the full code on my [GitHub](https://github.com/perymimon/portofolio/tree/main/projects/falling-sand) and try the working demo [here.](https://perymimon.github.io/portofolio/projects/falling-sand/1)
+You can find the full code on my [GitHub](https://github.com/perymimon/portfolio/tree/main/projects/falling-sand) and try the working demo [here.](https://perymimon.github.io/portfolio/projects/falling-sand/1)
 
 * * *
 
@@ -346,11 +346,11 @@ What you think on that ?
 [Permalink](#heading-step-4-making-it-interactive-and-color-the-sand "Permalink")Step 4: Making It Interactive and color the sand
 ---------------------------------------------------------------------------------------------------------------------------------
 
-Our grid is very small 4X4, let bigger it to nice size of 400 X 400 and let’s make the simulation interactive by allowing users to add sand particles with a mouse click. I use the `Pointer` class from my collection, which you can find and copy [here](https://github.com/perymimon/portofolio/blob/main/projects/_glossary/Pointer.js).
+Our grid is very small 4X4, let bigger it to nice size of 400 X 400 and let’s make the simulation interactive by allowing users to add sand particles with a mouse click. I use the `Pointer` class from my collection, which you can find and copy [here](https://github.com/perymimon/portfolio/blob/main/projects/_glossary/Pointer.js).
 
 Copy
 
-    import Pointer from 'https://perymimon.github.io/portofolio/projects/_glossary/Pointer.js'
+    import Pointer from 'https://perymimon.github.io/portfolio/projects/_glossary/Pointer.js'
     // ^ put in on top of the file
     
     var pointer = new Pointer(canvas);
@@ -487,7 +487,7 @@ Feel free to play with the CSS animation and give the `<div>` more life or any p
 Copy
 
     //falling-sand.js
-    import Pointer from 'https://perymimon.github.io/portofolio/projects/_glossary/Pointer.js'
+    import Pointer from 'https://perymimon.github.io/portfolio/projects/_glossary/Pointer.js'
     import Grid from './Grid.js';
     
     const cols = 400, rows = 400
@@ -707,13 +707,13 @@ Copy
 
 ### [Permalink](#heading-optimizing-performance "Permalink")Optimizing Performance
 
-Maybe the speed animation is to fast for you… or you want control more precisely on the performance. For that you can limit the update rate with the [`FrameEngine`](https://github.com/perymimon/portofolio/blob/main/projects/_glossary/FrameEngine.js) from my repository
+Maybe the speed animation is to fast for you… or you want control more precisely on the performance. For that you can limit the update rate with the [`FrameEngine`](https://github.com/perymimon/portfolio/blob/main/projects/_glossary/FrameEngine.js) from my repository
 
 replace the `animation` function and the two `requestAnimationFrame(animation)` with this snippet
 
 Copy
 
-    import {FrameEngine} from 'https://perymimon.github.io/portofolio/projects/_glossary/FrameEngine.js' // or copy it
+    import {FrameEngine} from 'https://perymimon.github.io/portfolio/projects/_glossary/FrameEngine.js' // or copy it
     // ^ put that on top of the file
     
     new FrameEngine(60 /*or 10 fps*/, function animation() {
@@ -759,7 +759,7 @@ Copy
 
 ### [Permalink](#heading-exploring-the-code "Permalink")Exploring the Code
 
-All the utilities used in this project, including the `FrameEngine` and the `Pointer`, among others, are available in my [GitHub repository](https://github.com/perymimon/portofolio/blob/main/projects/_glossary/FrameEngine.js). These tools were written from scratch and are designed to be modular and reusable. Here’s a quick overview of what’s included:
+All the utilities used in this project, including the `FrameEngine` and the `Pointer`, among others, are available in my [GitHub repository](https://github.com/perymimon/portfolio/blob/main/projects/_glossary/FrameEngine.js). These tools were written from scratch and are designed to be modular and reusable. Here’s a quick overview of what’s included:
 
 *   `FrameEngine`: A utility for managing frame-based animations and updates.
 
@@ -786,7 +786,7 @@ We’ll also explore how to extend the state machine to handle these new behavio
 
 In this article, we’ve built a falling sand simulation from scratch, starting with a simple grid and gradually adding features like chunk-based operations, performance optimizations, and interactivity. We’ve also added a cool auto mouse press animation to demonstrate the simulation in action.
 
-You can find the full code on my [GitHub](https://github.com/perymimon/portofolio/tree/main/projects/falling-sand) and try the working demo [here](https://perymimon.github.io/portofolio/projects/falling-sand).
+You can find the full code on my [GitHub](https://github.com/perymimon/portfolio/tree/main/projects/falling-sand) and try the working demo [here](https://perymimon.github.io/portfolio/projects/falling-sand).
 
 Stay tuned for **Part 2**, where we’ll add the Matrix Material and explore even more advanced simulation techniques. Happy coding! 😊
 
