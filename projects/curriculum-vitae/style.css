@@ -68,7 +68,9 @@
 .flex-basis-equal {
     flex: 1 1 0;
 }
-
+.space-around{
+    justify-content: space-around;
+}
 .max-w-3xl {
     max-width: 48rem;
 }
@@ -206,34 +208,7 @@ footer {
     }
 }
 
-.project-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: max-content;
-    gap: var(--space-4);
-    .card {
-        padding: 0;
-    }
-    figure {
-        height: 12rem;
-        position: relative;
-    }
-    img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
 
-    }
-    p {
-        margin-bottom: var(--space-4);
-    }
-    .content {
-        padding: var(--space-4);
-    }
-    h3 {
-        margin-bottom: var(--space-4);
-    }
-}
 
 .container {
     margin-inline: auto;
