@@ -1,0 +1,57 @@
+/* elements with Id */
+#main-header{
+    a{
+        text-decoration: none;
+        border-bottom: .1em solid transparent;
+        &:hover{
+            background-color: var(--component-hover);
+            border-bottom: .1em solid currentColor;
+        }
+    }
+    h1{
+
+        @media (orientation: landscape) {
+
+
+        }
+        @media (orientation: portrait) {
+            display: inline flex;
+            flex-flow: nowrap;
+            white-space: nowrap;
+        }
+
+    }
+}
+#avatar {
+    height: 40rem;
+    /*left:50%;*/
+    /*translate: -200%;*/
+    z-index:-1;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+    @media (orientation: landscape) {
+        position: absolute;
+        opacity:0.3;
+        padding: var(--space-2);
+    }
+    @media (orientation: portrait) {
+        height: 5rem;
+    }
+}
+#particles-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*z-index:var(--z-index-above-absolute);*/
+    canvas {
+        --bg-stop-1: color-mix(in hsl, var(--color-background), hsl(120deg 100% 10% / 60%) 20%);
+        --bg-stop-2: color-mix(in hsl, var(--color-background), hsl(120deg 20% 30%));
+
+    }
+}
+

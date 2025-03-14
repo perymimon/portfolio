@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pery Mimon | Web App Engineer & Architect</title>
-    <meta name="description" content="Professional portfolio and resume of Pery Mimon, a Web App Engineer and architect specializing in high-performance applications and creative coding.">
+    <meta name="description"
+          content="Professional portfolio and resume of Pery Mimon, a Web App Engineer and architect specializing in high-performance applications and creative coding.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +13,56 @@
           rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hero-elements.css">
     <script type="module" src="./tech-skill-bar.js"></script>
 </head>
 <body>
 <div id="particles-background" class="fixed inset-0 -z-10">
     <canvas id="canvas1" width="994" height="605"></canvas>
 </div>
-<main class="container inter-500">
+
+<main class="container font-inter">
     <header id="main-header">
-        <h1 class="inter-500">Pery Mimon</h1>
-        <p class="inline-flex gap-1">
+        <h1 class="font-inter">
+            <figure id="avatar" class="left-0 top-0">
+                <img src="../../assets/avatar-3.svg" alt="">
+            </figure>
+            Pery Mimon
+        </h1>
+<!--        <ul class="inline-flex gap-2 warp bg-color marker" data-marker="|">-->
+<!--            <li>-->
+<!--                <a href="#">-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"-->
+<!--                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                         class="lucide lucide-phone inline h-4 w-4">-->
+<!--                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>-->
+<!--                    </svg>-->
+<!--                    Herzliya, Israel-->
+<!--                </a>-->
+<!--            </li>-->
+
+<!--            <li><a href="tel:+972543043757">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"-->
+<!--                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                     class="lucide lucide-phone inline h-4 w-4">-->
+<!--                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>-->
+<!--                </svg>-->
+<!--                +972 543043757</a>-->
+<!--            </li>-->
+
+<!--            <li>-->
+<!--                <a href="mailto:pery.mimon@gmail.com">-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"-->
+<!--                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                         class="lucide lucide-mail inline h-4 w-4">-->
+<!--                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>-->
+<!--                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>-->
+<!--                    </svg>-->
+<!--                    pery.mimon@gmail.com-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+        <p class="inline-flex gap-1 warp bg-color">
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -53,7 +94,7 @@
             --></a>
         </p>
         <br>
-        <p id="impact" class="inline-flex gap-3 md-6">
+        <p id="impact" class="inline-flex gap-3 md-6 warp bg-color">
             <a href="https://github.com/perymimon" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -135,7 +176,7 @@
         </p>
     </section>
     <section class="md-12">
-        <h2 >TECH SKILLS</h2>
+        <h2>TECH SKILLS</h2>
         <div class="tech-skills card">
             <h3 class="md-4">Frontend Technologies</h3>
             <fancy-tech-skill-bar skill="React" years="4+" strength="85"></fancy-tech-skill-bar>
@@ -162,6 +203,7 @@
                  data-nimg="fill" src="./assets/sabbatical-round.png"/>
             <div>
                 <header class="flex md-4">
+
                     <div>
                         <h3 class="">Skill Development and Personal Projects</h3>
                         <p class="">
@@ -174,7 +216,7 @@
                     </div>
 
                 </header>
-                <ul>
+                <ul >
                     <li>Provided consultancy on front-end architecture and enhanced UI/UX for enterprise (pureSafe).
                     </li>
                     <li>Take a one-year break and use it to focus on
@@ -371,7 +413,9 @@
             </figure>
             <div class="content">
                 <h3>Multiplayer Card Game Implementation</h3>
-                <p>A React-based implementation of the popular Taki card game featuring multiplayer support, interactive gameplay, and responsive design. Built with React, ES6, and SCSS for a seamless gaming experience.</p>
+                <p>A React-based implementation of the popular Taki card game featuring multiplayer support, interactive
+                    gameplay, and responsive design. Built with React, ES6, and SCSS for a seamless gaming
+                    experience.</p>
                 <div class="tags md-4">
                     <span class="tag">React</span>
                     <span class="tag">Card Game</span>

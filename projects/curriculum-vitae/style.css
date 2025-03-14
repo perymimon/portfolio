@@ -1,13 +1,39 @@
 @import "../../base.css";
 
+/* Enable CSS variable animations */
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@property --color-border {
+    syntax: "<color>";
+    inherits: false;
+}
+
+@property --percent {
+    syntax: "<percentage>";
+    inherits: true;
+    initial-value: 0%;
+}
+
+@keyframes percent-animation {
+    from {
+        --percent: 0%;
+    }
+    to {
+        --percent: 100%;
+    }
+}
+
 .text-box-trim {
     text-box: trim-start cap alphabetic;
 }
 
-.inter-500 {
+.font-inter {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
     font-style: normal;
 }
 
@@ -17,6 +43,14 @@
 
 .flex {
     display: block flex;
+}
+
+.warp {
+    flex-wrap: wrap;
+}
+
+.absolute {
+    position: absolute;
 }
 
 .flex-flow-row {
@@ -48,6 +82,10 @@
     line-height: 1.75rem;
 }
 
+.bg-color {
+    background-color: var(--color-background);
+}
+
 .gap-1 { gap: var(--space-1)}
 
 .gap-2 { gap: var(--space-2)}
@@ -72,6 +110,13 @@
     text-align: justify;
 }
 
+.marker {
+    :not(:first-child)::marker {
+        content:'|';
+        margin-inline: 1em;
+    }
+}
+
 body {
     font-size: var(--font-size-relative-base);
     font-family: __Inter_d65c78, __Inter_Fallback_d65c78;
@@ -87,11 +132,12 @@ svg {
 
 h1 {
     font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
 }
 
 h2 {
     font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
     line-height: 2rem;
     text-align: center;
     margin-bottom: var(--space-6);
@@ -215,11 +261,22 @@ footer {
     h3 {
         grid-row: 1;
     }
+
     fancy-tech-skill-bar {
         width: 100%;
         margin-bottom: var(--space-2);
-    }
+        --percent: 10%;
 
+        animation: percent-animation 100ms linear both;
+        animation-timeline: view();
+        animation-range: entry 0 entry 300%;
+
+        ::-webkit-progress-value {
+
+            transform-origin: left;
+            scale: var(--percent) 1;
+        }
+    }
 }
 
 a.button-base {
@@ -237,26 +294,11 @@ a.button-base {
 }
 
 @property  --bg-stop-1 {
-    syntax: < color >;
+    syntax: "<color>";
 }
 
 @property  --bg-stop-2 {
-    syntax: < color >;
-}
-
-#particles-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    --color-stop-1:;
-
-    canvas {
-        --bg-stop-1: color-mix(in hsl, var(--color-background), hsl(120deg 100% 10% / 60%) 20%);
-        --bg-stop-2: color-mix(in hsl, var(--color-background), hsl(120deg 20% 30%));
-
-    }
+    syntax: "<color>";
 }
 
 /* border animation */
@@ -266,24 +308,13 @@ a.button-base {
     opacity: 1;
     &:hover {
         border-image: conic-gradient(from var(--angle), transparent, var(--color-border) 10deg 15deg, transparent 15deg) 2;
-        animation: rotateBorder 3s ease-in-out 1, rotateBorder 1s 3s ease-out 2 , color-border 1s 4s ease-out 1 forwards;
+        animation: rotateBorder 3s ease-in-out 1, rotateBorder 1s 3s ease-out 2, color-border 1s 4s ease-out 1 forwards;
     }
-}
-
-/* Enable CSS variable animations */
-@property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-@property --color-border {
-    syntax: "<color>";
-    inherits: false;
 }
 
 @keyframes color-border {
     50% { --color-border: var(--color-primary); }
-    100% { --color-border:transparent; }
+    100% { --color-border: transparent; }
 }
 
 @keyframes rotateBorder {
