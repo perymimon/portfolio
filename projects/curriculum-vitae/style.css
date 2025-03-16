@@ -1,4 +1,4 @@
-@import "../../base.css";
+@import "../../base.css" layer(base);
 
 /* Enable CSS variable animations */
 @property --angle {
@@ -133,7 +133,7 @@ svg {
 }
 
 h1 {
-    font-size: var(--font-size-5xl);
+    font-size: var(--font-size-relative-5xl);
     font-weight: var(--font-weight-bold);
 }
 

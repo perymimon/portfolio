@@ -1,4 +1,4 @@
-@import "../../base.css";
+@import "../../base.css" layer(base);
 /* elements with Id */
 #main-header {
     a {
