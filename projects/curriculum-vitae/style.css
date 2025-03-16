@@ -223,10 +223,11 @@ footer {
     gap: var(--space-2);
     font-size: var(--font-size-sm);
     .tag {
-        background-color: var(--color-foregrowund);
+        background-color: var(--component-bg);
         color: var(--color-muted);
         border-radius: var(--radius-lg);
-        padding: var(--space-2);
+        padding: var(--space-1);
+        font-size: var(--font-size-xs);
     }
 }
 

@@ -26,6 +26,12 @@ body, html {
 audio, canvas, embed, iframe, img, object, svg, video{
     vertical-align: middle;
     display: block;
+    width:100%;
+    height:100%;
+}
+svg{
+    width:auto;
+    height:auto;
 }
 menu, ol, ul,blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
     margin: 0;
@@ -67,7 +73,7 @@ menu, ol, ul{
     --color-border-active: light-dark(hsl(290, 100%, 50%), hsl(290, 100%, 60%));
 
     /* Component Colors */
-    --component-bg: light-dark(hsl(120deg 50% 35% / 30%), hsl(120deg 50% 20% / 80%));
+    --component-bg: light-dark(hsl(120deg 50% 35% / 30%), hsl(120deg 45% 13% / 80%));
     --component-border: light-dark(hsl(120deg 40% 60%), hsl(120 10% 20%));
     --component-hover: light-dark(hsl(120deg 50% 50%), hsl(120deg 50% 15% / 55%));
     --component-base: #4caf50;
@@ -148,7 +154,7 @@ menu, ol, ul{
             0 0em .2em .1em hsl(from var(--shadow-color) h s l / 10% ),
             0 .5em 3em -.1em hsl(from var(--shadow-color) h s l / 5% );
 
-    /*blur*/
+    /* blur */
     --blur-sm: 2px;
     --blur-md: 6px;
     --blur-lg: 15px;
