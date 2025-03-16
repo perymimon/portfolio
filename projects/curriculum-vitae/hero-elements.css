@@ -1,4 +1,5 @@
 @import "../../base.css" layer(base);
+
 /* elements with Id */
 #main-header {
     a {
@@ -23,7 +24,7 @@
 }
 
 #avatar {
-    height: 40rem;
+    height: 38rem;
     /*left:50%;*/
     /*translate: -200%;*/
     z-index: -1;
@@ -34,7 +35,7 @@
     }
     @media (orientation: landscape) {
         position: absolute;
-        opacity: 0.3;
+        opacity: 0.8;
         padding: var(--space-2);
     }
     @media (orientation: portrait) {
