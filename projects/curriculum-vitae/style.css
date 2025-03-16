@@ -186,16 +186,31 @@ footer {
 
 .experience-card {
     font-size: var(--font-size-base);
-
+    @media (orientation: portrait) {
+        flex-direction:column;
+    }
     img {
         object-fit: contain;
-        height: 5em;
-        width: 5em;
+        aspect-ratio: 1;
+        height: 10em;
+        @media (orientation: landscape) {
+            height: 5em;
+            width: 5em;
+        }
     }
     header {
         text-align: left;
         justify-content: space-between;
         flex-grow: 1;
+        @media (orientation: portrait) {
+            flex-direction:column;
+        }
+        .side-block{
+            @media (orientation: portrait) {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
     }
     ul {
         list-style-position: inside;
