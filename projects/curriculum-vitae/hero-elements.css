@@ -1,5 +1,9 @@
 @import "../../base.css" layer(base);
-
+#canvas2{
+    background-color: red;
+    position: absolute;
+    inset:0;
+}
 /* elements with Id */
 #main-header {
     a {
@@ -25,7 +29,7 @@
 
 #avatar {
     height: 38rem;
-    /*left:50%;*/
+    left:-8rem;
     /*translate: -200%;*/
     z-index: -1;
 

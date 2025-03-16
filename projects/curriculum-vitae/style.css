@@ -159,8 +159,7 @@ a {
 }
 
 main {
-    margin-inline: auto;
-    margin-inline: var(--space-10);
+
 }
 
 header {
@@ -231,6 +230,10 @@ footer {
     position: relative;
     z-index: var(--z-index-above-absolute);
     padding: var(--space-4);
+    @media (orientation: landscape) {
+        max-width: 1080px
+    }
+
 }
 
 .tags {
@@ -279,11 +282,7 @@ a.button-base {
     /*background-color: var(--color-foregrowund);*/
 }
 
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1400px;
-    }
-}
+
 
 @property  --bg-stop-1 {
     syntax: "<color>";

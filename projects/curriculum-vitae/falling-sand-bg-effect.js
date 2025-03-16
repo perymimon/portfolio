@@ -9,5 +9,10 @@ var ctx = canvas.getContext("2d")
 var element = document.getElementById('particles-background')
 setCanvas(canvas, element)
 
-var mainElement = document.querySelector('main')
-var mainChildren = mainElement.children
+// var mainElement = document.querySelector('main')
+// var mainChildren = mainElement.children
+//
+// await import("https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js");
+//
+// const img = await window.html2canvas(element);
+// ctx.drawImage(img, 0, 0);
