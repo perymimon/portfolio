@@ -181,6 +181,9 @@ footer {
     padding: var(--space-6);
     box-shadow: var(--shadow-lg);
     background-color: var(--color-background);
+    @media (orientation: portrait) {
+        background-color: color-mix(var(--color-background), hsl(120deg 50% 50% / 0) );
+    }
 }
 
 .experience-card {
@@ -229,7 +232,7 @@ footer {
     margin-inline: auto;
     position: relative;
     z-index: var(--z-index-above-absolute);
-    padding: var(--space-4);
+    /*padding: var(--space-4);*/
     @media (orientation: landscape) {
         max-width: 1080px
     }
@@ -283,14 +286,6 @@ a.button-base {
 }
 
 
-
-@property  --bg-stop-1 {
-    syntax: "<color>";
-}
-
-@property  --bg-stop-2 {
-    syntax: "<color>";
-}
 
 /* border animation */
 .border-animation {
