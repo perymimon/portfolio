@@ -180,10 +180,11 @@ footer {
 .card {
     padding: var(--space-6);
     box-shadow: var(--shadow-lg);
+    background-color: color-mix(var(--color-background), hsl(120deg 50% 50% / 0) );
+
+}
+.card.opaque{
     background-color: var(--color-background);
-    @media (orientation: portrait) {
-        background-color: color-mix(var(--color-background), hsl(120deg 50% 50% / 0) );
-    }
 }
 
 .experience-card {
