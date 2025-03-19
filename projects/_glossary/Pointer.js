@@ -8,6 +8,8 @@ export default class Pointer extends Interactive {
         pointerup: this.#onPointerUp.bind(this),
         pointermove: this.#onPointerMove.bind(this),
         pointercancel: this.#onPointerUp.bind(this),
+        pointerenter: this.#onPointerEnter.bind(this),
+        pointerleave: this.#onPointerLeave.bind(this),
     }
     doubleTapThreshold = 300 // Time in milliseconds
     swipeThreshold = 100; // Minimum distance in pixels
@@ -22,6 +24,7 @@ export default class Pointer extends Interactive {
         this.start = {x: 0, y: 0, px:0, py:0}
         this.swiftStart = {x: 0, y: 0}
         this.interestPoints = []
+        this.enter = false
 
         // Double tap tracking
         this.lastTapTime = 0;
@@ -59,6 +62,17 @@ export default class Pointer extends Interactive {
     onDblTap (e, tapPoint) {} // Fires on double tap
     onSwift (e, $) {}
 
+    onEnter (pointer, e) {}
+    onLeave (pointer, e) {}
+
+    #onPointerEnter(event){
+        this.enter = true
+        this.onEnter(this.pointer, this)
+    }
+    #onPointerLeave(event){
+        this.enter = false
+        this.onLeave(this.pointer, this)
+    }
     /* Internals */
     #onPointerMove (e) {
         console.log('pointer move')

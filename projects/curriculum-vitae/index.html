@@ -26,13 +26,13 @@
 
 </div>
 
-<main id="main-content" class="container font-inter"  style="opacity: 1">
+<main id="main-content" class="container font-inter" style="opacity: 1">
     <header id="main-header">
         <h1 class="font-inter">
             <figure id="avatar" class="left-0 top-0">
                 <img src="../../assets/avatar-3.svg" alt="">
             </figure>
-            Pery Mimon
+            <span id="my-name">Pery Mimon</span>
         </h1>
         <p class="inline-flex gap-1 warp bg-color space-around md-2">
             <a href="https://maps.app.goo.gl/ijBMkhZio7sbH1ay6" target="_blank">
@@ -332,7 +332,7 @@
                      src="./taki-project.png">
             </figure>
             <h3 slot="front">Taki Card Game</h3>
-<!--            <h3 slot="back">Taki Card Game</h3>-->
+            <!--            <h3 slot="back">Taki Card Game</h3>-->
             <p slot="back">
                 A React-based Taki card game with multiplayer support, interactive gameplay, and responsive design
             </p>
@@ -353,7 +353,7 @@
                      src="https://sjc.microlink.io/uHziaZmWSjMbh2r4Y0l6x4hmmOgS2UYXaeWkLLyILmd0uNY4QKUAe3OlSLa7o8tM_4j8j9iaus-6w7ip7-eKQg.jpeg">
             </figure>
             <h3 slot="front">Falling Sand Simulation</h3>
-<!--            <h4 slot="back">Falling Sand Simulation</h4>-->
+            <!--            <h4 slot="back">Falling Sand Simulation</h4>-->
             <p slot="back">
                 A series of articles on HTML Canvas experiments with cellular automata for sand and water simulations.
             </p>
@@ -377,7 +377,7 @@
                      src="https://sjc.microlink.io/y0bJ0arL_uVS3HS6GTBKc4wAHBlc8h3xkgecGyYn7elkE3tZdpW9Nfs_jugDZut_Z6moelCWClsBiCbXbQVq2g.jpeg">
             </figure>
             <h3 slot="front">Creative Playground</h3>
-<!--            <h3 slot="back">Creative Playground</h3>-->
+            <!--            <h3 slot="back">Creative Playground</h3>-->
             <p slot="back">
                 A collection of interactive experiments showcasing various creative coding techniques and visual
                 effects.
@@ -394,25 +394,25 @@
         </flipping-card>
 
         <!-- Project 4 -->
-<!--        <flipping-card class="card">-->
-<!--            <figure slot="front">-->
-<!--                <img alt="Falling Sand Simulation" loading="lazy" decoding="async" data-nimg="fill" class="object-cover"-->
-<!--                     src="./placeholder.png">-->
-<!--            </figure>-->
-<!--            <h3 slot="front">Obsidian Input Plugin</h3>-->
-<!--            <h4 slot="back">Obsidian Input Plugin</h4>-->
-<!--            <p slot="back">A plugin for the Obsidian note-taking app that enhances input capabilities.</p>-->
-<!--            <div slot="back" class="tags md-4">-->
-<!--                <span class="tag">TypeScript</span>-->
-<!--                <span class="tag">Obsidian</span>-->
-<!--                <span class="tag">Plugin</span>-->
-<!--                <span class="tag">Productivity</span>-->
-<!--            </div>-->
-<!--            <a slot="back" class="button-base"-->
-<!--               target="_blank"-->
-<!--               href="https://github.com/perymimon/obsidian-input">View Project</a>-->
+        <!--        <flipping-card class="card">-->
+        <!--            <figure slot="front">-->
+        <!--                <img alt="Falling Sand Simulation" loading="lazy" decoding="async" data-nimg="fill" class="object-cover"-->
+        <!--                     src="./placeholder.png">-->
+        <!--            </figure>-->
+        <!--            <h3 slot="front">Obsidian Input Plugin</h3>-->
+        <!--            <h4 slot="back">Obsidian Input Plugin</h4>-->
+        <!--            <p slot="back">A plugin for the Obsidian note-taking app that enhances input capabilities.</p>-->
+        <!--            <div slot="back" class="tags md-4">-->
+        <!--                <span class="tag">TypeScript</span>-->
+        <!--                <span class="tag">Obsidian</span>-->
+        <!--                <span class="tag">Plugin</span>-->
+        <!--                <span class="tag">Productivity</span>-->
+        <!--            </div>-->
+        <!--            <a slot="back" class="button-base"-->
+        <!--               target="_blank"-->
+        <!--               href="https://github.com/perymimon/obsidian-input">View Project</a>-->
 
-<!--        </flipping-card>-->
+        <!--        </flipping-card>-->
 
     </div>
 
@@ -457,9 +457,10 @@
         rights reserved.
     </footer>
 </main>
-<canvas id="canvas1" ></canvas>
+<canvas id="canvas1"></canvas>
 <script type="module" src="./background.js"></script>
 <script type="module" src="components/flipping-card.components.js"></script>
 <script type="module" src="falling-sand-bg-effect.js"></script>
+<link rel="stylesheet" href="falling-sand-bg-effect.css">
 </body>
 </html>

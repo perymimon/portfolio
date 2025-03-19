@@ -1,4 +1,6 @@
 import {FrameEngine} from '../_glossary/FrameEngine.js'
+import Pointer from '../_glossary/Pointer.js'
+import Timer from '../_glossary/Timer.js'
 import {imageFrom, setCanvas} from '../_helpers/basic.js'
 import {getImageData} from '../_helpers/filters.colors.js'
 import {random} from '../_math/math.js'
@@ -39,29 +41,29 @@ let replicaImage = await imageFrom('./replica-landscape-2.png')
 let {height} = replicaImage
 
 var grid = new Grid(width, height)
-var touched = new Grid(width, height )
+var touched = new Grid(width, height)
 
-{
+function resetGrid () {
+    grid.cells.fill(0)
     let imageData = getImageData(replicaImage)
     // ctx.drawImage(replicaImage, 0, 0, width, height, 0, 0, width, height)
     grid.setImageData(0, 0, imageData, function toMaterials (r, g, b, a) {
-        if (r === 255 && b === 255 && g===0 ) return null
+        if (r === 255 && b === 255 && g === 0) return null
         return sm.symbols.indexOf('B')
     })
 }
 
+resetGrid()
 
-{
+async function throwSandAndWater () {
     let myNameImage = await imageFrom('./my-name-landscape.png')
     let imageData = getImageData(myNameImage)
-    let {width,height} = imageData
     // ctx.drawImage(myNameImage, 0, 0, width, height, 0, 0, width, height)
     grid.setImageData(0, 0, imageData, function toMaterials (r, g, b, a) {
         if (a === 0 || r + g + b < 20) return null
         return random(1, sm.symbols.length - 1)
     })
 }
-
 
 
 window.grid = grid
@@ -76,7 +78,7 @@ function update () {
         if (touch) continue
 
         const cell = grid.getCell(x, y)
-        if(cell === 0 || cell === 3) continue
+        if (cell === 0 || cell === 3) continue
 
         const state = grid.getChunk(x, y)
         let newState = sm.getNewState(state)
@@ -88,9 +90,33 @@ function update () {
     }
     touched.cells.fill(0)
 }
+
 grid.draw2(ctx, 0, 1, 1, sm)
-new FrameEngine(60, function ({detail: {frames}}) {
+var frameEngine = new FrameEngine(60, function ({detail: {frames}}) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     grid.draw2(ctx, frames, 1, 1, sm)
     update()
-}).start()
+})
+
+var h1 = document.querySelector('#my-name')
+var body = document.querySelector('body')
+var pointer = new Pointer(h1)
+
+
+var timer = new Timer(10_000, () => {
+    frameEngine.stop()
+    resetGrid()
+    body.classList.remove('falling-sand-animate')
+})
+
+pointer.onEnter = function (point) {
+    throwSandAndWater()
+    frameEngine.start()
+    timer.stop()
+    body.classList.add('falling-sand-animate')
+}
+pointer.onLeave = function (point) {
+
+    timer.start()
+}
+

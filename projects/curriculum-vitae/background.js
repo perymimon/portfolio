@@ -26,7 +26,7 @@ var effects = ctxes.map(ctx => {
     return effect
 })
 
-new FrameEngine(10, () => {
+new FrameEngine(15, () => {
     for(let effect of effects) {
         let {ctx, canvas} = effect
         let gradient = getLinearGradient(ctx, 0, 0, 0, canvas.height, {

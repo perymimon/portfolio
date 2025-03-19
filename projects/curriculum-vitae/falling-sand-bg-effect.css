@@ -1,0 +1,24 @@
+#canvas1 {
+    transition: opacity 700ms ease-in;
+    will-change: opacity;
+    opacity: 0;
+}
+
+#my-name {
+    transition: opacity 700ms 250ms ease-out;
+    will-change: opacity;
+    opacity: 1;
+}
+
+
+
+.falling-sand-animate {
+    #my-name {
+        opacity: 0;
+        transition-delay: 0s;
+    }
+    #canvas1{
+        opacity: 1;
+    }
+}
+
