@@ -9,7 +9,7 @@ const teachers = {
         url: 'https://www.youtube.com/@Frankslaboratory',
         name: '@Franks',
     },
-    '@Dan':{
+    '@Dan': {
         url: 'https://thecodingtrain.com/about',
         name: '@Dan',
     },
@@ -18,13 +18,19 @@ const teachers = {
         name: '@pery',
     },
 }
-function link(text, link, target) {
+
+function link (text, link, target) {
     return `<a href="${link}" target="${target}">${text}</a>`
 }
+
 export function injectProjectInfo2 (project) {
     var $infoPanel = document.getElementById('project-info')
     var $tabContainer = document.getElementById('tabs-container')
-    if (!project) return $infoPanel.replaceChildren(/*empty*/)
+    if (!project) {
+        $infoPanel.replaceChildren(/*empty*/)
+        $tabContainer.replaceChildren(/*empty*/)
+        return
+    }
 
     var parentProject = getProjectById(project.groupId)
     var data = {...parentProject, ...project}
@@ -32,18 +38,18 @@ export function injectProjectInfo2 (project) {
     var parentId = parentProject?.id
 
     if (parentId) {
-        if($tabContainer.dataset.parent !== parentId){
-       var fragment = getAnchorsGroup(parentId, 'tabs')
-        $tabContainer.replaceChildren(fragment)
-        $tabContainer.dataset.parent = parentId
-            }
-    }else{
+        if ($tabContainer.dataset.parent !== parentId) {
+            var fragment = getAnchorsGroup(parentId, 'tabs')
+            $tabContainer.replaceChildren(fragment)
+            $tabContainer.dataset.parent = parentId
+        }
+    } else {
         $tabContainer.replaceChildren()
         delete $tabContainer.dataset.parent
     }
-    var title = data.article? link(data.title,data.article,'_blank'):data.title
+    var title = data.article ? link(data.title, data.article, '_blank') : data.title
     // 🗞
-     $infoPanel.innerHTML = `
+    $infoPanel.innerHTML = `
           <h3 class="info-header">⬡
             <span id="info-title" data-value="${data.title}">${title}</span> 
             <span id="info-year" data-value="${data.year}">| ${data.year}</span> 

@@ -61,7 +61,7 @@ class Particle {
 
 }
 
-class Effect {
+export class Effect {
     constructor (canvas) {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
