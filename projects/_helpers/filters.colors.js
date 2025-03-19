@@ -5,18 +5,23 @@ export function getImageData (image, filters, width, height) {
         var offScreenCanvas = new OffscreenCanvas(width, height)
         var ctx = offScreenCanvas.getContext('2d')
         if (filters) ctx.filter = filters
-        ctx.drawImage(image,0,0, image.width, image.height, 0, 0, width, height)
+        ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
         return ctx.getImageData(0, 0, width, height);
     }
     throw 'image must be an image object'
+}
+
+function getPixel (pixels, i) {
+    let r = pixels[i], g = pixels[i + 1], b = pixels[i + 2],
+        a = pixels[i + 3];
+    return [r, g, b, a]
 }
 
 export function processImageData (imageData, processors = []) {
     var pixels = imageData.data
     for (var process of processors) {
         for (let i = 0; i < pixels.length; i += 4) {
-            let r = pixels[i], g = pixels[i + 1], b = pixels[i + 2],
-                a = pixels[i + 3];
+            let [r, g, b, a] = getPixel(pixels, i)
             let [nr, ng, nb, na] = process(r, g, b, a, i, pixels)
             pixels[i] = nr
             pixels[i + 1] = ng
@@ -25,6 +30,18 @@ export function processImageData (imageData, processors = []) {
         }
     }
     return imageData
+}
+
+export function pixelsToScalar (imageData, mapFn) {
+    var pixels = imageData.data
+    var scalars = []
+    for (let i = 0; i < pixels.length; i += 4) {
+        let [r, g, b, a] = getPixel(pixels, i)
+        scalars.push(mapFn(r, g, b, a, i, pixels))
+    }
+    return scalars
+
+
 }
 
 // pass and mix the channels input like 'rrr' , 'r', 'grb_'

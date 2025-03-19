@@ -22,6 +22,8 @@
     width: anchor-size(width);
     width: anchor-size(width);
     height: auto;
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* elements with Id */
@@ -205,3 +207,6 @@ flipping-card::part(front) {
 }
 
 
+#canvas1{
+    /*background-color: purple;*/
+}

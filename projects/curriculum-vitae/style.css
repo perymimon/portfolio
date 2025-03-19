@@ -312,3 +312,22 @@ a.button-base {
         --angle: 360deg;
     }
 }
+
+.-prepare-screenshot{
+    .card{
+        box-shadow: none !important;
+    }
+    header h1, figure {
+        visibility: hidden;
+    }
+    header p{
+        background-color: transparent;
+    }
+    .card p{
+        color:transparent;
+    }
+    #main-content{
+        background-color: rgb(255, 0, 255);
+    }
+
+}

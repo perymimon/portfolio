@@ -1,3 +1,36 @@
+import {randomItem} from '../../_math/math.js'
+
+export class StateMachine {
+    constructor () {
+        this.masks = new Set()
+        this.machine = new Map()
+        this.symbols = ''
+        this.matrials = {}
+    }
+
+    defineStates (pattern, newState) {
+        defineStates(this.machine, this.masks, pattern, newState, this.symbols)
+    }
+    defineMaterial(symbol,name,color){
+        this.symbols += symbol
+        this.matrials[symbol] = {name,color}
+    }
+    getNewState (state) {
+        for (let mask of this.masks) {
+            let masked = maskedPattern(state, mask)
+            var newState = this.machine.get(masked)
+            if (newState) break
+        }
+        if (Array.isArray(newState)) return randomItem(newState)
+        return newState
+    }
+    getColors (symbolIndex) {
+        let s = this.symbols[symbolIndex]
+        return this.matrials[s]?.color
+    }
+}
+
+
 /*
 vocabulary:
 - “ “(space) =  are just visual and will remove before processing
@@ -30,7 +63,7 @@ export default function defineStates (stateMachine, masks, pattern, nextState, s
 
         for (let pattern2 of replicaPatterns(patternBase, 'f', 1, symbols.length)) {
             let states = nextState.map(state =>
-                getStates(state, symIndex, symIndexes[i + 1] ?? 0,pattern2, symbols),
+                getStates(state, symIndex, symIndexes[i + 1] ?? 0, pattern2, symbols),
             ).flat(Infinity)
 
             if (states.length === 1) states = states[0]
@@ -38,6 +71,7 @@ export default function defineStates (stateMachine, masks, pattern, nextState, s
         }
     }
 }
+
 function getStates (statePattern, currentIndex, nextIndex, pattern, symbols) {
     let normPattern = statePattern
         .replaceAll(' ', '') // clear spaces
