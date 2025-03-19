@@ -12,14 +12,14 @@
     anchor-name: --main-content;
 }
 
-#canvas5 {
+#canvas1 {
     /*background-color: red;*/
-    position: absolute;
     position: absolute;
     position-anchor: --main-content;
     top: anchor(top);
     left: anchor(left);
     /*position-area: center center;*/
+    width: anchor-size(width);
     width: anchor-size(width);
     height: auto;
 }
@@ -114,6 +114,13 @@
         --deep: 4;
         transform-origin: bottom;
         transform: rotateX(90deg);
+        --bg-stop-1: color-mix(in hsl, var(--color-background), hsl(150deg 100% 10% / 60%) 80%);
+        --bg-stop-2: color-mix(in hsl, var(--color-background), hsl(90deg 90% 30%));
+    }
+    canvas:nth-child(5) {
+        --deep: 5;
+        transform-origin: center;
+        transform: translateZ(-1000px);
         --bg-stop-1: color-mix(in hsl, var(--color-background), hsl(150deg 100% 10% / 60%) 80%);
         --bg-stop-2: color-mix(in hsl, var(--color-background), hsl(90deg 90% 30%));
     }
