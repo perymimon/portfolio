@@ -12,6 +12,12 @@
     inherits: false;
 }
 
+@property --color {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: transparent;
+}
+
 @property --percent {
     syntax: "<percentage>";
     inherits: true;
@@ -125,7 +131,7 @@ body {
     font-size: var(--font-size-relative-base);
     font-family: __Inter_d65c78, __Inter_Fallback_d65c78;
     font-style: normal;
-    --text-primary: hsl(117, 40%, 33%);
+    /*--text-primary: hsl(117, 40%, 33%);*/
     /*--text-secondary: var(--text-secondary);*/
 }
 
@@ -187,9 +193,9 @@ footer {
 }
 
 .card.opaque {
-    @media(orientation: landscape){
+    @media (orientation: landscape) {
         background-color: var(--color-background);
-        }
+    }
 }
 
 .experience-card {
@@ -290,25 +296,52 @@ a.button-base {
 }
 
 /* border animation */
+@property --color-zich {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: transparent;
+}
+
 .border-animation {
+    border: 1px solid transparent;
     border: 1px solid transparent;
     box-sizing: content-box;
     opacity: 1;
+    --color-zich: hsl(from var(--color-border) h s calc(l + 20));
+    --angle: 0deg;
+    --color: var(--color-zich);
+    /*transition:  border-image-source 200ms ease;*/
+
+    border-image-source: conic-gradient(from var(--angle), transparent, var(--color) 10deg 15deg, transparent 18deg);
+    border-image-slice: 3;
+    border-image-outset: 0.3em;
+
+    animation-composition: accumulate;
+    animation: color-border 1s 1 forwards, rotate-in 1s 1,  rotate-in 1s infinite;
+    animation-timing-function: ease-in;
+    animation-timeline: view(block), view(block), auto;
+    animation-play-state: running, running, paused;
     &:hover {
-        border-image: conic-gradient(from var(--angle), transparent, var(--color-border) 10deg 15deg, transparent 15deg) 2;
-        animation: rotateBorder 3s ease-in-out 1, rotateBorder 1s 3s ease-out 2, color-border 1s 4s ease-out 1 forwards;
+        /*animation: rotate-in 3s 1, rotate-in 1s 3s 4, color-border 1s 4s 1 forwards;*/
+        animation-play-state: running, running, running;
+
     }
+    /*animation: rotate-in 3s ease-in-out 1, rotate-in 1s 3s ease-out 2, color-border 1s 4s ease-out 1 forwards;*/
+
 }
 
 @keyframes color-border {
-    50% { --color-border: var(--color-primary); }
-    100% { --color-border: transparent; }
+    50% {--color: var(--color-zich);}
+    100% { --color: transparent; }
 }
 
-@keyframes rotateBorder {
+@keyframes rotate-out {
     0% {
-        --angle: 0deg;
+        --angle: 360deg;
     }
+}
+
+@keyframes rotate-in {
     100% {
         --angle: 360deg;
     }

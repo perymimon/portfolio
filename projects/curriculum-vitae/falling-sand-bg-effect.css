@@ -6,7 +6,7 @@
 
  #main-header h1,#my-name {
     transition: opacity 700ms 250ms ease-out;
-    will-change: opacity;
+    /*will-change: opacity;*/
     opacity: 1;
 }
 
