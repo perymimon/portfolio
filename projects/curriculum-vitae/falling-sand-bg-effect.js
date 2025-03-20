@@ -1,7 +1,7 @@
 import {FrameEngine} from '../_glossary/FrameEngine.js'
 import Pointer from '../_glossary/Pointer.js'
 import Timer from '../_glossary/Timer.js'
-import {imageFrom, setCanvas} from '../_helpers/basic.js'
+import {imageFrom, isLandscape, setCanvas} from '../_helpers/basic.js'
 import {getImageData} from '../_helpers/filters.colors.js'
 import {random} from '../_math/math.js'
 import {StateMachine} from '../falling-sand/3/define-states.js'
@@ -19,14 +19,14 @@ sm.defineMaterial('B', 'Block', [-1, 10, 1, 3, 3])
 sm.defineStates('x0x xSx xxx', '0s0') // Flow down
 sm.defineStates('0f0 xSx xxx', 's0s') // Flow diagonal random
 sm.defineStates('ff0 xSx xxx', '00s') // Flow right diagonal
-sm.defineStates('0ff xSx xxx', 's00') // Flow left diagoal
+sm.defineStates('0ff xSx xxx', 's00') // Flow left diagonal
 sm.defineStates('fff xSx xxx', '000 0s0') // Settle
 
 /* Water Rules */
 sm.defineStates('x0x xWx xxx', '0s0') // Flow down
 sm.defineStates('0f0 xWx xxx', 's0s') // Flow diagonal random
 sm.defineStates('ff0 xWx xxx', '00s') // Flow right diagonal
-sm.defineStates('0ff xWx xxx', 's00') // Flow left diagoal
+sm.defineStates('0ff xWx xxx', 's00') // Flow left diagonal
 sm.defineStates('fff xW0 xxx', '000 00s') // Flows right when empty
 sm.defineStates('fff 0Wf xxx', '000 s00') // Flows left when blocked right and left empty
 sm.defineStates('xWx xSx xxx', '0S0 0W0') // Swap with sand
@@ -56,11 +56,13 @@ function resetGrid () {
 resetGrid()
 
 async function throwSandAndWater () {
-    let myNameImage = await imageFrom('./my-name-landscape.png')
+    let imageUrl = isLandscape() ?'./my-name-landscape.png':'./my-name-portrait.png'
+    let myNameImage = await imageFrom(imageUrl)
     let imageData = getImageData(myNameImage)
     // ctx.drawImage(myNameImage, 0, 0, width, height, 0, 0, width, height)
-    grid.setImageData(0, 0, imageData, function toMaterials (r, g, b, a) {
-        if (a === 0 || r + g + b < 20) return null
+    let x = (width-imageData.width) >>1
+    grid.setImageData(x, 0, imageData, function toMaterials (r, g, b, a) {
+        if (r === 255 && b === 255 && g === 0) return null
         return random(1, sm.symbols.length - 1)
     })
 }

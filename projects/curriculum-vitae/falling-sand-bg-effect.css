@@ -1,10 +1,10 @@
-#canvas1 {
+ #canvas1 {
     transition: opacity 700ms ease-in;
     will-change: opacity;
     opacity: 0;
 }
 
-#my-name {
+ #main-header h1,#my-name {
     transition: opacity 700ms 250ms ease-out;
     will-change: opacity;
     opacity: 1;
@@ -13,6 +13,11 @@
 
 
 .falling-sand-animate {
+    @media (orientation: portrait) {
+        #main-header h1{
+            opacity: 0;
+        }
+    }
     #my-name {
         opacity: 0;
         transition-delay: 0s;

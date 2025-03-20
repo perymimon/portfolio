@@ -68,9 +68,11 @@
 .flex-basis-equal {
     flex: 1 1 0;
 }
-.space-around{
+
+.space-around {
     justify-content: space-around;
 }
+
 .max-w-3xl {
     max-width: 48rem;
 }
@@ -114,7 +116,7 @@
 
 .marker {
     :not(:first-child)::marker {
-        content:'|';
+        content: "|";
         margin-inline: 1em;
     }
 }
@@ -180,17 +182,20 @@ footer {
 .card {
     padding: var(--space-6);
     box-shadow: var(--shadow-lg);
-    background-color: color-mix(var(--color-background), hsl(120deg 50% 50% / 0) );
+    background-color: color-mix(var(--color-background), hsl(120deg 50% 50% / 0));
 
 }
-.card.opaque{
-    background-color: var(--color-background);
+
+.card.opaque {
+    @media(orientation: landscape){
+        background-color: var(--color-background);
+        }
 }
 
 .experience-card {
     font-size: var(--font-size-base);
     @media (orientation: portrait) {
-        flex-direction:column;
+        flex-direction: column;
     }
     img {
         object-fit: contain;
@@ -206,9 +211,9 @@ footer {
         justify-content: space-between;
         flex-grow: 1;
         @media (orientation: portrait) {
-            flex-direction:column;
+            flex-direction: column;
         }
-        .side-block{
+        .side-block {
             text-align: right;
             @media (orientation: portrait) {
                 display: flex;
@@ -226,8 +231,6 @@ footer {
         }
     }
 }
-
-
 
 .container {
     margin-inline: auto;
@@ -286,8 +289,6 @@ a.button-base {
     /*background-color: var(--color-foregrowund);*/
 }
 
-
-
 /* border animation */
 .border-animation {
     border: 1px solid transparent;
@@ -313,20 +314,20 @@ a.button-base {
     }
 }
 
-.-prepare-screenshot{
-    .card{
+.-prepare-screenshot {
+    .card {
         box-shadow: none !important;
     }
     header h1, figure {
         visibility: hidden;
     }
-    header p{
+    header p {
         background-color: transparent;
     }
-    .card p{
-        color:transparent;
+    .card p {
+        color: transparent;
     }
-    #main-content{
+    #main-content {
         background-color: rgb(255, 0, 255);
     }
 

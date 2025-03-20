@@ -67,6 +67,16 @@ export function isUrl (string) {
     }
 }
 
+export function isLandscape(){
+    var query =  window.matchMedia('(orientation:landscape)')
+    return query.matches
+}
+
+export function isPortrait(){
+    var query =  window.matchMedia('(orientation:portrait)')
+    return query.matches
+}
+
 export function setCanvas (canvas, byElement) {
     if (byElement) {
         if (byElement.width) {

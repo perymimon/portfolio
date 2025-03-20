@@ -42,9 +42,10 @@
 
         }
         @media (orientation: portrait) {
-            display: inline flex;
+            display: flex;
             flex-flow: nowrap;
             white-space: nowrap;
+            justify-content: center;
         }
 
     }
