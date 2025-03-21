@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +36,7 @@
     <link rel="expect" href="#project-info" blocking="render">
     <link rel="prefetch" href="./projects/projects.json"/>
 </head>
-<body>
+<body data-theme="light">
 
 <aside id="sidebar" class="scrollbar-custom">
     <div id="swipe-overlay">
@@ -102,12 +102,17 @@
     <div id="project-info" class="info-container component-base"><!--Project Info--></div>
     <!--main frame-->
     <iframe id="content-frame" name="content-frame" ><!--Demo Pages--></iframe>
-    <!--bottom bar -->
-    <div id="bottom-bar">
-<!--        <button id="theme-toggle" class="button-base" aria-label="Toggle theme"> 🌓</button>-->
+    <!--float bar -->
+    <div id="float-bar">
         <div id="tabs-container" role="tablist" class="component-base"></div>
     </div>
-    <fancy-recorder target="content-frame" disabled="disabled"></fancy-recorder>
+    <div id="bottom-bar">
+        <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
+            <span class="light-icon">🌙</span>
+            <span class="dark-icon">☀️</span>
+        </button>
+        <fancy-recorder target="content-frame" disabled="disabled"></fancy-recorder>
+    </div>
 </main>
 <script type="module" src="./projects/_components/fancy-recorder.components.js"></script>
 
@@ -117,8 +122,8 @@
     import './home-scripts/avatar-effect.js'
     import './home-scripts/new-link-processing.js'
 
-    // var themeToggle = document.getElementById('theme-toggle')
-    // themeToggle.addEventListener('click', toggleTheme)
+    var themeToggle = document.getElementById('theme-toggle')
+    themeToggle.addEventListener('click', toggleTheme)
     linkPageFromParent()
 
 

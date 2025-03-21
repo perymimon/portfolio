@@ -1,11 +1,28 @@
 #theme-toggle {
     background-color: var(--component-bg);
-    bottom: var(--space-4);
-    right: var(--space-4);
-
     &:hover {
         border-color: var(--component-border);
         background-color: var(--component-hover);
+        color-scheme: dark;
+    }
+
+    .light-icon {
+        display: block;
+    }
+    .dark-icon {
+        display: none;
+    }
+
+    [data-theme="dark"] & {
+        &:hover {
+            color-scheme: light;
+        }
+        .light-icon {
+            display: none;
+        }
+        .dark-icon {
+            display: block;
+        }
     }
 }
 
@@ -21,7 +38,7 @@
     width: max-content;
 }
 
-#bottom-bar {
+#float-bar {
     display: flex;
     flex-direction: row-reverse;
     position: absolute;
@@ -29,10 +46,7 @@
     top: anchor(top);
     left: var(--space-2);
     right: var(--space-2);
-    /*justify-content: space-between;*/
     align-items: flex-end;
-    /*line-height: 2em;*/
-
     z-index: var(--z-index-above-absolute);
     padding: var(--space-1);
 
@@ -45,17 +59,24 @@
     @media (orientation: portrait) {
         position: fixed;
     }
-
 }
-
+#bottom-bar {
+    display: flex;
+    gap: var(--space-2);
+    position: fixed;
+    bottom: var(--space-4);
+    right: var(--space-4);
+    align-items: center;
+    z-index: var(--z-index-fixed);
+    padding: var(--space-2);
+    background-color: var(--component-bg);
+    border: 1px solid var(--component-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(var(--blur-md));
+}
 fancy-recorder {
-    position: absolute;
-    inset-inline: 0;
-    position-anchor: --content-frame;
-    bottom: anchor(bottom);
-    right: anchor(right);
-    left:auto;
-    margin: var(--space-1);
+    margin: 0;
     &[disabled]{
         display: none;
     }
