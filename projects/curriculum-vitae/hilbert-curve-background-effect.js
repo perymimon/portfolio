@@ -12,8 +12,9 @@ function handleIntersection(entries) {
         if (entry.isIntersecting) {
             if( !seen.has(entry)) {
                 effects.push(new sparkEffect(entry.target,{
-                    ttl:[10, 15],
-                    gap:16
+                    ttl:[8, 15],
+                    gap:20,
+                    length:[3, 8],
                 }))
             }
             seen.add(entry.target)
@@ -34,7 +35,7 @@ new FrameEngine(fps, function ({detail: {frames}}) {
     for (let effect of effects) {
         let {ctx} = effect
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-        effect.update(20 / (fps * sec))
+        effect.update(1 / (fps * sec))
         effect.draw()
     }
 }).start()

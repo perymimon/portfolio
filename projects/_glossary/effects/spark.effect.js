@@ -10,10 +10,15 @@ export class sparkEffect {
         console.time('sparkEffect init')
         this.canvas = canvas
         this.ctx = canvas.getContext('2d')
-        setCanvas(canvas, canvas.parentElement)
+        // setCanvas(canvas, canvas.parentElement)
         var {width, height} = canvas
-        var order = ceil(log2(width))
+        // var order = ceil(log2(width))
+        var order = 8
         var total = 4 ** order
+
+        canvas.width = 2 ** order
+        canvas.height = 2 ** order
+
         console.log('order', order, 'total', total)
         this.path = Array.from(Array(total))
             .map((_, i) => hilbert(i, order))
@@ -47,10 +52,9 @@ export class sparkEffect {
 
     createSpark () {
         const {length, ttl, hue, gap} = this.settings
-        let halfRange = this.path.length >> 1
         let spark = {
             length: random(length[0], length[1]),
-            pos: halfRange + random(0, halfRange),
+            pos: random(0, this.path.length),
             ttl: random(ttl[0], ttl[1]),
             hue: random(hue[0], hue[1]),
         }
