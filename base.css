@@ -21,7 +21,6 @@ body, html {
     margin: 0;
     background-color: var(--color-background);
     color: var(--text-primary);
-    width: 100dvw;
     min-height: 100dvh;
 }
 audio, canvas, embed, iframe, img, object, svg, video{

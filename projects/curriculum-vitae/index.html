@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="hero-elements.css">
     <script type="module" src="components/tech-skill-bar.js"></script>
 </head>
-<body class="prepare-screenshot" data-theme="light">
+<body class="prepare-screenshot">
 <div id="particles-background" class="fixed inset-0 -z-10">
     <canvas></canvas>
     <canvas></canvas>
@@ -52,7 +52,7 @@
             <figure id="avatar" class="left-0 top-0">
                 <img src="../../assets/avatar-3.svg" alt="">
             </figure>
-            <span id0.="my-name">Pery Mimon</span>
+            <span id="my-name">Pery Mimon</span>
         </h1>
         <p class="inline-flex gap-1 warp bg-color space-around md-2">
             <a href="https://maps.app.goo.gl/ijBMkhZio7sbH1ay6" target="_blank">
@@ -478,11 +478,23 @@
         rights reserved.
     </footer>
 </main>
+<div id="bottom-bar">
+    <button id="theme-toggle" class="button-base" aria-label="Toggle theme">
+        <span class="light-icon">🌙</span>
+        <span class="dark-icon">☀️</span>
+    </button>
+</div>
 <canvas id="canvas1"></canvas>
 <script type="module" src="./background.js"></script>
 <script type="module" src="components/flipping-card.components.js"></script>
 <script type="module" src="falling-sand-bg-effect.js"></script>
 <link rel="stylesheet" href="falling-sand-bg-effect.css">
 <script type="module" src="hilbert-curve-background-effect.js" ></script>
+<script type="module">
+    import {initializeTheme, toggleTheme} from '../_helpers/link-page.js'
+    initializeTheme()
+    var themeToggle = document.getElementById('theme-toggle')
+    themeToggle.addEventListener('click', toggleTheme)
+</script>
 </body>
 </html>

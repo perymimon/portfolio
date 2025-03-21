@@ -1,4 +1,5 @@
 @import "../../base.css" layer(base);
+@import "../../home-scripts/style-small-elements.css" layer(small-elements);
 
 /* Enable CSS variable animations */
 @property --angle {

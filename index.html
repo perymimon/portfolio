@@ -30,13 +30,13 @@
     <link rel="apple-touch-icon" href="http://perymimon.github.io/portfolio/assets/site-image-600.png">
     <meta name="theme-color" content="hsl(120, 50%, 50%)">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="hsl(120, 15%, 5%)"/>
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="hsl(120, 100%, 10%)"/>
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="hsl(200, 65%, 45%)"/>
 
     <link rel="stylesheet" href="home-scripts/style.css">
     <link rel="expect" href="#project-info" blocking="render">
     <link rel="prefetch" href="./projects/projects.json"/>
 </head>
-<body data-theme="light">
+<body>
 
 <aside id="sidebar" class="scrollbar-custom">
     <div id="swipe-overlay">
@@ -118,16 +118,14 @@
 
 <script type="module">
     import './home-scripts/sidebar.js'
-    import {linkPageFromParent, toggleTheme} from './projects/_helpers/link-page.js'
+    import {linkPageFromParent, toggleTheme, initializeTheme} from './projects/_helpers/link-page.js'
     import './home-scripts/avatar-effect.js'
     import './home-scripts/new-link-processing.js'
 
     var themeToggle = document.getElementById('theme-toggle')
     themeToggle.addEventListener('click', toggleTheme)
     linkPageFromParent()
-
-
-
+    initializeTheme()
 </script>
 </body>
 </html>

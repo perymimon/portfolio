@@ -75,6 +75,12 @@
     box-shadow: var(--shadow-md);
     backdrop-filter: blur(var(--blur-md));
 }
+.in-iframe{
+    #bottom-bar {
+        display:none
+    }
+}
+
 fancy-recorder {
     margin: 0;
     &[disabled]{
