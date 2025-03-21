@@ -35,7 +35,7 @@ new FrameEngine(fps, function ({detail: {frames}}) {
     for (let effect of effects) {
         let {ctx} = effect
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-        effect.update(1 / (fps * sec))
+        effect.update(2 / (fps * sec))
         effect.draw()
     }
 }).start()
