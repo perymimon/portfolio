@@ -46,6 +46,7 @@
             flex-flow: nowrap;
             white-space: nowrap;
             justify-content: center;
+            font-size: min(3em, 11dvw);
         }
 
     }
