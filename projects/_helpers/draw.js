@@ -47,7 +47,7 @@ draw.curve = function (ctx, points, options = {drawStroke:true}) {
         ctx.lineTo(point.x, point.y)
     }
 
-    drawing(ctx, options, 'polygon')
+    drawing(ctx, options, 'curve')
 }
 
 draw.arrow = function (ctx, sx, sy, ex, ey, size, options = {}) {

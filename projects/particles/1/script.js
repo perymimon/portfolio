@@ -1,3 +1,4 @@
+import {Effect} from '../script.js'
 import {setCanvas} from '../../_helpers/basic.js'
 import {drawAlgebra} from '../../_helpers/draw.js'
 import {angle2P, clamp, distance, exceedsLimits} from '../../_math/math.js'
@@ -16,7 +17,7 @@ function animation () {
     effect.handleParticles(ctx)
 
     if(effect.mouse.pressed) {
-        for(let i = 0; i < effect.particles.length, i++) {
+        for(let i = 0; i < effect.particles.length; i++) {
             if (i % 5) {
                 drawAlgebra.line(ctx, this, effect.mouse, {drawStroke: true})
             }

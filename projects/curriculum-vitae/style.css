@@ -186,10 +186,14 @@ footer {
 }
 
 .card {
+    position: relative;
     padding: var(--space-6);
     box-shadow: var(--shadow-lg);
     background-color: color-mix(var(--color-background), hsl(120deg 50% 50% / 0));
-
+    & p{
+        position: relative;
+        z-index:1;
+    }
 }
 
 .card.opaque {
@@ -317,8 +321,8 @@ a.button-base {
     border-image-outset: 0.3em;
 
     animation-composition: accumulate;
-    animation: color-border 1s 1 forwards, rotate-in 1s 1,  rotate-in 1s infinite;
-    animation-timing-function: ease-in;
+    animation: color-border 1s 1 forwards, rotate-in 1s 1,  rotate-in 1s 3 backwards;
+    animation-timing-function: ease-in, ease-in, ease-out;
     animation-timeline: view(block), view(block), auto;
     animation-play-state: running, running, paused;
     &:hover {
@@ -363,5 +367,14 @@ a.button-base {
     #main-content {
         background-color: rgb(255, 0, 255);
     }
+
+}
+
+.hilbert-curve-background-effect{
+    position: absolute;
+    inset:0;
+    opacity: 0.6;
+    /*background-color:red;*/
+
 
 }

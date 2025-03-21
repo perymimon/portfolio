@@ -16,6 +16,12 @@ export default class Coordinates {
         // if (z !== undefined)
         //     defineProtect(this, 'z', new Value(z))
     }
+    get simple(){
+        return {
+            x:this.x.value,
+            y:this.y.value,
+        }
+    }
 
     setX (x) { this.x.value = x  + 0}
 

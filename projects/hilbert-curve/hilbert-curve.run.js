@@ -8,7 +8,7 @@ var ctx = canvas.getContext('2d')
 /* setup */
 var order = 7
 
-canvas.width = 512;
+canvas.width = 512
 canvas.height = 512
 
 var path = []
@@ -58,7 +58,7 @@ function update () {
         draw.curve(ctx, miniPath, {strokeStyle: `hsl(${s.hue} 100%  50% / ${s.tl / s.ttl}`})
         s.pos++
         s.tl--
-        if (s.tl == 0) {
+        if (s.tl === 0) {
             sparks.delete(s)
         }
 
