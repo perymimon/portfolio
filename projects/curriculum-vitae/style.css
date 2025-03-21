@@ -370,7 +370,7 @@ a.button-base {
 
 }
 
-*:has(.hilbert-curve-background-effect) *:not(canvas){
+*:has(>.hilbert-curve-background-effect) *:not(canvas){
     position:relative;
     z-index: 1;
 

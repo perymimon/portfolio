@@ -81,7 +81,7 @@ export class sparkEffect {
             let tl = s.path.length - s.length
             let miniPath = s.path.slice(0, s.length)
             draw.curve(ctx, miniPath, {
-                strokeStyle: `hsl(${s.hue} 80%  50% / ${tl / s.ttl}`,
+                strokeStyle: `hsl(${s.hue} 80%  90% / ${tl / s.ttl}`,
             })
         }
 
