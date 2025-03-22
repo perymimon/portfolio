@@ -9,16 +9,17 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Pery Mimon">
     <meta property="og:site_name" content="Pery Mimon | Web App Engineer & Architect">
-    <meta property="og:description" content="Playful portfolio and resume of Pery Mimon, a Web App Engineer and architect specializing in high-performance applications and creative coding.">
+    <meta property="og:description"
+          content="Playful portfolio and resume of Pery Mimon, a Web App Engineer and architect specializing in high-performance applications and creative coding.">
     <meta property="og:image" content="https://perymimon.github.io/portfolio/assets/cute-avatar.png">
 
     <meta property="og:image:alt" content="chibi cyberpunk">
 
-    <meta property="parent" content="https://perymimon.github.io/portfolio/#about" >
+    <meta property="parent" content="https://perymimon.github.io/portfolio/#about">
     <script type="module">
         var url = new URL(globalThis.location)
         var time = parseInt(url.searchParams.get("time"))
-        if( !isNaN(time) ) {
+        if (!isNaN(time)) {
             setTimeout(() => {
                 // The page is inside an iframe, so redirection
                 window.location.href = document.querySelector('meta[property="parent"]').getAttribute('content')
@@ -144,16 +145,13 @@
 
         <section class="card opaque text-justify md-6 max-w-3xl mx-auto text-lg border-animation">
             <p>
-                I'm an enthusiastic and knowledgeable
-                <strong>Web App Engineer</strong> and
-                <strong>architect</strong>
-                with a mission to build intuitive, high-performance applications for my users to love.
-                I'm good at simplifying complexity, writing from scratch clean and efficient code, and leveraging modern
-                technologies to deliver seamless experiences. A framework-agnostic problem-solver, I enjoy creating
-                reusable
-                micro-libraries from scratch, relying solely on core web technologies. I used to contribute to
-                open-source
-                projects to stay at the forefront of innovation.
+                I'm an enthusiastic and knowledgeable <strong>Web App Engineer</strong> and <strong>architect</strong>
+                with a mission to build intuitive,
+                high-performance applications that delight and empower my users. I'm good at simplifying complexity,
+                writing clean, efficient code from scratch, and leveraging modern technologies to deliver seamless
+                experiences. As a framework-agnostic problem-solver, I enjoy creating reusable micro-libraries from
+                scratch, relying solely on core web technologies. I used to contribute to open-source projects to stay
+                at the forefront of innovation.
             </p>
         </section>
     </header>
@@ -489,9 +487,10 @@
 <script type="module" src="components/flipping-card.components.js"></script>
 <script type="module" src="falling-sand-bg-effect.js"></script>
 <link rel="stylesheet" href="falling-sand-bg-effect.css">
-<script type="module" src="hilbert-curve-background-effect.js" ></script>
+<script type="module" src="hilbert-curve-background-effect.js"></script>
 <script type="module">
     import {initializeTheme, toggleTheme} from '../_helpers/link-page.js'
+
     initializeTheme()
     var themeToggle = document.getElementById('theme-toggle')
     themeToggle.addEventListener('click', toggleTheme)
