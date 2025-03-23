@@ -294,7 +294,7 @@ footer {
         animation-range: entry 0% entry 100%;
 
         ::-webkit-progress-value {
-            transition: all 1s 500ms;
+            transition: --percent-2 1s 500ms;
             --percent-2: var(--percent);
             transform-origin: left;
             scale: var(--percent-2) 1;
