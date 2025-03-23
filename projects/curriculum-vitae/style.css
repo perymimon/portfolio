@@ -105,9 +105,10 @@
 
 .gap-4 { gap: var(--space-4)}
 
-.md-6 { margin-block-end: var(--space-6);}
-
+.md-1 { margin-block-end: var(--space-1);}
 .md-2 { margin-block-end: var(--space-2);}
+
+.md-6 { margin-block-end: var(--space-6);}
 
 .md-4 { margin-block-end: var(--space-4);}
 
@@ -372,8 +373,8 @@ a.button-base {
 
 }
 
-*:has(>.hilbert-curve-background-effect) *:not(canvas){
-    position:relative;
+*:has(>.hilbert-curve-background-effect) *:not(canvas) {
+    position: relative;
     z-index: 1;
 
 }

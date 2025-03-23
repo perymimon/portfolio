@@ -25,7 +25,7 @@ function handleIntersection(entries) {
 cards.forEach(card => {
     var canvas = document.createElement('canvas')
     canvas.classList.add('hilbert-curve-background-effect')
-    card.appendChild(canvas)
+    card.prepend(canvas)
     observer.observe(canvas)
 })
 

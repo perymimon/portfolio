@@ -38,14 +38,13 @@
     <script type="module" src="components/tech-skill-bar.js"></script>
 </head>
 <body class="prepare-screenshot">
-<div id="particles-background" class="fixed inset-0 -z-10">
-    <canvas></canvas>
-    <canvas></canvas>
-    <canvas></canvas>
-    <canvas></canvas>
-    <canvas></canvas>
-
-</div>
+<!--<div id="particles-background" class="fixed inset-0 -z-10">-->
+<!--    <canvas></canvas>-->
+<!--    <canvas></canvas>-->
+<!--    <canvas></canvas>-->
+<!--    <canvas></canvas>-->
+<!--    <canvas></canvas>-->
+<!--</div>-->
 
 <main id="main-content" class="container font-inter" style="opacity: 1">
     <header id="main-header">
@@ -167,7 +166,7 @@
 
     <section class="md-12  ">
         <h2 class="md-6">TECH SKILLS</h2>
-        <div class="tech-skills card border-animation">
+        <div class="tech-skills card border-animation md-1">
             <h3 class="md-4">Frontend Technologies</h3>
             <fancy-tech-skill-bar skill="React" years="4+" strength="75"></fancy-tech-skill-bar>
             <fancy-tech-skill-bar skill="Vue.js" years="2+" strength="85"></fancy-tech-skill-bar>
@@ -176,11 +175,12 @@
             <fancy-tech-skill-bar skill="HTML/CSS" years="10+" strength="90"></fancy-tech-skill-bar>
             <h3 class="md-4">Backend & Specialized</h3>
             <fancy-tech-skill-bar skill="Node.js" years="10+" strength="70"></fancy-tech-skill-bar>
-            <fancy-tech-skill-bar skill="HTML Canvas" years="10+" strength="70"></fancy-tech-skill-bar>
-            <fancy-tech-skill-bar skill="Creative Coding" years="1+" strength="40"></fancy-tech-skill-bar>
+            <fancy-tech-skill-bar skill="HTML Canvas" years="3+" strength="70"></fancy-tech-skill-bar>
+            <fancy-tech-skill-bar skill="Creative Coding" years="2+" strength="40"></fancy-tech-skill-bar>
             <fancy-tech-skill-bar skill="Micro-libraries" years="10+" strength="50"></fancy-tech-skill-bar>
-            <fancy-tech-skill-bar skill="webGL 3D" years="10+" strength="20"></fancy-tech-skill-bar>
+            <fancy-tech-skill-bar skill="webGL 3D" years="3+" strength="20"></fancy-tech-skill-bar>
         </div>
+        <div>✳️ bar show strength level in that skill</div>
     </section>
 
     <h2 class="md-6">RECENT PROFESSIONAL EXPERIENCE</h2>
@@ -362,7 +362,7 @@
                target="_blank"
                href="https://github.com/perymimon/react-anime-manager">View Project</a>
         </flipping-card>
-        <!-- Project 1-->
+        <!-- Project 2-->
         <flipping-card class="card">
             <figure slot="front">
                 <img alt="Falling Sand Simulation" loading="lazy" decoding="async" data-nimg="fill" class="object-cover"
@@ -386,7 +386,7 @@
         </flipping-card>
 
 
-        <!-- Project 2-->
+        <!-- Project 3-->
         <flipping-card class="card">
             <figure slot="front">
                 <img alt="Falling Sand Simulation" loading="lazy" decoding="async" data-nimg="fill" class="object-cover"
@@ -404,9 +404,7 @@
                 <span class="tag">Animation</span>
                 <span class="tag">Interactive</span>
             </div>
-            <a slot="back" class="button-base"
-               target="_blank"
-               href="https://perymimon.github.io/portfolio/">View Project</a>
+            <a slot="back"  href="https://perymimon.github.io/portfolio/" rel="noopener noreferrer" target="_blank" class="button-base">View Project</a>
         </flipping-card>
 
         <!-- Project 4 -->

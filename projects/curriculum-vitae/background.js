@@ -39,5 +39,5 @@ new FrameEngine(15, () => {
         effect.update()
         effect.draw(ctx)
     }
-}).start()
+})//.start()
 

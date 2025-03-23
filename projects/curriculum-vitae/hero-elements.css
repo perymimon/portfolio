@@ -1,13 +1,5 @@
 @import "../../base.css" layer(base);
 
-@property  --bg-stop-1 {
-    syntax: "<color>";
-}
-
-@property  --bg-stop-2 {
-    syntax: "<color>";
-}
-
 #main-content {
     anchor-name: --main-content;
 }
