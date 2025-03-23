@@ -25,6 +25,12 @@
     initial-value: 0%;
 }
 
+@property --percent-2 {
+    syntax: "<percentage>";
+    inherits: true;
+    initial-value: 0%;
+}
+
 @keyframes percent-animation {
     from {
         --percent: 0%;
@@ -106,6 +112,7 @@
 .gap-4 { gap: var(--space-4)}
 
 .md-1 { margin-block-end: var(--space-1);}
+
 .md-2 { margin-block-end: var(--space-2);}
 
 .md-6 { margin-block-end: var(--space-6);}
@@ -280,19 +287,24 @@ footer {
     fancy-tech-skill-bar {
         width: 100%;
         margin-bottom: var(--space-2);
-        --percent: 10%;
 
-        animation: percent-animation 100ms linear both;
+        animation: percent-animation linear both;
+        animation-delay: 2s;
         animation-timeline: view();
-        animation-range: entry 0 entry 300%;
+        animation-range: entry 0% entry 100%;
 
         ::-webkit-progress-value {
-
+            transition: all 1s 500ms;
+            --percent-2: var(--percent);
             transform-origin: left;
-            scale: var(--percent) 1;
+            scale: var(--percent-2) 1;
+            @starting-style {
+            --percent-2: 0%;
+        }
         }
     }
 }
+
 
 a.button-base {
     padding: var(--space-2);
@@ -310,7 +322,6 @@ a.button-base {
 }
 
 .border-animation {
-    border: 1px solid transparent;
     border: 1px solid transparent;
     box-sizing: content-box;
     opacity: 1;
@@ -382,8 +393,5 @@ a.button-base {
 .hilbert-curve-background-effect {
     position: absolute;
     inset: 0;
-    /*opacity: 0.8;*/
     pointer-events: none;
-    /*background-color:red;*/
-
 }
