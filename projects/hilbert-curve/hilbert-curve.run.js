@@ -35,11 +35,11 @@ function generateSparks () {
 
 
 /* end setup */
-var i = 0
+var i = path.length -2
 ctx.globalAlpha = 1
 
 function update () {
-    if (i >= path.length) i = 0
+    // if (i >= path.length-1) i = path.length - 2
 
     for (let j = i; j >= 0; j--) {
         ctx.beginPath()
@@ -50,7 +50,7 @@ function update () {
         ctx.lineWidth = 1
         ctx.stroke()
     }
-    i++
+    // i++
     if (Math.random() < i/path.length) generateSparks()
     for (let s of sparks) {
         let miniPath = path.slice(s.pos, s.pos + s.length)

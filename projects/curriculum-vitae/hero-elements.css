@@ -81,6 +81,7 @@
     /*z-index:var(--z-index-above-absolute);*/
     animation: parallax linear both;
     animation-timeline: scroll();
+    z-index: -1;
 
     canvas {
         position: absolute;

@@ -132,6 +132,7 @@ body {
     font-size: var(--font-size-relative-base);
     font-family: __Inter_d65c78, __Inter_Fallback_d65c78;
     font-style: normal;
+    background-color: hsl(from var(--color-background) h s l / 80%);
     /*--text-primary: hsl(117, 40%, 33%);*/
     /*--text-secondary: var(--text-secondary);*/
 }
