@@ -57,16 +57,15 @@
     left: -8rem;
     z-index: -1;
 
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: contain;
     border: none;
     aspect-ratio: 1;
     [data-theme="light"] & {
-        background-image:url(../../assets/cute-avatar.png) ;
+        background-image: url(../../assets/cute-avatar.png);
     }
     [data-theme="dark"] & {
-        /*background-color: red;*/
-        background-image:url(../../assets/avatar-3.svg) ;
+        background-image: url(../../assets/avatar-3.svg);
     }
     @media (orientation: landscape) {
         position: absolute;
@@ -89,7 +88,7 @@
     /*z-index:var(--z-index-above-absolute);*/
     animation: parallax linear both;
     animation-timeline: scroll();
-    z-index: -1;
+    /*z-index: -1;*/
 
     canvas {
         position: absolute;
@@ -97,46 +96,47 @@
         transform-style: preserve-3d;
         will-change: transform;
 
-
     }
 
     perspective: 1000px; /* Depth of the scene */
     perspective-origin: center 20%;
     overflow: clip;
+    --color-mix-1:  color-mix(in oklch, var(--color-muted), hsl(120deg 90% 50%) 0%) ;
+    --color-mix-2:  color-mix(in oklch, var(--color-muted), hsl(120deg 50% 50%) 0%) ;
     canvas:nth-child(1) {
         --deep: 1;
         transform-origin: top;
         transform: rotateX(-90deg);
-        --bg-stop-1: color-mix(in hsl, var(--color-background), hsl(120deg 100% 10% / 60%) 20%);
-        --bg-stop-2: color-mix(in hsl, var(--color-background), hsl(120deg 20% 30%));
+        --bg-stop-1: var(--color-mix-1);
+        --bg-stop-2: var(--color-mix-2);
     }
     canvas:nth-child(2) {
         --deep: 2;
         transform-origin: right;
         transform: rotateY(-90deg);
-        --bg-stop-1: color-mix(in hsl, var(--color-background), hsl(130deg 80% 20% / 80%) 40%);
-        --bg-stop-2: color-mix(in hsl, var(--color-background), hsl(20deg 80% 50%));
+        --bg-stop-1: var(--color-mix-1);
+        --bg-stop-2: var(--color-mix-2);
     }
     canvas:nth-child(3) {
         --deep: 3;
         transform-origin: left;
         transform: rotateY(90deg);
-        --bg-stop-1: color-mix(in hsl, var(--color-background), hsl(140deg 90% 10% / 60%) 60%);
-        --bg-stop-2: color-mix(in hsl, var(--color-background), hsl(50deg 90% 30%));
+        --bg-stop-1: var(--color-mix-1);
+        --bg-stop-2: var(--color-mix-2);
     }
     canvas:nth-child(4) {
         --deep: 4;
         transform-origin: bottom;
         transform: rotateX(90deg);
-        --bg-stop-1: color-mix(in hsl, var(--color-background), hsl(150deg 100% 10% / 60%) 80%);
-        --bg-stop-2: color-mix(in hsl, var(--color-background), hsl(90deg 90% 30%));
+        --bg-stop-1: var(--color-mix-1);
+        --bg-stop-2: var(--color-mix-2);
     }
     canvas:nth-child(5) {
         --deep: 5;
         transform-origin: center;
         transform: translateZ(-1000px);
-        --bg-stop-1: color-mix(in hsl, var(--color-background), hsl(150deg 100% 10% / 60%) 80%);
-        --bg-stop-2: color-mix(in hsl, var(--color-background), hsl(90deg 90% 30%));
+        --bg-stop-1: var(--color-mix-1);
+        --bg-stop-2: var(--color-mix-2);
     }
 }
 
@@ -218,7 +218,6 @@ flipping-card::part(front) {
     gap: var(--space-2);
 }
 
-
-#canvas1{
+#canvas1 {
     /*background-color: purple;*/
 }

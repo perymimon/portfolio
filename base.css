@@ -62,7 +62,7 @@ menu, ol, ul{
     --color-success-hover: light-dark(hsl(150, 65%, 55%), hsl(120, 80%, 55%));
 
     /* Neutral Colors */
-    --color-background: light-dark(hsl(220, 20%, 95%), hsl(120, 20%, 8%)); /* רקע אפור-לבן רך למצב Light */
+    --color-background: light-dark(hsl(220, 20%, 95%), hsl(120, 30%, 18%)); /* רקע אפור-לבן רך למצב Light */
     --color-foregrowund: light-dark(hsl(220, 25%, 98%), hsl(120deg 100% 30% / 25%)); /* רקע קדמי בהיר יותר */
     --color-muted: light-dark(hsl(220, 15%, 70%), hsl(120, 15%, 45%)); /* אפור רך */
     --color-muted-hover: light-dark(hsl(220, 20%, 80%), hsl(120, 20%, 55%));
