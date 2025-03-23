@@ -55,17 +55,25 @@
 #avatar {
     height: 38rem;
     left: -8rem;
-    /*translate: -200%;*/
     z-index: -1;
 
-    img {
-        height: 100%;
-        width: 100%;
+    background-repeat:no-repeat;
+    background-size: contain;
+    border: none;
+    aspect-ratio: 1;
+    [data-theme="light"] & {
+        background-image:url(../../assets/cute-avatar.png) ;
+    }
+    [data-theme="dark"] & {
+        /*background-color: red;*/
+        background-image:url(../../assets/avatar-3.svg) ;
     }
     @media (orientation: landscape) {
         position: absolute;
         opacity: 0.8;
         padding: var(--space-2);
+        width: 30em;
+        translate: -.5em 0;
     }
     @media (orientation: portrait) {
         height: 5rem;
