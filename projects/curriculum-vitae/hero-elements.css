@@ -1,23 +1,4 @@
 @import "../../base.css" layer(base);
-
-#main-content {
-    anchor-name: --main-content;
-}
-
-#canvas1 {
-    /*background-color: red;*/
-    position: absolute;
-    position-anchor: --main-content;
-    top: anchor(top);
-    left: anchor(left);
-    /*position-area: center center;*/
-    width: anchor-size(width);
-    width: anchor-size(width);
-    height: auto;
-    z-index: 1;
-    pointer-events: none;
-}
-
 /* elements with Id */
 #main-header {
     a {
@@ -162,6 +143,7 @@ flipping-card {
     --front-bg: var(--component-bg);
     --back-bg: var(--color-background);
     border-radius: var(--radius-md);
+
     figure {
         overflow: clip;
         height: 100%;
@@ -210,6 +192,3 @@ flipping-card::part(front) {
     gap: var(--space-2);
 }
 
-#canvas1 {
-    /*background-color: purple;*/
-}

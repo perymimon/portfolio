@@ -36,17 +36,17 @@ var canvas = document.getElementById("canvas1")
 var ctx = canvas.getContext("2d")
 setCanvas(canvas, document.querySelector('main'))
 var {width} = canvas
-
-let replicaImage = await imageFrom('./replica-landscape-2.png')
-let {height} = replicaImage
-
+let imageUrl = isLandscape() ? './replica-landscape-2.png' : './replica-portrait-2.png'
+let replicaImage = await imageFrom(imageUrl)
+let height = Math.floor(replicaImage.height / replicaImage.width * width)
+canvas.height = height
 var grid = new Grid(width, height)
 var touched = new Grid(width, height)
 
 function resetGrid () {
     grid.cells.fill(0)
-    let imageData = getImageData(replicaImage)
-    // ctx.drawImage(replicaImage, 0, 0, width, height, 0, 0, width, height)
+    let imageData = getImageData(replicaImage, '', width, height)
+    // ctx.drawImage(replicaImage, 0, 0, replicaImage.width, replicaImage.height, 0, 0, width, height)
     grid.setImageData(0, 0, imageData, function toMaterials (r, g, b, a) {
         if (r === 255 && b === 255 && g === 0) return null
         return sm.symbols.indexOf('B')
@@ -56,11 +56,11 @@ function resetGrid () {
 resetGrid()
 
 async function throwSandAndWater () {
-    let imageUrl = isLandscape() ?'./my-name-landscape.png':'./my-name-portrait.png'
+    let imageUrl = isLandscape() ? './my-name-landscape.png' : './my-name-portrait.png'
     let myNameImage = await imageFrom(imageUrl)
     let imageData = getImageData(myNameImage)
     // ctx.drawImage(myNameImage, 0, 0, width, height, 0, 0, width, height)
-    let x = (width-imageData.width) >>1
+    let x = (width - imageData.width) >> 1
     grid.setImageData(x, 0, imageData, function toMaterials (r, g, b, a) {
         if (r === 255 && b === 255 && g === 0) return null
         return random(1, sm.symbols.length - 1)
@@ -94,6 +94,7 @@ function update () {
 }
 
 grid.draw2(ctx, 0, 1, 1, sm)
+
 var frameEngine = new FrameEngine(60, function ({detail: {frames}}) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     grid.draw2(ctx, frames, 1, 1, sm)
