@@ -24,13 +24,13 @@
 #canvas1 {
     transition: opacity 700ms ease-in;
     will-change: opacity;
-    /*opacity: 0;*/
+    opacity: 0;
 }
 
  #main-header h1,#my-name {
     transition: opacity 700ms 250ms ease-out;
     /*will-change: opacity;*/
-    /*opacity: 1;*/
+    opacity: 1;
 }
 
 

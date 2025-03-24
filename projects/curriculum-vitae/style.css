@@ -1,6 +1,6 @@
-@import "../../base.css" ;
-@import "../../home-scripts/style-small-elements.css" ;
-@import "./hero-elements.css" ;
+@import "../../base.css";
+@import "../../home-scripts/style-small-elements.css";
+@import "./hero-elements.css";
 @import "./components/flipping-card.components.css";
 /* Enable CSS variable animations */
 @property --angle {
@@ -8,6 +8,7 @@
     initial-value: 0deg;
     inherits: false;
 }
+
 @property --angle-2 {
     syntax: "<angle>";
     initial-value: 0deg;
@@ -305,12 +306,11 @@ footer {
             transform-origin: left;
             scale: var(--percent-2) 1;
             @starting-style {
-            --percent-2: 0%;
-        }
+                --percent-2: 0%;
+            }
         }
     }
 }
-
 
 a.button-base {
     padding: var(--space-2);
@@ -368,6 +368,7 @@ a.button-base {
         --angle: 360deg;
     }
 }
+
 }
 
 *:has(>.hilbert-curve-background-effect) *:not(canvas) {
