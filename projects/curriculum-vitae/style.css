@@ -1,7 +1,7 @@
-@import "../../base.css" layer(base);
-@import "../../home-scripts/style-small-elements.css" layer(small-elements);
-@import "./hero-elements.css" layer(hero-elements);
-
+@import "../../base.css" ;
+@import "../../home-scripts/style-small-elements.css" ;
+@import "./hero-elements.css" ;
+@import "./components/flipping-card.components.css";
 /* Enable CSS variable animations */
 @property --angle {
     syntax: "<angle>";
