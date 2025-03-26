@@ -20,13 +20,13 @@
     .tv-image::before {
         left: 2px;
         filter: drop-shadow(2px 0 #ff00c1);
-        animation: glitch-line var(--time-animation) 1s both 10;
+        animation: glitch-line var(--time-animation) 1s both infinite;
     }
 
     .tv-image::after {
         left: -2px;
         filter: drop-shadow(-2px 0 #00fff9);
-        animation: glitch-line var(--time-animation) 3s reverse both 10;
+        animation: glitch-line var(--time-animation) 3s reverse both infinite;
     }
 }
 

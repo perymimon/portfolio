@@ -79,9 +79,9 @@
 
 .md-2 { margin-block-end: var(--space-2);}
 
-.md-6 { margin-block-end: var(--space-6);}
-
 .md-4 { margin-block-end: var(--space-4);}
+
+.md-6 { margin-block-end: var(--space-6);}
 
 .md-12 { margin-block-end: var(--space-12);}
 
@@ -313,8 +313,6 @@ a.button-base {
     50% {--color: var(--color-zich);}
     100% { --color: transparent; }
 }
-
-
 
 *:has(>.hilbert-curve-background-effect) *:not(canvas) {
     position: relative;

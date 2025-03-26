@@ -29,6 +29,9 @@
         list-style:disc;
         list-style-position: inside;
         font-size: var(--font-family-base);
+        li{
+            margin-block-end: var(--space-2);
+        }
     }
 }
 #avatar {
