@@ -1,51 +1,8 @@
 @import "../../base.css";
 @import "../../home-scripts/style-small-elements.css";
 @import "./hero-elements.css";
-@import "./components/flipping-card.components.css";
 /* Enable CSS variable animations */
-@property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-@property --angle-2 {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-@property --color-border {
-    syntax: "<color>";
-    inherits: false;
-}
-
-@property --color {
-    syntax: "<color>";
-    inherits: false;
-    initial-value: transparent;
-}
-
-@property --percent {
-    syntax: "<percentage>";
-    inherits: true;
-    initial-value: 0%;
-}
-
-@property --percent-2 {
-    syntax: "<percentage>";
-    inherits: true;
-    initial-value: 0%;
-}
-
-@keyframes percent-animation {
-    from {
-        --percent: 0%;
-    }
-    to {
-        --percent: 100%;
-    }
-}
+@import "./components/variables.css";
 
 .text-box-trim {
     text-box: trim-start cap alphabetic;
@@ -357,19 +314,7 @@ a.button-base {
     100% { --color: transparent; }
 }
 
-@keyframes rotate-out {
-    0% {
-        --angle: 360deg;
-    }
-}
 
-@keyframes rotate-in {
-    100% {
-        --angle: 360deg;
-    }
-}
-
-}
 
 *:has(>.hilbert-curve-background-effect) *:not(canvas) {
     position: relative;
