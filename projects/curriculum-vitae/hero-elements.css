@@ -23,7 +23,14 @@
         }
     }
 }
-
+#about-me{
+    ul{
+        margin: var(--space-1);
+        list-style:disc;
+        list-style-position: inside;
+        font-size: var(--font-family-base);
+    }
+}
 #avatar {
     height: 38rem;
 
