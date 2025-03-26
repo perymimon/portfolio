@@ -1,0 +1,64 @@
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: true;
+}
+@property --angle-2 {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate-out {
+    0% {
+        --angle: 360deg;
+    }
+}
+
+@keyframes rotate-in {
+    100% {
+        --angle: 360deg;
+    }
+}
+@keyframes flipping-in {
+    from,to { --angle: 0deg; }
+    30%{
+        --angle:60deg;
+    }
+    /*1%, 99%{*/
+    /*    --angle: 180deg;*/
+    /*}*/
+}
+
+@property --color-border {
+    syntax: "<color>";
+    inherits: false;
+}
+
+@property --color {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: transparent;
+}
+
+@property --percent {
+    syntax: "<percentage>";
+    inherits: true;
+    initial-value: 0%;
+}
+
+/* variables animation */
+@keyframes percent-animation {
+    from {
+        --percent: 0%;
+    }
+    to {
+        --percent: 100%;
+    }
+}
+
+@property --percent-2 {
+    syntax: "<percentage>";
+    inherits: true;
+    initial-value: 0%;
+}

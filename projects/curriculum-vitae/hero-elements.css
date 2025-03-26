@@ -1,4 +1,5 @@
 @import "../../base.css" layer(base);
+@import "./components/variables.css" layer(base);
 /* elements with Id */
 #main-header {
     a {
@@ -20,7 +21,6 @@
             justify-content: center;
             font-size: min(3em, 11dvw);
         }
-
     }
 }
 
@@ -74,8 +74,8 @@
     perspective: 1000px; /* Depth of the scene */
     perspective-origin: center 20%;
     overflow: clip;
-    --color-mix-1:  color-mix(in oklch, var(--color-muted), hsl(120deg 90% 50%) 0%) ;
-    --color-mix-2:  color-mix(in oklch, var(--color-muted), hsl(120deg 50% 50%) 0%) ;
+    --color-mix-1: color-mix(in oklch, var(--color-muted), hsl(120deg 90% 50%) 0%);
+    --color-mix-2: color-mix(in oklch, var(--color-muted), hsl(120deg 50% 50%) 0%);
     canvas:nth-child(1) {
         --deep: 1;
         transform-origin: top;
@@ -143,6 +143,16 @@ flipping-card {
     --front-bg: var(--component-bg);
     --back-bg: var(--color-background);
     border-radius: var(--radius-md);
+
+    animation: flipping-in 1s 2 linear both normal;
+
+    animation-timeline: view(block);
+    animation-range: entry 100% entry 250%;
+
+    &.tiz .flip-card-inner {
+        --angle-2: var(--angle);
+        transform: rotateY(var(--angle-2));
+    }
 
     figure {
         overflow: clip;
