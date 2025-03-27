@@ -36,7 +36,8 @@ var canvas = document.getElementById("canvas1")
 var ctx = canvas.getContext("2d")
 setCanvas(canvas, document.querySelector('main'))
 var {width} = canvas
-let imageUrl = isLandscape() ? './replica-landscape-2.png' : './replica-portrait-2.png'
+let imageUrl = './assets/' + (isLandscape() ? 'replica-landscape-2.png' : 'replica-portrait-2.png')
+debugger
 let replicaImage = await imageFrom(imageUrl)
 let height = Math.floor(replicaImage.height / replicaImage.width * width)
 canvas.height = height
@@ -56,7 +57,7 @@ function resetGrid () {
 resetGrid()
 
 async function throwSandAndWater () {
-    let imageUrl = isLandscape() ? './my-name-landscape.png' : './my-name-portrait.png'
+    let imageUrl = './assets/' + (isLandscape() ? 'my-name-landscape.png' : 'my-name-portrait.png')
     let myNameImage = await imageFrom(imageUrl)
     let imageData = getImageData(myNameImage)
     // ctx.drawImage(myNameImage, 0, 0, width, height, 0, 0, width, height)
