@@ -1,4 +1,4 @@
-import {randomItem} from '../../_math/math.js'
+import {randomItem} from '../../../src/math/math.js'
 
 export class StateMachine {
     constructor () {

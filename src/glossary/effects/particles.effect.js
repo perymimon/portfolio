@@ -1,5 +1,5 @@
-import {drawAlgebra} from '../../_helpers/draw.js'
-import {angle2P, clamp, distance, exceedsLimits} from '../../_math/math.js'
+import {drawAlgebra} from '../../helpers/draw.js'
+import {angle2P, clamp, distance, exceedsLimits} from '../../math/math.js'
 
 class Particle {
     constructor (effect, index) {

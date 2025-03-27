@@ -1,7 +1,7 @@
-import {FrameEngine} from '../../_glossary/FrameEngine.js'
-import Pointer from '../../_glossary/Pointer.js'
-import {fetchArrayBuffer, savedArrayBuffer} from '../../_helpers/files.js'
-import {random, randomItem} from '../../_math/math.js'
+import {FrameEngine} from '../../../src/glossary/FrameEngine.js'
+import Pointer from '../../../src/glossary/Pointer.js'
+import {fetchArrayBuffer, savedArrayBuffer} from '../../../src/helpers/files.js'
+import {random, randomItem} from '../../../src/math/math.js'
 import defineStates, {maskedPattern} from './define-states.js'
 import Grid from './Grid.js';
 

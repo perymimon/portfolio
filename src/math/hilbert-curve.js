@@ -1,4 +1,4 @@
-import Point from '../_glossary/primitive/Point.primitive.js'
+import Point from '../glossary/primitive/Point.primitive.js'
 
 export function hilbert (i, order) {
     let v = new Point(0, 0)

@@ -1,5 +1,5 @@
-import {protect} from '../../_helpers/basic.js'
-import {angle2P, eps} from '../../_math/math.js'
+import {protect} from '../../helpers/basic.js'
+import {angle2P, eps} from '../../math/math.js'
 import {Value} from '../Value.js'
 
 export default class Coordinates {

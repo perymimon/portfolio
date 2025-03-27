@@ -1,6 +1,6 @@
-import {drawAlgebra} from '../../_helpers/draw.js'
-import {distance, clamp} from '../../_math/math.js'
-import {rectCollision} from '../../_math/collision-detection.js'
+import {drawAlgebra} from '../../../src/helpers/draw.js'
+import {distance, clamp} from '../../../src/math/math.js'
+import {rectCollision} from '../../../src/math/collision-detection.js'
 
 // setup
 const canvas = document.getElementById("canvas1");

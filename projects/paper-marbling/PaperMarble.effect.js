@@ -1,5 +1,5 @@
-import {Effect} from '../_glossary/effects/Effect.js'
-import {add, dot, magnitude, scale, vectorFrom} from '../_math/math.js'
+import {Effect} from '../../src/glossary/effects/Effect.js'
+import {add, dot, magnitude, scale, vectorFrom} from '../../src/math/math.js'
 
 export default class PaperMarbleEffect extends Effect {
     constructor (polygons = [], settings = {}) {

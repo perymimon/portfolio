@@ -1,4 +1,4 @@
-import {color, draw} from '../../_helpers/draw.js'
+import {color, draw} from '../../../src/helpers/draw.js'
 import {drawBow} from './bow.js'
 
 export function drawPresent (ctx, x, y, size, hue) {

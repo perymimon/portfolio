@@ -1,7 +1,7 @@
-import {setCanvas} from '../../_helpers/basic.js'
-import draw from '../../_helpers/draw.js'
-import {hilbert} from '../../_math/hilbert-curve.js'
-import {map, random} from '../../_math/math.js'
+import {setCanvas} from '../../helpers/basic.js'
+import draw from '../../helpers/draw.js'
+import {hilbert} from '../../math/hilbert-curve.js'
+import {map, random} from '../../math/math.js'
 
 const {ceil, log2, min} = Math
 

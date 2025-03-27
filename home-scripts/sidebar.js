@@ -1,4 +1,4 @@
-import Pointer from '../projects/_glossary/Pointer.js'
+import Pointer from '../src/glossary/Pointer.js'
 
 var sidebar$ = document.querySelector('#sidebar')
 var swipeOverlay = document.querySelector('#swipe-overlay')

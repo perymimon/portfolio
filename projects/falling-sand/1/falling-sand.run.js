@@ -1,6 +1,6 @@
-import {FrameEngine} from '../../_glossary/FrameEngine.js'
-import Pointer from '../../_glossary/Pointer.js'
-import {randomItem} from '../../_math/math.js'
+import {FrameEngine} from '../../../src/glossary/FrameEngine.js'
+import Pointer from '../../../src/glossary/Pointer.js'
+import {randomItem} from '../../../src/math/math.js'
 import Grid from '../Grid.js';
 
 const canvas = document.getElementById('canvas1')

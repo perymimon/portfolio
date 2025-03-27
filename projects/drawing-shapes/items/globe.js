@@ -1,4 +1,4 @@
-import {color, draw} from '../../_helpers/draw.js'
+import {color, draw} from '../../../src/helpers/draw.js'
 import {drawTree} from './tree.js'
 
 export function drawGlobe (ctx, x, y, size, hue) {

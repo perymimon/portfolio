@@ -1,4 +1,4 @@
-import {exceedsLimits} from '../_math/math.js'
+import {exceedsLimits} from '../../src/math/math.js'
 
 const MAX_U_INT16 = 2 ** 17 - 1
 

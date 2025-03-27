@@ -1,7 +1,7 @@
-import particlesEffect from '../_glossary/effects/particles.effect.js'
-import {FrameEngine} from '../_glossary/FrameEngine.js'
-import {getProperty, setCanvas} from '../_helpers/basic.js'
-import {getLinearGradient} from '../_helpers/cavas.basic.js'
+import particlesEffect from '../../src/glossary/effects/particles.effect.js'
+import {FrameEngine} from '../../src/glossary/FrameEngine.js'
+import {getProperty, setCanvas} from '../../src/helpers/basic.js'
+import {getLinearGradient} from '../../src/helpers/cavas.basic.js'
 
 var canvases = Array.from(document.querySelectorAll('#particles-background canvas'))
 

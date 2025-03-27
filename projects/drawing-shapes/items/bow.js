@@ -1,4 +1,4 @@
-import {color} from '../../_helpers/draw.js'
+import {color} from '../../../src/helpers/draw.js'
 
 export function drawBow (ctx, x, y, size, hue) {
     var top = y - size / 2, left = x - size / 2, right = left + size, bottom = top + size;

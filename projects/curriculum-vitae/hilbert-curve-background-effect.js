@@ -1,5 +1,5 @@
-import {sparkEffect} from '../_glossary/effects/spark.effect.js'
-import {FrameEngine} from '../_glossary/FrameEngine.js'
+import {sparkEffect} from '../../src/glossary/effects/spark.effect.js'
+import {FrameEngine} from '../../src/glossary/FrameEngine.js'
 
 
 var cards = document.querySelectorAll('.card')

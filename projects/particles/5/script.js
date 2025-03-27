@@ -1,4 +1,4 @@
-import {angle2P, clamp, distance, exceedsLimits} from '../../_math/math.js'
+import {angle2P, clamp, distance, exceedsLimits} from '../../../src/math/math.js'
 
 // setup
 const canvas = document.getElementById("canvas1");

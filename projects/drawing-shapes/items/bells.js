@@ -1,4 +1,4 @@
-import {color} from '../../_helpers/draw.js'
+import {color} from '../../../src/helpers/draw.js'
 import {drawBell} from './bell.js'
 import {drawBow} from './bow.js'
 

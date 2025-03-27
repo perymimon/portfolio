@@ -1,4 +1,4 @@
-import Recorder from "../_glossary/Recorder.js"
+import Recorder from "../glossary/Recorder.js"
 import "./toast.componets.js"
 /* canvas-recorder */
 const componentBaseUrl = new URL(import.meta.url).pathname.replace(/[^/]+$/, '')

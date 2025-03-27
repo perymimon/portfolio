@@ -1,6 +1,6 @@
-import {magnitude} from '../../_math/math.js'
+import {magnitude} from '../../math/math.js'
 import Coordinates from './Coordinates.primitive.js'
-import {draw} from '../../_helpers/draw.js'
+import {draw} from '../../helpers/draw.js'
 
 export default class Vector extends Coordinates{
     static from({x,y}) {

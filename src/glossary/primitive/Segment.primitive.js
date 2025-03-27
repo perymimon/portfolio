@@ -1,7 +1,7 @@
-import {protect} from '../../_helpers/basic.js'
-import {draw} from '../../_helpers/draw.js'
-import {dot} from '../../_math/math.js'
-import {getIntersection} from '../../_math/segment-intersection.js'
+import {protect} from '../../helpers/basic.js'
+import {draw} from '../../helpers/draw.js'
+import {dot} from '../../math/math.js'
+import {getIntersection} from '../../math/segment-intersection.js'
 import Point from './Point.primitive.js'
 
 export default class Segment {

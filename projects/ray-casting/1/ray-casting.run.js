@@ -1,7 +1,7 @@
-import {FrameEngine} from '../../_glossary/FrameEngine.js'
-import Point from '../../_glossary/primitive/Point.primitive.js'
-import Segment from '../../_glossary/primitive/Segment.primitive.js'
-import {getProperty} from '../../_helpers/basic.js'
+import {FrameEngine} from '../../../src/glossary/FrameEngine.js'
+import Point from '../../../src/glossary/primitive/Point.primitive.js'
+import Segment from '../../../src/glossary/primitive/Segment.primitive.js'
+import {getProperty} from '../../../src/helpers/basic.js'
 import Light from '../Light.js'
 
 var canvas = document.getElementById("canvas1");

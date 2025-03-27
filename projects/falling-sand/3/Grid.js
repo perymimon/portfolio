@@ -1,4 +1,4 @@
-import {pixelsToScalar} from '../../_helpers/filters.colors.js'
+import {pixelsToScalar} from '../../../src/helpers/filters.colors.js'
 
 const MAX_U_INT16 = 2 ** 17 - 1
 

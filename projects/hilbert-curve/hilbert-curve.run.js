@@ -1,7 +1,7 @@
-import {FrameEngine} from '../_glossary/FrameEngine.js'
-import draw from '../_helpers/draw.js'
-import {hilbert} from '../_math/hilbert-curve.js'
-import {map, random} from '../_math/math.js'
+import {FrameEngine} from '../../src/glossary/FrameEngine.js'
+import draw from '../../src/helpers/draw.js'
+import {hilbert} from '../../src/math/hilbert-curve.js'
+import {map, random} from '../../src/math/math.js'
 
 var canvas = document.getElementById('canvas1')
 var ctx = canvas.getContext('2d')

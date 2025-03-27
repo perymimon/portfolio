@@ -1,5 +1,5 @@
 import Point from './Point.primitive.js'
-import {draw} from '../../_helpers/draw.js'
+import {draw} from '../../helpers/draw.js'
 
 export class Particle extends Point{
     constructor(x, y, size, effect) {

@@ -1,12 +1,12 @@
 /* https://www.youtube.com/watch?v=p7IGZTjC008&ab_channel=TheCodingTrain */
 
-import {FrameEngine} from '../_glossary/FrameEngine.js'
-import Pointer from '../_glossary/Pointer.js'
-import Point from '../_glossary/primitive/Point.primitive.js'
+import {FrameEngine} from '../../src/glossary/FrameEngine.js'
+import Pointer from '../../src/glossary/Pointer.js'
+import Point from '../../src/glossary/primitive/Point.primitive.js'
 import {
     RegularPolygon,
-} from '../_glossary/primitive/RegularPolygon.primitive.js'
-import Vector from '../_glossary/primitive/Vector.primitive.js'
+} from '../../src/glossary/primitive/RegularPolygon.primitive.js'
+import Vector from '../../src/glossary/primitive/Vector.primitive.js'
 import PaperMarbleEffect from './PaperMarble.effect.js'
 
 var canvas = document.getElementById("canvas1");

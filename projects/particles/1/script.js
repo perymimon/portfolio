@@ -1,7 +1,7 @@
 import {Effect} from '../script.js'
-import {setCanvas} from '../../_helpers/basic.js'
-import {drawAlgebra} from '../../_helpers/draw.js'
-import {angle2P, clamp, distance, exceedsLimits} from '../../_math/math.js'
+import {setCanvas} from '../../../src/helpers/basic.js'
+import {drawAlgebra} from '../../../src/helpers/draw.js'
+import {angle2P, clamp, distance, exceedsLimits} from '../../../src/math/math.js'
 
 // setup
 const canvas = document.getElementById("canvas1");

@@ -1,7 +1,7 @@
-import {imageFrom} from '../../_helpers/basic.js'
+import {imageFrom} from '../../helpers/basic.js'
 import {
     brightnessProcessors, getImageData,
-} from '../../_helpers/filters.colors.js'
+} from '../../helpers/filters.colors.js'
 
 const brightness = brightnessProcessors()
 export default class PixelImage {

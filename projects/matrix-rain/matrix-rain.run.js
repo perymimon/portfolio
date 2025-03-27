@@ -1,6 +1,6 @@
-import {FrameEngine} from '../_glossary/FrameEngine.js'
-import {getProperty} from '../_helpers/basic.js'
-import {SymbolsRainEffect} from '../_glossary/effects/SymbolsRain.effect.js'
+import {FrameEngine} from '../../src/glossary/FrameEngine.js'
+import {getProperty} from '../../src/helpers/basic.js'
+import {SymbolsRainEffect} from '../../src/glossary/effects/SymbolsRain.effect.js'
 
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");

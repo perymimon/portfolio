@@ -1,8 +1,8 @@
-import {Sprite} from '../../_glossary/effects/Sprite.js'
-import {drawAlgebra} from '../../_helpers/draw.js'
+import {Sprite} from '../../../src/glossary/effects/Sprite.js'
+import {drawAlgebra} from '../../../src/helpers/draw.js'
 import {
     angle2P, clamp, distance, exceedsLimits, isBetween, lerp, random,
-} from '../../_math/math.js'
+} from '../../../src/math/math.js'
 
 // setup
 const canvas = document.getElementById("canvas1");

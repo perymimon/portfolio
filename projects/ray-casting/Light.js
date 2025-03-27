@@ -1,9 +1,9 @@
-import Point from '../_glossary/primitive/Point.primitive.js'
-import Segment from '../_glossary/primitive/Segment.primitive.js'
-import {Value} from '../_glossary/Value.js'
-import {getProperty} from '../_helpers/basic.js'
-import {getRadialGradient} from '../_helpers/cavas.basic.js'
-import {draw} from '../_helpers/draw.js'
+import Point from '../../src/glossary/primitive/Point.primitive.js'
+import Segment from '../../src/glossary/primitive/Segment.primitive.js'
+import {Value} from '../../src/glossary/Value.js'
+import {getProperty} from '../../src/helpers/basic.js'
+import {getRadialGradient} from '../../src/helpers/cavas.basic.js'
+import {draw} from '../../src/helpers/draw.js'
 
 export default class Light {
     constructor (x, y, settings = {}) {

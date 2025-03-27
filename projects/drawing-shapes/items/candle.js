@@ -1,4 +1,4 @@
-import {color, draw} from '../../_helpers/draw.js'
+import {color, draw} from '../../../src/helpers/draw.js'
 
 export function drawCandle (ctx, x, y, size, hue) {
     var left = x - size / 2, top = y - size / 2
