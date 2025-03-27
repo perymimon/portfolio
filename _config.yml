@@ -1,0 +1,19 @@
+# Site settings
+title: Pery Mimon's Portfolio & Blog
+description: "My personal playground and technical blog."
+author: Pery Mimon
+
+# GitHub Pages specific settings
+baseurl: "/portfolio" # Matches repository name
+url: "https://perymimon.github.io" # Main GitHub Pages URL
+
+# Build settings
+markdown: kramdown # Standard Markdown processor for Jekyll
+
+# Optional: Add default layout for posts later if you want
+# defaults:
+#   - scope:
+#       path: "_posts"
+#       type: "posts"
+#     values:
+#       layout: "post"

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }} | {{ site.title }}</title>
+  <!-- Link CSS using relative_url later: <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}"> -->
+</head>
+<body>
+<header>
+  <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+  <!-- Add basic navigation later -->
+</header>
+
+<main>
+  <!-- Page content will go here -->
+  {{ content }}
+</main>
+
+<footer>
+  <p>© {{ 'now' | date: "%Y" }} {{ site.author }}</p>
+</footer>
+</body>
+</html>
