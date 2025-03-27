@@ -37,7 +37,6 @@ var ctx = canvas.getContext("2d")
 setCanvas(canvas, document.querySelector('main'))
 var {width} = canvas
 let imageUrl = './assets/' + (isLandscape() ? 'replica-landscape-2.png' : 'replica-portrait-2.png')
-debugger
 let replicaImage = await imageFrom(imageUrl)
 let height = Math.floor(replicaImage.height / replicaImage.width * width)
 canvas.height = height

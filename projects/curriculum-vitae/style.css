@@ -1,8 +1,10 @@
 @import "../../base.css";
+@import "./components/tv-static-image.css";
 @import "../../home-scripts/style-small-elements.css";
 @import "./hero-elements.css";
 /* Enable CSS variable animations */
 @import "./components/variables.css";
+
 
 .text-box-trim {
     text-box: trim-start cap alphabetic;
