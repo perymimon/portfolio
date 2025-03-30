@@ -6,32 +6,48 @@
 
 </head>
 <body>
+<pre id="debug"></pre>
 <script>
-    // Get error information from the URL if present
-    const params = new URLSearchParams(document.location.search);
-    const error = params.get('error');
-    const error_description = params.get('error_description');
+    function log(msg) {
+        console.log(msg);
+        const debug = document.getElementById('debug');
+        debug.textContent += msg + '\n';
+    }
 
+    log('Callback URL: ' + window.location.href);
+    log('Search params: ' + window.location.search);
+    log('Hash: ' + window.location.hash);
+
+    // Check if we have an error
+    const params = new URLSearchParams(window.location.search);
+    log('Parameters: ' + JSON.stringify(Object.fromEntries(params)));
+
+    const error = params.get('error');
+    
     if (error) {
-        console.error('Error during authentication:', error, error_description);
-        // Redirect back to the admin page with error
-        window.location.href = '/portfolio/admin/#error=' + encodeURIComponent(error_description || error);
+        log('Error found: ' + error);
+        console.error('Error during authentication:', error);
+        window.location.href = '/portfolio/admin/#error=' + encodeURIComponent(error);
     } else {
-        // Handle successful authentication
-        const hash = document.location.hash;
-        if (hash) {
-            // Parse hash parameters
-            const token = hash.substring(1).split('&').find(p => p.startsWith('access_token=')).split('=')[1];
-            
-            if (token) {
-                localStorage.setItem('netlify-cms-user', JSON.stringify({
-                    token: { access_token: token },
-                    provider: 'github'
-                }));
-                
-                // Redirect back to the admin interface
-                window.location.href = '/portfolio/admin/';
+        log('No error, checking hash...');
+        // Check for the authorization code in the URL
+        const hash = window.location.hash;
+        if (hash && hash.length > 0) {
+            try {
+                log('Hash found: ' + hash);
+                // Store the hash in localStorage
+                localStorage.setItem('gh_oauth_state', hash);
+                log('Stored hash in localStorage');
+                // Redirect back to the admin
+                window.location.href = '/portfolio/admin/#';
+            } catch (e) {
+                log('Error: ' + e.message);
+                console.error('Error storing auth data:', e);
+                window.location.href = '/portfolio/admin/#error=' + encodeURIComponent(e.message);
             }
+        } else {
+            log('No hash found in URL');
+            window.location.href = '/portfolio/admin/#error=No_authorization_code';
         }
     }
 </script>

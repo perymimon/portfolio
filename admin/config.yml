@@ -3,9 +3,7 @@ backend:
   name: github
   repo: perymimon/portfolio
   branch: main
-  base_url: https://perymimon.github.io
-  site_domain: perymimon.github.io
-  auth_endpoint: portfolio/admin/callback.html
+  auth_endpoint: https://github.com/login/oauth/authorize
   client_id: Ov23lie5ctT5eH3CbsYi   
 
 # Publish mode (editorial workflow)
