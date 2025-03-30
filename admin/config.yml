@@ -1,11 +1,11 @@
 # admin/config.yml
 backend:
   name: github
-  repo: perymimon/portfolio
+#  repo: perymimon/portfolio
   branch: main
-  base_url: https://perymimon.github.io/portfolio
-  auth_endpoint: /admin/oauth.html
-
+#  base_url: https://perymimon.github.io/portfolio
+#  auth_endpoint: /admin/oauth.html
+#
 # Publish mode (editorial workflow)
 publish_mode: editorial_workflow
 
