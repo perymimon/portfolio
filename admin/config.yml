@@ -4,7 +4,7 @@ backend:
   repo: perymimon/portfolio
   branch: main # Branch to update (optional; defaults to master)
   base_url: https://perymimon.github.io/portfolio
-  auth_endpoint: /portfolio/admin/oauth.html
+  auth_endpoint: /admin/oauth.html
 
 # Publish mode (editorial workflow)
 publish_mode: editorial_workflow
