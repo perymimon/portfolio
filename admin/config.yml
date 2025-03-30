@@ -3,14 +3,16 @@ backend:
   name: github
   repo: perymimon/portfolio
   branch: main
-  auth_endpoint: admin/callback.html
+  base_url: https://perymimon.github.io
+  site_domain: perymimon.github.io
+  auth_endpoint: portfolio/admin/callback.html
 
 # Publish mode (editorial workflow)
 publish_mode: editorial_workflow
 
 # Media folder where uploads will be stored
 media_folder: "contents/images/uploads"
-public_folder: "/contents/images/uploads"
+public_folder: "/portfolio/contents/images/uploads"
 
 # Collections define the structure for content types
 collections:
