@@ -1,0 +1,41 @@
+prose:
+  rooturl: '_posts'
+  siteurl: 'https://perymimon.github.io/portfolio/'
+  media: 'contents/images'
+  metadata:
+    _posts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Title"
+          placeholder: "Enter title"
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date"
+          placeholder: "YYYY-MM-DD"
+          value: CURRENT_DATETIME
+      - name: "categories"
+        field:
+          element: "multiselect"
+          label: "Categories"
+          options:
+            - name: "css"
+              value: "css"
+            - name: "js"
+              value: "category2"
+      - name: "tags"
+        field:
+          element: "multiselect"
+          label: "Tags"
+          options:
+            - name: "Css"
+              value: "css"
+            - name: "JS"
+              value: "js"
+            - name: "Html"
+              value: "html"
