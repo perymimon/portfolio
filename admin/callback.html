@@ -7,16 +7,27 @@
 <body>
 <script>
     // Get code from URL
-    debugger
     const code = new URLSearchParams(window.location.search).get('code');
     if (code) {
-        // Store the authorization code
-        localStorage.setItem('netlify-cms-github-code', code);
-        // Redirect back to the admin
-        window.location.href = '/portfolio/admin/';
+        // Send the code back to the opener window
+        window.opener.postMessage(
+            `authorization:github:success:${JSON.stringify({
+                provider: 'github',
+                code,
+            })}`,
+            window.location.origin
+        );
+        // Close the popup
+        window.close();
     } else {
         console.error('No code found in URL');
-        window.location.href = '/portfolio/admin/#error=No_code_found';
+        window.opener.postMessage(
+            `authorization:github:error:${JSON.stringify({
+                error: 'No code found in URL'
+            })}`,
+            window.location.origin
+        );
+        window.close();
     }
 </script>
 </body>
