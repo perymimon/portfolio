@@ -3,54 +3,20 @@
 <head>
     <meta charset="utf-8">
     <title>Decap CMS</title>
-
 </head>
 <body>
-<pre id="debug"></pre>
 <script>
-    function log(msg) {
-        console.log(msg);
-        const debug = document.getElementById('debug');
-        debug.textContent += msg + '\n';
-    }
-
-    log('Callback URL: ' + window.location.href);
-    log('Search params: ' + window.location.search);
-    log('Hash: ' + window.location.hash);
-
-    // Check if we have an error
-    const params = new URLSearchParams(window.location.search);
-    log('Parameters: ' + JSON.stringify(Object.fromEntries(params)));
-
-    const error = params.get('error');
-    
-    if (error) {
-        log('Error found: ' + error);
-        console.error('Error during authentication:', error);
-        window.location.href = '/portfolio/admin/#error=' + encodeURIComponent(error);
+    // Get code from URL
+    const code = new URLSearchParams(window.location.search).get('code');
+    if (code) {
+        // Store the authorization code
+        localStorage.setItem('netlify-cms-github-code', code);
+        // Redirect back to the admin
+        window.location.href = '/portfolio/admin/';
     } else {
-        log('No error, checking hash...');
-        // Check for the authorization code in the URL
-        const hash = window.location.hash;
-        if (hash && hash.length > 0) {
-            try {
-                log('Hash found: ' + hash);
-                // Store the hash in localStorage
-                localStorage.setItem('gh_oauth_state', hash);
-                log('Stored hash in localStorage');
-                // Redirect back to the admin
-                window.location.href = '/portfolio/admin/#';
-            } catch (e) {
-                log('Error: ' + e.message);
-                console.error('Error storing auth data:', e);
-                window.location.href = '/portfolio/admin/#error=' + encodeURIComponent(e.message);
-            }
-        } else {
-            log('No hash found in URL');
-            window.location.href = '/portfolio/admin/#error=No_authorization_code';
-        }
+        console.error('No code found in URL');
+        window.location.href = '/portfolio/admin/#error=No_code_found';
     }
 </script>
-<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
