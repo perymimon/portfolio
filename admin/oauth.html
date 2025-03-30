@@ -9,6 +9,7 @@
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
   const clientId = 'Ov23lie5ctT5eH3CbsYi';
+  debugger
   if (!code) {
     // Redirect to GitHub OAuth
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo,user`;
