@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GitHub Authentication Redirect</title>
+</head>
+<body>
+<script>
+  const clientId = 'Ov23lie5ctT5eH3CbsYi';
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+
+  if (code) {
+    // Redirect to Netlify's OAuth handler
+    window.location.href = `https://api.netlify.com/auth/github?client_id=${clientId}&code=${code}`;
+  } else {
+    // Redirect to GitHub OAuth
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo,user`;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# admin/config.yml
+backend:
+  name: github
+  repo: perymimon/portfolio
+  branch: main
+  base_url: https://perymimon.github.io/portfolio
+  auth_endpoint: /admin/oauth.html
+
+# Publish mode (editorial workflow)
+publish_mode: editorial_workflow
+
+# Media folder where uploads will be stored
+media_folder: "contents/images/uploads"
+public_folder: "/contents/images/uploads"
+
+# Collections define the structure for content types
+collections:
+  - name: "posts" # Used in routes, e.g., /admin/collections/blog
+    label: "Blog Posts" # Used in the UI
+    folder: "_posts" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Categories", name: "categories", widget: "list", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}

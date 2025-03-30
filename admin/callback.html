@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Decap CMS</title>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</head>
+<body>
+<script>
+    // Handle the OAuth callback by storing the token and redirecting back to the admin
+    if (document.location.hash) {
+        const token = document.location.hash.slice(1).split('&')[0].split('=')[1];
+        localStorage.setItem('netlifySiteURL', 'https://perymimon.github.io/portfolio');
+        localStorage.setItem('githubToken', token);
+        document.location.href = '/portfolio/admin/';
+    }
+</script>
+</body>
+</html>
