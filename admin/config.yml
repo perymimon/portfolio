@@ -5,7 +5,9 @@ backend:
   repo: perymimon/portfolio
   branch: main
   auth: { token: "" }
-
+  base_url: https://perymimon.github.io/portfolio
+  auth_endpoint: /admin/oauth.html
+  
 publish_mode: simple
 
 # Media folder where uploads will be stored
