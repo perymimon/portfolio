@@ -9,59 +9,29 @@
 <div id="output">Processing...</div>
 
 <script type="module">
-    async function processOAuthCallback() {
-        const outputDiv = document.getElementById('output');
-        const params = new URLSearchParams(window.location.search);
-        const code = params.get('code');
-        const error = params.get('error');
-
-        if (error) {
-            outputDiv.textContent = 'OAuth Error: ' + error;
-            return;
-        }
-        if (!code) {
-            outputDiv.textContent = 'No authorization code found in URL.';
-            return;
-        }
-
-        // Retrieve the PKCE verifier stored during the initial login flow
-        const codeVerifier = localStorage.getItem('pkce_verifier');
-        if (!codeVerifier) {
-            outputDiv.textContent = 'PKCE code_verifier not found in localStorage.';
-            return;
-        }
-
-        // Build the form data to send to the Cloudflare Worker
-        const formData = new URLSearchParams();
-        formData.append('code', code);
-        formData.append('code_verifier', codeVerifier);
-
-        // Replace with your Cloudflare Worker URL
-        const workerUrl = 'https://github-oauth-token.pery-mimon.workers.dev/';
-
-        try {
-            const response = await fetch(workerUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formData
-            });
-
-            const data = await response.json();
-
-            if (data.error) {
-                outputDiv.textContent = 'Error: ' + data.error +
-                    (data.error_description ? (' - ' + data.error_description) : '');
+    fetch("https://github-oauth-token.pery-mimon.workers.dev/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+            // Obtained from the URL (GitHub redirect)
+            code: new URLSearchParams(window.location.search).get('code'),
+            // Retrieved from localStorage (set during PKCE generation)
+            code_verifier: localStorage.getItem('pkce_verifier')
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.access_token) {
+                // Save the access token for your session
+                sessionStorage.setItem("github_access_token", data.access_token);
+                // Optionally, redirect to the CMS or dashboard
+                window.opener.location.reload();
+                window.close()
             } else {
-                outputDiv.textContent = 'Access Token: ' + data.access_token;
-                // Optionally, store the token in localStorage
-                localStorage.setItem('github_access_token', data.access_token);
+                console.error("Error exchanging token:", data)
             }
-        } catch (err) {
-            outputDiv.textContent = 'Fetch error: ' + err;
-        }
-    }
-
-    processOAuthCallback();
+        })
+        .catch(err => console.error("Request failed:", err))
 </script>
 </body>
 </html>

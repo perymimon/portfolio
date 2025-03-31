@@ -10,5 +10,21 @@
 <!-- Include the script that builds the page and powers Decap CMS -->
 <!--<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    // Assuming your config from config.yml is available as `window.netlifyCmsConfig`
+    const token = sessionStorage.getItem("github_access_token");
+    if (token) {
+      // Merge the token into the existing backend configuration
+      window.netlifyCmsConfig.backend = window.netlifyCmsConfig.backend || {};
+      window.netlifyCmsConfig.backend.auth = { token };
+
+      // Now initialize CMS with the merged config
+      CMS.init({ config: window.netlifyCmsConfig });
+    } else {
+      console.error("Access token missing. Please log in.");
+    }
+  });
+</script>
 </body>
 </html>
