@@ -6,17 +6,37 @@
 </head>
 <body>
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get('code');
   const clientId = 'Ov23lie5ctT5eH3CbsYi';
-  debugger
-  if (!code) {
-    // Redirect to GitHub OAuth
-    window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo,user`;
-  } else {
-    // Redirect to Netlify's OAuth handler
-    window.location.href = `https://api.netlify.com/auth/github?client_id=${clientId}&code=${code}`;
+  const redirectUri = encodeURIComponent('https://perymimon.github.io/portfolio/admin/callback');
 
+  async function generatePKCE() {
+    const encoder = new TextEncoder();
+    const array = new Uint8Array(32);
+    window.crypto.getRandomValues(array);
+    const codeVerifier = btoa(String.fromCharCode(...array)).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+
+    const digest = await crypto.subtle.digest('SHA-256', encoder.encode(codeVerifier));
+    const codeChallenge = btoa(String.fromCharCode(...new Uint8Array(digest)))
+            .replace(/=/g, '')
+            .replace(/\+/g, '-')
+            .replace(/\//g, '_');
+
+    return { codeVerifier, codeChallenge };
+  }
+  async function loginWithGitHub() {
+    const { codeVerifier, codeChallenge } = await generatePKCE();
+    localStorage.setItem('pkce_verifier', codeVerifier);
+
+    const oauthURL = 'https://github.com/login/oauth/authorize'
+    const params = new URLSearchParams();
+    params.append('redirect_uri', redirectUri)
+    params.append('client_id', clientId)
+    params.append('scope', 'read:user')
+    params.append('response_type', 'code')
+    params.append('code_challenge', codeChallenge)
+    params.append('code_challenge_method', 'S256')
+
+    window.location.href = `${oauthURL}?${params}`;
   }
 </script>
 </body>
