@@ -26,7 +26,7 @@
                 sessionStorage.setItem("github_access_token", data.access_token);
                 // Optionally, redirect to the CMS or dashboard
                 window.opener.location.reload();
-                window.close()
+                // window.close()
             } else {
                 console.error("Error exchanging token:", data)
             }
