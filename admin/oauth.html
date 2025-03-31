@@ -5,7 +5,7 @@
   <title>GitHub Authentication Redirect</title>
 </head>
 <body>
-<script>
+<script type="module">
   const clientId = 'Ov23lie5ctT5eH3CbsYi';
   const redirectUri = encodeURIComponent('https://perymimon.github.io/portfolio/admin/callback');
 
@@ -28,8 +28,14 @@
     localStorage.setItem('pkce_verifier', codeVerifier);
 
     const oauthURL = 'https://github.com/login/oauth/authorize'
-    const params = new URLSearchParams();
-    params.append('redirect_uri', redirectUri)
+    const params = new URLSearchParams({
+      client_id: clientId,
+      scope: 'read:user,repo',
+      response_type: 'code',
+      code_challenge: codeChallenge,
+      code_challenge_method: 'sha256'
+    });
+    // params.append('redirect_uri', redirectUri)
     params.append('client_id', clientId)
     params.append('scope', 'read:user')
     params.append('response_type', 'code')
@@ -38,6 +44,8 @@
 
     window.location.href = `${oauthURL}?${params}`;
   }
+
+  await loginWithGitHub();
 </script>
 </body>
 </html>

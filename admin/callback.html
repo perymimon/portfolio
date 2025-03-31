@@ -5,7 +5,7 @@
     <title>Decap CMS</title>
 </head>
 <body>
-<script>
+<script type="module">
     async function getAccessToken() {
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
@@ -17,7 +17,7 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
             body: new URLSearchParams({
-                client_id: 'YOUR_GITHUB_CLIENT_ID',
+                client_id: 'Ov23lie5ctT5eH3CbsYi',
                 code,
                 code_verifier: codeVerifier,
                 redirect_uri: 'https://your-app.com/callback'
@@ -32,6 +32,7 @@
         }
 
     }
+    await getAccessToken()
 </script>
 </body>
 </html>
