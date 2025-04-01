@@ -4,10 +4,16 @@ backend:
   name: github
   repo: perymimon/portfolio
   branch: main
+  base_url: https://decap-proxy.pery-mimon.workers.dev
+  auth_endpoint: auth
 #  auth: { token: "" }
-#  base_url: https://perymimon.github.io/portfolio
-#  base_url: http://localhost:63341/radu-stuff
-#  auth_endpoint: /admin/oauth.html
+#  base_url: https://perymimon.github.io
+#  auth_endpoint: portfolio
+#  base_url: http://localhost:63341
+#  auth_endpoint: /radu-stuff/admin/oauth.html
+
+
+
 
 publish_mode: simple
 

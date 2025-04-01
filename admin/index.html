@@ -13,53 +13,16 @@
 <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 <script type="module">
     const token = localStorage.getItem("github_access_token") ?? ''
-    const user = await fetch('https://api.github.com/user', {
-        headers: {
-            'Authorization': `token ${token}`,
+    CMS.init({
+        config: {
+            backend: {
+                token,
+                site_domain: location.hostname,
+            },
         },
     })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`GitHub API returned ${res.status}`);
-            }
-            return res.json();
-        }).catch(err => {
-            console.error(err);
-        })
 
-    CMS.init({
-        config: {backend: {token}},
-    })
 
-    window.addEventListener("message", (event) => {
-        // List of allowed origins for security
-
-        var allowOrigin = event.origin.includes("localhost") ||
-            event.origin.includes("https://perymimon.github.io")
-
-        if (!allowOrigin) {
-            console.warn("Received message from untrusted origin:", event.origin)
-            return
-        }
-
-        const {type, token} = event.data
-        if (type !== "github-token") return
-        if (!token) {
-            console.warn("Received github token without token", event.data)
-            return
-        }
-        // Save the access token so that your CMS initialization can use it
-        sessionStorage.setItem("github_access_token", token)
-        // Optionally, you can also store additional state if needed
-        console.log("Received token via postMessage:", token)
-        event.source.postMessage("please-close", event.origin);
-        // Reload the page so that CMS can initialize using the stored token
-        CMS.init({
-            config: {
-                backend: {auth: {token}},
-            },
-        })
-    })
 
 </script>
 </body>
