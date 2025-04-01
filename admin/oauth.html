@@ -8,7 +8,7 @@
 <script type="module">
     const clientId = 'Ov23lie5ctT5eH3CbsYi';
     const redirectUri = encodeURIComponent('https://perymimon.github.io/portfolio/admin/callback');
-    const origin = encodeURIComponent(document.referrer)
+    const origin = new URL(document.referrer).origin
 
     async function generatePKCE () {
         const encoder = new TextEncoder();
@@ -25,7 +25,7 @@
         return {codeVerifier, codeChallenge};
     }
 
-    async function loginWithGitHub () {
+   export async function loginWithGitHub () {
         const {codeVerifier, codeChallenge} = await generatePKCE();
         localStorage.setItem('pkce_verifier', codeVerifier);
 
@@ -36,11 +36,11 @@
             response_type: 'code',
             code_challenge: codeChallenge,
             code_challenge_method: 'sha256',
-            state: encodeURIComponent(origin),
+            state: origin,
         });
         window.location.href = `${oauthURL}?${params}`;
     }
-
+    window.loginWithGitHub = loginWithGitHub
     await loginWithGitHub();
 </script>
 </body>
