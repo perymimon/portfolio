@@ -8,11 +8,12 @@
 <h1>OAuth Callback</h1>
 <div id="output">Processing...</div>
 <script>
-    function log(msg, ...other){
+    function log (msg, ...other) {
         console.error(msg, ...other)
         output.textContent = `${msg}, ${other}`
     }
-    function throwing(msg, ...other){
+
+    function throwing (msg, ...other) {
         throw new Error(`${msg}, ${other}`)
     }
 </script>
@@ -23,7 +24,7 @@
     const codeVerifier = localStorage.getItem("pkce_verifier")
     const origins = [
         "https://perymimon.github.io",
-        "http://localhost:63341"
+        "http://localhost:63341",
     ]
     if (!code || !codeVerifier) {
         throwing("Missing code or code_verifier.")
@@ -35,26 +36,20 @@
     })
         .then(response => response.json())
         .then(data => {
-            if (data.access_token) {
-                // Save the access token for your session, github token not have expired
-                localStorage.setItem("github_access_token", data.access_token);
-                for(let origin of origins) {
-                    window.opener.postMessage(
-                        {type: "github-token", token: data.access_token, state},
-                        origin
-                    )
-                }
+            if (!data.access_token) throwing("Error fetching access token:", data)
+            // Save the access token for your session, github token not have expired
+            localStorage.setItem("github_access_token", data.access_token);
+            window.opener.postMessage(
+                {type: "github-token", token: data.access_token, state},
+                origin,
+            )
 
-                // window.close()
-            } else {
-               log("Error fetching access token:", data)
-            }
         })
         .catch(err => console.error("Request failed:", err))
-        // .finally(() => {
-        //     // Close the popup after a short delay to ensure the message is sent
-        //     setTimeout(() => window.close(), 100)
-        // });
+    // .finally(() => {
+    //     // Close the popup after a short delay to ensure the message is sent
+    //     setTimeout(() => window.close(), 100)
+    // });
 </script>
 </body>
 </html>
