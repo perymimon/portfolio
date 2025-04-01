@@ -23,7 +23,7 @@ export default class PixelImage {
 
     #rasterize () {
         var {width, height} = this.imageData
-        this.xyBuffer = new Float32Array(width * height * 2); // XY buffer
+        this.xyBuffer = new Float32Array(width * height * 2) // XY buffer
         for (let i = 0; i < width * height; i++) {
             this.xyBuffer[i * 2] = i % width //x
             this.xyBuffer[i * 2 + 1] =  Math.floor(i / width)//y

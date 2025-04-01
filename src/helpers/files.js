@@ -11,16 +11,16 @@ export function loadBlob(blob) {
     if (blob instanceof File) {
         // Handle file input
         return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(new Uint8Array(reader.result));
-            reader.onerror = () => reject(reader.error);
-            reader.readAsArrayBuffer(blob);
-        });
+            const reader = new FileReader()
+            reader.onload = () => resolve(new Uint8Array(reader.result))
+            reader.onerror = () => reject(reader.error)
+            reader.readAsArrayBuffer(blob)
+        })
     } else if (blob instanceof ArrayBuffer) {
         // Handle ArrayBuffer (e.g., from fetch)
-        return Promise.resolve(new Uint8Array(blob));
+        return Promise.resolve(new Uint8Array(blob))
     } else {
-        return Promise.reject(new Error('Unsupported data type'));
+        return Promise.reject(new Error('Unsupported data type'))
     }
 }
 export function saveBlob(blob, filename){

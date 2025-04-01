@@ -36,14 +36,14 @@ export class Sprite {
             sy = Math.floor(this.rowZero + this.index / this.framesPerRow) * this.spriteHeight,
             sw = this.spriteWidth,
             sh = this.spriteHeight
-        ;
+
         width = width || this.width
         height = height || this.height || /*ratio*/(width * this.spriteRatio)
         let tx = centerX - width / 2,
             ty = centerY - height / 2,
             tw = width,
             th = height
-        ;
+
         ctx.drawImage(
             this.image, sx, sy, sw, sh,
             tx, ty, tw, th,
@@ -68,34 +68,34 @@ export class Sprite {
 //                      frameCount = 1,
 //                      frameRate = 10,
 //                  }) {
-//         this.image = new Image();
-//         this.image.src = imageSrc;
+//         this.image = new Image()
+//         this.image.src = imageSrc
 //
 //         // Canvas position
-//         this.x = x;
-//         this.y = y;
-//         this.width = width;   // Rendered width
-//         this.height = height; // Rendered height
+//         this.x = x
+//         this.y = y
+//         this.width = width   // Rendered width
+//         this.height = height // Rendered height
 //
 //         // Sprite sheet details
-//         this.sheetX = sheetX;     // Start X in the sprite sheet
-//         this.sheetY = sheetY;     // Start Y in the sprite sheet
-//         this.sheetWidth = sheetWidth || width;   // Width of a single frame in the sheet
-//         this.sheetHeight = sheetHeight || height; // Height of a single frame in the sheet
+//         this.sheetX = sheetX     // Start X in the sprite sheet
+//         this.sheetY = sheetY     // Start Y in the sprite sheet
+//         this.sheetWidth = sheetWidth || width   // Width of a single frame in the sheet
+//         this.sheetHeight = sheetHeight || height // Height of a single frame in the sheet
 //
 //         // Animation properties
-//         this.frameCount = frameCount; // Total frames for this sprite
-//         this.currentFrame = 0;
-//         this.frameRate = frameRate; // Frames per second
-//         this.elapsedTime = 0;
+//         this.frameCount = frameCount // Total frames for this sprite
+//         this.currentFrame = 0
+//         this.frameRate = frameRate // Frames per second
+//         this.elapsedTime = 0
 //     }
 //
 //     // Update sprite position or animation frame
 //     update (deltaTime) {
 //         // Update animation frame based on frameRate
-//         this.elapsedTime += deltaTime;
+//         this.elapsedTime += deltaTime
 //         if (this.elapsedTime > 1000 / this.frameRate) {
-//             this.currentFrame = (this.currentFrame + 1) % this.frameCount;
+//             this.currentFrame = (this.currentFrame + 1) % this.frameCount
 //             this.elapsedTime = 0;
 //         }
 //     }

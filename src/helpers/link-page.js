@@ -1,9 +1,9 @@
 export function linkPageToParent () {
     window.addEventListener('message', function (event) {
         if (event.data.theme) {
-            setTheme(event.data.theme);
+            setTheme(event.data.theme)
         }
-    });
+    })
 }
 
 export function inIframe(){
@@ -15,23 +15,23 @@ if(inIframe()){
 }
 
 export function getPreferredTheme() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 function setTheme(theme) {
-    document.body.setAttribute('data-theme', theme);
-    propagateThemeToIframe(theme);
+    document.body.setAttribute('data-theme', theme)
+    propagateThemeToIframe(theme)
 }
 
 function propagateThemeToIframe(theme) {
-    const iframe = document.getElementById('content-frame');
-    iframe?.contentWindow.postMessage({theme}, '*');
+    const iframe = document.getElementById('content-frame')
+    iframe?.contentWindow.postMessage({theme}, '*')
 }
 
 export function toggleTheme() {
-    const currentTheme = document.body.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
+    const currentTheme = document.body.getAttribute('data-theme')
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+    setTheme(newTheme)
 }
 
 export function initializeTheme() {

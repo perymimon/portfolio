@@ -47,7 +47,7 @@ export default class Segment {
         return {
             point: this.p1.clone.translate(norm.scale(scalar)),
             offset: scalar / this.length,
-        };
+        }
     }
 
     intersectionPoint (ray) {

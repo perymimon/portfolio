@@ -6,14 +6,14 @@ export function getImageData (image, filters, width, height) {
         var ctx = offScreenCanvas.getContext('2d')
         if (filters) ctx.filter = filters
         ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
-        return ctx.getImageData(0, 0, width, height);
+        return ctx.getImageData(0, 0, width, height)
     }
     throw 'image must be an image object'
 }
 
 function getPixel (pixels, i) {
     let r = pixels[i], g = pixels[i + 1], b = pixels[i + 2],
-        a = pixels[i + 3];
+        a = pixels[i + 3]
     return [r, g, b, a]
 }
 

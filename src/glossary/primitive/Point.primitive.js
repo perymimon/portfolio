@@ -76,10 +76,10 @@ export default class Point extends Coordinates {
     }
 
     orbitAround ({x, y}, angle) {
-        const dx = this.x - x;
-        const dy = this.y - y;
-        const cos = Math.cos(angle);
-        const sin = Math.sin(angle);
+        const dx = this.x - x
+        const dy = this.y - y
+        const cos = Math.cos(angle)
+        const sin = Math.sin(angle)
         return this.set({
             x: x + (dx * cos - dy * sin),
             y: y + (dx * sin + dy * cos),

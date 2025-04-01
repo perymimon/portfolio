@@ -2,13 +2,13 @@ export const draw = {}
 export default draw
 
 draw.circle = function (ctx, x, y, radius, options = {}) {
-    ctx.beginPath();
+    ctx.beginPath()
 
     if (options.outline) {
         radius -= options.lineWidth / 2
     }
 
-    ctx.arc(x, y, radius, 0, Math.PI * 2, true);
+    ctx.arc(x, y, radius, 0, Math.PI * 2, true)
 
     drawing(ctx, options,'circle')
 
@@ -16,7 +16,7 @@ draw.circle = function (ctx, x, y, radius, options = {}) {
 
 draw.ellipse = function (ctx, x, y, xRadius, yRadius, options = {}) {
     ctx.beginPath()
-    ctx.ellipse(x, y, xRadius, yRadius, 0, 0, Math.PI * 2, true);
+    ctx.ellipse(x, y, xRadius, yRadius, 0, 0, Math.PI * 2, true)
     drawing(ctx, options, 'ellipse')
 }
 
@@ -86,8 +86,8 @@ export const drawAlgebra = {
 
 export const color = {}
 
-color.darkest = (hue) => `hsl(${hue}, 100%, 10%)`;
-color.dark = (hue) => `hsl(${hue}, 100%, 30%)`;
+color.darkest = (hue) => `hsl(${hue}, 100%, 10%)`
+color.dark = (hue) => `hsl(${hue}, 100%, 30%)`
 color.normal = (hue) => `hsl(${hue}, 100%, 50%)`;
 color.light = (hue) => `hsl(${hue}, 100%, 70%)`;
 color.lightest = (hue) => `hsl(${hue}, 100%, 90%)`;

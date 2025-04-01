@@ -8,13 +8,13 @@ export function hilbert (i, order) {
         switch (mask & 3) {
             case 0:
                 v.swapMainDiagonal()
-                break;
+                break
             case 1:
                 v.translate({x: 0, y: len})
-                break;
+                break
             case 2:
                 v.translate({x: len, y: len})
-                break;
+                break
             case 3:
                 v.swapSecondDiagonal(len - 1)
                     .translate({x: len, y: 0})

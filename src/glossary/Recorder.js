@@ -11,8 +11,8 @@ window.addEventListener("message", async (event) => {
             canvasId ? document.getElementById(canvasId) : document.querySelector("canvas")
 
         if (!targetCanvas) {
-            console.error(`CanvasRecorder: Target canvas not found.`);
-            source.postMessage({type: "not-found", id, canvasId}, "*");
+            console.error(`CanvasRecorder: Target canvas not found.`)
+            source.postMessage({type: "not-found", id, canvasId}, "*")
             return;
         }
         const recorder = new Recorder(targetCanvas);

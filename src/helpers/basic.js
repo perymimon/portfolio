@@ -1,38 +1,38 @@
 export function getProperty (ctx, property) {
     if (String(property).startsWith('--')) {
-        var {canvas} = ctx;
+        var {canvas} = ctx
         var value = getComputedStyle(canvas).getPropertyValue(property).trim()
         // Check for light-dark function
         if (value.startsWith('light-dark(')) {
-            value = parseLightDark(value);
+            value = parseLightDark(value)
         }
         return value
     }
-    return property;
+    return property
 }
 
 // Function to parse and evaluate light-dark values
 function parseLightDark (value) {
     // Match the light-dark function and its parameters
-    const match = value.match(/light-dark\(\s*((?:[^\(\)]|\([^)]*\))+)\s*,\s*((?:[^\(\)]|\([^)]*\))+)\s*\)$/);
-    if (!match) return value; // Return as-is if no match
+    const match = value.match(/light-dark\(\s*((?:[^\(\)]|\([^)]*\))+)\s*,\s*((?:[^\(\)]|\([^)]*\))+)\s*\)$/)
+    if (!match) return value // Return as-is if no match
 
     const [, lightValue, darkValue] = match
     // Detect light or dark mode (customize this logic for your environment)
-    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 
     // Return the appropriate value
-    return isDarkMode ? darkValue : lightValue;
+    return isDarkMode ? darkValue : lightValue
 }
 
 export async function waitFor (eventName, element) {
     const {promise, resolve, reject} = Promise.withResolvers()
     try {
-        element.addEventListener(eventName, resolve, {ones: true});
+        element.addEventListener(eventName, resolve, {ones: true})
     } catch (e) {
-        reject(e);
+        reject(e)
     }
-    return promise;
+    return promise
 }
 
 /**
@@ -60,7 +60,7 @@ export async function imageFrom (imageLike) {
 
 export function isUrl (string) {
     try {
-        const url = new URL(string, window.location.origin); // Supports relative paths
+        const url = new URL(string, window.location.origin) // Supports relative paths
         return /\.(png|jpe?g|gif|svg|webp)$/.test(url.pathname);
     } catch {
         return false; // Not a valid URL

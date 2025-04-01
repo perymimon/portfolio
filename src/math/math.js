@@ -3,11 +3,11 @@ export const maxeps = 0.999
 
 /* 1D Math */
 export function clamp (min, value, max) {
-    return Math.max(Math.min(min, max), Math.min(max, value));
+    return Math.max(Math.min(min, max), Math.min(max, value))
 }
 
 export function exceedsLimits (min = -Infinity, value, max = Infinity) {
-    return value < min || value >= max;
+    return value < min || value >= max
 }
 
 export function isBetween (min, value, max) {
@@ -91,7 +91,7 @@ export function cross (p1, p2) {
 }
 
 export function vectorFrom (p1, p2) {
-    return {x: p2.x - p1.x, y: p2.y - p1.y};
+    return {x: p2.x - p1.x, y: p2.y - p1.y}
 }
 
 export function subtract (p1, p2) {

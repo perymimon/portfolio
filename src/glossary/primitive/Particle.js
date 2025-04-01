@@ -12,7 +12,7 @@ export class Particle extends Point{
         draw.circle(ctx, this.x, this.y, this.size, {
             drawFill: true,
             ...options,
-        });
+        })
     }
     setBoundary(padding){
         this.x.max = this.effect.width - padding

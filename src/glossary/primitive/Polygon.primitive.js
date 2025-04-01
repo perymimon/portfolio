@@ -14,7 +14,7 @@ export default class Polygon {
 
     *[Symbol.iterator]() {
         for (const point of this.points) {
-            yield point;
+            yield point
         }
     }
 

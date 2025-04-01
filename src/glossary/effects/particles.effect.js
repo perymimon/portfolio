@@ -5,7 +5,7 @@ class Particle {
     constructor (effect, index) {
         this.effect = effect
         this.index = index
-        this.radius = Math.floor(3 + Math.random() * 10);
+        this.radius = Math.floor(3 + Math.random() * 10)
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2)
         this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2)
         this.pushX = 0
@@ -32,8 +32,8 @@ class Particle {
         this.y += this.vy + (this.pushY *= this.friction)
         let x = {min: this.radius, max: this.effect.width - this.radius}
         let y = {min: this.radius, max: this.effect.height - this.radius}
-        if (exceedsLimits(x.min, this.x, x.max)) this.vx *= -1;
-        if (exceedsLimits(y.min, this.y, y.max)) this.vy *= -1;
+        if (exceedsLimits(x.min, this.x, x.max)) this.vx *= -1
+        if (exceedsLimits(y.min, this.y, y.max)) this.vy *= -1
 
         this.x = clamp(x.min, this.x, x.max)
         this.y = clamp(y.min, this.y, y.max)
@@ -50,7 +50,7 @@ class Particle {
 
 export default class Effect {
     constructor (canvas, amount = 300) {
-        this.canvas = canvas;
+        this.canvas = canvas
         this.ctx = canvas.getContext("2d");
         this.width = canvas.width;
         this.height = canvas.height;
