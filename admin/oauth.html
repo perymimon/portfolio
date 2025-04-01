@@ -1,51 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>GitHub Authentication Redirect</title>
+    <meta charset="utf-8">
+    <title>GitHub Authentication Redirect</title>
 </head>
 <body>
 <script type="module">
-  const clientId = 'Ov23lie5ctT5eH3CbsYi';
-  const redirectUri = encodeURIComponent('https://perymimon.github.io/portfolio/admin/callback');
+    const clientId = 'Ov23lie5ctT5eH3CbsYi';
+    const redirectUri = encodeURIComponent('https://perymimon.github.io/portfolio/admin/callback');
+    const origin = encodeURIComponent(document.referrer)
 
-  async function generatePKCE() {
-    const encoder = new TextEncoder();
-    const array = new Uint8Array(32);
-    window.crypto.getRandomValues(array);
-    const codeVerifier = btoa(String.fromCharCode(...array)).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+    async function generatePKCE () {
+        const encoder = new TextEncoder();
+        const array = new Uint8Array(32);
+        window.crypto.getRandomValues(array);
+        const codeVerifier = btoa(String.fromCharCode(...array)).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 
-    const digest = await crypto.subtle.digest('SHA-256', encoder.encode(codeVerifier));
-    const codeChallenge = btoa(String.fromCharCode(...new Uint8Array(digest)))
+        const digest = await crypto.subtle.digest('SHA-256', encoder.encode(codeVerifier));
+        const codeChallenge = btoa(String.fromCharCode(...new Uint8Array(digest)))
             .replace(/=/g, '')
             .replace(/\+/g, '-')
             .replace(/\//g, '_');
 
-    return { codeVerifier, codeChallenge };
-  }
-  async function loginWithGitHub() {
-    const { codeVerifier, codeChallenge } = await generatePKCE();
-    localStorage.setItem('pkce_verifier', codeVerifier);
+        return {codeVerifier, codeChallenge};
+    }
 
-    const oauthURL = 'https://github.com/login/oauth/authorize'
-    const params = new URLSearchParams({
-      client_id: clientId,
-      scope: 'read:user,repo',
-      response_type: 'code',
-      code_challenge: codeChallenge,
-      code_challenge_method: 'sha256'
-    });
-    // params.append('redirect_uri', redirectUri)
-    params.append('client_id', clientId)
-    params.append('scope', 'read:user')
-    params.append('response_type', 'code')
-    params.append('code_challenge', codeChallenge)
-    params.append('code_challenge_method', 'S256')
+    async function loginWithGitHub () {
+        const {codeVerifier, codeChallenge} = await generatePKCE();
+        localStorage.setItem('pkce_verifier', codeVerifier);
 
-    window.location.href = `${oauthURL}?${params}`;
-  }
+        const oauthURL = 'https://github.com/login/oauth/authorize'
+        const params = new URLSearchParams({
+            client_id: clientId,
+            scope: 'read:user,repo',
+            response_type: 'code',
+            code_challenge: codeChallenge,
+            code_challenge_method: 'sha256',
+            state: encodeURIComponent(origin),
+        });
+        window.location.href = `${oauthURL}?${params}`;
+    }
 
-  await loginWithGitHub();
+    await loginWithGitHub();
 </script>
 </body>
 </html>

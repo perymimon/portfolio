@@ -13,7 +13,7 @@
 <script type="module">
   document.addEventListener("DOMContentLoaded", () => {
     // Assuming your config from config.yml is available as `window.netlifyCmsConfig`
-    const token = sessionStorage.getItem("github_access_token");
+    const token = localStorage.getItem("github_access_token");
     if (token) {
       // Merge the token into the existing backend configuration
       window.netlifyCmsConfig.backend = window.netlifyCmsConfig.backend || {};

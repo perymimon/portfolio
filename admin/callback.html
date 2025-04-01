@@ -7,31 +7,52 @@
 <body>
 <h1>OAuth Callback</h1>
 <div id="output">Processing...</div>
-
+<script>
+    function log(msg, ...other){
+        console.error(msg, ...other);
+        output.textContent = `${msg}, ${other}`;`
+    }
+</script>
 <script type="module">
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get("code");
+    const state = decodeURIComponent(urlParams.get("state"))
+    const codeVerifier = localStorage.getItem("pkce_verifier");
+    const origins = [
+        "https://perymimon.github.io",
+        "http://localhost:63341"
+    ]
+    if (!code || !codeVerifier) {
+        log("Missing code or code_verifier.")
+        return;
+    }
     fetch("https://github-oauth-token.pery-mimon.workers.dev/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-            // Obtained from the URL (GitHub redirect)
-            code: new URLSearchParams(window.location.search).get('code'),
-            // Retrieved from localStorage (set during PKCE generation)
-            code_verifier: localStorage.getItem('pkce_verifier')
-        })
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: new URLSearchParams({code, code_verifier: codeVerifier}),
     })
         .then(response => response.json())
         .then(data => {
             if (data.access_token) {
-                // Save the access token for your session
-                sessionStorage.setItem("github_access_token", data.access_token);
-                // Optionally, redirect to the CMS or dashboard
-                window.opener.location.reload();
+                // Save the access token for your session, github token not have expired
+                localStorage.setItem("github_access_token", data.access_token);
+                for(let origin of origins) {
+                    window.opener.postMessage(
+                        {type: "github-token", token: data.access_token, state},
+                        origin
+                    )
+                }
+
                 // window.close()
             } else {
-                console.error("Error exchanging token:", data)
+               log("Error fetching access token:", data)
             }
         })
         .catch(err => console.error("Request failed:", err))
+        .finally(() => {
+            // Close the popup after a short delay to ensure the message is sent
+            setTimeout(() => window.close(), 100);
+        });
 </script>
 </body>
 </html>
