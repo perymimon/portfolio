@@ -23,6 +23,8 @@
                 throw new Error(`GitHub API returned ${res.status}`);
             }
             return res.json();
+        }).catch(err => {
+            console.error(err);
         })
 
     CMS.init({
