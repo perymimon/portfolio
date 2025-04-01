@@ -9,22 +9,24 @@
 <div id="output">Processing...</div>
 <script>
     function log(msg, ...other){
-        console.error(msg, ...other);
-        output.textContent = `${msg}, ${other}`;
+        console.error(msg, ...other)
+        output.textContent = `${msg}, ${other}`
     }
+    function throwing(msg, ...other){
+        throw new Error(`${msg}, ${other}`)
+    })
 </script>
 <script type="module">
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get("code");
+    const urlParams = new URLSearchParams(window.location.search)
+    const code = urlParams.get("code")
     const state = decodeURIComponent(urlParams.get("state"))
-    const codeVerifier = localStorage.getItem("pkce_verifier");
+    const codeVerifier = localStorage.getItem("pkce_verifier")
     const origins = [
         "https://perymimon.github.io",
         "http://localhost:63341"
     ]
     if (!code || !codeVerifier) {
-        log("Missing code or code_verifier.")
-        return;
+        throwing("Missing code or code_verifier.")
     }
     fetch("https://github-oauth-token.pery-mimon.workers.dev/", {
         method: "POST",
@@ -51,7 +53,7 @@
         .catch(err => console.error("Request failed:", err))
         .finally(() => {
             // Close the popup after a short delay to ensure the message is sent
-            setTimeout(() => window.close(), 100);
+            setTimeout(() => window.close(), 100)
         });
 </script>
 </body>
