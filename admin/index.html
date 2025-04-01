@@ -1,30 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
-  <!-- Include the identity widget -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Content Manager</title>
 </head>
 <body>
-<!-- Include the script that builds the page and powers Decap CMS -->
-<!--<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>-->
+<script>
+    window.CMS_MANUAL_INIT = true
+    window.CMS_CONFIG = null
+</script>
 <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 <script type="module">
-  document.addEventListener("DOMContentLoaded", () => {
-    // Assuming your config from config.yml is available as `window.netlifyCmsConfig`
-    const token = localStorage.getItem("github_access_token");
-    if (token) {
-      // Merge the token into the existing backend configuration
-      window.netlifyCmsConfig.backend = window.netlifyCmsConfig.backend || {};
-      window.netlifyCmsConfig.backend.auth = { token };
+    const token = localStorage.getItem("github_access_token") ?? ''
+    const user = await fetch('https://api.github.com/user', {
+        headers: {
+            'Authorization': `token ${token}`,
+        },
+    })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`GitHub API returned ${res.status}`);
+            }
+            return res.json();
+        })
 
-      // Now initialize CMS with the merged config
-      CMS.init({ config: window.netlifyCmsConfig });
-    } else {
-      console.error("Access token missing. Please log in.");
-    }
-  });
+    CMS.init({
+        config: {backend: {token}},
+    })
+
+    window.addEventListener("message", (event) => {
+        // List of allowed origins for security
+
+        var allowOrigin = event.origin.includes("localhost") ||
+            event.origin.includes("https://perymimon.github.io")
+
+        if (!allowOrigin) {
+            console.warn("Received message from untrusted origin:", event.origin)
+            return
+        }
+
+        const {type, token} = event.data
+        if (type !== "github-token") return
+        if (!token) {
+            console.warn("Received github token without token", event.data)
+            return
+        }
+        // Save the access token so that your CMS initialization can use it
+        sessionStorage.setItem("github_access_token", token)
+        // Optionally, you can also store additional state if needed
+        console.log("Received token via postMessage:", token)
+        event.source.postMessage("please-close", event.origin);
+        // Reload the page so that CMS can initialize using the stored token
+        CMS.init({
+            config: {
+                backend: {auth: {token}},
+            },
+        })
+    })
+
 </script>
 </body>
 </html>

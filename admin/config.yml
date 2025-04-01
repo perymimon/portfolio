@@ -4,9 +4,10 @@ backend:
   name: github
   repo: perymimon/portfolio
   branch: main
-  auth: { token: "" }
-  base_url: https://perymimon.github.io/portfolio
-  auth_endpoint: /admin/oauth.html
+#  auth: { token: "" }
+#  base_url: https://perymimon.github.io/portfolio
+#  base_url: http://localhost:63341/radu-stuff
+#  auth_endpoint: /admin/oauth.html
 
 publish_mode: simple
 
