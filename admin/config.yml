@@ -49,6 +49,7 @@ collections:
     create: true
     editor:
       preview: false
+    slug: "{{name}}"
     fields:
       - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'author' }
       - { label: 'Short Name', name: 'name', widget: 'string' }
