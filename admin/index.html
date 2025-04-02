@@ -4,6 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Content Manager</title>
+    <link rel="stylesheet" href="../base.css" />
 </head>
 <body>
 <script>
@@ -13,6 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 <script type="module">
     const token = localStorage.getItem("github_access_token") ?? ''
+    CMS.registerPreviewStyle('../base.css')
     CMS.init({
         config: {
             backend: {
@@ -21,6 +23,8 @@
             },
         },
     })
+
+
 
 
 
