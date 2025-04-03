@@ -23,8 +23,8 @@ media_folder: "contents/uploads"
 # Collections define the structure for content types
 collections:
   - name: "posts" # Used in routes, e.g., /admin/collections/blog
-    label: "Web Blog" # Used in the UI
-    folder: "_posts" # The path to the folder where the documents are stored
+    label: "Tech Post" # Used in the UI
+    folder: "contents/_posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     editor:
@@ -32,7 +32,12 @@ collections:
     fields: # The fields for each document
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DDTHH:mm:ss[Z]"
+        picker_utc: true
+        default: "{{now}}"
       - {label: "Featured Image", name: "image", widget: "image", required: false}
       -  label: 'Author'
          name: 'author'
@@ -41,11 +46,12 @@ collections:
          display_fields: [ display_name ]
          search_fields: [ display_name ]
          value_field: 'name'
+         default: pery
       - {label: "Body", name: "body", widget: "markdown"}
 
   - name: 'authors'
     label: 'Authors'
-    folder: '_authors/'
+    folder: 'contents/_authors'
     create: true
     editor:
       preview: false
@@ -56,19 +62,3 @@ collections:
       - { label: 'Display Name', name: 'display_name', widget: 'string' }
       - { label: 'Position', name: 'position', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
-
-  - name: 'config'
-    label: 'Config'
-    editor:
-      preview: false
-    files:
-      - label: 'Navigation'
-        name: 'navigation'
-        file: '_data/navigation.yml'
-        fields:
-          - label: 'Navigation Items'
-            name: 'items'
-            widget: 'list'
-            fields:
-              - { label: Name, name: name, widget: string }
-              - { label: Link, name: link, widget: string }

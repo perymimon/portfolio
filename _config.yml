@@ -3,6 +3,8 @@ title: Pery Mimon's Portfolio & Blog
 description: "My personal playground and technical blog."
 author: Pery Mimon
 
+#future: true
+
 # Specify locations for layout, includes, data relative to the root
 includes_dir: admin/_includes
 layouts_dir:  admin/_layouts
@@ -22,7 +24,6 @@ collections:
     # Directory relative to project root, NOT relative to 'source' directory
     directory: contents/_posts
     output: true
-    permalink: /:categories/:year/:month/:day/:title.html # Example permalink
   authors:
     # Directory relative to project root, NOT relative to 'source' directory
     directory: contents/_authors
