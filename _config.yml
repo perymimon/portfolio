@@ -3,7 +3,7 @@ title: Pery Mimon's Portfolio & Blog
 description: "My personal playground and technical blog."
 author: Pery Mimon
 
-#future: true
+future: true
 
 # Specify locations for layout, includes, data relative to the root
 includes_dir: admin/_includes
@@ -18,16 +18,16 @@ theme: null
 # Build settings
 markdown: kramdown # Standard Markdown processor for Jekyll
 
-# More Collection
+## More Collection
+collections_dir: collections
 collections:
-  posts:
-    # Directory relative to project root, NOT relative to 'source' directory
-    directory: contents/_posts
-    output: true
   authors:
-    # Directory relative to project root, NOT relative to 'source' directory
-    directory: contents/_authors
-    output: false
+    output: true
+    permalink: collections/authors/:name
+  posts:
+    output: true
+    permalink: contents/:year/:month/:day/:slug
+
 
 
 

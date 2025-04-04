@@ -1,4 +1,4 @@
-#local_backend: true
+local_backend: true
 
 backend:
   name: github
@@ -57,8 +57,9 @@ collections:
       preview: false
     slug: "{{name}}"
     fields:
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'author' }
+      - { label: 'Avatar', name: 'avatar', widget: 'image', required: true }
       - { label: 'Short Name', name: 'name', widget: 'string' }
       - { label: 'Display Name', name: 'display_name', widget: 'string' }
       - { label: 'Position', name: 'position', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'author' }
