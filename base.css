@@ -23,31 +23,39 @@ body, html {
     color: var(--text-primary);
     min-height: 100dvh;
 }
-audio, canvas, embed, iframe, img, object, svg, video{
+
+audio, canvas, embed, iframe, img, object, svg, video {
     vertical-align: middle;
     display: block;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
 }
-svg{
-    width:auto;
-    height:auto;
+
+svg {
+    width: auto;
+    height: auto;
 }
-menu, ol, ul,blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+
+menu, ol, ul, blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
     margin: 0;
     padding: 0;
 }
-menu, ol, ul{
+
+menu, ol, ul {
     list-style: none;
 }
 
 /* Root Theme Variables */
 :root {
-    /*--color-shade: #222;*/
-    /*--color-text: #fff;*/
-    /*--color-shade-2: rgb(134, 146, 161);*/
-    /*--color-shade-3: rgb(51, 53, 54);*/
-    /*--color-bright: rgb(51, 53, 54);*/
+    --neon-red: #fa5252;
+    --neon-cyan: cyan;
+    --neon-pink: #ff1493;
+    --neon-purple: #be4bdb;
+    --neon-purple-on-dark: #9461fd;
+    --neon-blue: #2dd9fe;
+    --neon-green: #82c91e;
+    --neon-orange: #fd7e14;
+    --neon-yellow: #ffe066;
     /* Color System */
     --color-primary: light-dark(hsl(200, 65%, 45%), hsl(120, 70%, 45%)); /* כחול רך למצב Light */
     --color-primary-hover: light-dark(hsl(200, 70%, 55%), hsl(120, 80%, 55%));
@@ -143,17 +151,16 @@ menu, ol, ul{
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
     --radius-full: 100%;
+    --radius-round: 1e5px;
 
     /* Shadows */
-    --shadow-color: hsl(from var(--color-primary-hover) h s l / 20% );
+    --shadow-color: hsl(from var(--color-primary-hover) h s l / 20%);
 
     --shadow-sm: 0 1px 2px 0 var(--shadow-color);
-    --shadow-md:
-            0 4px 4px 0px var(--shadow-color),
-            0 2px 2px 0px hsl(120deg 50% 20%  );
-    --shadow-lg:
-            0 0em .2em .1em hsl(from var(--shadow-color) h s l / 10% ),
-            0 .5em 3em -.1em hsl(from var(--shadow-color) h s l / 5% );
+    --shadow-md: 0 4px 4px 0px var(--shadow-color),
+    0 2px 2px 0px hsl(120deg 50% 20%);
+    --shadow-lg: 0 0em .2em .1em hsl(from var(--shadow-color) h s l / 10%),
+    0 .5em 3em -.1em hsl(from var(--shadow-color) h s l / 5%);
 
     /* blur */
     --blur-sm: 2px;
@@ -236,16 +243,17 @@ menu, ol, ul{
 
 /* Elements */
 
-
 a {
     font-family: var(--font-family-mono), monospace;
     color: inherit;
 }
+
 h1, h2, h3, h4, h5, h6 {
-    text-box-trim: trim-both ;
+    text-box-trim: trim-both;
     margin-inline: 0;
     padding-inline: 0;
 }
+
 h1, h2 {
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);

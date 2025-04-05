@@ -4,7 +4,7 @@ description: "My personal playground and technical blog."
 author: Pery Mimon
 
 future: true
-
+excerpt_separator: <!--more-->
 # Specify locations for layout, includes, data relative to the root
 includes_dir: admin/_includes
 layouts_dir:  admin/_layouts

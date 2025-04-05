@@ -7,53 +7,44 @@ styles:
 
 ---
 <h2>Site collections 3</h2>
-<ul>
-    {% for c in site.collections %}
-    <li>{{ c.label }} → {{ c.docs | size }} entries</li>
-    {% endfor %}
-</ul>
-
-<h1>auttors</h1>
-<ul>
-    {% for author in site.authors %}
-    <li>
-        name: {{ author.name }}<br>
-        display: {{ author.display_name }}<br>
-        avatar: {{ author.avatar }}<br>
-        url: {{author.url}} <br>
-
-    </li>
-    {% endfor %}
-</ul>
-
-<h1>Blog</h1>
 
 <section class="blog-grid">
     {% for post in site.posts %}
-    <article class="blog-card">
-        <header class="post-header">
-            <div class="author-info">
-                {% assign author = site.authors | where: "name", post.author | first %}
-                {{post.author}} -
-                {{author.name}}
-                <img src="{{ author.avatar | relative_url }}" alt="{{ author.display_name }}" class="author-avatar">
-                <div class="card-category">{{ post.category | upcase }}</div>
-                <div class="author-meta">
-                    <span class="author-name">{{ author.display_name }}</span>
+        {% assign author = site.authors | where: "name", post.author | first %}
+        <article class="blog-card">
+            <header>
+                <img src="{{ author.avatar | relative_url }}" alt="{{ author.display_name }}"
+                     title="{{ author.display_name }}" class="author-avatar">
+
+
+                <h3 class="post-title">{{ post.title }}</h3>
+                <div class="post-categories">
+                    {% for category in post.categories %}
+                        <span class="post-category" data-color="{{ category }}">{{ category }}</span>
+                    {% endfor %}
                 </div>
+                <div class="post-tags">
+                    {% for tag in post.tags %}
+                    <span class="post-tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+
+                <time
+                        class="timeago post-create"
+                        datetime="{{ post.date | date_to_xmlschema }}"
+                        title="{{ post.date | date: '%B %d, %Y %H:%M' }}">
+                </time>
+
+            </header>
+            <div class="card-content">
+                <p class="card-excerpt">{{ post.excerpt }}</p>
             </div>
-            <time
-                    class="timeago"
-                    datetime="{{ post.date | date_to_xmlschema }}"
-                    title="{{ post.date | date: '%B %d, %Y %H:%M' }}">
-            </time>
-            <h2>{{ post.title }}</h2>
-        </header>
-        <img src="{{ post.image | relative_url }}" alt="" class="card-image">
-        <div class="card-content">
-            <p class="card-excerpt">{{ post.excerpt }}</p>
-        </div>
-    </article>
+            <figure>
+                <img src="{{ post.image | relative_url }}" alt="" class="post-image">
+            </figure>
+
+
+        </article>
     {% endfor %}
 </section>
 <script src="https://unpkg.com/timeago.js@4.0.2/dist/timeago.min.js"></script>
