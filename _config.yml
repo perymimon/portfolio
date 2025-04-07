@@ -17,9 +17,9 @@ theme: null
 
 # Build settings
 markdown: kramdown # Standard Markdown processor for Jekyll
-
+highlighter: nil
 ## More Collection
-collections_dir: collections
+collections_dir: admin/collections
 collections:
   authors:
     output: true
