@@ -1,6 +1,6 @@
 import iconsGenerators from './icons-index.js'
-import hljs from './libs/highlight/es/highlight.js'
-import javascript from './libs/highlight/es/languages/javascript.js';
+import hljs from '../../src/libs/highlight/es/highlight.js'
+import javascript from '../../src/libs/highlight/es/languages/javascript.js';
 
 hljs.registerLanguage('javascript', javascript);
 

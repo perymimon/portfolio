@@ -287,16 +287,22 @@ a.button-base {
 }
 
 .border-animation {
-    border: 1px solid transparent;
-    box-sizing: content-box;
+    border: 1px solid transparent; /*placeholder for the border-image*/
+    box-sizing: content-box; /*make the box of allied effect not to shrink because the border*/
     opacity: 1;
     --color-zich: hsl(from var(--color-border) h s calc(l + 20));
     --angle: 0deg;
     --color: var(--color-zich);
-    /*transition:  border-image-source 200ms ease;*/
 
-    border-image-source: conic-gradient(from var(--angle), transparent, var(--color) 10deg 15deg, transparent 18deg);
+    /*define the border-image*/
+    border-image-source: conic-gradient(
+            from var(--angle),
+            transparent,
+            var(--color) 10deg 15deg,
+            transparent 18deg
+    );
     border-image-slice: 3;
+    /*Nice effect that make the Zitch floating with some distance around the card border*/
     border-image-outset: 0.3em;
 
     animation-composition: accumulate;
