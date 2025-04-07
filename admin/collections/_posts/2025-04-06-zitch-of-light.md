@@ -1,10 +1,11 @@
 ---
 layout: post
-title: zitch of love
+title: Zitch of Light - CSS Border Animation
 date: 2025-04-06T17:11:00.000Z
 author: pery
 html: ""
-code_html: <div style="width:10em; height:5em;">content</div>
+code_html: <div class="glow-border" style="width:10em; height:5em;
+  background:lightblue;margin:1em;">content</div>
 code_css: |-
   @property --angle {
       syntax: "<angle>";
@@ -29,7 +30,7 @@ code_css: |-
       );
       border-image-slice: 3;
       border-image-outset: 0.3em;
-      animation: rotate-in 1s ease-in 1;
+      animation: rotate-in 1s ease-in 10;
   }
 ---
 Lately I wanted certain cards to stand out—with a Zitch of glowing light circling the border🌀.
