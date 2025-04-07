@@ -1,3 +1,7 @@
+@import "../../base.css" layer(base);
+@import "rouge-github-dark.css" (prefers-color-scheme: dark);
+@import "rouge-github-light.css" (prefers-color-scheme: light);
+
 
 .blog-grid {
     display: grid;
@@ -18,6 +22,10 @@
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     figure {
         margin-inline: calc(-1 * var(--space-4));
+    }
+
+    code-tabs{
+        margin-block-start: var(--space-2);
     }
 }
 

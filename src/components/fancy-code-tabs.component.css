@@ -1,0 +1,79 @@
+@import "../libs/highlight/styles/github-dark.css";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    /*background-color: var(--color-muted) ;*/
+    --outline: 2px solid var(--component-border);
+    /*--outline: none;*/
+    --background-color: hsl(from var(--color-foregrowund) h s calc(l - 20) / 50%);
+    border: var(--outline);
+
+    iframe {
+        display: block;
+        /*width: 100%;*/
+        /*width: -webkit-fill-available;*/
+        background-color: var(--background-color);
+        border: var(--outline);
+    }
+    .tab-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: var(--space-1);
+        margin-block-end: -1px;
+
+        label {
+            background-color: var(--component-bg);
+            z-index: 1;
+            border-block-end: var(--outline);
+        }
+        label:has(:checked){
+            border: var(--outline);
+            border-block-end: none;
+        }
+    }
+    pre.panes {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        code,iframe{
+            flex: 1 1 0;
+            min-width:fit-content;
+            width:50%;
+        }
+        code{
+            padding-inline-end: 3em; /* support flex resize*/
+        }
+    }
+    pre {
+        margin: 0;
+
+    }
+    code {
+        padding-block: var(--space-2);
+        padding-inline: var(--space-1);
+        position: relative;
+        display: block;
+        border: var(--outline) !important;
+        background-color: var(--background-color);
+
+        &:before {
+            content: attr(slot);
+            position: absolute;
+            inset-inline-end: 0;
+            inset-block-start: 0;
+            text-transform: uppercase;
+            /* border-bottom: 1px solid; */
+            background-color: var(--color-foregrowund);
+            padding: var(--space-1);
+        }
+    }
+
+    .tab-buttons:has([name=html]:not(:checked)) ~ pre [slot=html],
+    .tab-buttons:has([name=css]:not(:checked)) ~ pre [slot=css],
+    .tab-buttons:has([name=js]:not(:checked)) ~ pre [slot=js] {
+        display: none;
+    }
+
+}

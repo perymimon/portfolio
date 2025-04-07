@@ -1,7 +1,7 @@
 export function getProperty (ctx, property) {
     if (String(property).startsWith('--')) {
-        var {canvas} = ctx
-        var value = getComputedStyle(canvas).getPropertyValue(property).trim()
+        var element =ctx instanceof HTMLElement? ctx: ctx.canvas
+        var value = getComputedStyle(element).getPropertyValue(property).trim()
         // Check for light-dark function
         if (value.startsWith('light-dark(')) {
             value = parseLightDark(value)
