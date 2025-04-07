@@ -22,6 +22,7 @@ body, html {
     background-color: var(--color-background);
     color: var(--text-primary);
     min-height: 100dvh;
+    font-family: var(--font-family-base), sans-serif;
 }
 
 audio, canvas, embed, iframe, img, object, svg, video {
@@ -70,10 +71,10 @@ menu, ol, ul {
     --color-success-hover: light-dark(hsl(150, 65%, 55%), hsl(120, 80%, 55%));
 
     /* Neutral Colors */
-    --color-background: light-dark(hsl(220, 20%, 95%), hsl(120, 30%, 18%)); /* רקע אפור-לבן רך למצב Light */
-    --color-foregrowund: light-dark(hsl(220, 25%, 98%), hsl(120deg 100% 30% / 25%)); /* רקע קדמי בהיר יותר */
-    --color-muted: light-dark(hsl(220, 15%, 70%), hsl(120, 15%, 45%)); /* אפור רך */
-    --color-muted-hover: light-dark(hsl(220, 20%, 80%), hsl(120, 20%, 55%));
+    --color-background: light-dark(hsl(220deg 20% 95%), hsl(120deg 30% 18% / 90%)); /* רקע אפור-לבן רך למצב Light */
+    --color-foregrowund: light-dark(hsl(220deg 25% 98%), hsl(120deg 100% 30% / 25%)); /* רקע קדמי בהיר יותר */
+    --color-muted: light-dark(hsl(220deg 15% 70%), hsl(120deg 15% 35% )); /* אפור רך */
+    --color-muted-hover: light-dark(hsl(220deg 20% 80%), hsl(120deg 20% 55%));
 
     /* Border Colors */
     --color-border: light-dark(hsl(220, 15%, 85%), hsl(120 40% 25%)); /* גבולות בהירים */
@@ -81,7 +82,7 @@ menu, ol, ul {
     --color-border-active: light-dark(hsl(200, 70%, 50%), hsl(290, 100%, 65%));
 
     /* Component Colors */
-    --component-bg: light-dark(hsl(220, 25%, 98%), hsl(120deg 45% 15% / 85%)); /* רקע לבן רך לרכיבים */
+    --component-bg: light-dark(hsl(220, 25%, 98%), hsl(120deg 45% 15% / 65%)); /* רקע לבן רך לרכיבים */
     --component-border: light-dark(hsl(220, 15%, 85%), hsl(120 15% 25%)); /* גבולות בהירים */
     --component-hover: light-dark(hsl(220, 30%, 95%), hsl(120deg 50% 20% / 60%));
     --component-base: #4caf50;
