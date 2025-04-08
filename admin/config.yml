@@ -1,4 +1,7 @@
 local_backend: true
+site_url: https://perymimon.github.io/portfolio/
+show_preview_links: true
+search: true
 
 backend:
   name: github
@@ -6,52 +9,83 @@ backend:
   branch: main
   base_url: https://decap-proxy.pery-mimon.workers.dev
   auth_endpoint: auth
-#  auth: { token: "" }
 #  base_url: https://perymimon.github.io
 #  auth_endpoint: portfolio
 #  base_url: http://localhost:63341
 #  auth_endpoint: /radu-stuff/admin/oauth.html
 
-
-
-
-publish_mode: simple
+publish_mode: editorial_workflow
 
 # Media folder where uploads will be stored
-media_folder: "contents/uploads"
+media_folder: "admin/uploads"
 
-# Collections define the structure for content types
 collections:
+  # Posts collection
   - name: "posts" # Used in routes, e.g., /admin/collections/blog
     label: "Tech Post" # Used in the UI
-    folder: "contents/_posts" # The path to the folder where the documents are stored
+    folder: "admin/collections/_posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     editor:
       preview: false
     fields: # The fields for each document
-      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
-      - {label: "Title", name: "title", widget: "string"}
-      - label: "Publish Date"
-        name: "date"
-        widget: "datetime"
-        format: "YYYY-MM-DDTHH:mm:ss[Z]"
-        picker_utc: true
-        default: "{{now}}"
-      - {label: "Featured Image", name: "image", widget: "image", required: false}
-      -  label: 'Author'
-         name: 'author'
-         widget: 'relation'
-         collection: 'authors'
-         display_fields: [ display_name ]
-         search_fields: [ display_name ]
-         value_field: 'name'
-         default: pery
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "Title", name: "title", widget: "string" }
 
+      - label: Publish Date
+        name: date
+        widget: datetime
+        format: YYYY-MM-DDTHH:mm:ss[Z]
+        picker_utc: true
+        default: {{now}}
+
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+
+      - widget: relation
+        label: Author
+        name: author
+        default: pery
+        value_field: name
+        collection: authors
+        display_fields: [ display_name ]
+        search_fields: [ display_name ]
+
+      - label: Body
+        name: body
+        widget: markdown
+
+      - label: Tags
+        name: tags
+        widget: string
+
+      - label: html
+        name: code_html
+        widget: code
+        default_language: html
+        allow_language_selection: false
+        output_code_only: true
+        required: false
+
+      - label: css
+        name: code_css
+        widget: code
+        default_language: css
+        allow_language_selection: false
+        output_code_only: true
+        required: false
+
+      - label: js
+        name: code_js
+        widget: code
+        default_language: javascript
+        allow_language_selection: false
+        output_code_only: true
+        required: false
+
+  # Authors collection
   - name: 'authors'
     label: 'Authors'
-    folder: 'contents/_authors'
+    folder: 'admin/collections/_authors'
     create: true
     editor:
       preview: false
@@ -63,3 +97,7 @@ collections:
       - { label: 'Position', name: 'position', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'author' }
+
+
+
+
