@@ -2,16 +2,20 @@
 layout: default
 title: Blog
 styles:
-- ../../base.css
 - ./blog.css
-
 ---
-{% assign grouped = site.posts | group_by_exp: "post", "post.date | date: '%Y %B'" %}
+<link rel="stylesheet" href="">
+
+<script type="module" src="{{ site.baseurl }}/src/components/fancy-code-tabs.component.js"></script>
+
+{% assign posts = site.posts %}
+{% assign grouped = posts | group_by_exp: "post", "post.date | date: '%Y %B'" %}
 {% for group in grouped %}
     <h2>{{ group.name }}</h2>
     <section class="blog-grid">
         {% for post in group.items %}
             {% assign author = site.authors | where: "name", post.author | first %}
+
             <article class="blog-card">
                 <header>
                     <img src="{{ author.avatar | relative_url }}" alt="{{ author.display_name }}"
@@ -37,12 +41,26 @@ styles:
                     </time>
 
                 </header>
-                <div class="card-content">
-                    <p class="card-excerpt">{{ post.excerpt }}</p>
-                </div>
                 <figure>
                     <img src="{{ post.image | relative_url }}" alt="" class="post-image">
                 </figure>
+                <div class="card-content">
+                    <p class="card-excerpt">{{ post.excerpt }}</p>
+                </div>
+                <div class="card-code">
+                    <code-tabs show-result data-visible="css js">
+                        <code slot="html">
+                            {{ post.code_html }}
+                        </code>
+                        <code slot="css">
+                            {{ post.code_css }}
+                        </code>
+                        <code slot="js">
+                            {{ post.code_js }}
+                        </code>
+                    </code-tabs>
+                </div>
+
 
 
             </article>
