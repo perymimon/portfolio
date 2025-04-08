@@ -1,12 +1,10 @@
 @import "../../base.css" layer(base);
-@import "rouge-github-dark.css" (prefers-color-scheme: dark);
-@import "rouge-github-light.css" (prefers-color-scheme: light);
-
+@import "../../css/markdown.css";
 
 .blog-grid {
     display: grid;
     gap: var(--space-4);
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /*grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));*/
     padding-block: var(--space-6);
     margin-inline: var(--space-2);
 }

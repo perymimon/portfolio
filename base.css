@@ -95,7 +95,7 @@ menu, ol, ul {
 
     --text-data-numeric: light-dark(hsl(200, 70%, 45%), hsl(200, 85%, 65%)); /* כחול לנתונים */
     --text-data-object: light-dark(hsl(0, 70%, 45%), hsl(0, 85%, 65%)); /* אדום לנתונים */
-    --text-data-string: light-dark(hsl(150, 60%, 35%), hsl(140, 75%, 55%)); /* ירוק לנתונים */
+    --text-data-string: light-dark(hsl(150, 60%, 35%), hsl(100, 75%, 60%)); /* ירוק לנתונים */
     --text-data-boolean: light-dark(hsl(260, 70%, 45%), hsl(260, 75%, 75%)); /* סגול לנתונים */
 
     /* Spacing System */
