@@ -77,9 +77,9 @@ customElements.define('code-tabs', class extends HTMLElement {
 
     highlight (el, language) {
         if (!el) return ''
-        const innerHTML = el.innerHTML.trim()
-        el.innerHTML = hljs.highlight(innerHTML.trim(), {language}).value
-        return [innerHTML]
+        const text = language == 'html'? el.innerHTML.trim(): el.textContent.trim()
+        el.innerHTML = hljs.highlight(text, {language}).value
+        return [text]
 
     }
 
