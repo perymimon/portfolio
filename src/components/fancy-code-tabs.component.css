@@ -5,9 +5,11 @@
     flex-direction: column;
     /*background-color: var(--color-muted) ;*/
     --outline: 2px solid var(--component-border);
+    --outline-dashed: 2px dashed var(--component-border);
     /*--outline: none;*/
     --background-color: hsl(from var(--color-foregrowund) h s calc(l - 20) / 50%);
     border: var(--outline);
+
 
     iframe {
         display: block;
@@ -31,40 +33,54 @@
             border: var(--outline);
             border-block-end: none;
         }
-    }
-    pre.panes {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: var(--space-2);
-        code,iframe{
-            flex: 1 1 0;
-            min-width:fit-content;
-            width:50%;
-        }
-        code{
-            padding-inline-end: 3em; /* support flex resize*/
+
+        label:has([name=soft-warp]){
+            margin-inline-start: var(--space-4) ;
         }
     }
     pre {
         margin: 0;
 
     }
+    /* Layout */
+    pre.panes {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        border: var(--outline) !important;
+        overflow-x: auto;
+        @media (orientation: portrait) {
+            flex-direction: column;
+        }
+        code,iframe{
+            flex: 1 1 0;
+            min-block-size: fit-content;
+
+        }
+    }
+
     code {
         padding-block: var(--space-2);
         padding-inline: var(--space-1);
         position: relative;
-        display: block;
-        border: var(--outline) !important;
+        display: inline-block;
+        border-inline-end: var(--outline-dashed);
         background-color: var(--background-color);
+        overflow-x: auto;
+        box-sizing: border-box;
+        width: 100%;
+        @media (orientation: portrait) {
+            border-inline-end: none;
+            border-block-end: var(--outline-dashed);
+        }
+
 
         &:before {
             content: attr(slot);
-            position: absolute;
-            inset-inline-end: 0;
-            inset-block-start: 0;
+            float:right;
+            margin-inline-end:calc(-1 * var(--space-1));
+            margin-block-start:calc(-1 * var(--space-2));
             text-transform: uppercase;
-            /* border-bottom: 1px solid; */
             background-color: var(--color-foregrowund);
             padding: var(--space-1);
         }
@@ -75,5 +91,7 @@
     .tab-buttons:has([name=js]:not(:checked)) ~ pre [slot=js] {
         display: none;
     }
-
+    .tab-buttons:has([name=soft-warp]:checked) ~ pre code{
+        white-space: pre-wrap ;
+    }
 }

@@ -28,6 +28,7 @@ template.innerHTML = `
     <label ><input name="html" type="checkbox" checked>HTML</label>
     <label ><input name="css" type="checkbox" checked>CSS</label>
     <label ><input name="js" type="checkbox" checked>JS</label>
+    <label ><input class="justify-end" name="soft-warp" type="checkbox" >Warp</label>
 </div>
 <pre class="panes">
 <slot name="html" ></slot>

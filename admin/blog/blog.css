@@ -1,16 +1,17 @@
-@import "../../base.css" layer(base);
+@import "../../base.css" ;
 @import "../../css/markdown.css";
 
 .blog-grid {
-    display: grid;
     gap: var(--space-4);
     /*grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));*/
     padding-block: var(--space-6);
     margin-inline: var(--space-2);
+    @media (orientation: portrait) {
+        margin-inline:var(--space-1);
+    }
 }
 
 .blog-card {
-    /*display: grid;*/
     --avatar-size: 4em;
     background-color: var(--component-bg);
     border: 1px solid var(--component-border);
@@ -18,6 +19,9 @@
     padding: var(--space-4);
     box-shadow: var(--shadow-md);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    @media (orientation: portrait) {
+        padding: var(--space-2);
+    }
     figure {
         margin-inline: calc(-1 * var(--space-4));
     }
