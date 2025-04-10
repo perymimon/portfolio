@@ -1,8 +1,7 @@
 ---
 layout: post
 title: Raw text from HTML Element
-date:
-  ? "{ now }"
+date: 2025-04-10T12:01:00Z
 author: pery
 tags: text
 ---
