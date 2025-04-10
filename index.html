@@ -132,6 +132,12 @@
     themeToggle.addEventListener('click', toggleTheme)
     linkPageFromParent()
     initializeTheme()
+
+    var local = !location.hostname.match('github')
+    if (local) {
+        var title$ = document.querySelector('title')
+        title$.innerText = `[local] ${title$.innerText}`
+    }
 </script>
 </body>
 </html>
