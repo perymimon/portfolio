@@ -78,9 +78,12 @@ customElements.define('code-tabs', class extends HTMLElement {
 
     highlight (el, language) {
         if (!el) return ''
-        const text = language == 'html'? el.innerHTML.trim(): el.textContent.trim()
-        el.innerHTML = hljs.highlight(text, {language}).value
-        return [text]
+        const browserEncodedText = el.innerHTML.trim()
+        const textArea = document.createElement("textarea")
+        textArea.innerHTML = browserEncodedText
+        const pureText = textArea.value
+        el.innerHTML = hljs.highlight(pureText, {language}).value
+        return [pureText]
 
     }
 
