@@ -45,6 +45,7 @@ styles:
                 <div class="card-content">
                     <p class="card-excerpt">{{ post.excerpt }}</p>
                 </div>
+                {% if post.code_html or post.code_css or post.code_js %}
                 <div class="card-code">
                     <code-tabs show-result data-visible="css js">
                         <code slot="html">
@@ -58,7 +59,7 @@ styles:
                         </code>
                     </code-tabs>
                 </div>
-
+                {% endif %}
 
 
             </article>

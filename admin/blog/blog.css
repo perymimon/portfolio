@@ -6,6 +6,10 @@
 .highlight, .highlight .w{
     background: transparent;
 }
+p{
+    margin-block:var(--space-3)
+}
+
 .blog-grid {
     gap: var(--space-4);
     padding-block: var(--space-6);
