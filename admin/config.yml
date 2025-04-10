@@ -37,7 +37,7 @@ collections:
         widget: datetime
         format: YYYY-MM-DDTHH:mm:ss[Z]
         picker_utc: true
-        default: {{now}}
+        required: true
 
       - { label: "Featured Image", name: "image", widget: "image", required: false }
 

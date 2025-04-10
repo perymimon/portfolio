@@ -1,6 +1,11 @@
 @import "../../base.css" ;
 @import "../../css/markdown.css";
+@import "./rouge-github-dark.css" (prefers-color-scheme: dark);
+@import "./rouge-github-light.css" (prefers-color-scheme: light);
 
+.highlight, .highlight .w{
+    background: transparent;
+}
 .blog-grid {
     gap: var(--space-4);
     padding-block: var(--space-6);
