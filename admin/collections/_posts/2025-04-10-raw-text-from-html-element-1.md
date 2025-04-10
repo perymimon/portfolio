@@ -1,13 +1,14 @@
 ---
 layout: post
 title: Raw text from HTML Element
-date: 2025-04-10T12:01:00Z
+date: 2025-04-10T12:01:00.000Z
 author: pery
 tags: text
 ---
 It turns out that browsers silently encode text inside HTML.
 
-Let’s say we have this piece of code:
+What is mean. Let’s say we have this piece of code:
+
 ```html
 <div>
     <b>bold</b> & safe
@@ -15,11 +16,13 @@ Let’s say we have this piece of code:
 ```
 
 Reading with `.innerHTML` often gives:
+
 ```html
 &lt;b&gt;bold&lt;/b&gt; &amp; safe
 ```
 
 Reading with `.textContent` gives:
+
 ```html
 bold safe
 ```
@@ -34,10 +37,9 @@ function decodeHtmlEntities(html) {
 }
 ```
 
-### Why does `<textarea>` do the trick? 
-    
+### Why does `<textarea>` do the trick?
 
-(from GPT):
+> (from GPT):
 > `<textarea>` treats `.innerHTML` as raw HTML and `.value` as plain text.
 > Setting `textarea.innerHTML = "&lt;b&gt;"` stores encoded.
 > Reading `textarea.value` returns decoded: `<b>`
