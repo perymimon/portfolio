@@ -3,9 +3,11 @@
 
 .blog-grid {
     gap: var(--space-4);
-    /*grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));*/
     padding-block: var(--space-6);
     margin-inline: var(--space-2);
+    display: flex;
+    flex-direction: column;
+
     @media (orientation: portrait) {
         margin-inline:var(--space-1);
     }
