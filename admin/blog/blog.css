@@ -41,9 +41,9 @@ body{
     }
 }
 
-.blog-card:hover {
-    box-shadow: var(--shadow-lg);
-}
+/*.blog-card:hover {*/
+/*    box-shadow: var(--shadow-lg);*/
+/*}*/
 
 /* --------------- */
 
