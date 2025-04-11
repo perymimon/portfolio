@@ -85,7 +85,7 @@ menu, ol, ul {
     --component-bg: light-dark(hsl(220, 25%, 98%), hsl(120deg 45% 15% / 65%)); /* רקע לבן רך לרכיבים */
     --component-border: light-dark(hsl(220, 15%, 85%), hsl(120 15% 25%)); /* גבולות בהירים */
     --component-hover: light-dark(hsl(220, 30%, 95%), hsl(120deg 50% 20% / 60%));
-    --component-base: #4caf50;
+    --component-base: light-dark(hsl(220, 25%, 98%), hsl(120deg 45% 20% ));
 
     /* Text Colors */
     --text-primary: light-dark(hsl(220, 25%, 25%), hsl(120, 50%, 70%)); /* טקסט כהה רך */

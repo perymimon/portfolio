@@ -10,14 +10,16 @@ styles:
 {% assign grouped = posts | group_by_exp: "post", "post.date | date: '%Y %B'" %}
 {% for group in grouped %}
     <h2>{{ group.name }}</h2>
-    <section class="blog-grid">
+    <section class="blog-cont">
         {% for post in group.items %}
             {% assign author = site.authors | where: "name", post.author | first %}
 
             <article class="blog-card">
                 <header>
                     <img src="{{ author.avatar | relative_url }}" alt="{{ author.display_name }}"
-                         title="{{ author.display_name }}" class="author-avatar">
+                         title="{{ author.display_name }}" class="author-avatar"
+                         loading="lazy"
+                    >
 
 
                     <h3 class="post-title">{{ post.title }}</h3>
@@ -42,8 +44,8 @@ styles:
                 <figure>
                     <img src="{{ post.image | relative_url }}" alt="" class="post-image">
                 </figure>
-                <div class="card-content">
-                    <p class="card-excerpt">{{ post.excerpt }}</p>
+                <div class="card-content card-excerpt">
+                    {{ post.excerpt }}
                 </div>
                 {% if post.code_html or post.code_css or post.code_js %}
                 <div class="card-code">

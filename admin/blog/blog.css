@@ -1,34 +1,52 @@
-@import "../../base.css" ;
+@import "../../base.css";
 @import "../../css/markdown.css";
 @import "./rouge-github-dark.css" (prefers-color-scheme: dark);
 @import "./rouge-github-light.css" (prefers-color-scheme: light);
 
-.highlight, .highlight .w{
+.highlight, .highlight .w {
     background: transparent;
 }
-p{
-    margin-block:var(--space-3)
+
+p {
+    margin-block: var(--space-3)
 }
-body{
+
+body {
     font-family: var(--font-family-sans-serif);
 }
-.blog-grid {
+
+main {
+    position: relative;
+    margin-inline: var(--space-2);
+    anchor-name: --main-content;
+    anchor-scope: --main-content;
+}
+
+.blog-cont {
+    --max-content-width: 800px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--max-content-width), 1fr));
     gap: var(--space-4);
     padding-block: var(--space-6);
-    margin-inline: var(--space-2);
-    display: flex;
-    flex-direction: column;
+    justify-items: center;
 
+    @media (orientation: portrait) {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .blog-card {
-    --avatar-size: 4em;
-    background-color: var(--component-bg);
+    --avatar-size: 3em;
+    background-color: var(--component-base);
     border: 1px solid var(--component-border);
     border-radius: var(--radius-xl);
     padding: var(--space-4);
-    /*box-shadow: var(--shadow-md);*/
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    transition: transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+    max-width: min(100%, var(--max-content-width));
+    box-sizing: border-box;
     @media (orientation: portrait) {
         padding: var(--space-2);
     }
@@ -36,20 +54,23 @@ body{
         margin-inline: calc(-1 * var(--space-4));
     }
 
-    code-tabs{
+    .card-code {
+        position: relative;
         margin-block-start: var(--space-2);
     }
-}
 
-/*.blog-card:hover {*/
-/*    box-shadow: var(--shadow-lg);*/
-/*}*/
+    .card-excerpt code {
+        white-space: pre-wrap;
+    }
+
+}
 
 /* --------------- */
 
 header {
     grid-area: header;
     display: grid;
+    gap: var(--space-1);
     grid-template-columns: var(--avatar-size) 1fr max-content;
     /*grid-template-rows: repeat(min-content);*/
     margin-block-end: var(--space-4);
@@ -117,6 +138,6 @@ header {
     }
 }
 
-img[src=""]{
+img[src=""] {
     display: none;
 }
