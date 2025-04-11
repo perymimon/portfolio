@@ -9,7 +9,9 @@
 p{
     margin-block:var(--space-3)
 }
-
+body{
+    font-family: var(--font-family-sans-serif);
+}
 .blog-grid {
     gap: var(--space-4);
     padding-block: var(--space-6);
@@ -17,9 +19,6 @@ p{
     display: flex;
     flex-direction: column;
 
-    @media (orientation: portrait) {
-        margin-inline:var(--space-1);
-    }
 }
 
 .blog-card {
@@ -28,7 +27,7 @@ p{
     border: 1px solid var(--component-border);
     border-radius: var(--radius-xl);
     padding: var(--space-4);
-    box-shadow: var(--shadow-md);
+    /*box-shadow: var(--shadow-md);*/
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     @media (orientation: portrait) {
         padding: var(--space-2);
@@ -68,14 +67,14 @@ header {
     }
     .post-title {
         grid-column: 2;
-        grid-row: 2;
+        grid-row: 1;
 
         text-transform: capitalize;
     }
     .post-tags {
         display: flex;
         flex-wrap: wrap;
-        grid-row: 1;
+        grid-row: 2;
         grid-column: 2;
         gap: var(--space-2);
     }

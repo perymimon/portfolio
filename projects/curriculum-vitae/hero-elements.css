@@ -44,7 +44,7 @@
     border: none;
     aspect-ratio: 1;
     [data-theme="light"] & {
-        background-image: url(../../assets/cute-avatar.png);
+        background-image: url(../../assets/grow-avatar-2.png);
     }
     [data-theme="dark"] & {
         background-image: url(../../assets/avatar-3.svg);
