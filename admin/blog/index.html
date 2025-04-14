@@ -3,14 +3,16 @@ layout: default
 title: Blog
 styles:
 - ./blog.css
+- ./blog-mobile.css
 ---
+{% comment %}<link rel="stylesheet" href="./blog-mobile.css" media="(max-width: 768px), (orientation: portrait)">{% endcomment %}
 <script type="module" src="{{ site.baseurl }}/src/components/fancy-code-tabs.component.js"></script>
 
 {% assign posts = site.posts %}
 {% assign grouped = posts | group_by_exp: "post", "post.date | date: '%Y %B'" %}
 {% for group in grouped %}
     <h2>{{ group.name }}</h2>
-    <section class="blog-cont">
+    <section class="blog-section">
         {% for post in group.items %}
             {% assign author = site.authors | where: "name", post.author | first %}
 

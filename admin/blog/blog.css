@@ -21,7 +21,18 @@ main {
     margin: 0 auto;
 }
 
-.blog-cont {
+/* Year/month headings */
+h2 {
+    font-size: var(--font-size-3xl);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+    color: var(--color-primary);
+    text-shadow: 0 0 10px var(--green-shade-2); /*todo:replace it*/
+    border-bottom: 1px solid var(--component-border);
+    padding-bottom: var(--space-2);
+}
+
+.blog-section {
     --max-content-width: 800px;
     position: relative;
     display: grid;
@@ -33,19 +44,9 @@ main {
     @media (orientation: portrait) {
         display: flex;
         flex-direction: column;
-        gap: var(--space-8);
+        gap: var(--space-6);
+        padding-block: var(--space-4);
     }
-}
-
-/* Year/month headings */
-h2 {
-    font-size: var(--font-size-3xl);
-    margin-top: var(--space-8);
-    margin-bottom: var(--space-4);
-    color: var(--color-primary);
-    text-shadow: 0 0 10px var(--green-shade-2); /*todo:replace it*/
-    border-bottom: 1px solid var(--component-border);
-    padding-bottom: var(--space-2);
 }
 
 /* Improved blog card design */
@@ -66,14 +67,11 @@ h2 {
     box-shadow: var(--shadow-md);
     margin-bottom: var(--space-6);
 
-     /*Subtle hover effect*/
-    /*&:hover {*/
-    /*    !*transform: translateY(-3px);*!*/
-    /*    box-shadow: 0 10px 20px var(--darker-shade);*/
-    /*}*/
-
     @media (orientation: portrait) {
-        padding: var(--space-4);
+        padding: var(--space-3);
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: var(--space-4);
     }
 
     /* Card content */
@@ -101,13 +99,12 @@ h2 {
         width: max(100%, 80dvw);
         display: inline-block;
         border-radius: var(--radius-md);
-        place-self:center;
-        background:inherit;
-        code-tabs{
+        place-self: center;
+        background: inherit;
+        code-tabs {
 
         }
     }
-
 
     .card-excerpt code {
         white-space: pre-wrap;
@@ -124,6 +121,7 @@ header {
     grid-template-columns: var(--avatar-size) 1fr max-content;
     margin-block-end: var(--space-4);
     align-items: center;
+
 
     .author-avatar {
         grid-row: 1 / 3;
