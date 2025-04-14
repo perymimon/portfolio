@@ -24,18 +24,23 @@ const componentBaseUrl = new URL(import.meta.url).pathname.replace(/[^/]+$/, '')
 const template = document.createElement('template')
 template.innerHTML = `
 <link rel="stylesheet" href="${componentBaseUrl}fancy-code-tabs.component.css">
-<div class="tab-buttons">
-    <label ><input name="html" type="checkbox" checked>HTML</label>
-    <label ><input name="css" type="checkbox" checked>CSS</label>
-    <label ><input name="js" type="checkbox" checked>JS</label>
-    <label ><input class="justify-end" name="soft-warp" type="checkbox" >Warp</label>
+<div role="tablist">
+    <label role="tab"><input name="html" type="checkbox" checked>HTML</label>
+    <label role="tab"><input name="css" type="checkbox" checked>CSS</label>
+    <label role="tab"><input name="js" type="checkbox" checked>JS</label>
+    <div class="right">
+        <label role="checkbox" title="Warp"><input class="justify-end" name="soft-warp" type="checkbox" >w</label>
+        <label role="tab"><input name="result" type="checkbox" checked>RESULT</label>
+    </div>
 </div>
-<pre class="panes">
-<slot name="html" ></slot>
-<slot name="css" ></slot>
-<slot name="js" ></slot>
-<iframe allowtransparency sandbox="allow-scripts"></iframe>
-</pre>
+<div class="tab-content">
+    <pre data-lang="html">
+        <slot name="html" ></slot>
+    </pre>
+    <pre data-lang="css"><slot name="css" ></slot></pre>
+    <pre data-lang="js"><slot name="js" ></slot></pre>
+    <iframe allowtransparency sandbox="allow-scripts"></iframe>
+</div>
 `
 
 customElements.define('code-tabs', class extends HTMLElement {
@@ -53,14 +58,14 @@ customElements.define('code-tabs', class extends HTMLElement {
         const visibleAttr = this.dataset.visible ?? "html css js"
         const visibleSet = new Set(visibleAttr.split(' ').map(v => v.trim()))
 
-        const $pre = this.shadowRoot.querySelector('pre')
         const [html, css, js] = slotKeys.map(key => {
             const present = this.querySelector(`[slot="${key}"]`)
             const [text] = this.highlight(present, key)
             const label$ = shadowRoot.querySelector(`label:has([name=${key}])`)
+            const $pre = this.shadowRoot.querySelector(`pre[data-lang=${key}]`)
             if (!text) {
                 label$.remove()
-                shadowRoot.querySelector(`slot[name=${key}]`).remove()
+                $pre.remove()
                 return ''
             }
             label$.querySelector(`input`).checked = visibleSet.has(key)

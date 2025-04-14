@@ -41,9 +41,9 @@ styles:
                     </time>
 
                 </header>
-                <figure>
-                    <img src="{{ post.image | relative_url }}" alt="" class="post-image">
-                </figure>
+                {% comment %}<figure>{% endcomment %}
+                    {% comment %}<img src="{{ post.image | relative_url }}" alt="" class="post-image">{% endcomment %}
+                {% comment %}</figure>{% endcomment %}
                 <div class="card-content card-excerpt">
                     {{ post.excerpt }}
                 </div>

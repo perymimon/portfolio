@@ -1,0 +1,25 @@
+label[role="checkbox"]{
+    --color: currentColor;
+    color: var(--color);
+    cursor: pointer;
+    &:before {
+        border-radius: var(--radius-round);
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        height: 1ex;
+        width: 1ex;
+        margin-right: var(--space-1);
+        background: var(--color);
+    }
+    &:has(:checked){
+        --color: var(--neon-cyan);
+        &:before {
+            box-shadow: 0 0 10px color( from var(--color) srgb r g b / 0.75 );
+        }
+    }
+
+    input[type="checkbox"] {
+        display: none;
+    }
+}

@@ -1,15 +1,21 @@
 @import "../libs/highlight/styles/github-dark.css";
+@import "../../base.css";
+@import "../../css/toggle.checkbox.cmp.css";
 
 :host {
     display: flex;
     flex-direction: column;
-    /*background-color: var(--color-muted) ;*/
     --outline: 2px solid var(--component-border);
     --outline-dashed: 2px dashed var(--component-border);
     /*--outline: none;*/
     --background-color: hsl(from var(--color-foregrowund) h s calc(l - 20) / 50%);
     border: var(--outline);
 
+    /*margin-block-start: var(--space-4);*/
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    --shadow-color: var(--darker-shade);
+    box-shadow: var(--shadow-md);
 
     iframe {
         display: block;
@@ -18,80 +24,95 @@
         background-color: var(--background-color);
         border: var(--outline);
     }
-    .tab-buttons {
+    [role=tablist] {
         display: flex;
-        flex-direction: row;
-        gap: var(--space-1);
-        margin-block-end: -1px;
+        background-color: var(--darker-shade-2);
+        padding: var(--space-1);
+    }
+    [role=tab] {
+        font-size: var(--font-size-sm);
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius-sm);
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        flex: unset;
 
-        label {
-            background-color: var(--component-bg);
-            z-index: 1;
-            border-block-end: var(--outline);
-        }
-        label:has(:checked){
-            border: var(--outline);
-            border-block-end: none;
+        input[type=checkbox] {
+            display: none;
         }
 
-        label:has([name=soft-warp]){
-            margin-inline-start: var(--space-4) ;
+        &:has(:checked) {
+            background-color: var(--green-shade);
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        &:hover:has(:checked) {
+            background-color: var(--lighther-shade);
         }
     }
-    pre {
-        margin: 0;
-
+    [role=tablist] .right{
+        display:inherit;
+        gap: inherit;
+        margin-inline-start:auto;
     }
+
     /* Layout */
-    pre.panes {
+    .tab-content {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        border: var(--outline) !important;
         overflow-x: auto;
+        padding: var(--space-4);
+        background-color: var(--darker-shade);
+        /*gap: var(--space-4);*/
+        justify-content: center;
         @media (orientation: portrait) {
             flex-direction: column;
         }
-        code,iframe{
+        pre, iframe {
             flex: 1 1 0;
             min-block-size: fit-content;
+            height: auto;
+            border-radius: var(--radius-md);
 
+        }
+
+        code {
+            min-block-size: fit-content;
+        }
+        pre {
+            border-inline-end: var(--outline-dashed);
+            @media (orientation: portrait) {
+                border-inline-end: none;
+                border-block-end: var(--outline-dashed);
+                width:100%;
+            }
         }
     }
 
     code {
-        padding-block: var(--space-2);
-        padding-inline: var(--space-1);
-        position: relative;
-        display: inline-block;
-        border-inline-end: var(--outline-dashed);
-        background-color: var(--background-color);
-        overflow-x: auto;
-        box-sizing: border-box;
-        width: 100%;
-        @media (orientation: portrait) {
-            border-inline-end: none;
-            border-block-end: var(--outline-dashed);
-        }
-
-
         &:before {
             content: attr(slot);
-            float:right;
-            margin-inline-end:calc(-1 * var(--space-1));
-            margin-block-start:calc(-1 * var(--space-2));
+            float: right;
+            margin-inline-end: calc(-1 * var(--space-1));
+            margin-block-start: calc(-1 * var(--space-2));
             text-transform: uppercase;
             background-color: var(--color-foregrowund);
             padding: var(--space-1);
+            text-box-trim: trim-both;
+            text-box-edge: cap alphabetic;
         }
     }
 
-    .tab-buttons:has([name=html]:not(:checked)) ~ pre [slot=html],
-    .tab-buttons:has([name=css]:not(:checked)) ~ pre [slot=css],
-    .tab-buttons:has([name=js]:not(:checked)) ~ pre [slot=js] {
+    [role=tablist]:has([name=html]:not(:checked)) ~ .tab-content pre[data-lang=html],
+    [role=tablist]:has([name=css]:not(:checked)) ~ .tab-content pre[data-lang=css],
+    [role=tablist]:has([name=js]:not(:checked)) ~ .tab-content pre[data-lang=js] ,
+    [role=tablist]:has([name=result]:not(:checked)) ~ .tab-content iframe {
         display: none;
     }
-    .tab-buttons:has([name=soft-warp]:checked) ~ pre code{
-        white-space: pre-wrap ;
+    [role=button]:has([name=soft-warp]:checked) ~ .tab-content code {
+        white-space: pre-wrap;
     }
 }
