@@ -23,8 +23,7 @@ styles:
                          loading="lazy"
                     >
 
-
-                    <h3 class="post-title">{{ post.title }}</h3>
+                    <h3 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
                     <div class="post-categories">
                         {% for category in post.categories %}
                             <span class="post-category" data-color="{{ category }}">{{ category }}</span>

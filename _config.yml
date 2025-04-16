@@ -19,17 +19,14 @@ theme: null
 markdown: kramdown # Standard Markdown processor for Jekyll
 highlighter: nil
 ## More Collection
-collections_dir: admin/collections
+collections_dir: contents
 collections:
   authors:
     output: true
-    permalink: collections/authors/:name
+    permalink: contents/authors/:name
   posts:
     output: true
-    permalink: contents/:year/:month/:day/:slug
-
-
-
+    permalink: contents/post/:slug
 
 
 # Ensure Jekyll includes the 'contents/assets' folder in the build output

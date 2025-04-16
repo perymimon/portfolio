@@ -1,7 +1,7 @@
 @import "../../base.css";
 @import "../../css/markdown.css";
-@import "./rouge-github-dark.css" (prefers-color-scheme: dark);
-@import "./rouge-github-light.css" (prefers-color-scheme: light);
+@import "../../css/rouge-github-dark.css" (prefers-color-scheme: dark);
+@import "../../css/rouge-github-light.css" (prefers-color-scheme: light);
 
 body {
     font-family: var(--font-family-sans-serif);
