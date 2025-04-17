@@ -1,8 +1,16 @@
-# Site settings
-title: Pery Mimon's Portfolio & Blog
-description: "My personal playground and technical blog."
+# Site settings and SEO
+title: Hello World\s
 author: Pery Mimon
-
+tagline: A personal playground and technical blog.
+description:
+  A space to share my discoveries and explorations in JS, CSS, and HTML.
+  Most of this technical blog is built from scratch — no compilers, minimal tools.
+twitter:
+  username: PMimon70549
+  card: summary
+logo: /assets/grow-avatar-2.png
+  
+google_site_verification: E0AhPdfyI3x5dt5vuR0ZoDwhcX-Ba0g02-FdBYMqtjs
 
 future: true
 excerpt_separator: <!--more-->
@@ -12,8 +20,8 @@ layouts_dir:  admin/_layouts
 data_dir:     admin/_data
 
 # GitHub Pages specific settings
-baseurl: "/portfolio" # Matches repository name
-url: "https://perymimon.github.io" # Main GitHub Pages URL
+baseurl: /portfolio # Matches repository name
+url: https://perymimon.github.io # Main GitHub Pages URL
 theme: null
 
 # Build settings
@@ -29,7 +37,16 @@ collections:
     output: true
     permalink: contents/post/:slug
 
+# RSS configs
+feed:
+  path: feed.xml
+  posts_limit: 10
+  excerpt_only: false
 
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 # Ensure Jekyll includes the 'contents/assets' folder in the build output
 #include:
 #  - "contents/assets"
