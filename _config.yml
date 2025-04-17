@@ -9,7 +9,13 @@ twitter:
   username: PMimon70549
   card: summary
 logo: /assets/grow-avatar-2.png
-  
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:  /assets/grow-avatar-2.png
+
 google_site_verification: E0AhPdfyI3x5dt5vuR0ZoDwhcX-Ba0g02-FdBYMqtjs
 
 future: true
