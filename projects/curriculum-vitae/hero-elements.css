@@ -47,7 +47,7 @@
         background-image: url(../../assets/grow-avatar-2.png);
     }
     [data-theme="dark"] & {
-        background-image: url(../../assets/avatar-3.svg);
+        background-image: url(../../assets/green-avatar.svg);
     }
     @media (orientation: landscape) {
         left: -8rem;
