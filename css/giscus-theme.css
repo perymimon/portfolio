@@ -17,6 +17,17 @@
     --green-shade: rgba(0, 255, 0, 0.1);
     --neon-cyan: cyan;
 
+    /* Spacing System */
+    --space-1: 0.25rem; /* 4px */
+    --space-2: 0.5rem; /* 8px */
+    --space-3: 0.75rem; /* 12px */
+    --space-4: 1rem; /* 16px */
+    --space-5: 1.25rem; /* 20px */
+    --space-6: 1.5rem; /* 24px */
+    --space-8: 2rem; /* 32px */
+    --space-10: 2.5rem; /* 40px */
+    --space-12: 3rem; /* 48px */
+
     /* Giscus specific variables */
     --color-btn-text: var(--text-primary);
     --color-btn-bg: var(--component-bg);
@@ -93,13 +104,16 @@
     --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
     --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
 }
-
+img{
+    width: auto;
+    height: auto;
+}
 /* Main container */
 .gsc-main {
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
     border-radius: var(--radius-lg, 0.5rem);
-    border: 1px solid var(--color-border-primary);
+    gap: 1rem;
 }
 
 /* Header */
@@ -114,6 +128,11 @@
 }
 
 /* Comments */
+.gsc-comments {
+    border: 1px solid var(--color-border-primary);
+    padding: 0.5rem;
+}
+
 .gsc-comment {
     background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-border-primary);
@@ -139,7 +158,8 @@
 
 /* Reactions */
 .gsc-reactions {
-    margin-top: 0.5rem;
+    padding-bottom: 2rem;
+    /*border-block-end: 1px solid var(--component-border);*/
 }
 
 .gsc-reaction-button {

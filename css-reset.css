@@ -16,7 +16,7 @@ body, html {
 
 audio, canvas, embed, iframe, img, object, svg, video {
     vertical-align: middle;
-    display: block;
+    display: inline-block;
     width: 100%;
     height: 100%;
 }
