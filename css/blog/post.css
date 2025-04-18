@@ -1,7 +1,8 @@
-@import "../base.css";
-@import "../css/markdown.css";
-@import "../css/rouge-github-dark.css" (prefers-color-scheme: dark);
-@import "../css/rouge-github-light.css" (prefers-color-scheme: light);
+@import "../../base.css";
+@import "../markdown.css";
+@import "../rouge-github-dark.css" (prefers-color-scheme: dark);
+@import "../rouge-github-light.css" (prefers-color-scheme: light);
+@import "../../css/blog/post-header.cmps.css";
 
 /* Post Layout */
 .post-container {
@@ -26,119 +27,14 @@
 
 /* Post Header */
 .post-header {
-    grid-area: header;
-    display: grid;
-    grid-template-columns: var(--avatar-size) 1fr;
-    grid-template-rows: auto auto auto;
     gap: var(--space-3);
     margin-bottom: var(--space-6);
     padding-bottom: var(--space-4);
     border-bottom: 1px solid var(--component-border);
-}
 
-.post-header .author-avatar {
-    --avatar-size: 4rem;
-    grid-row: 1 / 4;
-    grid-column: 1;
-    width: var(--avatar-size);
-    height: var(--avatar-size);
-    border-radius: 50%;
-    border: 2px solid var(--color-primary);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-    object-fit: cover;
-
-    img{
-        border-radius:  inherit;
-        translate: 0 -.2em;
-        scale: 1.08;
-
+    .post-title {
+        font-size: var(--font-size-4xl);
     }
-}
-
-.post-header .post-title {
-    grid-row: 1;
-    grid-column: 2;
-    font-size: var(--font-size-4xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: var(--space-2);
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
-}
-
-.post-header .post-meta {
-    grid-row: 2;
-    grid-column: 2;
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    color: var(--text-muted);
-    font-size: var(--font-size-sm);
-}
-
-.post-header .post-date {
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
-}
-
-.post-header .post-author {
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
-}
-
-.post-header .post-author a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color var(--transition-normal);
-}
-
-.post-header .post-author a:hover {
-    color: var(--color-primary-hover);
-    text-decoration: underline;
-}
-
-.post-header .post-tags-categories {
-    grid-row: 3;
-    grid-column: 2;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-top: var(--space-1);
-}
-
-.post-tag,
-.post-category {
-    color: var(--text-primary);
-    display: inline-flex;
-    font-size: var(--font-size-xs);
-    gap: var(--space-1);
-    letter-spacing: 1px;
-    align-items: center;
-    text-transform: uppercase;
-    background-color: var(--darker-shade);
-    border: 1px solid var(--component-border);
-    border-radius: 20px;
-    padding: var(--space-1) var(--space-2);
-    height: auto;
-    line-height: 1;
-}
-
-.post-category {
-    background-color: var(--green-shade);
-    border-color: var(--color-primary);
-}
-
-.post-category:before {
-    background: var(--neon-cyan);
-    border-radius: var(--radius-round);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.75);
-    content: "";
-    display: inline-block;
-    height: 0.7ex;
-    width: 0.7ex;
-    margin-right: var(--space-1);
 }
 
 /* Post Content */
@@ -149,6 +45,7 @@
     font-size: var(--font-size-lg);
     color: var(--text-primary);
     place-self: center;
+    max-width: 100%;
 }
 
 .post-content p {
@@ -416,51 +313,18 @@
 @media (max-width: 768px) {
     .post-container {
         padding-inline: var(--space-3);
-        gap: var(--space-4);
-    }
-
-    .post-header {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto;
-        gap: var(--space-2);
-    }
-
-    .post-header .author-avatar {
-        --avatar-size: 3rem;
-        grid-row: 1;
-        grid-column: 1;
-        margin-bottom: var(--space-2);
-    }
-
-    .post-header .post-title {
-        grid-row: 2;
-        grid-column: 1;
-        font-size: var(--font-size-2xl);
-    }
-
-    .post-header .post-meta {
-        grid-row: 3;
-        grid-column: 1;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-1);
-    }
-
-    .post-header .post-tags-categories {
-        grid-row: 4;
-        grid-column: 1;
+        gap: 0;
     }
 
     .post-content {
         font-size: var(--font-size-base);
-    }
+        h2 {
+            font-size: var(--font-size-xl);
+        }
 
-    .post-content h2 {
-        font-size: var(--font-size-xl);
-    }
-
-    .post-content h3 {
-        font-size: var(--font-size-lg);
+        h3 {
+            font-size: var(--font-size-lg);
+        }
     }
 
     .post-actions {
@@ -495,13 +359,14 @@
 
     .post-content {
         font-size: var(--font-size-sm);
+
+        h2 {
+            font-size: var(--font-size-lg);
+        }
+        h3 {
+            font-size: var(--font-size-base);
+        }
+
     }
 
-    .post-content h2 {
-        font-size: var(--font-size-lg);
-    }
-
-    .post-content h3 {
-        font-size: var(--font-size-base);
-    }
 }

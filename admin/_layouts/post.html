@@ -1,48 +1,14 @@
 ---
 layout: default
 ---
-<link rel="stylesheet" href="{{ site.baseurl }}/css/post.css">
+<link rel="stylesheet" href="{{ site.baseurl }}/css/blog/post.css">
 <script type="module" src="{{ site.baseurl }}/src/components/fancy-code-tabs.component.js"></script>
 <script type="module" src="{{ site.baseurl }}/src/components/fancy-img-svg.component.js"></script>
 <script type="module" src="{{ site.baseurl }}/src/components/giscus-reactions.component.js"></script>
 
 <div class="post-container">
-    <header class="post-header">
-        {% assign author = site.authors | where: 'name', page.author | first %}
-        <figure class="author-avatar">
-            <img src="{{ author.avatar | relative_url }}" alt="{{ author.display_name }}"
-                 title="{{ author.display_name }}"
-                 loading="lazy">
-        </figure>
-        <h1 class="post-title">{{ page.title }}</h1>
 
-        <div class="post-meta">
-            <div class="post-date">
-                <img-svg src="../../assets/icons/calendar.svg"></img-svg>
-                <time class="timeago" datetime="{{ page.date | date_to_xmlschema }}"
-                      title="{{ page.date | date: '%B %d, %Y %H:%M' }}">
-                    {{ page.date | date: '%B %d, %Y' }}
-                </time>
-            </div>
-
-            <div class="post-author">
-                <img-svg src="../../assets/icons/user.svg"></img-svg>
-                {% if author %}
-                <a href="{{ author.url | relative_url }}">{{ author.display_name }}</a>
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="post-tags-categories">
-            {% for category in page.categories %}
-            <span class="post-category" data-color="{{ category }}">{{ category }}</span>
-            {% endfor %}
-
-            {% for tag in page.tags %}
-            <span class="post-tag">{{ tag }}</span>
-            {% endfor %}
-        </div>
-    </header>
+    {% include post-header.liquid post=page %}
 
     <article class="post-content">
         {{ content }}
@@ -112,10 +78,8 @@ layout: default
         </div>
     </div>
 
+    {% include footer.liquid %}
 
-    <footer class="post-footer">
-        <p>© {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
-    </footer>
 </div>
 
 <script src="https://unpkg.com/timeago.js@4.0.2/dist/timeago.min.js"></script>

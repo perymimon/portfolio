@@ -14,54 +14,27 @@ styles:
     <h2>{{ group.name }}</h2>
     <section class="blog-section">
         {% for post in group.items %}
-            {% assign author = site.authors | where: "name", post.author | first %}
 
             <article class="blog-card">
-                <header>
-                    <img src="{{ author.avatar | relative_url }}" alt="{{ author.display_name }}"
-                         title="{{ author.display_name }}" class="author-avatar"
-                         loading="lazy"
-                    >
+                {% include post-header.liquid post=post %}
 
-                    <h3 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
-                    <div class="post-categories">
-                        {% for category in post.categories %}
-                            <span class="post-category" data-color="{{ category }}">{{ category }}</span>
-                        {% endfor %}
-                    </div>
-                    <div class="post-tags">
-                        {% for tag in post.tags %}
-                            <span class="post-tag">{{ tag }}</span>
-                        {% endfor %}
-                    </div>
-
-                    <time
-                            class="timeago post-create"
-                            datetime="{{ post.date | date_to_xmlschema }}"
-                            title="{{ post.date | date: '%B %d, %Y %H:%M' }}">
-                    </time>
-
-                </header>
-                {% comment %}<figure>{% endcomment %}
-                    {% comment %}<img src="{{ post.image | relative_url }}" alt="" class="post-image">{% endcomment %}
-                {% comment %}</figure>{% endcomment %}
                 <div class="card-content card-excerpt">
                     {{ post.excerpt }}
                 </div>
                 {% if post.code_html or post.code_css or post.code_js %}
-                <div class="card-code">
-                    <code-tabs show-result data-visible="css js">
-                        <code slot="html">
-                            {{ post.code_html }}
-                        </code>
-                        <code slot="css">
-                            {{ post.code_css }}
-                        </code>
-                        <code slot="js">
-                            {{ post.code_js }}
-                        </code>
-                    </code-tabs>
-                </div>
+                    <div class="card-code">
+                        <code-tabs show-result data-visible="css js">
+                            <code slot="html">
+                                {{ post.code_html }}
+                            </code>
+                            <code slot="css">
+                                {{ post.code_css }}
+                            </code>
+                            <code slot="js">
+                                {{ post.code_js }}
+                            </code>
+                        </code-tabs>
+                    </div>
                 {% endif %}
 
 

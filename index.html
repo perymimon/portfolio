@@ -73,6 +73,18 @@
            data-layout="disapear"
         >Blog</a>
 
+        <a href="admin/blog/index.html" target="_blank"
+           class="sidebar-link"
+           id="admin"
+           data-layout="disapear"
+        >Admin</a>
+
+        <script>
+            if(!localStorage.getItem('decap-cms-user')){
+                admin.remove()
+            }
+        </script>
+
         <div class="sidebar-section-title">
             Side projects by
             <a href="https://github.com/perymimon?tab=repositories" target="_blank">me</a></div>

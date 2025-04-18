@@ -13,23 +13,10 @@
     {% endfor %}
 </head>
 <body>
-<header>
-    <!-- Add basic navigation later -->
-    <a id="adminPage" href="{{ 'admin' | relative_url }}" target="_blank">Admin</a>
-    <script>
-        if(!localStorage.getItem('decap-cms-user')){
-            adminPage.remove()
-        }
-    </script>
-</header>
 
 <main>
     <!-- Page content will go here -->
     {{ content }}
 </main>
-
-<footer>
-    <p>© {{ 'now' | date: "%Y" }} {{ site.author }}</p>
-</footer>
 </body>
 </html>
