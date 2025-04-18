@@ -105,8 +105,8 @@
     --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
 }
 img{
-    width: auto;
-    height: auto;
+    width: revert-layer;
+    height: revert-layer;
 }
 /* Main container */
 .gsc-main {
