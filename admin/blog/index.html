@@ -16,14 +16,17 @@ styles:
         {% for post in group.items %}
 
             <article class="blog-card">
-                {% include post-header.liquid post=post %}
+                {% include post-header.liquid post=post no_title=true %}
 
                 <div class="card-content card-excerpt">
-                    {{ post.excerpt }}
+                    {{ post.title }}... {{ post.excerpt }}
+
+                    <a href="{{ site.baseurl }}{{ post.url }}">show more</a>
+
                 </div>
                 {% if post.code_html or post.code_css or post.code_js %}
                     <div class="card-code">
-                        <code-tabs show-result data-visible="css js">
+                        <code-tabs show-result mode="demo">
                             <code slot="html">
                                 {{ post.code_html }}
                             </code>

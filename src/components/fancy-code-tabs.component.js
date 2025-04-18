@@ -57,22 +57,29 @@ customElements.define('code-tabs', class extends HTMLElement {
         const slotKeys = ['html', 'css', 'js']
         const visibleAttr = this.dataset.visible ?? "html css js"
         const visibleSet = new Set(visibleAttr.split(' ').map(v => v.trim()))
-
+        const mode = this.getAttribute("mode")
         const [html, css, js] = slotKeys.map(key => {
-            const present = this.querySelector(`[slot="${key}"]`)
-            const [text] = this.highlight(present, key)
+            const slot = this.querySelector(`[slot="${key}"]`)
+            const [text] = this.highlight(slot, key, mode === 'demo')
             const label$ = shadowRoot.querySelector(`label:has([name=${key}])`)
-            const $pre = this.shadowRoot.querySelector(`pre[data-lang=${key}]`)
+            const $pre = shadowRoot.querySelector(`pre[data-lang=${key}]`)
             if (!text) {
                 label$.remove()
                 $pre.remove()
                 return ''
             }
             label$.querySelector(`input`).checked = visibleSet.has(key)
-            $pre.prepend(present)
+            $pre.prepend(slot)
             return text
 
         })
+
+        if (mode === 'demo') {
+            shadowRoot.querySelector('[role=tablist]').remove()
+            shadowRoot.querySelector(`pre[data-lang=html]`)?.remove()
+            shadowRoot.querySelector(`pre[data-lang=css]`)?.remove()
+            shadowRoot.querySelector(`pre[data-lang=js]`)?.remove()
+        }
         const iframe$ = this.shadowRoot.querySelector("iframe")
         if (!showResult) iframe$.remove()
         else {
@@ -81,12 +88,13 @@ customElements.define('code-tabs', class extends HTMLElement {
         }
     }
 
-    highlight (el, language) {
+    highlight (el, language, justText = false) {
         if (!el) return ''
         const browserEncodedText = el.innerHTML.trim()
         const textArea = document.createElement("textarea")
         textArea.innerHTML = browserEncodedText
         const pureText = textArea.value
+        if (justText) return [pureText]
         el.innerHTML = hljs.highlight(pureText, {language}).value
         return [pureText]
 
