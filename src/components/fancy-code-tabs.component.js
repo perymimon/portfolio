@@ -39,7 +39,7 @@ template.innerHTML = `
     </pre>
     <pre data-lang="css"><slot name="css" ></slot></pre>
     <pre data-lang="js"><slot name="js" ></slot></pre>
-    <iframe allowtransparency sandbox="allow-scripts"></iframe>
+    <iframe allowtransparency sandbox="allow-same-origin allow-scripts"></iframe>
 </div>
 `
 
@@ -83,8 +83,7 @@ customElements.define('code-tabs', class extends HTMLElement {
         const iframe$ = this.shadowRoot.querySelector("iframe")
         if (!showResult) iframe$.remove()
         else {
-            var extraStyle = `body{background:${getProperty(this, '--color-background')};}`
-            iframe$.srcdoc = `${html}<style>${extraStyle}\n${css}</style><script>${js}<\/script>`
+            this.preperIFrame(iframe$, html, css, js)
         }
     }
 
@@ -100,4 +99,22 @@ customElements.define('code-tabs', class extends HTMLElement {
 
     }
 
+    preperIFrame (iframe, html, css, js) {
+        var extraStyle = `html,body{margin:0; padding:0;} body{background:${getProperty(this, '--color-background')};}`
+
+        iframe.srcdoc = `${html}<style>${extraStyle}\n${css}</style><script>${js}<\/script>`
+        iframe.addEventListener('load', function () {
+            let prvH = 0
+            requestAnimationFrame(function loop () {
+                const h = iframe.contentDocument?.documentElement?.scrollHeight
+                if (prvH !== h) iframe.style.height = h + 'px'
+                prvH = h
+                requestAnimationFrame(loop)
+            })
+        })
+
+
+    }
 })
+
+
