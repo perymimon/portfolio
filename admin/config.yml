@@ -14,16 +14,32 @@ backend:
 #  base_url: http://localhost:63341
 #  auth_endpoint: /radu-stuff/admin/oauth.html
 
-publish_mode: editorial_workflow
+publish_mode: simple
 
 # Media folder where uploads will be stored
-media_folder: "admin/uploads"
+media_folder: "contents/uploads"
 
 collections:
+  # Authors collection
+  - name: authors
+    label: Authors
+    folder: contents/_authors
+    create: true
+    editor:
+      preview: false
+    slug: "{{name}}"
+    fields:
+      - { label: 'Avatar', name: 'avatar', widget: 'image', required: true }
+      - { label: 'Short Name', name: 'name', widget: 'string' }
+      - { label: 'Display Name', name: 'display_name', widget: 'string' }
+      - { label: 'Position', name: 'position', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'author' }
+
   # Posts collection
-  - name: "posts" # Used in routes, e.g., /admin/collections/blog
-    label: "Tech Post" # Used in the UI
-    folder: "contents/_posts" # The path to the folder where the documents are stored
+  - name: posts # Used in routes, e.g., /admin/collections/blog
+    label: Tech Post # Used in the UI
+    folder: contents/_posts # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     editor:
@@ -82,21 +98,7 @@ collections:
         output_code_only: true
         required: false
 
-  # Authors collection
-  - name: 'authors'
-    label: 'Authors'
-    folder: 'admin/collections/_authors'
-    create: true
-    editor:
-      preview: false
-    slug: "{{name}}"
-    fields:
-      - { label: 'Avatar', name: 'avatar', widget: 'image', required: true }
-      - { label: 'Short Name', name: 'name', widget: 'string' }
-      - { label: 'Display Name', name: 'display_name', widget: 'string' }
-      - { label: 'Position', name: 'position', widget: 'string' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'author' }
+
 
 
 
