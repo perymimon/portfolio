@@ -27,6 +27,7 @@ h2 {
     font-size: var(--font-size-3xl);
     margin-top: var(--space-8);
     margin-bottom: var(--space-4);
+    margin-inline: var(--space-4);
     color: var(--color-primary);
     text-shadow: 0 0 10px var(--green-shade-2); /*todo:replace it*/
     border-bottom: 1px solid var(--component-border);
@@ -86,14 +87,15 @@ h2 {
     .card-code {
         position: relative;
         margin-block-start: var(--space-4);
-        width: max(100%, 80dvw);
+        margin-block-end: var(--space-2);
+        /*width: max(100%, 80dvw);*/
+        width: 100%;
         display: inline-block;
         border-radius: var(--radius-md);
         place-self: center;
         background: inherit;
-        code-tabs {
 
-        }
+
     }
 
     .card-excerpt code {
