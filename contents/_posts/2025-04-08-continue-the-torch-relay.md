@@ -95,9 +95,7 @@ code_css: >
 ---
 
 In my [About][1], I added the [Zitch of Light][2] effect around important sections. This animation is tied to mouse hover, but on mobile, the hover state isn’t reliable. So I connected it to page scroll instead. Then I realized — it actually looks good on desktop too.
-
-
-
+<!--more-->
 This led me to a point where I needed both behaviors. That means running two animations simultaneously and somehow combining their results — something like `--angle = --a1 + --a2`. I tried using `@property` and animated variables, but it turned into a mess. Too many definitions, too many places for errors.
 
 

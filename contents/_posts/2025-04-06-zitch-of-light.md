@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Zitch of Light - CSS Border Animation
-date: 2025-04-06T17:11:00.000Z
 author: pery
 html: ""
+title: Zitch of Light - CSS Border Animation
+date: 2025-04-06T17:11:00.000Z
+tags: css
 code_html: <div class="glow-border" style="width:10em; height:5em;
   background:lightblue;margin:1em;">content</div>
 code_css: |-
@@ -34,7 +35,8 @@ code_css: |-
   }
 ---
 [Lately][1] I wanted certain cards to stand out—with a Zitch of glowing light circling the border🌀.
-The can be on hover or when user scroll the page depend if it mobile or desktop (portrait or landscape mode).\
+The can be on hover or when user scroll the page depend if it mobile or desktop (portrait or landscape mode).
+<!--more-->
 \
 I considered two approaches:
 
