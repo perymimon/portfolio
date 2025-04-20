@@ -28,7 +28,7 @@
         background-color: color(from var(--component-bg) srgb r g b / 0.5);
         text-shadow: hsl(from var(--text-primary) h s 0 ) 0em 0.1em .1em;
     }
-    &.disapear{
+    &.disappear{
         display: none;
     }
 
