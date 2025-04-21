@@ -19,14 +19,13 @@ template.innerHTML = `
     
 </div>
 `
-
-class RecorderElement extends HTMLElement {
+customElements.define('fancy-recorder', class extends HTMLElement {
     // Attach Shadow DOM
     shadow = this.attachShadow({mode: 'open'})
     #uniqueId = ''
     #iframeWindow = null
 
-    constructor () {
+    constructor() {
         super()
         var shadow = this.shadow
         shadow.appendChild(template.content.cloneNode(true))
@@ -43,26 +42,26 @@ class RecorderElement extends HTMLElement {
         this.#setReadyState(false)
     }
 
-    showToast (message) {
+    showToast(message) {
         const toast = document.createElement('toast-message')
         toast.setAttribute('message', message)
         document.body.appendChild(toast)
     }
 
-    #setState (state) {
+    #setState(state) {
         this.ui.dataset.state = state
     }
 
-    #setReadyState (state) {
+    #setReadyState(state) {
         this.ui.dataset.ready = state
         this.recordBtn.disabled = !Boolean(state)
-        if(!state)
+        if (!state)
             this.setAttribute('disabled', 'disabled')
         else
             this.removeAttribute('disabled')
     }
 
-    connectedCallback () {
+    connectedCallback() {
         const targetAttr = this.getAttribute('target')
         this.duration = Number(this.getAttribute('duration') || 10_000)
 
@@ -92,7 +91,7 @@ class RecorderElement extends HTMLElement {
         }
     }
 
-    attachToFrameTarget (canvasId) {
+    attachToFrameTarget(canvasId) {
         this.#iframeWindow = this.target.contentWindow
         this.target.addEventListener("load", () => {
             this.#sendMessage("stream-requested", {canvasId})
@@ -101,11 +100,11 @@ class RecorderElement extends HTMLElement {
         window.addEventListener("message", this.#handleMessage.bind(this))
     }
 
-    #sendMessage (type, payload = {}) {
+    #sendMessage(type, payload = {}) {
         this.#iframeWindow?.postMessage({type, id: this.#uniqueId, ...payload}, "*")
     }
 
-    #handleMessage (event) {
+    #handleMessage(event) {
         const {type, id, canvasId, ...data} = event.data
 
         if (id !== this.#uniqueId) return // Ignore unrelated messages
@@ -133,7 +132,7 @@ class RecorderElement extends HTMLElement {
         }
     }
 
-    attachToLocalTarget () {
+    attachToLocalTarget() {
         this.recorder = new Recorder(this.target)
         this.timerInterval = setInterval(this.updateTimer.bind(this), 1000)
 
@@ -141,11 +140,11 @@ class RecorderElement extends HTMLElement {
         this.#setReadyState(true)
     }
 
-    disconnectedCallback () {
+    disconnectedCallback() {
         clearInterval(this.timerInterval)
     }
 
-    startRecording () {
+    startRecording() {
         if (!this.target) return
         if (this.recorder) {
             this.#setState('recording')
@@ -161,7 +160,7 @@ class RecorderElement extends HTMLElement {
         }
     }
 
-    pauseRecording () {
+    pauseRecording() {
         if (!this.target) return
         if (this.recorder) {
             this.#setState('paused')
@@ -172,7 +171,7 @@ class RecorderElement extends HTMLElement {
         }
     }
 
-    resumeRecording () {
+    resumeRecording() {
         if (!this.target) return
         if (this.recorder) {
             this.#setState('recording')
@@ -184,7 +183,7 @@ class RecorderElement extends HTMLElement {
 
     }
 
-    stopRecording () {
+    stopRecording() {
         if (!this.target) return
         if (this.recorder) {
             this.#setState('idle')
@@ -194,7 +193,7 @@ class RecorderElement extends HTMLElement {
         }
     }
 
-    updateTimer (time) {
+    updateTimer(time) {
         const currentTime = time ?? this.recorder.recodingTime
         const seconds = Math.floor(currentTime / 1000)
         const minutes = Math.floor(seconds / 60)
@@ -202,16 +201,16 @@ class RecorderElement extends HTMLElement {
         this.timeDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
     }
 
-    #downloadingRecord (url) {
+    #downloadingRecord(url) {
         this.showToast('Downloading record')
         const link = document.createElement('a')
         link.href = url
         link.download = 'canvas-recorder.mp4'
         link.click()
     }
-}
+})
 
-customElements.define('fancy-recorder', RecorderElement)
+
 
 
 

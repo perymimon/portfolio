@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/portfolio/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/portfolio/" rel="alternate" type="text/html" /><updated>2025-04-21T10:58:56+03:00</updated><id>http://localhost:4000/portfolio/feed.xml</id><title type="html">Hello World\s</title><subtitle>A space to share my discoveries and explorations in JS, CSS, and HTML. Most of this technical blog is built from scratch — no compilers, minimal tools.</subtitle><author><name>Pery Mimon</name></author><entry><title type="html">Raw text from HTML Element</title><link href="http://localhost:4000/portfolio/contents/post/raw-text-from-html-element-1" rel="alternate" type="text/html" title="Raw text from HTML Element" /><published>2025-04-10T15:01:00+03:00</published><updated>2025-04-10T15:01:00+03:00</updated><id>http://localhost:4000/portfolio/contents/post/raw-text-from-html-element-1</id><content type="html" xml:base="http://localhost:4000/portfolio/contents/post/raw-text-from-html-element-1"><![CDATA[<p>Sounds obvious, right? It turns out that browsers silently encode text inside HTML.
+<!--more--></p>
+
+<p>What is mean. Let’s say we have this piece of code:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;b&gt;</span>bold<span class="nt">&lt;/b&gt;</span> <span class="err">&amp;</span> safe
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Reading with <code class="language-plaintext highlighter-rouge">.innerHTML</code> often gives:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'\n  <span class="nt">&lt;b&gt;</span>bold<span class="nt">&lt;/b&gt;</span> <span class="ni">&amp;amp;</span> safe\n'
+</code></pre></div></div>
+
+<p>Reading with <code class="language-plaintext highlighter-rouge">.textContent</code> gives:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\n  bold <span class="err">&amp;</span> safe\n
+</code></pre></div></div>
+
+<p><strong>So how to got the raw text from that element? what’s the solution?</strong> Using a <code class="language-plaintext highlighter-rouge">&lt;textarea&gt;</code>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">decodeHtmlEntities</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">textarea</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">textarea</span><span class="dl">'</span><span class="p">)</span>
+    <span class="nx">textarea</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">html</span>
+    <span class="k">return</span> <span class="nx">textarea</span><span class="p">.</span><span class="nx">value</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="why-does-textarea-do-the-trick">Why does <code class="language-plaintext highlighter-rouge">&lt;textarea&gt;</code> do the trick?</h3>
+
+<blockquote>
+  <p>(from GPT):
+<code class="language-plaintext highlighter-rouge">&lt;textarea&gt;</code> treats <code class="language-plaintext highlighter-rouge">.innerHTML</code> as raw HTML and <code class="language-plaintext highlighter-rouge">.value</code> as plain text.
+Setting <code class="language-plaintext highlighter-rouge">textarea.innerHTML = "&amp;lt;b&amp;gt;"</code> stores encoded.
+Reading <code class="language-plaintext highlighter-rouge">textarea.value</code> returns decoded: <code class="language-plaintext highlighter-rouge">&lt;b&gt;</code>
+No rendering. No DOM parsing. Just plain text logic.
+Native, fast HTML decoder — no custom parser needed.</p>
+</blockquote>
+
+<p>Amazing, right?</p>]]></content><author><name>pery</name></author><category term="html" /><summary type="html"><![CDATA[Sounds obvious, right? It turns out that browsers silently encode text inside HTML.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/portfolio/assets/grow-avatar-2.png" /><media:content medium="image" url="http://localhost:4000/portfolio/assets/grow-avatar-2.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Continue the torch relay</title><link href="http://localhost:4000/portfolio/contents/post/continue-the-torch-relay" rel="alternate" type="text/html" title="Continue the torch relay" /><published>2025-04-08T10:15:00+03:00</published><updated>2025-04-08T10:15:00+03:00</updated><id>http://localhost:4000/portfolio/contents/post/continue-the-torch-relay</id><content type="html" xml:base="http://localhost:4000/portfolio/contents/post/continue-the-torch-relay"><![CDATA[<p>In my <a href="/portfolio/projects/curriculum-vitae">About</a>, I added the <a href="/contents/post/zitch-of-light">Zitch of Light</a> effect around important sections. This animation is tied to mouse hover, but on mobile, the hover state isn’t reliable. So I connected it to page scroll instead. Then I realized — it actually looks good on desktop too.
+<!--more-->
+This led me to a point where I needed both behaviors. That means running two animations simultaneously and somehow combining their results — something like <code class="language-plaintext highlighter-rouge">--angle = --a1 + --a2</code>. I tried using <code class="language-plaintext highlighter-rouge">@property</code> and animated variables, but it turned into a mess. Too many definitions, too many places for errors.</p>
+
+<p>Luckily, I found a much simpler approach.</p>
+
+<p>If I run both animations but set them to <code class="language-plaintext highlighter-rouge">paused</code> (i.e., not removed the <code class="language-plaintext highlighter-rouge">animation</code> keyword), their current state is saved. Then I can combine them using <code class="language-plaintext highlighter-rouge">animation-composition: accumulate;</code> — natively 💫</p>]]></content><author><name>pery</name></author><category term="css" /><summary type="html"><![CDATA[In my About, I added the Zitch of Light effect around important sections. This animation is tied to mouse hover, but on mobile, the hover state isn’t reliable. So I connected it to page scroll instead. Then I realized — it actually looks good on desktop too.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/portfolio/assets/grow-avatar-2.png" /><media:content medium="image" url="http://localhost:4000/portfolio/assets/grow-avatar-2.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Zitch of Light - CSS Border Animation</title><link href="http://localhost:4000/portfolio/contents/post/zitch-of-light" rel="alternate" type="text/html" title="Zitch of Light - CSS Border Animation" /><published>2025-04-06T20:11:00+03:00</published><updated>2025-04-06T20:11:00+03:00</updated><id>http://localhost:4000/portfolio/contents/post/zitch-of-light</id><content type="html" xml:base="http://localhost:4000/portfolio/contents/post/zitch-of-light"><![CDATA[<p><a href="/portfolio/projects/curriculum-vitae">Lately</a> I wanted certain cards to stand out—with a Zitch of glowing light circling the border🌀.
+The can be on hover or when user scroll the page depend if it mobile or desktop (portrait or landscape mode).
+<!--more-->
+<br />
+I considered two approaches:</p>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-image"><code class="language-plaintext highlighter-rouge">border-image</code></a> + <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/conic-gradient"><code class="language-plaintext highlighter-rouge">conic-gradient</code></a> (what I used)
+ or <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/offset-path"><code class="language-plaintext highlighter-rouge">offset-path</code></a> with a moving dot (discarded, probably can give nice rotating effect for another project)
+*</li>
+</ul>]]></content><author><name>pery</name></author><category term="css" /><summary type="html"><![CDATA[Lately I wanted certain cards to stand out—with a Zitch of glowing light circling the border🌀. The can be on hover or when user scroll the page depend if it mobile or desktop (portrait or landscape mode).]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/portfolio/assets/grow-avatar-2.png" /><media:content medium="image" url="http://localhost:4000/portfolio/assets/grow-avatar-2.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

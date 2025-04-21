@@ -11,11 +11,11 @@ window.addEventListener("message", async (event) => {
             canvasId ? document.getElementById(canvasId) : document.querySelector("canvas")
 
         if (!targetCanvas) {
-            console.error(`CanvasRecorder: Target canvas not found.`)
-            source.postMessage({type: "not-found", id, canvasId}, "*")
-            return;
+            console.error(`CanvasRecorder: Target canvas not exist.`)
+            // source.postMessage({type: "not-found", id, canvasId}, "*")
+            return
         }
-        const recorder = new Recorder(targetCanvas);
+        const recorder = new Recorder(targetCanvas)
         var fps = new FrameEngine(2, _ => {
             source.postMessage({
                 type: "timer-update",
@@ -24,7 +24,7 @@ window.addEventListener("message", async (event) => {
             })
         })
 
-        source.postMessage({type: "ready", id}, "*");
+        source.postMessage({type: "ready", id}, "*")
 
         function sendState (state, url) {
             source.postMessage({type: "state-update", id, state, url})
@@ -43,17 +43,17 @@ window.addEventListener("message", async (event) => {
         recorder.addEventListener('resume', eventFactory('start'))
 
         window.addEventListener("message", ({data, origin}) => {
-            if (data.id !== id) return;
+            if (data.id !== id) return
             recorder[data.type](Number(data.duration))
-        });
+        })
     }
-});
+})
 
 
 export default class Recorder extends EventsEmitter {
     canvas = null
     fps = 30
-    // mimeType = "video/webm; codecs=vp9"
+    // mimeType = "video/webm codecs=vp9"
     mimeType = "video/mp4; codecs=avc3" // Use H.264
     mediaRecorder = null
     videoBitsPerSecond = 288000
