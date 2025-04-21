@@ -5,45 +5,49 @@ styles:
 - ./blog.css
 - ./blog-mobile.css
 ---
-{% comment %}<link rel="stylesheet" href="./blog-mobile.css" media="(max-width: 768px), (orientation: portrait)">{% endcomment %}
-<script type="module" src="{{ site.baseurl }}/src/components/fancy-code-tabs.component.js"></script>
+<script type="module" src="{{ site.baseurl }}/src/components/index.js"></script>
 
 {% assign posts = site.posts %}
 {% assign grouped = posts | group_by_exp: "post", "post.date | date: '%Y %B'" %}
+<nav>
+    <a href="../../feed.xml" class="rss-link">
+       <img-svg src="../../assets/icons/rss.svg"></img-svg>
+    </a>
+</nav>
 {% for group in grouped %}
-    <h2>{{ group.name }}</h2>
-    <section class="blog-section">
-        {% for post in group.items %}
+<h2>{{ group.name }}</h2>
+<section class="blog-section">
+    {% for post in group.items %}
 
-            <article class="blog-card">
-                {% include post-header.liquid post=post no_title=true %}
+    <article class="blog-card">
+        {% include post-header.liquid post=post no_title=true %}
 
-                <div class="card-content card-excerpt">
-                    {{ post.title }}... {{ post.excerpt }}
+        <div class="card-content card-excerpt">
+            {{ post.title }}... {{ post.excerpt }}
 
 
-                </div>
-                {% if post.code_html or post.code_css or post.code_js %}
-                    <div class="card-code">
-                        <code-tabs show-result mode="demo">
-                            <code slot="html">
-                                {{ post.code_html }}
-                            </code>
-                            <code slot="css">
-                                {{ post.code_css }}
-                            </code>
-                            <code slot="js">
-                                {{ post.code_js }}
-                            </code>
-                        </code-tabs>
-                    </div>
-                {% endif %}
+        </div>
+        {% if post.code_html or post.code_css or post.code_js %}
+        <div class="card-code">
+            <code-tabs show-result mode="demo">
+                <code slot="html">
+                    {{ post.code_html }}
+                </code>
+                <code slot="css">
+                    {{ post.code_css }}
+                </code>
+                <code slot="js">
+                    {{ post.code_js }}
+                </code>
+            </code-tabs>
+        </div>
+        {% endif %}
 
-                <a href="{{ site.baseurl }}{{ post.url }}">read more</a>
+        <a href="{{ site.baseurl }}{{ post.url }}">read more</a>
 
-            </article>
-        {% endfor %}
-    </section>
+    </article>
+    {% endfor %}
+</section>
 {% endfor %}
 
 <script src="https://unpkg.com/timeago.js@4.0.2/dist/timeago.min.js"></script>

@@ -38,6 +38,8 @@ menu, ol, ul {
 a {
     font-family: var(--font-family-mono), monospace;
     color: inherit;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {

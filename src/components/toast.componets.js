@@ -1,10 +1,9 @@
-export default class ToastMessageElement extends HTMLElement {
-    constructor () {
-        super();
+customElements.define('toast-message', class extends HTMLElement {
+        constructor() {
+            super()
+            const shadow = this.attachShadow({mode: 'open'})
 
-        const shadow = this.attachShadow({mode: 'open'});
-
-        shadow.innerHTML = `
+            shadow.innerHTML = `
       <style>
         :host {
           position: fixed;
@@ -32,14 +31,15 @@ export default class ToastMessageElement extends HTMLElement {
         }
       </style>
       <span id="message"></span>
-    `;
+    `
 
-        this.messageElement = shadow.querySelector('#message');
-    }
+            this.messageElement = shadow.querySelector('#message')
+        }
 
-    connectedCallback () {
-        this.messageElement.textContent = this.getAttribute('message') || '';
-        setTimeout(() => this.remove(), 3000);
+        connectedCallback() {
+            this.messageElement.textContent = this.getAttribute('message') || ''
+            setTimeout(() => this.remove(), 3000)
+        }
     }
-}
-customElements.define('toast-message', ToastMessageElement);
+)
+

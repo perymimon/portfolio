@@ -33,7 +33,18 @@ h2 {
     border-bottom: 1px solid var(--component-border);
     padding-bottom: var(--space-2);
 }
-
+nav{
+    align-items: center;
+    display: flex;
+    gap: var(--space-3);
+     inset-block-start: 0;
+     justify-content: end;
+    padding-block: var(--space-3);
+    padding-inline: var(--space-1);
+    position: sticky;
+    z-index: var(--z-index-sticky);
+    pointer-events: none;
+}
 .blog-section {
     --max-content-width: 800px;
     position: relative;

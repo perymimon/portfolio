@@ -1,0 +1,5 @@
+import './fancy-code-tabs.component.js'
+import './fancy-img-svg.component.js'
+import './fancy-video.component.js'
+import './fancy-recorder.components.js'
+import './toast.componets.js'
