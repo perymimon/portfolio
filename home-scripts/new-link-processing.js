@@ -2,7 +2,6 @@ import {injectProjectInfo2} from './project-info.js'
 import {startViewTransition} from './view-transition.js'
 
 
-document.addEventListener('load', handleContentLoaded)
 document.addEventListener('click', handleGlobalClick)
 window.addEventListener('hashchange', (event) => goToProjectPage())
 
@@ -23,7 +22,7 @@ async function loadProjects () {
 
 const loadingProjects = loadProjects()
 
-async function handleContentLoaded (event) {
+export async function initSidebar (event) {
     await loadingProjects
     buildNavigation()
     await goToProjectPage()
@@ -107,7 +106,7 @@ export function getProjectsByGroupId (groupId) {
 const commentMatcher = /(links|tabs):\s*([\w-]+)/
 
 function buildNavigation () {
-    const comments = findComments(document.body);
+    const comments = findComments(document.body)
     comments
         .filter(comment => comment.data.match(commentMatcher))
         .forEach(comment => {

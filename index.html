@@ -143,10 +143,13 @@
     import './home-scripts/sidebar.js'
     import {linkPageFromParent, toggleTheme, initializeTheme} from './src/helpers/link-page.js'
     import './home-scripts/avatar-effect.js'
-    import './home-scripts/new-link-processing.js'
+    import {initSidebar} from './home-scripts/new-link-processing.js'
 
-    var themeToggle = document.getElementById('theme-toggle')
-    themeToggle.addEventListener('click', toggleTheme)
+    initSidebar()
+
+    document.getElementById('theme-toggle')
+            .addEventListener('click', toggleTheme)
+
     linkPageFromParent()
     initializeTheme()
 
