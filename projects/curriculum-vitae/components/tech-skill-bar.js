@@ -9,9 +9,9 @@ class TechSkillBar extends HTMLElement {
     }
 
     render() {
-        const skill = this.getAttribute('skill');
-        const years = this.getAttribute('years');
-        const strength = this.getAttribute('strength');
+        const skill = this.getAttribute('skill') ?? ''
+        const years = this.getAttribute('years') ?? ''
+        const strength = this.getAttribute('strength') ?? ''
 
         this.innerHTML = `
             <style>

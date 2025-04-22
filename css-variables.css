@@ -90,15 +90,15 @@
     --font-size-4xl: 2.25rem; /* 36px */
     --font-size-5xl: 3rem; /* 36px */
 
-    --font-size-relative-xs: 0.75em; /* 12px */
-    --font-size-relative-sm: 0.9em; /* 14px */
-    --font-size-relative-base: 1em; /* 16px */
-    --font-size-relative-lg: 1.125em; /* 18px */
-    --font-size-relative-xl: 1.25em; /* 20px */
-    --font-size-relative-2xl: 1.5em; /* 24px */
+    --font-size-relative-xs: min(3vw, 0.75em); /* 12px */
+    --font-size-relative-sm: min(3.6vw,0.9em); /* 14px */
+    --font-size-relative-base: min(4vw, 1em); /* 16px */
+    --font-size-relative-lg: min(4.5vw,1.125em); /* 18px */
+    --font-size-relative-xl: min(5vw, 1.25em); /* 20px */
+    --font-size-relative-2xl: min(6vw, 1.5em); /* 24px */
     --font-size-relative-3xl: 1.875em; /* 30px */
-    --font-size-relative-4xl: 2.25em; /* 36px */
-    --font-size-relative-5xl: 3em; /* 36px */
+    --font-size-relative-4xl: min(9vw, 2.25em); /* 36px */
+    --font-size-relative-5xl: min(12vw, 3em); /* 36px */
 
     /* Font Weights */
     --font-weight-normal: 400;
