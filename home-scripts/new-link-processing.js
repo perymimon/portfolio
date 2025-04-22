@@ -2,7 +2,7 @@ import {injectProjectInfo2} from './project-info.js'
 import {startViewTransition} from './view-transition.js'
 
 
-document.addEventListener('DOMContentLoaded', handleContentLoaded)
+document.addEventListener('load', handleContentLoaded)
 document.addEventListener('click', handleGlobalClick)
 window.addEventListener('hashchange', (event) => goToProjectPage())
 
