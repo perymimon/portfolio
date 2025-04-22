@@ -50,7 +50,7 @@ layout: default
     <div class="post-comments">
         <h2 class="comments-header">
             <div>
-                <img-svg src="../../assets/icons/comment.svg"></img-svg>
+                <img-svg src="{{ "assets/icons/comment.svg" | relative_url }}"></img-svg>
                 Comments
             </div>
             <div class="post-actions">
@@ -58,16 +58,16 @@ layout: default
                 <div class="share-buttons">
                     <a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ page.title }}"
                        target="_blank" rel="noopener noreferrer" class="share-button" aria-label="Share on Twitter">
-                        <img-svg src="../../assets/icons/tweeter.svg"></img-svg>
+                        <img-svg src="{{ "assets/icons/tweeter.svg" | relative_url }}"></img-svg>
                     </a>
                     <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title }}"
                        target="_blank" rel="noopener noreferrer" class="share-button" aria-label="Share on LinkedIn">
-                        <img-svg src="../../assets/icons/linkedin.svg"></img-svg>
+                        <img-svg src="{{ "assets/icons/linkedin.svg" | relative_url }}"></img-svg>
 
                     </a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" target="_blank"
                        rel="noopener noreferrer" class="share-button" aria-label="Share on Facebook">
-                        <img-svg src="../../assets/icons/fb.svg"></img-svg>
+                        <img-svg src="{{ "assets/icons/fb.svg" | relative_url }}"></img-svg>
 
                     </a>
                 </div>
