@@ -34,15 +34,16 @@ theme: null
 # Build settings
 markdown: kramdown # Standard Markdown processor for Jekyll
 highlighter: nil
+
 ## More Collection
-collections_dir: contents
+collections_dir: blog/contents
 collections:
   authors:
     output: true
-    permalink: contents/authors/:name
+    permalink: blog/contents/authors/:name
   posts:
     output: true
-    permalink: contents/post/:slug
+    permalink: blog/contents/post/:slug
 
 # RSS configs
 feed:

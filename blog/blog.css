@@ -1,8 +1,8 @@
-@import "../../base.css";
-@import "../../css/markdown.css";
-@import "../../css/rouge-github-dark.css" (prefers-color-scheme: dark);
-@import "../../css/rouge-github-light.css" (prefers-color-scheme: light);
-@import "../../css/blog/post-header.cmps.css";
+@import "../base.css";
+@import "../css/markdown.css";
+@import "../css/rouge-github-dark.css" (prefers-color-scheme: dark);
+@import "../css/rouge-github-light.css" (prefers-color-scheme: light);
+@import "post-header.cmps.css";
 
 body {
     font-family: var(--font-family-sans-serif);

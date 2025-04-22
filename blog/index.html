@@ -10,8 +10,8 @@ styles:
 {% assign posts = site.posts %}
 {% assign grouped = posts | group_by_exp: "post", "post.date | date: '%Y %B'" %}
 <nav>
-    <a href="../../feed.xml" class="rss-link">
-       <img-svg src="../../assets/icons/rss.svg"></img-svg>
+    <a href="../feed.xml" class="rss-link">
+       <img-svg src="../assets/icons/rss.svg"></img-svg>
     </a>
 </nav>
 {% for group in grouped %}

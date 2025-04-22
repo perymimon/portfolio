@@ -17,13 +17,13 @@ backend:
 publish_mode: simple
 
 # Media folder where uploads will be stored
-media_folder: "contents/uploads"
+media_folder: "blog/contents/uploads"
 
 collections:
   # Authors collection
   - name: authors
     label: Authors
-    folder: contents/_authors
+    folder: blog/contents/_authors
     create: true
     editor:
       preview: false
@@ -39,7 +39,7 @@ collections:
   # Posts collection
   - name: posts # Used in routes, e.g., /admin/collections/blog
     label: Tech Post # Used in the UI
-    folder: contents/_posts # The path to the folder where the documents are stored
+    folder: blog/contents/_posts # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     editor:

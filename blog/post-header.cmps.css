@@ -70,7 +70,7 @@ header.post-header {
             font-size: var(--font-size-sm);
             color: var(--text-muted);
             &::before {
-                mask: url("../../assets/icons/calendar.svg") no-repeat center;
+                mask: url("../assets/icons/calendar.svg") no-repeat center;
             }
         }
 
@@ -80,7 +80,7 @@ header.post-header {
             gap: var(--space-1);
 
             &::before {
-                mask: url("../../assets/icons/user.svg") no-repeat center;
+                mask: url("../assets/icons/user.svg") no-repeat center;
             }
 
             a {
