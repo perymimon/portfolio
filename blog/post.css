@@ -118,27 +118,27 @@
     margin-bottom: var(--space-2);
 }
 
-.post-content code {
-    font-family: var(--font-family-mono);
-    font-size: 0.9em;
-    padding: 0.1em 0.3em;
-    border-radius: var(--radius-sm);
-    background-color: var(--darker-shade, rgba(0, 0, 0, 0.2));
-}
+/*.post-content code {*/
+/*    font-family: var(--font-family-mono);*/
+/*    font-size: 0.9em;*/
+/*    padding: 0.1em 0.3em;*/
+/*    border-radius: var(--radius-sm);*/
+/*    background-color: var(--darker-shade, rgba(0, 0, 0, 0.2));*/
+/*}*/
 
-.post-content pre {
-    background-color: var(--darker-shade-2, rgba(0, 0, 0, 0.3));
-    padding: var(--space-4);
-    border-radius: var(--radius-md);
-    overflow-x: auto;
-    margin: var(--space-4) 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+/*.post-content pre {*/
+/*    background-color: var(--darker-shade-2, rgba(0, 0, 0, 0.3));*/
+/*    padding: var(--space-4);*/
+/*    border-radius: var(--radius-md);*/
+/*    overflow-x: auto;*/
+/*    margin: var(--space-4) 0;*/
+/*    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+/*}*/
 
-.post-content pre code {
-    padding: 0;
-    background-color: transparent;
-}
+/*.post-content pre code {*/
+/*    padding: 0;*/
+/*    background-color: transparent;*/
+/*}*/
 
 /* Code Blocks */
 .post-code-blocks {
