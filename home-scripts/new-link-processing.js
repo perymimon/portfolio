@@ -1,16 +1,22 @@
+import {runCommands} from "../src/helpers/typing.js";
 import {injectProjectInfo2} from './project-info.js'
 import {startViewTransition} from './view-transition.js'
 
 
-document.addEventListener('click', handleGlobalClick)
-window.addEventListener('hashchange', (event) => goToProjectPage())
+document.addEventListener('click', async function handleGlobalClick(event) {
+    if (!(event.target instanceof HTMLAnchorElement)) return
+    if (event.target.getAttribute('href').startsWith('http')) return
+    event.preventDefault()
+    window.location.hash = event.target.id
+})
+window.addEventListener('hashchange', (event) => navigateToProjectPage())
 
 const contentFrame = document.querySelector('#content-frame')
 export var projects = null
 export var byGroups = null
 
 
-async function loadProjects () {
+async function loadProjects() {
     projects = await fetch('./projects/projects.json')
         .then(response => response.json())
         .catch(error => console.error('Error loading projects:', error))
@@ -22,21 +28,14 @@ async function loadProjects () {
 
 const loadingProjects = loadProjects()
 
-export async function initSidebar (event) {
+export async function initSidebar(event) {
     await loadingProjects
     buildNavigation()
-    await goToProjectPage()
+    await navigateToProjectPage()
 }
 
-async function handleGlobalClick (event) {
-    if (!(event.target instanceof HTMLAnchorElement)) return
-    if(event.target.getAttribute('href').startsWith('http')) return
-    event.preventDefault()
-    await goToProjectPage(event.target.id)
 
-}
-
-function toggleAnchor (anchor) {
+function toggleAnchor(anchor) {
     anchor = (typeof anchor === 'string') ? document.getElementById(anchor) : anchor
     if (!anchor) throw 'no anchor get or found'
     if (anchor.role === 'tab') {
@@ -58,14 +57,14 @@ function toggleAnchor (anchor) {
  * @returns {Promise<string|*|boolean|boolean>}
  */
 
-async function goToProjectPage (id = window.location.hash) {
+async function navigateToProjectPage(id = window.location.hash) {
     var project = null
-    if(Object(id) === id){
-         project =  id
+    if (Object(id) === id) {
+        project = id
         id = project.id
-    }else{
+    } else {
         id = id.replace(/^#/, '')
-        project =  getProjectById(id)
+        project = getProjectById(id)
     }
 
     var link = document.getElementById(id)
@@ -73,16 +72,15 @@ async function goToProjectPage (id = window.location.hash) {
 
     if (contentFrame.src.includes(href)) return false
 
-    var tabs = getProjectsByGroupId(project?.id)
-    if (tabs) {
-        return goToProjectPage(tabs.at(0))
-    }
-    if (!href) return goToProjectPage('welcome')
+    var tabs = getProjectsOfGroup(project?.id)
+    if (tabs) return navigateToProjectPage(tabs.at(0))
+    if (!href) return navigateToProjectPage('welcome')
     /* what if we already on that project / page */
 
     window.location.hash = id
+    await terminal(project)
 
-    var viewTransition = startViewTransition(_ => {
+    var viewTransition = startViewTransition(async _ => {
         contentFrame.src = href
         injectProjectInfo2(project)
     })
@@ -91,11 +89,28 @@ async function goToProjectPage (id = window.location.hash) {
     return project
 }
 
-export function getProjectById (projectId) {
+async function terminal() {
+    const cloudTerminal = document.getElementById('cloud-terminal')
+    // Clear terminal content
+
+    // command text
+    const commands = `
+        cd /projects/beta
+        chmod 755 initialize.sh
+        ./initialize.sh
+        Loading quantum algorithms...
+        Project Beta activated.
+    `
+    // Show cloud terminal
+    cloudTerminal.classList.add('active');
+    await runCommands(commands);
+}
+
+export function getProjectById(projectId) {
     return projects.find(item => item.id === projectId)
 }
 
-export function getProjectsByGroupId (groupId) {
+export function getProjectsOfGroup(groupId) {
     return byGroups[groupId]
 }
 
@@ -105,7 +120,7 @@ export function getProjectsByGroupId (groupId) {
  */
 const commentMatcher = /(links|tabs):\s*([\w-]+)/
 
-function buildNavigation () {
+function buildNavigation() {
     const comments = findComments(document.body)
     comments
         .filter(comment => comment.data.match(commentMatcher))
@@ -114,8 +129,8 @@ function buildNavigation () {
         });
 }
 
-export function getAnchorsGroup (groupId, type) {
-    var group = getProjectsByGroupId(groupId)
+export function getAnchorsGroup(groupId, type) {
+    var group = getProjectsOfGroup(groupId)
     const fragment = document.createDocumentFragment()
     if (!group) return null
 
@@ -128,7 +143,7 @@ export function getAnchorsGroup (groupId, type) {
     return fragment
 }
 
-export function addGroupAfterComment (comment) {
+export function addGroupAfterComment(comment) {
     const [, type, groupId] = comment.data.match(commentMatcher)
     const fragment = getAnchorsGroup(groupId, type)
     comment.parentNode.insertBefore(fragment, comment.nextSibling)
@@ -140,7 +155,7 @@ export function addGroupAfterComment (comment) {
  * @param {Boolean} isTab - Whether this link is a tab.
  * @returns {HTMLElement} - The constructed link or tab element.
  */
-function buildLink (item, isTab = false) {
+function buildLink(item, isTab = false) {
     const link = document.createElement('a');
     if (!isTab) link.classList.add('sidebar-link');
     link.href = item.link;
@@ -160,7 +175,7 @@ function buildLink (item, isTab = false) {
  * @param {Node} node - The root node to search within.
  * @returns {Array} - List of comment nodes.
  */
-function findComments (node) {
+function findComments(node) {
     const comments = [];
     const iterator = document.createNodeIterator(
         node,
