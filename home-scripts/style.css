@@ -3,6 +3,7 @@
 @import "style-view-transition.css";
 @import "style-side-panel.css";
 @import "style-small-elements.css";
+@import "terminal.css";
 
 body {
     display: grid;
@@ -16,6 +17,9 @@ body {
     #main-content { grid-area: c; }
     #top-bar { grid-area: b; }
     #sidebar {grid-area: a; }
+    anchor-scope: --content-frame;
+    transform-style: preserve-3d;
+    perspective: 30em;
 }
 
 nav {
@@ -29,7 +33,6 @@ nav {
     flex-direction: column;
     position: relative;
     overflow: clip;
-    anchor-scope:--content-frame;
 }
 
 #content-frame {

@@ -9,7 +9,7 @@
     "description": "Wait 50 sec for server to spin up. Multi player game and the first React app I write",
     "github": "https://github.com/perymimon/Taki-react",
     "actions": [
-      "cold spin up Taki server (50sec) | https://taki-game.onrender.com/",
+      "cold spin up Taki server will be 50sec | https://taki-game.onrender.com/",
       "render dashboard | https://dashboard.render.com/"
     ]
   },
@@ -33,7 +33,11 @@
     "stack": "vanilla es6",
     "description": "Symbols drawn using plain vanilla JavaScript",
     "teacher": "@Radu",
-    "tutorial": "https://www.youtube.com/playlist?list=PLB0Tybl0UNfalh9Ll82j6OKdx1QINOZom"
+    "tutorial": "https://www.youtube.com/playlist?list=PLB0Tybl0UNfalh9Ll82j6OKdx1QINOZom",
+    "meta": {
+      "main": "draw.js",
+      "coolWord": "Loading"
+    }
   },
   {
     "groupId": "tutorials-by-frank",
@@ -43,7 +47,11 @@
     "stack": "particles, Canvas, vanilla es6",
     "description": "Basic particle effects, responsive to mouse interactions.",
     "teacher": "@Frank",
-    "tutorial": "https://www.youtube.com/watch?v=PoDjjHh931c"
+    "tutorial": "https://www.youtube.com/watch?v=PoDjjHh931c",
+    "meta": {
+      "main": "script.js",
+      "coolWord": "Initializing"
+    }
   },
   {
     "groupId": "projects-particles-code-pens",
@@ -90,7 +98,11 @@
     "description": "A matrix rain, created with vanilla ES6 on canvas and some CSS filters.",
     "teacher": "@Frank",
     "tutorial": "https://www.youtube.com/watch?v=f5ZswIE_SgY",
-    "github": "https://github.com/perymimon/portfolio/tree/main/projects/matrix-rain"
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/matrix-rain",
+    "meta": {
+      "main": "matrix-rain.run.js",
+      "coolWord": "Activate"
+    }
   },
   {
     "groupId": "tutorials-by-frank",
@@ -101,8 +113,13 @@
     "stack": "Canvas, vanilla es6",
     "description": "What if we change the speed of the particles based on the luminosity of a hidden image?",
     "teacher": "@Frank",
-    "github": "https://github.com/perymimon/portfolio/tree/main/projects/pixel-rain"
-  },{
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/pixel-rain",
+    "meta": {
+      "main": "pixel-rain.run.js",
+      "coolWord": "Activate"
+    }
+  },
+  {
     "groupId": "tutorials-by-coding-train",
     "id": "projects-ray-cast",
     "title": "Ray Cast",
@@ -112,8 +129,13 @@
     "teacher": "@Dan",
     "github": "https://github.com/perymimon/portfolio/tree/main/projects/ray-casting/1/index.html",
     "youtube": "https://www.youtube.com/watch?v=TOEi6T2mtH",
-    "description": "Move you pointer around and see how the light block by thw walls. You can click to creat a new wall"
-},{
+    "description": "Move you pointer around and see how the light block by thw walls. You can click to creat a new wall",
+    "meta": {
+      "main": "Light.js",
+      "coolWord": "Loading"
+    }
+  },
+  {
     "groupId": "tutorials-by-coding-train",
     "id": "projects-paper-marbling",
     "title": "Paper Marbling",
@@ -123,8 +145,13 @@
     "teacher": "@me",
     "github": "https://github.com/perymimon/portfolio/tree/main/projects/paper-marbling",
     "youtube": "https://www.youtube.com/watch?v=p7IGZTjC008&ab_channel=TheCodingTrain",
-    "description": "Sit back and enjoy from the paper marble effect "
-},{
+    "description": "Sit back and enjoy from the paper marble effect",
+    "meta": {
+      "main": "paper-marbling.run.js",
+      "coolWord": "Activate"
+    }
+  },
+  {
     "groupId": "tutorials-by-coding-train",
     "id": "projects-paper-marbling-2",
     "title": "Paper Drop Marbling",
@@ -135,53 +162,56 @@
     "github": "https://github.com/perymimon/portfolio/tree/main/projects/paper-marbling",
     "youtube": "https://www.youtube.com/watch?v=p7IGZTjC008&ab_channel=TheCodingTrain",
     "description": "Double Tab to drop a new drop and swift around to tineLine the Liquid"
-  },{
-  "groupId": "tutorials-by-coding-train",
-  "title": "Falling Sand",
-  "id": "falling-sand",
-  "teacher": "@me",
-  "stack": "Canvas, vanilla es6",
-  "youtube": "https://www.youtube.com/watch?v=L4u7Zy_b868&t=36s&ab_channel=TheCodingTrain"
-},{
-  "groupId": "falling-sand",
-  "id": "falling-sand-1",
-  "title": "Falling Sand - part 1",
-  "link": "projects/falling-sand/1/index.html",
-  "year": 2025,
-  "article": "https://perymimon.hashnode.dev/building-a-falling-sand-simulation-with-html-canvas",
-  "tags": "cellularAutomata",
-
-  "github": "https://github.com/perymimon/portfolio/tree/main/projects/falling-sand/1",
-  "description": "Falling send with fast and simple cellular Automata algorithm"
-},{
-  "groupId": "falling-sand",
-  "id": "falling-sand-2",
-  "title": "Falling Sand - part 2",
-  "link": "projects/falling-sand/2/index.html",
-  "year": 2025,
-  "tags": "cellularAutomata",
-  "article": "https://perymimon.hashnode.dev/falling-sand-part-2",
-  "github": "https://github.com/perymimon/portfolio/tree/main/projects/falling-sand/2",
-  "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
-},{
-  "groupId": "falling-sand",
-  "id": "falling-sand-3",
-  "title": "Falling Sand - part 3",
-  "link": "projects/falling-sand/3/index.html",
-  "year": 2025,
-  "tags": "cellularAutomata",
-  "article": "https://perymimon.hashnode.dev/building-a-falling-sand-simulation-with-html-canvas",
-  "github": "https://github.com/perymimon/portfolio/tree/main/projects/falling-sand/3",
-  "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
-},{
-  "groupId": "tutorials-by-coding-train",
-  "id": "hilbert-curve",
-  "title": "Hilbert Curve",
-  "link": "projects/hilbert-curve/index.html",
-  "year": 2025,
-  "tags": "math",
-  "github": "https://github.com/perymimon/portfolio/tree/main/projects/hilbert-curve",
-  "description": "The Hilbert Curve is a special type of space-filling curve that covers an entire 2D area in such a way that any point on the curve does not move significantly when the resolution is increased"
-}
-
+  },
+  {
+    "groupId": "tutorials-by-coding-train",
+    "title": "Falling Sand",
+    "id": "falling-sand",
+    "teacher": "@me",
+    "stack": "Canvas, vanilla es6",
+    "youtube": "https://www.youtube.com/watch?v=L4u7Zy_b868&t=36s&ab_channel=TheCodingTrain"
+  },
+  {
+    "groupId": "falling-sand",
+    "id": "falling-sand-1",
+    "title": "Falling Sand - part 1",
+    "link": "projects/falling-sand/1/index.html",
+    "year": 2025,
+    "article": "https://perymimon.hashnode.dev/building-a-falling-sand-simulation-with-html-canvas",
+    "tags": "cellularAutomata",
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/falling-sand/1",
+    "description": "Falling send with fast and simple cellular Automata algorithm"
+  },
+  {
+    "groupId": "falling-sand",
+    "id": "falling-sand-2",
+    "title": "Falling Sand - part 2",
+    "link": "projects/falling-sand/2/index.html",
+    "year": 2025,
+    "tags": "cellularAutomata",
+    "article": "https://perymimon.hashnode.dev/falling-sand-part-2",
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/falling-sand/2",
+    "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
+  },
+  {
+    "groupId": "falling-sand",
+    "id": "falling-sand-3",
+    "title": "Falling Sand - part 3",
+    "link": "projects/falling-sand/3/index.html",
+    "year": 2025,
+    "tags": "cellularAutomata",
+    "article": "https://perymimon.hashnode.dev/building-a-falling-sand-simulation-with-html-canvas",
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/falling-sand/3",
+    "description": "Falling send & water with (not) fast (but) simple cellular Automata algorithm"
+  },
+  {
+    "groupId": "tutorials-by-coding-train",
+    "id": "hilbert-curve",
+    "title": "Hilbert Curve",
+    "link": "projects/hilbert-curve/index.html",
+    "year": 2025,
+    "tags": "math",
+    "github": "https://github.com/perymimon/portfolio/tree/main/projects/hilbert-curve",
+    "description": "The Hilbert Curve is a special type of space-filling curve that covers an entire 2D area in such a way that any point on the curve does not move significantly when the resolution is increased"
+  }
 ]

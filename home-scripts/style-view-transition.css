@@ -57,7 +57,7 @@
 ::view-transition-old(main-content-frame) {
     transform-style: preserve-3d;
     transform-origin: right center;
-    animation: 0.5s ease-in both move-out;
+    /*animation: 0.5s ease-in both move-out;*/
 }
 
 ::view-transition-new(main-content-frame) {
@@ -69,12 +69,12 @@
     /*from { transform: rotateY(0deg); opacity: 1; }*/
     from {
         transform-origin: center center;
-        transform: scale(1) rotateZ(0deg); opacity: 1;
+        transform: translateZ(0) rotateZ(0deg); opacity: 1;
     }
     /*to { transform: rotateY(-45deg); opacity: 0; }*/
     to {
         transform-origin: center center;
-        transform: scale(0) rotateZ(729deg); opacity: .9;
+        transform: translateZ(100em) rotateZ(729deg); opacity: .9;
     }
 }
 

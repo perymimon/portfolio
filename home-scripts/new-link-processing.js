@@ -52,20 +52,14 @@ function toggleAnchor(anchor) {
 }
 
 /**
- *
  * @param id - can be project-id or object id, or undefined to get value from location.hash
  * @returns {Promise<string|*|boolean|boolean>}
  */
-
+const historyMem = []
 async function navigateToProjectPage(id = window.location.hash) {
-    var project = null
-    if (Object(id) === id) {
-        project = id
-        id = project.id
-    } else {
-        id = id.replace(/^#/, '')
-        project = getProjectById(id)
-    }
+    id = id.replace(/^#/, '')
+    var project = getProjectById(id)
+
 
     var link = document.getElementById(id)
     var href = project?.link ?? link?.href
@@ -73,11 +67,12 @@ async function navigateToProjectPage(id = window.location.hash) {
     if (contentFrame.src.includes(href)) return false
 
     var tabs = getProjectsOfGroup(project?.id)
-    if (tabs) return navigateToProjectPage(tabs.at(0))
+    if (tabs) return (window.location.hash = tabs.at(0)?.id)
     if (!href) return navigateToProjectPage('welcome')
     /* what if we already on that project / page */
-
+    project ??= {id, title: link.textContent}
     window.location.hash = id
+    historyMem.push(id)
     await terminal(project)
 
     var viewTransition = startViewTransition(async _ => {
@@ -89,20 +84,16 @@ async function navigateToProjectPage(id = window.location.hash) {
     return project
 }
 
-async function terminal() {
-    const cloudTerminal = document.getElementById('cloud-terminal')
-    // Clear terminal content
-
-    // command text
+async function terminal(project) {
+    const {main = `index.js`,coolWord = `Loading`} = project.meta ?? {}
     const commands = `
-        cd /projects/beta
+        ${historyMem.at(-1)? `cd ../${project.id}`: `cd /projects/${project.id}`}
         chmod 755 initialize.sh
-        ./initialize.sh
-        Loading quantum algorithms...
-        Project Beta activated.
+        Access Granted
+        ./${main}
+        ${coolWord} ${project.title} algorithms...
+        Project ${project.title} activated.
     `
-    // Show cloud terminal
-    cloudTerminal.classList.add('active');
     await runCommands(commands);
 }
 

@@ -37,7 +37,7 @@
     --color-success-hover: light-dark(hsl(150, 65%, 55%), hsl(120, 80%, 55%));
 
     /* Neutral Colors */
-    --color-background: light-dark(hsl(220deg 20% 95%), hsl(120deg 20% 5% / 90%)); /* רקע אפור-לבן רך למצב Light */
+    --color-background: light-dark(hsl(220deg 10% 60%), hsl(120deg 20% 5% / 90%)); /* רקע אפור-לבן רך למצב Light */
     --color-foregrowund: light-dark(hsl(220deg 25% 98%), hsl(120deg 100% 30% / 25%)); /* רקע קדמי בהיר יותר */
     --color-muted: light-dark(hsl(220deg 15% 70%), hsl(120deg 15% 35%)); /* אפור רך */
     --color-muted-hover: light-dark(hsl(220deg 20% 80%), hsl(120deg 20% 55%));
@@ -78,7 +78,8 @@
     /* Typography */
     --font-family-sans-serif: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-family-base: Consolas, Lucida Console, "Courier New", monospace;
-    --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    /*--font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;*/
+    --font-family-mono:  monospace;
 
     --font-size-xs: 0.75rem; /* 12px */
     --font-size-sm: 0.875rem; /* 14px */

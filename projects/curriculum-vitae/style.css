@@ -201,7 +201,7 @@ footer {
 
 .card.opaque {
     @media (orientation: landscape) {
-        background-color: var(--color-background);
+        background-color: var(--component-bg);
     }
 }
 

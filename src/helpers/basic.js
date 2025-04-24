@@ -1,3 +1,5 @@
+import {waitFor} from "./timing.js";
+
 export function getProperty (ctx, property) {
     if (String(property).startsWith('--')) {
         var element =ctx instanceof HTMLElement? ctx: ctx.canvas
@@ -25,15 +27,7 @@ function parseLightDark (value) {
     return isDarkMode ? darkValue : lightValue
 }
 
-export async function waitFor (eventName, element) {
-    const {promise, resolve, reject} = Promise.withResolvers()
-    try {
-        element.addEventListener(eventName, resolve, {ones: true})
-    } catch (e) {
-        reject(e)
-    }
-    return promise
-}
+
 
 /**
  * image can be image instance, dom img element, url , css selector
