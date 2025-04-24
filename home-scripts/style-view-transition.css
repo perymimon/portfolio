@@ -46,6 +46,25 @@
     view-transition-name: main-content-frame;
 }
 
+
+/* Apply the custom animation to the old and new page states */
+::view-transition-image-group(main-content-frame) {}
+
+::view-transition-image-pair(main-content-frame) {
+    perspective: 600px;
+}
+
+::view-transition-old(main-content-frame) {
+    transform-style: preserve-3d;
+    transform-origin: right center;
+    animation: 0.5s ease-in both move-out;
+}
+
+::view-transition-new(main-content-frame) {
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    animation: 0.5s ease-in both move-in;
+}
 @keyframes move-out {
     /*from { transform: rotateY(0deg); opacity: 1; }*/
     from {
@@ -68,25 +87,6 @@
         transform-origin: bottom right;
         opacity: 1; transform: rotateY(0);
     }
-}
-
-/* Apply the custom animation to the old and new page states */
-::view-transition-image-group(main-content-frame) {}
-
-::view-transition-image-pair(main-content-frame) {
-    perspective: 600px;
-}
-
-::view-transition-old(main-content-frame) {
-    transform-style: preserve-3d;
-    transform-origin: right center;
-    animation: 0.5s ease-in both move-out;
-}
-
-::view-transition-new(main-content-frame) {
-    transform-style: preserve-3d;
-    transform-origin: left center;
-    animation: 0.5s ease-in both move-in;
 }
 
 /*--------------------------------*/
