@@ -20,6 +20,9 @@ body {
     anchor-scope: --content-frame;
     transform-style: preserve-3d;
     perspective: 30em;
+    background-image:
+            repeating-linear-gradient(to right, green 1px 1px, transparent 2px 30px),
+            repeating-linear-gradient(to bottom, green 1px 1px, transparent 2px 30px);
 }
 
 nav {

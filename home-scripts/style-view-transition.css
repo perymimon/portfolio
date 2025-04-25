@@ -64,6 +64,13 @@
     transform-style: preserve-3d;
     transform-origin: left center;
     animation: 0.5s ease-in both move-in;
+    mask-image: repeating-linear-gradient(
+            to bottom,
+            black,
+            black 2px,
+            transparent 2px,
+            transparent 4px
+    );
 }
 @keyframes move-out {
     /*from { transform: rotateY(0deg); opacity: 1; }*/
