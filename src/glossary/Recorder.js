@@ -53,10 +53,10 @@ window.addEventListener("message", async (event) => {
 export default class Recorder extends EventsEmitter {
     canvas = null
     fps = 30
-    // mimeType = "video/webm codecs=vp9"
-    mimeType = "video/mp4; codecs=avc3" // Use H.264
+    mimeType = "video/webm;codecs=vp9"
+    // mimeType = "video/mp4; codecs=avc3" // Use H.264
     mediaRecorder = null
-    videoBitsPerSecond = 288000
+    videoBitsPerSecond = 8_000_000
 
     constructor (canvas, fps, mimeType, videoBitsPerSecond) {
         super()
@@ -95,6 +95,7 @@ export default class Recorder extends EventsEmitter {
 
     record (time = 10_000) {
         if (!this.isInactive) return
+        this.ensureCanvasColorQuality()
         var recordedChunks = []
 
         this.timer = new Timer(time, _ => this.mediaRecorder.stop())
@@ -115,7 +116,19 @@ export default class Recorder extends EventsEmitter {
 
         return promise
     }
+    // Ensure the canvas is set up for best color reproduction
+    ensureCanvasColorQuality() {
+        const ctx = this.canvas.getContext("2d", {
+            alpha: false, // Disable alpha for better color reproduction
+            colorSpace: "srgb", // Use sRGB color space
+            willReadFrequently: false, // Performance optimization
+        })
 
+        // If the context supports it, set color settings
+        if (ctx && typeof ctx.filter !== "undefined") {
+            ctx.filter = "none" // Ensure no filters are applied
+        }
+    }
     pause () {
         if (this.isPaused || this.isInactive) return
         this.mediaRecorder.pause()
