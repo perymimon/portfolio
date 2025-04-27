@@ -117,11 +117,9 @@ a.sidebar-link, .sidebar-link > a {
     &:hover {
         background-color: var(--component-hover);
         position: relative;
-
         &:before {
             content: ">_";
-            left: -0.0em;
-            position: absolute;
+            margin-inline: -1ex; /*start + end*/
         }
 
     }
@@ -134,17 +132,13 @@ a.sidebar-link, .sidebar-link > a {
         &::after {
             position: relative;
             content: "↵";
-            color: var(--text-primary);
-            /*left:-1em;*/
+            margin-inline-start: 1ex;
         }
     }
 
     &:is(:target,hover)::before {
         content: ">";
-        color: var(--text-primary);
-        position: absolute;
-        left: -0.5em;
-        padding-inline: var(--space-2);
+        padding-inline-end: 1ex;
         z-index: 1;
     }
 }
