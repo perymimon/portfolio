@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition Playground</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #111;
+            font-family: sans-serif;
+            gap: 1em;
+            align-items: stretch;
+        }
+
+        .action-bar {
+            border: 1px solid #fff;
+            border-radius: 12px;
+            padding: 1em;
+            display: flex;
+            gap: 1em;
+        }
+
+        .container {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            color: #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.6s ease-in-out;
+            border: 1px solid #fff;
+            padding: 1em;
+            gap: 1em;
+        }
+
+
+        button {
+            border-radius: 12px;
+            padding: 1em;
+            background: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        :root{
+            view-transition-name: none;
+        }
+        ::view-transition {
+            pointer-events: none;
+        }
+        .card {
+            width: 100px;
+            border: 1px solid #fff;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            view-transition-name: attr(id type(<custom-ident>), none);
+
+        }
+        @keyframes move-up-disappear {
+            from{
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            to{
+                transform: translateY(-100%) scale(.90);
+                opacity: 0;
+            }
+        }
+        ::view-transition-old(.card) {
+            animation: move-up-disappear 0.6s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body>
+<div class="action-bar">
+    <button data-action="add">add</button>
+    <button data-action="remove">remove</button>
+</div>
+<div class="container">
+
+</div>
+
+
+<script>
+    const container = document.querySelector('.container')
+    const actionBar = document.querySelector('.action-bar')
+    document.addEventListener('click', (e) => {
+        document.startViewTransition( _=> {
+            const {action} = e.target.dataset
+            if (action === 'add') {
+                const numOfCards = container.childElementCount
+                container.insertAdjacentHTML(`beforeend`,
+                    `<div class="card" id="card-${numOfCards}">
+                <button data-action="remove">🗑️</button>
+            </div>`)
+            }
+            if (action === 'remove') {
+                const cardEl = e.target.closest('.card')
+                cardEl.style.viewTransitionClass = 'card'
+                if (cardEl) cardEl.remove()
+                else container.lastElementChild.remove()
+            }
+        })
+    })
+
+
+</script>
+</body>
+</html>
