@@ -67,9 +67,15 @@
 </head>
 <body>
 <div class="container">
-    <h1>Welcome to My Creative Playground</h1>
-    <p>Hey! I’m Pery Mimon — a dev who loves to tinker and explore.
-        This sandbox is where I mess around with fun ideas, all built from plain old HTML — no compilers, just code.</p>
+    <h1>Welcome to My Playground</h1>
+    <p>Hello fellow dev! I’m Pery Mimon — a dev who loves to tinker and explore. </p>
+
+    <p> This playground is where I strip away frameworks and go back to the browser’s core superpowers.
+        Frameworks are amazing for real products, but they blur the magic underneath.
+        Here it’s just me, the browser, and pure JavaScript — to rediscover the engine that makes everything else
+        possible.
+    </p>
+
     <p>Feel free to explore them using the sidebar navigation. Here's a quick overview of what you'll find:</p>
 
     <ul class="project-list">
@@ -148,7 +154,7 @@
 </div>
 
 <script type="module">
-    import {linkPageToParent} from './src/helpers/link-page.js'
+    import { linkPageToParent } from './src/helpers/link-page.js'
 
     linkPageToParent()
     // var h4s = document.querySelectorAll('.anchor-project-title')
@@ -156,7 +162,7 @@
     //     convertTextToArcWithCenter(h4, 70, -90, 180 )
     // })
 
-    function convertTextToArcWithCenter (element, radius, centerAngle, totalArc, fontSize = 16, maxScale = 1) {
+    function convertTextToArcWithCenter(element, radius, centerAngle, totalArc, fontSize = 16, maxScale = 1) {
         const text = element.textContent.trim(); // Get and trim the text content
         const characters = text.split(""); // Split text into individual characters
 
@@ -184,10 +190,10 @@
 
             span.textContent = char;
             span.style.position = "absolute";
-            span.style.transform = `translate(${x}px, ${y}px)`;
+            span.style.transform = `translate(${ x }px, ${ y }px)`;
             span.style.transformOrigin = "center";
             span.style.whiteSpace = "nowrap";
-            span.style.fontSize = `${adjustedFontSize}px`;
+            span.style.fontSize = `${ adjustedFontSize }px`;
 
             element.appendChild(span);
         });
